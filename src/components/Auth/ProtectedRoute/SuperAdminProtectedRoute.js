@@ -3,9 +3,6 @@ import {Route} from 'react-router-dom'
 import {connect} from 'react-redux';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import WorkerDashboard from '../../WorkerDashboard/WorkerDashboard';
-import AdminDashboard from '../../AdminDashboard/AdminDashboard';
-import SetupFarm from '../../AdminComponents/SetupFarm/SetupFarm';
 import SuperAdminDashboard from '../../SuperAdminDashboard/SuperAdminDashboard';
 // A Custom Wrapper Component -- This will keep our code DRY.
 // Responsible for watching redux state, and returning an appropriate component
@@ -17,7 +14,7 @@ import SuperAdminDashboard from '../../SuperAdminDashboard/SuperAdminDashboard';
 // by checking req.isAuthenticated for authentication
 // and by checking req.user for authorization
 
-const ProtectedRoute = (props) => {
+const SuperAdminProtectedRoute = (props) => {
   // Using destructuring, this takes ComponentToProtect from component
   // prop and grabs all other props to pass them along to Route
   const {
@@ -29,31 +26,17 @@ const ProtectedRoute = (props) => {
   } = props;
 
   let ComponentToShow;
+  console.log('otherProps is:', otherProps);
 
-  if(user.user_id) {
-    if (otherProps.path === '/home' && user.user_role === 'worker'){
-      ComponentToShow = WorkerDashboard;
-    }
+    //CONDITIONAL-- checks user permisisons and determines route paths based on permission
+  if(user.user_id && user.user_role ==='superAdmin') {
 
-    if (otherProps.path === '/home' && user.user_role === 'superAdmin'){
-      ComponentToShow = SuperAdminDashboard;
-    }
+      ComponentToShow = ComponentToProtect;
+  
+    // ComponentToShow = ComponentToProtect;
 
-
-
-    else if (loginMode === 'registerFarm'){
-      ComponentToShow = SetupFarm;
-    }
-    
-    else if (otherProps.path === '/home' && user.user_role === 'admin'){
-      ComponentToShow = AdminDashboard;
-    }
-    else{
-    // if the user is logged in (only logged in users have ids)
-    // show the component that is protected
-    ComponentToShow = ComponentToProtect;
-    }
   } 
+  
   else if (loginMode === 'login') {
     // if they are not logged in, check the loginMode on Redux State
     // if the mode is 'login', show the LoginPage
@@ -86,6 +69,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(ProtectedRoute)
-
-
+export default connect(mapStateToProps)(SuperAdminProtectedRoute)
