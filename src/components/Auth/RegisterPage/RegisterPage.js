@@ -111,6 +111,7 @@ class RegisterPage extends Component {
                       value={this.state.newUser.password}
                       ></TextField>
                 </Grid>
+                
                 <Grid item xs={8} sm={6}>
                     <Typography>{this.props.errors.registrationMessage}</Typography>
                 </Grid>
