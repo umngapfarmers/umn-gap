@@ -9,10 +9,14 @@ import {
 import {connect} from 'react-redux';
 
 import ProtectedRoute from '../Auth/ProtectedRoute/ProtectedRoute';
+import AdminProtectedRoute from '../Auth/ProtectedRoute/AdminProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
+import AdminDashboard from '../AdminDashboard/AdminDashboard';
+import WorkerDashboard from '../WorkerDashboard/WorkerDashboard';
+import SelectNewHarvestYearDate from '../AdminComponents/HarvestYear/NewHarvestYear/SelectNewHarvestYearDate/SelectNewHarvestYearDate';
 
 import './App.css';
 
@@ -51,6 +55,8 @@ class App extends Component {
               path="/info"
               component={InfoPage}
             />
+            
+
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>

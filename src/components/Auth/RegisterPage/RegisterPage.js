@@ -34,8 +34,7 @@ class RegisterPage extends Component {
       // }
    
     } else {
-      this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
-      this.registrationError();
+      this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'})
     }
   } // end registerUser
 
@@ -50,13 +49,6 @@ class RegisterPage extends Component {
     });
   }
 
-  registrationError = () =>{
-      swal({
-        title: `${this.props.errors.registrationMessage}`,
-        icon: "warning",
-        buttons: true,
-      })
-  }
 
   //FUNCTION- on click of login button, dispatches 'SET_TO_LOGIN_MODE which redirects user to login view(has to do with protected route '/')
   backToLogin = () => {
@@ -119,6 +111,10 @@ class RegisterPage extends Component {
                       value={this.state.newUser.password}
                       ></TextField>
                 </Grid>
+                <Grid item xs={8} sm={6}>
+                    <Typography>{this.props.errors.registrationMessage}</Typography>
+                </Grid>
+
 
                 <Grid item xs={8} sm={6}>
                     <Button size="large" color="primary" onClick={this.registerUser} >Register</Button>

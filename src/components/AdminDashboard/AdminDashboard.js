@@ -1,9 +1,10 @@
-    
-import React from 'react';
+import React, {Component} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import './AdminDashboard.css'
+import {connect} from 'react-redux';
+import LogoutButton from '../LogOutButton/LogOutButton';
 
 
 class AdminDashboard extends Component {
@@ -22,6 +23,7 @@ class AdminDashboard extends Component {
       <React.Fragment>
       <Typography variant="h6" gutterBottom>
          Admin Dashboard
+         <LogoutButton/>
       </Typography>
       <Grid container spacing={24}>
          
