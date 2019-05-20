@@ -25,9 +25,14 @@ class WorkerDashboard extends Component {
       <Typography variant="h6" gutterBottom>
          Worker Dashboard
       </Typography>
-      <Grid container spacing={24}>
-         
-          <Grid item xs={12} sm={6}>
+        < Grid container spacing={24}
+          container
+          direction="column"
+          justify="center"
+          alignItems="center"
+        >
+
+          <Grid item xs={10} sm={6}>
             <Fab
               variant="extended"
               size="large"
@@ -36,8 +41,10 @@ class WorkerDashboard extends Component {
               className={classes.margin}
             >
               <NavigationIcon className={classes.extendedIcon} />
-              Logs
+              Create Logs
         </Fab>
+          </Grid>
+          <Grid item xs={10} sm={6}>
             <Fab
               variant="extended"
               size="large"
@@ -46,7 +53,7 @@ class WorkerDashboard extends Component {
               className={classes.margin}
             >
               <NavigationIcon className={classes.extendedIcon} />
-              Records
+              Manage Records
         </Fab>   
           </Grid>
 

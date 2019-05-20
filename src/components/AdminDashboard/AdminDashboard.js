@@ -27,9 +27,14 @@ class AdminDashboard extends Component {
           <h1>Admin Dashboard </h1>
         
       </Typography>
-      <Grid container spacing={40}>
+        < Grid container spacing={24}
+          container
+          direction="column"
+          justify="center"
+          alignItems="center"
+        >
          
-          <Grid item xs={6} sm={12}>
+          <Grid item xs={10} sm={6}>
             <Fab
               variant="extended"
               size="large"
@@ -38,8 +43,10 @@ class AdminDashboard extends Component {
               className={classes.margin}
             >
               <NavigationIcon className={classes.extendedIcon} />
-              Logs
+              Create Logs
         </Fab>
+        </Grid>
+            <Grid item xs={10} sm={6}>
             <Fab
               variant="extended"
               size="large"
@@ -48,32 +55,36 @@ class AdminDashboard extends Component {
               className={classes.margin}
             >
               <NavigationIcon className={classes.extendedIcon} />
-              Roles
-        </Fab>
-            <Fab
-              variant="extended"
-              size="large"
-              color="primary"
-              aria-label="Add"
-              className={classes.margin}
-            >
-              <NavigationIcon className={classes.extendedIcon} />
-              Records
-        </Fab>
-            <Fab
-              variant="extended"
-              size="large"
-              color="primary"
-              aria-label="Add"
-              className={classes.margin}
-            >
-              <NavigationIcon className={classes.extendedIcon} />
-              Harvest Year
+              Manage Roles
         </Fab>
           </Grid>
-          <LogoutButton />
+          <Grid item xs={10} sm={6}>
+            <Fab
+              variant="extended"
+              size="large"
+              color="primary"
+              aria-label="Add"
+              className={classes.margin}
+            >
+              <NavigationIcon className={classes.extendedIcon} />
+              View Records
+        </Fab>
+          </Grid>
+          <Grid item xs={10} sm={6}>
+            <Fab
+              variant="extended"
+              size="large"
+              color="primary"
+              aria-label="Add"
+              className={classes.margin}
+            >
+              <NavigationIcon className={classes.extendedIcon} />
+              Manage Harvest Year
+        </Fab>
+          </Grid>
       </Grid>
-     
+        <LogoutButton />
+
   </React.Fragment>
     );
   }
@@ -81,9 +92,10 @@ class AdminDashboard extends Component {
 
 const styles = theme => ({
   container: {
-      //display: 'flex',
-      //flexWrap: 'wrap',
+      display: 'flex',
+      flexWrap: 'wrap',
   },
+  
   margin: {
     margin: theme.spacing.unit,
   },
