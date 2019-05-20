@@ -7,7 +7,10 @@ const router = express.Router();
  */
 
 router.get('/label_code', (req, res) => {
-    let sqlQuery = `SELECT * FROM "label_code" ;`
+    let harvestYear = req.params
+    let sqlQuery = `SELECT * FROM "label_code" where "harvest_year_id" = $1;`
+    pool.query(sqlQuery, [harvestYear])
+        
 });
 
 /**
