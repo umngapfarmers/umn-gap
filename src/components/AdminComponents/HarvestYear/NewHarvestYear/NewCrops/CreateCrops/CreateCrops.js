@@ -14,17 +14,35 @@ class CreateCrops extends Component {
 
 
   state= {
-    newCrop:'',
+    newCrop: {
+      type:'',
+    }
     
   }
 
   handleInputChangeFor = propertyName => (event) => {
     this.setState({
       newCrop: {
-        newCrop: event.target.value,
+        ...this.setState,
+        [propertyName]: event.target.value,
 
       }
     });
+  }
+
+  addCropSource = (event) => {
+    event.preventDefault();
+    this.props.dispatch({type:'ADD_CROP_SOURCE', payload: this.state.newCrop})
+    this.setState({
+      newCrop: {
+        type:'',
+      }
+    })
+  }
+
+  removeCropSource = () => {
+    this.props.dispatch({type: 'REMOVE_CROP_SOURCE', payload:this.state.farm_crop_id})
+
   }
 
 
@@ -47,19 +65,23 @@ class CreateCrops extends Component {
                
                 <Grid item xs={12} sm={6}>
             <TextField label="Crops to track" variant="outlined" color="primary"
-              onChange={this.handleInputChangeFor('newCrop')}
-              value={this.state.newCrop}
+              onChange={this.handleInputChangeFor('type')}
+              value={this.state.newCrop.type}
             >
             </TextField>
-            <Button size="large" color="primary" onClick={this.addWaterSource} >Add</Button>
+            <Button size="large" color="primary" onClick={this.addCropSource} >Add</Button>
                    
                 </Grid>
           
           <Grid item xs={12} sm={6}>
           <ul> My Crops:</ul>
             {
-              this.props.reduxState.movies.movieReducer.map(movie =>
-                <li key={movie.id}></li> 
+              this.props.reduxState.cropSetup.cropSetup.map(crop =>
+                <li key={crop.farm_crop_id}>{crop.farm_crop_type}
+                <Button size="large" color="primary" onClick={this.removeCropSource} >
+                Remove
+                </Button>
+                </li> 
               )
             }
 
