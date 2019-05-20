@@ -15,6 +15,7 @@ import AdminDashboard from '../AdminDashboard/AdminDashboard';
 import WorkerDashboard from '../WorkerDashboard/WorkerDashboard';
 import NewHarvestYearDate from '../AdminComponents/HarvestYear/NewHarvestYear/SelectNewHarvestYearDate/SelectNewHarvestYearDate';
 import EnterFarmInformationHierarchyMenu from '../AdminComponents/HarvestYear/NewHarvestYear/EnterFarmInformationHierarchyMenu/EnterFarmInformationHierarchyMenu';
+import CreateManure from '../AdminComponents/HarvestYear/NewHarvestYear/NewManureCompost/CreateManure/CreateManure.js';
 import './App.css';
 
 class App extends Component {
@@ -24,6 +25,7 @@ class App extends Component {
 
   render() {
     return (
+<<<<<<< HEAD
         <Router>
           <div>
             <Switch>
@@ -64,6 +66,12 @@ class App extends Component {
                 path="/newfarminfo"
                 component={EnterFarmInformationHierarchyMenu}
               />
+
+            <Route
+              exact
+              path="/create_manure"
+              component={CreateManure}
+            />
               
 
               {/* If none of the other routes matched, we will show a 404. */}
@@ -75,3 +83,4 @@ class App extends Component {
 }
 
 export default connect()(App);
+
