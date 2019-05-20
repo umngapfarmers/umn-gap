@@ -91,7 +91,7 @@ class CreateManure extends Component {
         <Grid item xs={8} sm={6} >
             <FormControl>
                 <TextField 
-                  label="Label-code" 
+                  label="Label Code" 
                   variant="outlined" 
                   color="primary"
                   onChange={this.handleChangeFor('label_code_id')}
