@@ -9,6 +9,15 @@ const cropSetup = (state = [], action) => {
     }
 }
 
+const cropSetup = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_FIELD_SOURCE':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 export default combineReducers({
     cropSetup,
 });

@@ -45,6 +45,10 @@ class CreateCrops extends Component {
 
   }
 
+  nextPage = () => {
+    
+  }
+
 
   render() {
     const {classes} = this.props;
@@ -87,6 +91,7 @@ class CreateCrops extends Component {
 
           </Grid>
           <Grid item xs={12} sm={6}>
+            <Button size="large" color="primary" onClick={this.nextPage}>Next</Button>
 
           </Grid>
 
