@@ -236,9 +236,9 @@ VALUES
 
 -- "label_code"
 INSERT INTO "label_code"
-  ("farm_crop_id", "farm_field_id", "label_code_text")
+  ("farm_crop_id", "farm_field_id", "label_code_text","harvest_year_id")
 VALUES
-  ('1', '1', 'NF_tom');
+  ('1', '1', 'NF_tom', '1');
 
 --logs
 
