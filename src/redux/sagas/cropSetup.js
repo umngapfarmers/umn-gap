@@ -18,8 +18,8 @@ function* getCropSource(action) {
     console.log('in getCropSource', action);
 
     try {
-        yield axios.get(`/api/setupCrop`);
-        yield put({ type: 'SET_CROP_SOURCE' })
+        const response = yield axios.get(`/api/setupCrop`);
+        yield put({ type: 'SET_CROP_SOURCE', payload: response.data })
     }
     catch (error) {
         console.log(`Couldn't get the Crop source`, error);
