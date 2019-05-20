@@ -28,7 +28,7 @@ CREATE TABLE "user"
 CREATE TABLE "harvest_year"
 (
   "harvest_id" SERIAL PRIMARY KEY,
-  "havest_year" DATE,
+  "harvest_year" INT,
   -------should this be a true date or just an int?
   "farm_id" INT REFERENCES "farm_registry"
 );
@@ -202,7 +202,7 @@ VALUES
 
 -- "harvest_year"
 INSERT INTO "harvest_year"
-  ("havest_year", "farm_id")
+  ("harvest_year", "farm_id")
 VALUES
   ('2019-01-01', '1');
 
