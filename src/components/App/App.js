@@ -13,8 +13,8 @@ import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import AdminDashboard from '../AdminDashboard/AdminDashboard';
 import WorkerDashboard from '../WorkerDashboard/WorkerDashboard';
-import SelectNewHarvestYearDate from '../AdminComponents/HarvestYear/NewHarvestYear/SelectNewHarvestYearDate/SelectNewHarvestYearDate';
-
+import NewHarvestYearDate from '../AdminComponents/HarvestYear/NewHarvestYear/SelectNewHarvestYearDate/SelectNewHarvestYearDate';
+import EnterFarmInformationHierarchyMenu from '../AdminComponents/HarvestYear/NewHarvestYear/EnterFarmInformationHierarchyMenu/EnterFarmInformationHierarchyMenu';
 import './App.css';
 
 class App extends Component {
@@ -56,7 +56,13 @@ class App extends Component {
               <Route
                 exact
                 path="/newharvestyear"
-                component={SelectNewHarvestYearDate}
+                component={NewHarvestYearDate}
+              />
+
+              <Route
+                exact
+                path="/newfarminfo"
+                component={EnterFarmInformationHierarchyMenu}
               />
               
 
