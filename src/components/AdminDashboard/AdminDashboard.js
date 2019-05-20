@@ -22,7 +22,7 @@ class AdminDashboard extends Component {
     return (
       <React.Fragment>
       <Typography variant="h6" gutterBottom>
-         Admin Dashboard
+         Admin Dahboard 
          <LogoutButton/>
       </Typography>
       <Grid container spacing={24}>
