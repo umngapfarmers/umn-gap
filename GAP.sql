@@ -83,6 +83,7 @@ CREATE TABLE "label_code"
   "label_code_id" serial primary key,
   "farm_crop_id" int references "farm_crop",
   "farm_field_id" int references "farm_field",
+  "harvest_year_id" int references "harvest_year",
   "label_code_text" varchar(200)
 );
 
