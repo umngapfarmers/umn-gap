@@ -8,18 +8,14 @@ import './CreateManureCompostLabelCodes.css'
 
 class CreateManureCompostLabelCodes extends Component {
 
-
   state= {
     
   }
 
-
-
-
   render() {
     const {classes} = this.props;
     return (
-      <React.Fragment>
+    <React.Fragment>
       <Typography variant="h6" gutterBottom>
           Create Manure and Label Code
       </Typography>
@@ -31,7 +27,7 @@ class CreateManureCompostLabelCodes extends Component {
 
       </Grid>
      
-  </React.Fragment>
+    </React.Fragment>
     );
   }
 }
