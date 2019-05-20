@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 const waterSetup = (state = [], action) => {
     switch (action.type) {
-        case 'SET_MOVIE':
+        case 'SET_WATER_SOURCE':
             return action.payload;
         default:
             return state;
@@ -10,5 +10,5 @@ const waterSetup = (state = [], action) => {
 }
 
 export default combineReducers({
-    movieReducer,
+    waterSetup,
 });
