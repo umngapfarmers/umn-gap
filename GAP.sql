@@ -28,7 +28,7 @@ CREATE TABLE "user"
 CREATE TABLE "harvest_year"
 (
   "harvest_id" SERIAL PRIMARY KEY,
-  "harvest_year" DATE,
+  "harvest_year" INT,
   -------should this be a true date or just an int?
   "farm_id" INT REFERENCES "farm_registry"
 );
