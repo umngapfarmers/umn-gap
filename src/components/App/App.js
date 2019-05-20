@@ -25,7 +25,6 @@ class App extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
         <Router>
           <div>
             <Switch>
