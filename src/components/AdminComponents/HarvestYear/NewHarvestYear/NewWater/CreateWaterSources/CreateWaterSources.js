@@ -1,19 +1,20 @@
     
-import React from 'react';
+import React, {Component} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import './CreateWaterSources.css'
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button'
-import FormControl from '@material-ui/core/FormControl'
+import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
+import { connect } from 'react-redux';
 
 
 class CreateWaterSources extends Component {
 
 
   state= {
-    waterSource:"",
+    newWaterSource:"",
   }
 
   handleInputChangeFor = propertyName => (event) => {
@@ -24,6 +25,16 @@ class CreateWaterSources extends Component {
         
       }
     });
+  }
+
+  addWaterSource = (event) => {
+    event.preventDefault();
+    console.log('New water');
+    this.props.dispatch({type:'ADD_WATER', payload:this.state})
+    this.setState({
+      newWaterSource: "",
+    })
+
   }
 
 
@@ -43,13 +54,14 @@ class CreateWaterSources extends Component {
                 <Grid item xs={12} sm={6}>
                   <FormControl>
                     <TextField label="Water Sources" variant="outlined" color="primary"
-                      onChange={this.handleInputChangeFor('registrationCode')}
-                      type="password"
-                      value={this.state.newUser.registrationCode}
+                      onChange={this.handleInputChangeFor('waterSource')}
+                      value={this.state.waterSource}
                     >
                     </TextField>
-                    <Button size="large" color="primary" onClick={this.registerUser} >Register</Button>
+                    <Button size="large" color="primary" onClick={this.addWaterSource} >Add</Button>
                   </FormControl>
+                </Grid>
+                <Grid item xs={12} sm={6}>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                 </Grid>
