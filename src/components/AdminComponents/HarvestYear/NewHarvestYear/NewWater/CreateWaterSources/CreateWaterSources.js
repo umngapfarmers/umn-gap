@@ -30,11 +30,17 @@ class CreateWaterSources extends Component {
   addWaterSource = (event) => {
     event.preventDefault();
     console.log('New water');
-    this.props.dispatch({type:'ADD_WATER', payload:this.state})
+    this.props.dispatch({type:'ADD_WATER_SOURCE', payload:this.state})
     this.setState({
       newWaterSource: "",
     })
 
+  }
+  
+  removeWaterSource = (event) => {
+    event.preventDefault();
+    console.log('Remove water');
+    this.props.dispatch({ type: 'REMOVE_WATER_SOURCE', payload: this.props.source.farm_water_id })
   }
 
 
@@ -42,14 +48,20 @@ class CreateWaterSources extends Component {
     const {classes} = this.props;
     return (
       <React.Fragment>
-            <Typography variant="h6" gutterBottom>
+        
+            {/* <Typography variant="h6" gutterBottom>
                 Create Water Sources
-            </Typography>
+            </Typography> */}
             <Grid container spacing={24}
             container
             direction="column"
             justify="center"
             alignItems="center">
+          <Grid item xs={12} sm={6}>
+            <Typography variant="h6" gutterBottom>
+              Create Water Sources
+            </Typography>
+          </Grid>
                
                 <Grid item xs={12} sm={6}>
                   <FormControl>
@@ -62,8 +74,17 @@ class CreateWaterSources extends Component {
                   </FormControl>
                 </Grid>
                 <Grid item xs={12} sm={6}>
+            <ul className="sourceText">Sources:</ul>
+            {this.props.reduxState.waterSetup.waterSetup.map(source =>
+              <li key={source.farm_water_id}>{source.farm_water_source}
+                <Button size="large" color="primary" onClick={this.removeWaterSource} >
+                  Remove
+                    </Button>
+              </li>
+            )}
                 </Grid>
                 <Grid item xs={12} sm={6}>
+                  <Button size="large" color="primary" onClick={this.nextWaterPage} >Next</Button>
                 </Grid>
 
             </Grid>
