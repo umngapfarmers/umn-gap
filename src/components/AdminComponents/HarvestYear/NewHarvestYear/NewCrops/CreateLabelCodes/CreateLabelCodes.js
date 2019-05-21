@@ -21,7 +21,7 @@ class CreateLabelCodes extends Component {
       farm_crop_id:'',
       farm_field_id: '',
       label_code_text: '',
-      harvest_year_id:'',
+      harvest_year_id: this.props.reduxState.user.current_harvest_year,
     }
     
   }

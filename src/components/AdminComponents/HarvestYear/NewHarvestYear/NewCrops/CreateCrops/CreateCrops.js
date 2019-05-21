@@ -16,7 +16,7 @@ class CreateCrops extends Component {
   state= {
     newCrop: {
       type:'',
-      harvest_year_id: this.props.reduxState.
+      harvest_year_id: this.props.reduxState.user.current_harvest_year,
     }
     
   }

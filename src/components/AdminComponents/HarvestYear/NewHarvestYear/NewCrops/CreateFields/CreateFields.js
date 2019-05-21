@@ -36,6 +36,7 @@ class CreateFields extends Component {
     this.setState({
       newField: {
         name: '',
+        harvest_year_id: this.props.reduxState.user.current_harvest_year,
       }
     })
   }
