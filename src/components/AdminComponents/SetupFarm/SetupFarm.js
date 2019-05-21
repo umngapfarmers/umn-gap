@@ -9,57 +9,20 @@ import FormControl from '@material-ui/core/FormControl'
 import swal from 'sweetalert';
 
 
-class RegisterPage extends Component {
+class SetupFarm extends Component {
   state = {
-    newUser:{
-        registrationCode: '',
-        person_first: '',
-        person_last: '',
-        username: '',
-        password: '',
-        person_status: '',
-        user_role: '',
-    },
     newFarm:{
-      farm_name: '',
-      address: '',
-      city: '',
-      state: '',
-      zip_code: '',
-  },
+        farm_name: '',
+        address: '',
+        city: '',
+        state: '',
+        zip_code: '',
+        registrationCode: '',
+    },
   };
-  registerUser = (event) => {
-    event.preventDefault();
-    console.log('in registerUser');
-    if (this.state.newUser.username && this.state.newUser.password) {
-      this.props.dispatch({
-        type: 'REGISTER',
-        payload: { newUser: this.state.newUser,
-          newFarm: this.state.newFarm,
-        }
-      });
-      // if(this.props.errors.loginMode === 'createProfile'){
-      //   this.props.history.push('/createProfile')
-      // }
-   
-    } else {
-      this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'})
-    }
-  } // end registerUser
-
-  handleInputChangeForNewUser = propertyName => (event) => {
-    this.setState({
-      newUser: {
-        ...this.state.newUser,
-      [propertyName]: event.target.value,
-        person_status: true,
-        user_role: 'admin',
-      }
-    });
-  }
 
 
-  handleInputChangeForNewFarm = propertyName => (event) => {
+  handleInputChangeFor = propertyName => (event) => {
     this.setState({
       newFarm: {
         ...this.state.newFarm,
@@ -68,23 +31,24 @@ class RegisterPage extends Component {
     });
   }
 
-
-
-
-  //FUNCTION- on click of login button, dispatches 'SET_TO_LOGIN_MODE which redirects user to login view(has to do with protected route '/')
-  backToLogin = () => {
-    this.props.dispatch({type:'SET_TO_LOGIN_MODE'})
-    this.props.history.push('/home');
+  handleSubmit = event => {
+    event.preventDefault();
+    console.log('in handleSubmit');
+    this.props.dispatch({type: 'ADD_FARM', payload: this.state.newFarm});
+    this.props.dispatch({type: 'SET_TO_LOGIN_MODE'});
+    this.props.history.push('/');
   }
+  
+
 
   render() {
     const {classes} = this.props;
-    console.log(this.state.newUser)
+    console.log(this.state.newFarm)
     return (
 
       <React.Fragment>
       <Typography variant="h6" gutterBottom align="center">
-      Registration
+        Register Farm Information
       </Typography>
       <Grid container spacing={24}
        container
@@ -92,51 +56,21 @@ class RegisterPage extends Component {
        justify="center"
        alignItems="center"
      >
-        
-                <Grid item xs={8} sm={6} >
+              <Grid item xs={8} sm={6} >
                     <FormControl>
                         <TextField label="Registration Code" variant="outlined" color="primary"
-                          onChange={this.handleInputChangeForNewUser('registrationCode')}
+                          onChange={this.handleInputChangeFor('registrationCode')}
                           type="password"
-                          value={this.state.newUser.registrationCode}
+                          value={this.state.newFarm.registrationCode}
                           >
                         </TextField>
                     </FormControl>
                 </Grid>
-
-                <Grid item xs={8} sm={6}>
-                    <TextField label="First Name" variant="outlined" color="primary"
-                      onChange={this.handleInputChangeForNewUser('person_first')}
-                      value={this.state.newUser.person_first}
-                      ></TextField>
-                </Grid>
-
-                <Grid item xs={8} sm={6}>
-                    <TextField label="Last Name" variant="outlined" color="primary"
-                      onChange={this.handleInputChangeForNewUser('person_last')}
-                      value={this.state.newUser.person_last}
-                      ></TextField>
-                </Grid>
-
-                <Grid item xs={8} sm={6}>
-                    <TextField label="Username" variant="outlined" color="primary"
-                      onChange={this.handleInputChangeForNewUser('username')}
-                      value={this.state.newUser.username}
-                      ></TextField>
-                </Grid>
-
-                <Grid item xs={8} sm={6}>
-                    <TextField label="Password" variant="outlined" color="primary"
-                      onChange={this.handleInputChangeForNewUser('password')}
-                      type="password"
-                      value={this.state.newUser.password}
-                      ></TextField>
-                </Grid>
-
+        
                 <Grid item xs={8} sm={6} >
                     <FormControl>
                         <TextField label="Farm Name" variant="outlined" color="primary"
-                          onChange={this.handleInputChangeForNewFarm('farm_name')}
+                          onChange={this.handleInputChangeFor('farm_name')}
                           type="text"
                           value={this.state.newFarm.farm_name}
                           >
@@ -147,7 +81,7 @@ class RegisterPage extends Component {
                 <Grid item xs={8} sm={6} >
                     <FormControl>
                         <TextField label="Address" variant="outlined" color="primary"
-                          onChange={this.handleInputChangeForNewFarm('address')}
+                          onChange={this.handleInputChangeFor('address')}
                           type="text"
                           value={this.state.newFarm.address}
                           >
@@ -158,7 +92,7 @@ class RegisterPage extends Component {
                 <Grid item xs={8} sm={6} >
                     <FormControl>
                         <TextField label="City" variant="outlined" color="primary"
-                          onChange={this.handleInputChangeForNewFarm('city')}
+                          onChange={this.handleInputChangeFor('city')}
                           type="text"
                           value={this.state.newFarm.city}
                           >
@@ -169,7 +103,7 @@ class RegisterPage extends Component {
                 <Grid item xs={8} sm={6} >
                     <FormControl>
                         <TextField label="State" variant="outlined" color="primary"
-                          onChange={this.handleInputChangeForNewFarm('state')}
+                          onChange={this.handleInputChangeFor('state')}
                           type="text"
                           value={this.state.newFarm.state}
                           >
@@ -180,23 +114,21 @@ class RegisterPage extends Component {
                 <Grid item xs={8} sm={6} >
                     <FormControl>
                         <TextField label="Zip Code" variant="outlined" color="primary"
-                          onChange={this.handleInputChangeForNewFarm('zip_code')}
+                          onChange={this.handleInputChangeFor('zip_code')}
                           type="text"
                           value={this.state.newFarm.zip_code}
                           >
                         </TextField>
                     </FormControl>
                 </Grid>
+
+                <Grid item xs={8} sm={6} >
+                    <FormControl>
+                        <Button onClick={this.handleSubmit}>Submit</Button>
+                    </FormControl>
+                </Grid>
+
                 
-                <Grid item xs={8} sm={6}>
-                    <Typography>{this.props.errors.registrationMessage}</Typography>
-                </Grid>
-
-
-                <Grid item xs={8} sm={6}>
-                    <Button size="large" color="primary" onClick={this.registerUser} >Register</Button>
-                    <Button size="large" color="primary" onClick={this.backToLogin} >Back To Login</Button>
-                </Grid>
                
             </Grid>
             {/* <h2
@@ -240,5 +172,5 @@ const mapStateToProps = state => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps)(RegisterPage);
+export default connect(mapStateToProps)(SetupFarm);
 

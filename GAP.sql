@@ -16,13 +16,7 @@ CREATE TABLE "farm_registry"
   "zip_code" VARCHAR (50) NOT NULL
 );
 
-CREATE TABLE "harvest_year"
-(
-  "harvest_id" SERIAL PRIMARY KEY,
-  "harvest_year" INT,
-  -------should this be a true date or just an int?
-  "farm_id" INT REFERENCES "farm_registry"
-);
+
 CREATE TABLE "user"
 (
   "user_id" SERIAL PRIMARY KEY,
@@ -33,6 +27,14 @@ CREATE TABLE "user"
   "current_harvest_year" INT REFERENCES "harvest_year"
 );
 
+
+CREATE TABLE "harvest_year"
+(
+  "harvest_id" SERIAL PRIMARY KEY,
+  "harvest_year" INT,
+  -------should this be a true date or just an int?
+  "farm_id" INT REFERENCES "farm_registry"
+);
 
 
 

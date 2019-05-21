@@ -12,7 +12,8 @@ router.get('/:harvest_year_id', (req, res) => {
     pool.query(sqlQuery, [harvestYear])
         .then((response) => {
             console.log(`response label_code`, response.rows);
-            res.send(response.rows)
+
+            res.send(response.rows)  
         })
         .catch((error) => {
             console.log(`error getting label codes `, error);
@@ -30,6 +31,7 @@ router.delete('/:id', (req, res) => {
             res.sendStatus(500);
         });
 });
+
 
 /**
  * POST route template
@@ -50,6 +52,7 @@ router.post('/', (req, res) => {
             console.log('Error completing INSERT labelCode query', err);
             res.sendStatus(500);
         });
+
 
 });
 

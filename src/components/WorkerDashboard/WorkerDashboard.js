@@ -1,8 +1,10 @@
-    
-import React from 'react';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import Fab from '@material-ui/core/Fab';
+import NavigationIcon from '@material-ui/icons/Navigation';
 import './WorkerDashboard.css'
 
 
@@ -23,10 +25,36 @@ class WorkerDashboard extends Component {
       <Typography variant="h6" gutterBottom>
          Worker Dashboard
       </Typography>
-      <Grid container spacing={24}>
-         
-          <Grid item xs={12} sm={6}>
-             
+        < Grid container spacing={24}
+          container
+          direction="column"
+          justify="center"
+          alignItems="center"
+        >
+
+          <Grid item xs={10} sm={6}>
+            <Fab
+              variant="extended"
+              size="large"
+              color="primary"
+              aria-label="Add"
+              className={classes.margin}
+            >
+              <NavigationIcon className={classes.extendedIcon} />
+              Create Logs
+        </Fab>
+          </Grid>
+          <Grid item xs={10} sm={6}>
+            <Fab
+              variant="extended"
+              size="large"
+              color="primary"
+              aria-label="Add"
+              className={classes.margin}
+            >
+              <NavigationIcon className={classes.extendedIcon} />
+              Manage Records
+        </Fab>   
           </Grid>
 
       </Grid>

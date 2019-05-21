@@ -3,7 +3,11 @@ import {Route} from 'react-router-dom'
 import {connect} from 'react-redux';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-
+import WorkerDashboard from '../../WorkerDashboard/WorkerDashboard';
+import AdminDashboard from '../../AdminDashboard/AdminDashboard';
+import SetupFarm from '../../AdminComponents/SetupFarm/SetupFarm';
+import SuperAdminDashboard from '../../SuperAdminDashboard/SuperAdminDashboard';
+import CreateHarvestYear from '../../AdminComponents/HarvestYear/NewHarvestYear/SelectNewHarvestYearDate/SelectNewHarvestYearDate';
 // A Custom Wrapper Component -- This will keep our code DRY.
 // Responsible for watching redux state, and returning an appropriate component
 // API for this component is the same as a regular route
@@ -27,11 +31,31 @@ const ProtectedRoute = (props) => {
 
   let ComponentToShow;
 
-  if(user.id) {
+  if(user.user_id) {
+    if (otherProps.path === '/home' && user.user_role === 'worker'){
+      ComponentToShow = WorkerDashboard;
+    }
+
+    if (otherProps.path === '/home' && user.user_role === 'superAdmin'){
+      ComponentToShow = SuperAdminDashboard;
+    }
+
+
+
+    else if (loginMode === 'registerFarm'){
+      ComponentToShow = CreateHarvestYear;
+    }
+    
+    else if (otherProps.path === '/home' && user.user_role === 'admin'){
+      ComponentToShow = AdminDashboard;
+    }
+    else{
     // if the user is logged in (only logged in users have ids)
     // show the component that is protected
     ComponentToShow = ComponentToProtect;
-  } else if (loginMode === 'login') {
+    }
+  } 
+  else if (loginMode === 'login') {
     // if they are not logged in, check the loginMode on Redux State
     // if the mode is 'login', show the LoginPage
     ComponentToShow = LoginPage;

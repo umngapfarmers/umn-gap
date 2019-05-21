@@ -1,17 +1,16 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-
-function* getLabelCode(action) {
+function* getLabelCode(action){
     console.log('in getLabelCodeSaga', action.payload)
-    try {
+    try{
         let result = yield axios.get(`/setup/label_code/${action.payload.harvest_year_id}`)
         console.log(`result label codes `, result.data);
-
-        yield put({ type: "SET_LABEL_CODE", payload: result.data })
-
+        
+        yield put({type: "SET_LABEL_CODE", payload: result.data})
+        
     }
-    catch (error) {
+    catch (error){
         console.log('ERROR IN getLabelCodeSaga GET', error);
         alert(`Sorry! Was unable to setup the farm! Try again later.`)
     }
@@ -53,3 +52,4 @@ function* getLabelCodeSaga() {
 }
 
 export default getLabelCodeSaga;
+

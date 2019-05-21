@@ -1,5 +1,5 @@
-    
-import React from 'react';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
@@ -8,18 +8,14 @@ import './CreateManureCompostLabelCodes.css'
 
 class CreateManureCompostLabelCodes extends Component {
 
-
   state= {
     
   }
 
-
-
-
   render() {
     const {classes} = this.props;
     return (
-      <React.Fragment>
+    <React.Fragment>
       <Typography variant="h6" gutterBottom>
           Create Manure and Label Code
       </Typography>
@@ -31,7 +27,7 @@ class CreateManureCompostLabelCodes extends Component {
 
       </Grid>
      
-  </React.Fragment>
+    </React.Fragment>
     );
   }
 }

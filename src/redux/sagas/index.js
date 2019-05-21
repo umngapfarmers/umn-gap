@@ -4,6 +4,8 @@ import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
 import waterSetup from './waterSetup';
 import cropSetup from './cropSetup';
+
+import setupSaga from './setupSaga';
 import getLabelCodeSaga from './getLabelCodeSaga';
 
 // rootSaga is the primary saga.
@@ -21,5 +23,7 @@ export default function* rootSaga() {
     waterSetup(),
     cropSetup(),
     getLabelCodeSaga(),
+    setupSaga(),
+
   ]);
 }

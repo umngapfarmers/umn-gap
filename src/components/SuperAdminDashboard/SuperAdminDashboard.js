@@ -3,25 +3,23 @@ import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import './WaterTreatmentRecord.css'
+import LogoutButton from '../LogOutButton/LogOutButton';
 
 
-class WaterTreatmentRecord extends Component {
+class SuperAdminDashboard extends Component {
 
 
   state= {
     
   }
 
-
-
-
   render() {
     const {classes} = this.props;
     return (
       <React.Fragment>
       <Typography variant="h6" gutterBottom>
-         Water Treatment Record
+         Super Admin Dashboard
+         <LogoutButton/>
       </Typography>
       <Grid container spacing={24}>
          
@@ -44,10 +42,8 @@ const styles = theme => ({
 });
 
 
-
-
 const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect( mapReduxStateToProps )(withStyles(styles)(WaterTreatmentRecord));
+export default connect( mapReduxStateToProps )(withStyles(styles)(SuperAdminDashboard));

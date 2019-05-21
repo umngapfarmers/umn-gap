@@ -3,6 +3,7 @@ import {Route} from 'react-router-dom'
 import {connect} from 'react-redux';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import SuperAdminDashboard from '../../SuperAdminDashboard/SuperAdminDashboard';
 // A Custom Wrapper Component -- This will keep our code DRY.
 // Responsible for watching redux state, and returning an appropriate component
 // API for this component is the same as a regular route
@@ -13,7 +14,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 // by checking req.isAuthenticated for authentication
 // and by checking req.user for authorization
 
-const AdminProtectedRoute = (props) => {
+const SuperAdminProtectedRoute = (props) => {
   // Using destructuring, this takes ComponentToProtect from component
   // prop and grabs all other props to pass them along to Route
   const {
@@ -28,7 +29,7 @@ const AdminProtectedRoute = (props) => {
   console.log('otherProps is:', otherProps);
 
     //CONDITIONAL-- checks user permisisons and determines route paths based on permission
-  if(user.user_id && user.user_role ==='admin') {
+  if(user.user_id && user.user_role ==='superAdmin') {
 
       ComponentToShow = ComponentToProtect;
   
@@ -68,4 +69,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(AdminProtectedRoute)
+export default connect(mapStateToProps)(SuperAdminProtectedRoute)
