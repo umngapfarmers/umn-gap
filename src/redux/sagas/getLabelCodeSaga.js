@@ -17,9 +17,23 @@ function* getLabelCode(action) {
     }
 }
 
+function* addLabelCode(action) {
+    console.log('Hit the addLabelCode', action.payload);
+
+    try {
+        yield axios.post(`/api/setup/label_code`, action.payload);
+        yield put({ type: 'GET_LABEL_CODE' });
+    }
+    catch (error) {
+        console.log(`Couldn't add the label code`, action.payload, error);
+        alert(`Sorry, couldn't add the labelcode. Try again later`);
+    }
+}
+
 function* getLabelCodeSaga() {
     //   yield takeLatest('ADD_FARM', addFarmSaga);
     yield takeLatest('GET_LABEL_CODE', getLabelCode);
+    yield takeLatest('ADD_LABEL_CODE', addLabelCode);
 }
 
 export default getLabelCodeSaga;
