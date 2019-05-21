@@ -12,6 +12,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const setupRouter = require('./routes/setup.router');
 const labelCodeRouter = require('./routes/setup.labelCode.router');
+const log_harvestRouter = require('./routes/log.harvest.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -28,6 +29,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/setup', setupRouter);
 app.use('/setup/label_code', labelCodeRouter)
+app.use('/log/harvest/', log_harvestRouter)
 
 // Serve static files
 app.use(express.static('build'));
