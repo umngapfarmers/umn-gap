@@ -25,15 +25,30 @@ function* getManureSource(action){
 
     }
     catch (error){
-        console.log('ERROR IN addManureSource POST', error);
+        console.log('ERROR IN getManureSource GET', error);
+        alert(`Sorry! Was unable to setup the farm's manure! Try again later.`)
+    }
+}
+
+function* deleteManureSource(action) {
+    console.log('in deleteManureSource', action.payload)
+    try {
+        yield axios.delete(`/setup/manure/${action.payload.id}`);
+
+
+    } catch (error) {
+        console.log('ERROR IN deleteManureSource DELETE', error);
         alert(`Sorry! Was unable to setup the farm's manure! Try again later.`)
     }
 }
 
 
+
+
 function* setupManureSaga() {
   yield takeLatest('ADD_MANURE_SOURCE', addManureSource);
-  yield takeLatest('GET_MANURE_SOURCE', getManureSource)
+  yield takeLatest('GET_MANURE_SOURCE', getManureSource);
+  yield takeLatest('DELETE_MANURE_SOURCE', deleteManureSource);
 }
 
 export default setupManureSaga;

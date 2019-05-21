@@ -99,7 +99,7 @@ class App extends Component {
               component={InfoPage}
             />
             
-              <Route
+              <ProtectedRoute
               exact
               path="/create_manure"
               component={CreateManure}

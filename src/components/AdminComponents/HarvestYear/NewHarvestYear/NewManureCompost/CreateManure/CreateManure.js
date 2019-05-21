@@ -37,8 +37,12 @@ class CreateManure extends Component {
 
   onSubmitManure = () => {
     this.props.dispatch({type: 'ADD_MANURE_SOURCE', payload:{...this.state}})
+     
   }
   
+  handleRemove = (id) => {
+    this.props.dispatch({type: 'DELETE_MANURE_SOURCE', payload:{id,}})
+  }
   
   render() {
     console.log(`state in createManure form `, this.state);
@@ -77,7 +81,6 @@ class CreateManure extends Component {
         <Grid item xs={8} sm={6} >
             <FormControl>
                 <TextField 
-                    autoComplete
                     label="Describe Manure" 
                     variant="outlined" 
                     color="primary"
@@ -128,7 +131,9 @@ class CreateManure extends Component {
         <Grid item xs={8} sm={6} >
           <ul>
             {this.props.reduxState.setupManure.map(manure =>
-              <li key={manure.farm_manure_id}>{manure.label_code_text+' '+ moment(manure.farm_manure_date).format('YYYY-MM-DD')}<Button>Remove</Button></li>
+              <li key={manure.farm_manure_id}>{manure.label_code_text+' '+ moment(manure.farm_manure_date).format('YYYY-MM-DD')}
+                <Button size="large" color="primary" onClick={() => this.handleRemove(manure.farm_manure_id)}>Remove</Button>
+              </li>
             )}
           </ul>
         </Grid>  
