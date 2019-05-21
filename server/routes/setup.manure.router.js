@@ -5,9 +5,8 @@ const router = express.Router();
 /**
  * GET route template
  */
+router.get('/', (req, res) => {
 
-router.get('/label_code', (req, res) => {
-    let sqlQuery = `SELECT * FROM "label_code" ;`
 });
 
 /**

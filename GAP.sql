@@ -205,7 +205,7 @@ VALUES
 INSERT INTO "harvest_year"
   ("harvest_year", "farm_id")
 VALUES
-  ('2019-01-01', '1');
+  ('2019', '1');
 
 -- "person"
 INSERT INTO "person"
@@ -237,9 +237,9 @@ VALUES
 
 -- "label_code"
 INSERT INTO "label_code"
-  ("farm_crop_id", "farm_field_id", "label_code_text")
+  ("farm_crop_id", "farm_field_id", "label_code_text","harvest_year_id")
 VALUES
-  ('1', '1', 'NF_tom');
+  ('1', '1', 'NF_tom', '1');
 
 --logs
 

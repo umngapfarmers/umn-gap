@@ -28,7 +28,10 @@ class CreateManure extends Component {
         [property]: event.target.value
     })
   }
-
+  componentDidMount(){
+    this.props.dispatch({type: 'GET_LABEL_CODE', payload:{harvest_year_id: 1}}) 
+  }
+  
   render() {
     const {classes} = this.props;
     console.log(this.props.reduxState.user);
