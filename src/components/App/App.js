@@ -11,6 +11,9 @@ import AdminProtectedRoute from '../Auth/ProtectedRoute/AdminProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
+import WaterSource from '../AdminComponents/HarvestYear/NewHarvestYear/NewWater/CreateWaterSources/CreateWaterSources'
+import WaterLabel from '../AdminComponents/HarvestYear/NewHarvestYear/NewWater/CreateWaterSourcesLabelCodes/CreateWaterSourcesLabelCodes';
+import CropTypes from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateCrops/CreateCrops';
 import AdminDashboard from '../AdminDashboard/AdminDashboard';
 import WorkerDashboard from '../WorkerDashboard/WorkerDashboard';
 import NewHarvestYearDate from '../AdminComponents/HarvestYear/NewHarvestYear/SelectNewHarvestYearDate/SelectNewHarvestYearDate';
@@ -24,6 +27,10 @@ import theme from './theme';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRecycle, faTint, faSeedling, faTractor, faClipboard, faUsers, faTable } from '@fortawesome/free-solid-svg-icons';
+
+import './App.css';
+import FieldTypes from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateFields/CreateFields';
+import LabelCode from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateLabelCodes/CreateLabelCodes';
 
 library.add(faRecycle, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable);
 
@@ -82,6 +89,31 @@ class App extends Component {
               component={AboutPage}
             />
             <Route
+
+            exact
+            path="/water"
+            component={WaterSource}
+            />
+            <Route
+              exact
+              path="/waterlabel"
+              component={WaterLabel}
+            />
+            <Route
+              exact
+              path="/crops"
+              component={CropTypes}
+            />
+            <Route
+              exact
+              path="/field"
+              component={FieldTypes}
+            />
+            <Route
+              exact
+              path="/labelcode"
+              component={LabelCode}
+            />
               exact
               path="/admin"
               component={AdminDashboard}
@@ -100,6 +132,7 @@ class App extends Component {
               path="/home"
               component={UserPage}
             />
+            
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
             <Route
