@@ -30,10 +30,26 @@ function* addLabelCode(action) {
     }
 }
 
+function* deleteLabelCode(action) {
+    console.log('Hit the deleteLabelCode', action);
+
+    try {
+        yield axios.delete(`/api/setup/label_code/${action.payload}`);
+        console.log('saga id is', action.payload);
+
+        yield put({ type: 'GET_CROP_SOURCE' });
+    }
+    catch (error) {
+        console.log(`Couldn't delete labelCode`, error);
+        alert(`Sorry, couldn't delete your labelCode. Try again later`);
+    }
+}
+
 function* getLabelCodeSaga() {
     //   yield takeLatest('ADD_FARM', addFarmSaga);
     yield takeLatest('GET_LABEL_CODE', getLabelCode);
     yield takeLatest('ADD_LABEL_CODE', addLabelCode);
+    yield takeLatest('DELETE_LABEL_CODE', deleteLabelCode);
 }
 
 export default getLabelCodeSaga;

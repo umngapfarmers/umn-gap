@@ -8,18 +8,23 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 
 class CreateWaterSources extends Component {
 
 
   state= {
-    newWaterSource:"",
+    newWaterSource: {
+      name: '',
+      harvest_year_id: this.props.reduxState.user.current_harvest_year,
+    }
+    
   }
 
   handleInputChangeFor = propertyName => (event) => {
     this.setState({
-      newUser: {
+      newWaterSource: {
         ...this.state.newUser,
         [propertyName]: event.target.value,
         
@@ -30,40 +35,61 @@ class CreateWaterSources extends Component {
   addWaterSource = (event) => {
     event.preventDefault();
     console.log('New water');
-    this.props.dispatch({type:'ADD_WATER', payload:this.state})
+    this.props.dispatch({type:'ADD_WATER_SOURCE', payload:this.state})
     this.setState({
-      newWaterSource: "",
+      newWaterSource: {
+        name: '',
+      },
     })
 
   }
 
+  nextPage = () => {
+    this.props.history.push('/waterLabel')
+  }
 
   render() {
     const {classes} = this.props;
     return (
       <React.Fragment>
-            <Typography variant="h6" gutterBottom>
-                Create Water Sources
-            </Typography>
+            
             <Grid container spacing={24}
             container
             direction="column"
             justify="center"
             alignItems="center">
+          <Grid item xs={12} sm={6}>
+            <Typography variant="h6" gutterBottom>
+              Create Water Sources
+                  </Typography>
+          </Grid>
                
                 <Grid item xs={12} sm={6}>
                   <FormControl>
                     <TextField label="Water Sources" variant="outlined" color="primary"
-                      onChange={this.handleInputChangeFor('waterSource')}
-                      value={this.state.waterSource}
+                      onChange={this.handleInputChangeFor('name')}
+                      value={this.state.newWaterSource.name}
                     >
                     </TextField>
                     <Button size="large" color="primary" onClick={this.addWaterSource} >Add</Button>
                   </FormControl>
                 </Grid>
                 <Grid item xs={12} sm={6}>
+            <ul> Wtaer Sources:</ul>
+            {
+              this.props.reduxState.waterSetup.waterSetup.map(source =>
+                <li key={source.farm_water_id}>{source.farm_water_source}
+                  <Button size="large" color="primary"
+                    onClick={this.removeWaterSource}
+                    name={source.farm_water_id}>
+                    Remove
+                </Button>
+                </li>
+              )
+            }
                 </Grid>
                 <Grid item xs={12} sm={6}>
+                  <Button size="large" color="primary" onClick={this.nextPage}>Next</Button>
                 </Grid>
 
             </Grid>
@@ -84,4 +110,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect( mapReduxStateToProps )(withStyles(styles)(CreateWaterSources));
+export default withRouter(connect( mapReduxStateToProps )(withStyles(styles)(CreateWaterSources)));

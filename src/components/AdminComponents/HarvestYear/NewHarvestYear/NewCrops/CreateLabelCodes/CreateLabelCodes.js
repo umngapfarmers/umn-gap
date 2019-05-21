@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import { withRouter } from 'react-router-dom';
 import './CreateLabelCodes.css'
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -52,6 +53,11 @@ class CreateLabelCodes extends Component {
         label_code_text: '',
       }
     })
+  }
+
+  removeLabelCode = (event) => {
+    this.props.dispatch({ type: 'DELETE_LABEL_CODE', payload: event.currentTarget.name })
+
   }
 
   nextPage = () => {
@@ -129,11 +135,25 @@ class CreateLabelCodes extends Component {
             <Button size="large" color="primary" onClick={this.addNewLabel} >Add</Button>
           </Grid>
           <Grid item xs={12} sm={6}>
+            <ul> My labels:</ul>
+            {
+              this.props.reduxState.labelCodesReducer.getLabelCodes.map(code =>
+                <li key={code.label_code_id}>{code.label_code_text}
+                  <Button size="large" color="primary"
+                    onClick={this.removeLabelCode}
+                    name={code.label_code_id}>
+                    Remove
+                </Button>
+                </li>
+              )
+            }
             <Grid item xs={12} sm={6}>
               <Button size="large" color="primary" onClick={this.nextPage}>Next</Button>
             </Grid>
 
-
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            
           </Grid>
 
       </Grid>
@@ -156,4 +176,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect( mapReduxStateToProps )(withStyles(styles)(CreateLabelCodes));
+export default withRouter(connect( mapReduxStateToProps )(withStyles(styles)(CreateLabelCodes)));
