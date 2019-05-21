@@ -28,7 +28,8 @@ class AdminDashboard extends Component {
     const {classes} = this.props;
     return (
       <React.Fragment>
-      <Typography variant="h6" gutterBottom align="center">
+      <Typography align="right"><LogoutButton /></Typography>
+      <Typography variant="h6" gutterBottom align="center" className={classes.titleColor}>
           Admin Dashboard
         
       </Typography>
@@ -47,10 +48,10 @@ class AdminDashboard extends Component {
               aria-label="Add"
               className={classes.margin}
               onClick={this.navToLogDashboard}
-              style={{width:'80vw'}}
+              style={{width:'80vw', maxWidth:400}}
             >
-              Create Logs
-              <FontAwesomeIcon icon="clipboard" style={{marginLeft: 5}} />
+              <Typography className={classes.fabColor}>Create Logs</Typography>
+              <FontAwesomeIcon icon="clipboard" style={{marginLeft: 5}} className={classes.fabIconColor}/>
         </Fab>
         </Grid>
             <Grid item xs={10} sm={6}>
@@ -60,10 +61,10 @@ class AdminDashboard extends Component {
               color="primary"
               aria-label="Add"
               className={classes.margin}
-              style={{width:'80vw'}}
+              style={{width:'80vw', maxWidth:400}}
             >
-              Manage Roles
-              <FontAwesomeIcon icon="users" style={{marginLeft: 5}} />
+              <Typography className={classes.fabColor}>Manage Roles</Typography>
+              <FontAwesomeIcon icon="users" style={{marginLeft: 5}} className={classes.fabIconColor}/>
         </Fab>
           </Grid>
           <Grid item xs={10} sm={6}>
@@ -73,10 +74,10 @@ class AdminDashboard extends Component {
               color="primary"
               aria-label="Add"
               className={classes.margin}
-              style={{width:'80vw'}}
+              style={{width:'80vw', maxWidth:400}}
             >
-              <NavigationIcon className={classes.extendedIcon} />
-              View Records
+              <Typography className={classes.fabColor}>View Records</Typography>
+              <FontAwesomeIcon icon="table" style={{marginLeft: 5}} className={classes.fabIconColor}/>
         </Fab>
           </Grid>
           <Grid item xs={10} sm={6}>
@@ -86,14 +87,13 @@ class AdminDashboard extends Component {
               color="primary"
               aria-label="Add"
               className={classes.margin}
-              style={{width:'80vw'}}
+              style={{width:'80vw', maxWidth:400}}
             >
-               Manage Harvest Year
-              <FontAwesomeIcon icon="tractor" style={{marginLeft: 5}} />
+               <Typography className={classes.fabColor}>Manage Harvest Year</Typography>
+              <FontAwesomeIcon icon="tractor" style={{marginLeft: 5}} className={classes.fabIconColor} />
         </Fab>
           </Grid>
       </Grid>
-        <LogoutButton />
 
   </React.Fragment>
     );
@@ -111,6 +111,15 @@ const styles = theme => ({
   },
   extendedIcon: {
     marginRight: theme.spacing.unit,
+  },
+  fabIconColor:{
+    color: '#E6CD30',
+  },
+  fabColor:{
+    color: 'white',
+  },
+  titleColor:{
+    color: '#D19124',
   }
 });
 
