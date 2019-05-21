@@ -21,6 +21,8 @@ import SelectNewHarvestYearDate from '../AdminComponents/HarvestYear/NewHarvestY
 import './App.css';
 import ManageWorker from '../WorkerDashboard/ManageWorker';
 
+import AddWorker from '../WorkerDashboard/AddWorker';
+
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
@@ -54,6 +56,11 @@ class App extends Component {
               exact
               path="/manage-user"
               component={ManageWorker}
+            />
+            <Route
+              exact
+              path="/add-worker"
+              component={AddWorker}
             />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
