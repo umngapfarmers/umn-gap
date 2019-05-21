@@ -2,7 +2,7 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 
-function* getPersonSaga(getPersonSaga){
+function* getPersonSaga(action){
     console.log('in getPersonSaga')
     try{
         let result = yield axios.get(`/log/harvest/person`)
