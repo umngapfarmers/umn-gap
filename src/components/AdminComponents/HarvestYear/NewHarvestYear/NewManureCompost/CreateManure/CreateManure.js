@@ -43,6 +43,7 @@ class CreateManure extends Component {
     console.log(`state in createManure form `, this.state);
     
     const {classes} = this.props;
+    console.log(this.props.reduxState.user);
     return (
       <React.Fragment>
       <Typography variant="h6" gutterBottom align="center">
