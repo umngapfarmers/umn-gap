@@ -28,9 +28,12 @@ class CreateManure extends Component {
         [property]: event.target.value
     })
   }
+
   componentDidMount(){
     this.props.dispatch({type: 'GET_LABEL_CODE', payload:{harvest_year_id: 1}}) 
   }
+
+  
   
   render() {
     const {classes} = this.props;
@@ -49,7 +52,7 @@ class CreateManure extends Component {
         <Grid item xs={8} sm={6} >
             <FormControl>
                 <TextField 
-                    label="Start Date" 
+                    label="Application Date" 
                     variant="outlined" 
                     color="primary"
                     onChange={this.handleChangeFor('farm_manure_date')}
@@ -66,7 +69,7 @@ class CreateManure extends Component {
         <Grid item xs={8} sm={6} >
             <FormControl>
                 <TextField 
-                    label="Description" 
+                    label="Describe Manure" 
                     variant="outlined" 
                     color="primary"
                     onChange={this.handleChangeFor('farm_manure_description')}
