@@ -27,9 +27,9 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
-app.use('/api/setup', setupRouter);
-app.use('/api/setup/label_code', labelCodeRouter);
-app.use('/api/setup/manure', setupManureRouter);
+app.use('/setup', setupRouter);
+app.use('/setup/label_code', labelCodeRouter);
+app.use('/setup/manure', setupManureRouter);
 
 // Serve static files
 app.use(express.static('build'));
