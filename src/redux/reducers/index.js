@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
   loginMode, // will have a value of 'login' or 'registration' to control which screen is shown
   user, // will have an id and username if someone is logged in
   farmMenuConditional,
-  labelCode
+  labelCode,
 });
 
 export default rootReducer;

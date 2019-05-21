@@ -3,9 +3,9 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 
 function* getLabelCode(action){
-    console.log('in getLabelCodeSaga', action.payload)
+    console.log('in getLabelCodeSaga')
     try{
-        let result = yield axios.get(`/setup/label_code/${action.payload.harvest_year_id}`)
+        let result = yield axios.get(`/setup/label_code/`)
         console.log(`result label codes `, result.data);
         
         yield put({type: "SET_LABEL_CODE", payload: result.data})
