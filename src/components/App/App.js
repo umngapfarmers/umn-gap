@@ -16,6 +16,8 @@ import InfoPage from '../InfoPage/InfoPage';
 import Watersource from '../AdminComponents/HarvestYear/NewHarvestYear/NewWater/CreateWaterSources/CreateWaterSources'
 import cropTypes from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateCrops/CreateCrops';
 import './App.css';
+import fieldTypes from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateFields/CreateFields';
+import labelCode from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateLabelCodes/CreateLabelCodes';
 
 class App extends Component {
   componentDidMount () {
@@ -45,6 +47,16 @@ class App extends Component {
               exact
               path="/crops"
               component={cropTypes}
+            />
+            <Route
+              exact
+              path="/field"
+              component={fieldTypes}
+            />
+            <Route
+              exact
+              path="/labelcode"
+              component={labelCode}
             />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.

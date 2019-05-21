@@ -49,7 +49,7 @@ router.post('/field', (req, res) => {
     console.log('in post router');
 
     const newField = req.body;
-    const queryText = `INSERT INTO "farm_field" ("farm_field_name")
+    const queryText = `INSERT INTO "farm_field" ("field_name")
                     VALUES ($1)`;
     const queryValues = [
         newField.name,
@@ -61,4 +61,26 @@ router.post('/field', (req, res) => {
             res.sendStatus(500);
         });
 });
+
+router.delete('/crop/:id', (req, res) => {
+    const queryText = 'DELETE FROM "farm_crop" WHERE farm_crop_id=$1';
+    pool.query(queryText, [req.params.id])
+        .then(() => { res.sendStatus(200); })
+        .catch((err) => {
+            console.log('Error deleting crop query', err);
+            res.sendStatus(500);
+        });
+});
+
+router.delete('/field/:id', (req, res) => {
+    const queryText = 'DELETE FROM "farm_field" WHERE farm_field_id=$1';
+    pool.query(queryText, [req.params.id])
+        .then(() => { res.sendStatus(200); })
+        .catch((err) => {
+            console.log('Error deleting field query', err);
+            res.sendStatus(500);
+        });
+});
+
+
 module.exports = router;

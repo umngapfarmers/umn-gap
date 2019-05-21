@@ -53,12 +53,41 @@ function* getFieldSource(action) {
     }
 }
 
+function* deleteCropSource(action) {
+    console.log('Hit the deleteCropSource', action);
+
+    try {
+        yield axios.delete(`/api/setupCrop/crop/${action.payload}`);
+        console.log('saga id is', action.payload);
+        
+        yield put({ type: 'GET_CROP_SOURCE' });
+    }
+    catch (error) {
+        console.log(`Couldn't delete crop`, error);
+        alert(`Sorry, couldn't delete your crop. Try again later`);
+    }
+}
+
+function* deleteFieldSource(action) {
+    console.log('Hit the deleteFieldSource', action);
+
+    try {
+        yield axios.delete(`/api/setupCrop/field/${action.payload}`);
+        yield put({ type: 'GET_FIELD_SOURCE' });
+    }
+    catch (error) {
+        console.log(`Couldn't delete crop`, error);
+        alert(`Sorry, couldn't delete your crop. Try again later`);
+    }
+}
 
 function* cropSourceSaga() {
     yield takeLatest('ADD_CROP_SOURCE', addCropSource);
     yield takeLatest('GET_CROP_SOURCE', getCropSource);
     yield takeLatest('ADD_FIELD_SOURCE', addFieldSource);
     yield takeLatest('GET_FIELD_SOURCE', getFieldSource);
+    yield takeLatest('DELETE_CROP_SOURCE', deleteCropSource);
+    yield takeLatest('DELETE_FIELD_SOURCE', deleteFieldSource);
 }
 
 

@@ -6,8 +6,8 @@ import { withStyles } from '@material-ui/core/styles';
 import './CreateCrops.css'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 
 class CreateCrops extends Component {
@@ -40,17 +40,19 @@ class CreateCrops extends Component {
     })
   }
 
-  removeCropSource = () => {
-    this.props.dispatch({type: 'REMOVE_CROP_SOURCE', payload:this.state.farm_crop_id})
-
+  removeCropSource = (event) => {
+    this.props.dispatch({ type: 'DELETE_CROP_SOURCE', payload: event.currentTarget.name })
+    console.log('id is', event.currentTarget.name);
   }
 
   nextPage = () => {
-    
+    this.props.history.push('/field');
+
   }
 
 
   render() {
+    
     const {classes} = this.props;
     return (
       <React.Fragment>
@@ -81,8 +83,8 @@ class CreateCrops extends Component {
           <ul> My Crops:</ul>
             {
               this.props.reduxState.cropSetup.cropSetup.map(crop =>
-                <li key={crop.farm_crop_id}>{crop.farm_crop_type}
-                <Button size="large" color="primary" onClick={this.removeCropSource} >
+                <li key={crop.farm_crop_id} value={crop.farm_crop_id}>{crop.farm_crop_type}
+                  <Button size="large" color="primary" onClick={this.removeCropSource} name={crop.farm_crop_id}>
                 Remove
                 </Button>
                 </li> 
@@ -114,4 +116,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect( mapReduxStateToProps )(withStyles(styles)(CreateCrops));
+export default withRouter(connect( mapReduxStateToProps )(withStyles(styles)(CreateCrops)));
