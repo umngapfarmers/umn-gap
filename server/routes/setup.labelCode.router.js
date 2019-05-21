@@ -25,6 +25,20 @@ router.get('/:harvest_year_id', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
+    const newLabel = req.body;
+    const queryText = `INSERT INTO "label_code" ("farm_crop_id","farm_field_id","label_code_text")
+                    VALUES ($1, $2, $3)`;
+    const queryValues = [
+        newLabel.farm_crop_id,
+        newLabel.farm_field_id,
+        newLabel.label_code_text,
+    ];
+    pool.query(queryText, queryValues)
+        .then(() => { res.sendStatus(201); })
+        .catch((err) => {
+            console.log('Error completing INSERT labelCode query', err);
+            res.sendStatus(500);
+        });
 
 });
 

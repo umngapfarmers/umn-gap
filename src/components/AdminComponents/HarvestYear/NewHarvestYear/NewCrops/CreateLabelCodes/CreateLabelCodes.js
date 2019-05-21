@@ -44,7 +44,7 @@ class CreateLabelCodes extends Component {
 
   addNewLabel = (event) => {
     event.preventDefault();
-    this.props.dispatch({ type: 'ADD_LABEL_SOURCE', payload: this.state.newLabel })
+    this.props.dispatch({ type: 'ADD_LABEL_CODE', payload: this.state.newLabel })
     this.setState({
       newLabel: {
         farm_crop_id: '',
@@ -52,6 +52,11 @@ class CreateLabelCodes extends Component {
         label_code_text: '',
       }
     })
+  }
+
+  nextPage = () => {
+    this.props.history.push('/labelcode')
+    this.props.dispatch({ type:'SET_MENU_BOOLEAN', payload: 1})
   }
 
 
@@ -125,6 +130,10 @@ class CreateLabelCodes extends Component {
             <Button size="large" color="primary" onClick={this.addNewLabel} >Add</Button>
           </Grid>
           <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6}>
+              <Button size="large" color="primary" onClick={this.nextPage}>Next</Button>
+            </Grid>
+
 
           </Grid>
 
