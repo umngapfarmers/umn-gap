@@ -6,7 +6,16 @@ const router = express.Router();
  * GET route template
  */
 router.get('/', (req, res) => {
-    let sqlText = `SELECT * FROM "farm_manure" `
+    let sqlText = `SELECT * FROM "farm_manure" WHERE "harvest_year_id" = $1`
+    pool.query(sqlText, [1])
+        .then((result) => {
+            console.log(`result from manure GET`, result.rows);
+            res.send(result.rows)
+        })
+        .catch((error)=>{
+            console.log(`error getting manure`, error);
+            res.sendStatus(500);
+        })
 });
 
 /**
@@ -27,13 +36,15 @@ router.post('/', (req, res) => {
     ];
 
     pool.query(sqlText, values)
-    .then((result) => {
-        res.sendStatus(201);
-    })
-    .catch((error)=>{
-        console.log(`error in farm_manure post `, error);
-        res.sendStatus(500);
-    })
+        .then((result) => {
+            console.log('added manure source ', result.rows[0]);
+            
+            res.send(result.rows[0]);
+        })
+        .catch((error)=>{
+            console.log(`error in farm_manure post `, error);
+            res.sendStatus(500);
+        })
 });
 
 module.exports = router;

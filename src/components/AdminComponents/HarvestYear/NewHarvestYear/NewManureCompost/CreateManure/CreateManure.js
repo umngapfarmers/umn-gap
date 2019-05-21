@@ -67,7 +67,7 @@ class CreateManure extends Component {
                     InputLabelProps={{
                       shrink: true,
                     }}
-                    >
+                  >
                 </TextField>
             </FormControl>
         </Grid>
@@ -81,7 +81,7 @@ class CreateManure extends Component {
                     onChange={this.handleChangeFor('farm_manure_description')}
                     value={this.state.farm_manure_description}
                     multiline
-                    >
+                  >
                 </TextField>
             </FormControl>
         </Grid>
