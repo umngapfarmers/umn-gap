@@ -12,12 +12,12 @@ router.post('/', (req, res) => {
                     VALUES ($1, $2,)`;
     const queryValues = [
         newWater.farm_water_source_name,
-        req.user.current_harvest_year
+        req.user.current_harvest_year,
     ];
     pool.query(queryText, queryValues)
         .then(() => { res.sendStatus(201); })
         .catch((err) => {
-            console.log('Error completeing INSERT watersource query', err);
+            console.log('Error completeing INSERT watersource query', err, req.user.current_harvest_year);
             res.sendStatus(500);
         });
 
