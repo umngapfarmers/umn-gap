@@ -7,23 +7,19 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    console.log('in post router');
-
-    const newProject = req.body;
-    const queryText = `INSERT INTO "farm_water" ("farm_water_source", "farm_water_status", "description", "length", "video_url", "image_url")
-                    VALUES ($1, $2, $3, $4, $5, $6)`;
+    const newWater = req.body;
+    const queryText = `INSERT INTO "farm_water" ("farm_","farm_field_id","label_code_text", "harvest_year_id")
+                    VALUES ($1, $2, $3, $4)`;
     const queryValues = [
-        newProject.title,
-        newProject.year,
-        newProject.description,
-        newProject.length,
-        newProject.video_url,
-        newProject.image_url,
+        newLabel.farm_crop_id,
+        newLabel.farm_field_id,
+        newLabel.label_code_text,
+        newLabel.harvest_year_id,
     ];
     pool.query(queryText, queryValues)
         .then(() => { res.sendStatus(201); })
         .catch((err) => {
-            console.log('Error completing SELECT movies query', err);
+            console.log('Error completing INSERT labelCode query', err);
             res.sendStatus(500);
         });
 

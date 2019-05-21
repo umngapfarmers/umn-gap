@@ -3,6 +3,8 @@ import loginSaga from './loginSaga';
 import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
 import waterSetup from './waterSetup';
+import cropSetup from './cropSetup';
+import getLabelCodeSaga from './getLabelCodeSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -17,5 +19,7 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     waterSetup(),
+    cropSetup(),
+    getLabelCodeSaga(),
   ]);
 }
