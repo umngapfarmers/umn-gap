@@ -12,7 +12,10 @@ class CreateWaterSourcesLabelCodes extends Component {
 
 
   state= {
-    
+    newLabel: {
+      farm_water_source_id: '',
+      label_code_id: '',
+    }
   }
 
 
@@ -22,13 +25,37 @@ class CreateWaterSourcesLabelCodes extends Component {
     const {classes} = this.props;
     return (
       <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-          Create Water SOurce with label codes
-      </Typography>
-      <Grid container spacing={24}>
+      
+      <Grid container spacing={24}
+          container
+          direction="column"
+          justify="center"
+          alignItems="center">
          
           <Grid item xs={12} sm={6}>
-             
+            <Typography variant="h6" gutterBottom>
+              Create Water SOurce with label codes
+            </Typography>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="type-simple">Crop</InputLabel>
+              <Select
+                value={this.state.newLabel.farm_crop_id}
+                onChange={this.handleChangeFor('farm_crop_id')}
+              >
+                <MenuItem value="">
+                  <em>Label Code</em>
+                </MenuItem>
+                {this.props.reduxState.cropSetup.cropSetup.map(crop =>
+                  <MenuItem key={crop.farm_crop_id}
+                    value={crop.farm_crop_id}
+                  >
+                    {crop.farm_crop_type}
+                  </MenuItem>
+                )}
+              </Select>
+            </FormControl>
           </Grid>
 
       </Grid>

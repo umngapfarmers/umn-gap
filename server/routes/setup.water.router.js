@@ -8,18 +8,16 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     const newWater = req.body;
-    const queryText = `INSERT INTO "farm_water" ("farm_","farm_field_id","label_code_text", "harvest_year_id")
-                    VALUES ($1, $2, $3, $4)`;
+    const queryText = `INSERT INTO "farm_water_source" ("farm_water_source_name","harvest_year_id")
+                    VALUES ($1, $2,)`;
     const queryValues = [
-        newLabel.farm_crop_id,
-        newLabel.farm_field_id,
-        newLabel.label_code_text,
-        newLabel.harvest_year_id,
+        newWater.farm_water_source_name,
+        req.user.current_harvest_year
     ];
     pool.query(queryText, queryValues)
         .then(() => { res.sendStatus(201); })
         .catch((err) => {
-            console.log('Error completing INSERT labelCode query', err);
+            console.log('Error completeing INSERT watersource query', err);
             res.sendStatus(500);
         });
 
