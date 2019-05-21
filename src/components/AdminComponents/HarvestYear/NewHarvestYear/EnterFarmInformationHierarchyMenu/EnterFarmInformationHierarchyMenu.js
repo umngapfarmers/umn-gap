@@ -133,7 +133,7 @@ class EnterFarmInformationHierarchyMenu extends Component {
     }
 
 
-
+    console.log(this.props.reduxState.user);
     return (
       <React.Fragment>
       

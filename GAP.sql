@@ -20,9 +20,10 @@ CREATE TABLE "user"
 (
   "user_id" SERIAL PRIMARY KEY,
   "username" varchar(50) NOT NULL,
-  "password" VARCHAR(50) NOT NULL,
+  "password" VARCHAR(255) NOT NULL,
   "user_role" VARCHAR (255) NOT NULL,
-  "farm_registry_id" INT REFERENCES "farm_registry"
+  "farm_registry_id" INT REFERENCES "farm_registry",
+  "current_harvest_year" INT REFERENCES "harvest_year"
 );
 
 CREATE TABLE "harvest_year"
@@ -204,7 +205,7 @@ VALUES
 INSERT INTO "harvest_year"
   ("harvest_year", "farm_id")
 VALUES
-  ('2019-01-01', '1');
+  ('2019', '1');
 
 -- "person"
 INSERT INTO "person"
@@ -236,9 +237,9 @@ VALUES
 
 -- "label_code"
 INSERT INTO "label_code"
-  ("farm_crop_id", "farm_field_id", "label_code_text")
+  ("farm_crop_id", "farm_field_id", "label_code_text","harvest_year_id")
 VALUES
-  ('1', '1', 'NF_tom');
+  ('1', '1', 'NF_tom', '1');
 
 --logs
 
