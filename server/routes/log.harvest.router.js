@@ -21,6 +21,21 @@ router.get('/person', (req, res) => {
         })
 });
 
+router.post('/', (req,res) =>{
+    console.log('IN ADD HARVEST LOG');
+    const newHarvestLog = req.body;
+    const user_id = req.user.user_id;
+    let sqlQuery = `INSERT INTO "crop_harvest" ("crop_harvest_date", "crop_harvest_amount", "crop_harvest_sig", "label_code_id", "user_id") VALUES ($1, $2, $3, $4, $5);`
+    pool.query(sqlQuery, [newHarvestLog.crop_harvest_date, newHarvestLog.crop_harvest_amount, newHarvestLog.crop_harvest_sig, newHarvestLog.label_code_id, user_id ])
+    .then((response) => {
+        res.sendStatus(201);
+    })
+    .catch((error) => {
+        console.log(`ERROR in HARVEST LOG POST`, error);
+        res.sendStatus(500);
+    })
+
+})
 /**
  * POST route template
  */

@@ -15,7 +15,7 @@ function* addHarvestLog(action){
 
 function* harvestLogSaga() {
 //   yield takeLatest('ADD_FARM', addFarmSaga);
-  yield takeLatest('GET_LABEL_CODE', addHarvestLog);
+  yield takeLatest('ADD_HARVEST_LOG', addHarvestLog);
 }
 
 export default harvestLogSaga;
