@@ -1,9 +1,11 @@
+
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import './CreateWaterSourcesLabelCodes.css'
+import { withRouter } from 'react-router-dom';
 
 
 class CreateWaterSourcesLabelCodes extends Component {
@@ -49,4 +51,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect( mapReduxStateToProps )(withStyles(styles)(CreateWaterSourcesLabelCodes));
+export default withRouter(connect( mapReduxStateToProps )(withStyles(styles)(CreateWaterSourcesLabelCodes)));
