@@ -16,22 +16,24 @@ CREATE TABLE "farm_registry"
   "zip_code" VARCHAR (50) NOT NULL
 );
 
+CREATE TABLE "harvest_year"
+(
+  "harvest_id" SERIAL PRIMARY KEY,
+  "harvest_year" INT,
+  -------should this be a true date or just an int?
+  "farm_id" INT REFERENCES "farm_registry"
+);
 CREATE TABLE "user"
 (
   "user_id" SERIAL PRIMARY KEY,
   "username" varchar(50) NOT NULL,
-  "password" VARCHAR(50) NOT NULL,
+  "password" VARCHAR(255) NOT NULL,
   "user_role" VARCHAR (255) NOT NULL,
-  "farm_registry_id" INT REFERENCES "farm_registry"
+  "farm_registry_id" INT REFERENCES "farm_registry",
+  "current_harvest_year" INT REFERENCES "harvest_year"
 );
 
-CREATE TABLE "harvest_year"
-(
-  "harvest_id" SERIAL PRIMARY KEY,
-  "havest_year" DATE,
-  -------should this be a true date or just an int?
-  "farm_id" INT REFERENCES "farm_registry"
-);
+
 
 
 ------------------------ person and employee training ----------------------
@@ -83,6 +85,7 @@ CREATE TABLE "label_code"
   "label_code_id" serial primary key,
   "farm_crop_id" int references "farm_crop",
   "farm_field_id" int references "farm_field",
+  "harvest_year_id" int references "harvest_year",
   "label_code_text" varchar(200)
 );
 
@@ -142,13 +145,22 @@ CREATE TABLE "compost"
 ------------------------ water ------------------------
 
 --setup
+CREATE TABLE "farm_water_source"
+(
+  "farm_water_source_id" serial primary key,
+  "farm_water_source_name" Varchar (255),
+  "farm_water_status" boolean DEFAULT true,
+  "harvest_year_id" int references "harvest_year"
+  -- does this need to be many-many?
+);
 CREATE TABLE "farm_water"
 (
   "farm_water_id" serial primary key,
-  "farm_water_source" Varchar (255),
+  "farm_water_source_id" int references "farm_water_source",
   "farm_water_status" boolean DEFAULT true,
-  "label_code_id" int references "label_code"
-  -- does this need to be many-many?
+  "label_code_id" int references "label_code",
+  "harvest_year_id" int references "label_code"
+  
 );
 
 -- logs
@@ -201,9 +213,9 @@ VALUES
 
 -- "harvest_year"
 INSERT INTO "harvest_year"
-  ("havest_year", "farm_id")
+  ("harvest_year", "farm_id")
 VALUES
-  ('2019-01-01', '1');
+  ('2019', '1');
 
 -- "person"
 INSERT INTO "person"
@@ -235,9 +247,9 @@ VALUES
 
 -- "label_code"
 INSERT INTO "label_code"
-  ("farm_crop_id", "farm_field_id", "label_code_text")
+  ("farm_crop_id", "farm_field_id", "label_code_text","harvest_year_id")
 VALUES
-  ('1', '1', 'NF_tom');
+  ('1', '1', 'NF_tom', '1');
 
 --logs
 
@@ -277,10 +289,16 @@ VALUES
 --setup
 
 -- "farm_water"
-INSERT INTO "farm_water"
-  ("farm_water_source", "farm_water_status", "label_code_id")
+ INSERT INTO "farm_water_source"
+  ("farm_water_source_name", "farm_water_status", "harvest_year_id")
 VALUES
   ('pond', 'true', '1');
+INSERT INTO "farm_water"
+  ("farm_water_source_id", "farm_water_status", "label_code_id", "harvest_year_id")
+VALUES
+  ('1', 'true', '1', '1');
+
+
 
 -- logs
 
