@@ -8,6 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import './CreateManure.css';
+const moment = require('moment');
 
 // Allows farmer to create a manure source.
 // Accessed as part of intial farm set up workflow and through harvest year edit
@@ -19,7 +20,7 @@ class CreateManure extends Component {
     farm_manure_description: '',
     farm_manure_rate: '',
     label_code_id: '',
-    harvest_year_id: '1',
+    harvest_year_id: this.props.reduxState.user.current_harvest_year,
     farm_manure_status: true
   }
 
@@ -31,7 +32,7 @@ class CreateManure extends Component {
   }
 
   componentDidMount(){
-    this.props.dispatch({type: 'GET_LABEL_CODE', payload:{harvest_year_id: 1}}) 
+    this.props.dispatch({type: 'GET_LABEL_CODE', payload:{harvest_year_id: this.props.reduxState.user.current_harvest_year}}) 
   }
 
   onSubmitManure = () => {
@@ -76,6 +77,7 @@ class CreateManure extends Component {
         <Grid item xs={8} sm={6} >
             <FormControl>
                 <TextField 
+                    autoComplete
                     label="Describe Manure" 
                     variant="outlined" 
                     color="primary"
@@ -123,8 +125,14 @@ class CreateManure extends Component {
           <Button size="large" color="primary" onClick={this.onSubmitManure}>Add New Manure Source</Button>
         </Grid>
  
-
-
+        <Grid item xs={8} sm={6} >
+          <ul>
+            {this.props.reduxState.setupManure.map(manure =>
+              <li key={manure.farm_manure_id}>{manure.label_code_text+' '+ moment(manure.farm_manure_date).format('YYYY-MM-DD')}<Button>Remove</Button></li>
+            )}
+          </ul>
+        </Grid>  
+        
       </Grid>
      
   </React.Fragment>

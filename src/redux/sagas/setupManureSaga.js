@@ -3,11 +3,13 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 
 function* addManureSource(action){
-    console.log('in addManureSource', action.payload)
+    // console.log('in addManureSource', action.payload)
     try{
         yield axios.post('/setup/manure', action.payload);
-        
-        put({type: 'GET_MANURE_SOURCE', payload: {harvest_year:1}})
+        let result = yield axios.get(`/setup/manure`);
+        console.log(`result get after add manure`, result.data);
+        yield put({type: 'SET_MANURE_SETUP', payload: result.data})
+
     }
     catch (error){
         console.log('ERROR IN addManureSource POST', error);
@@ -16,9 +18,11 @@ function* addManureSource(action){
 }
 
 function* getManureSource(action){
-    console.log('in getManureSource', action.payload)
+    // console.log('in addManureSource', action.payload)
     try{
-        yield axios.get(`/setup/manure/${action.payload.harvest_year}`)
+        let result = yield axios.get(`/setup/manure/${action.payload.harvest_year_id}`);
+
+
     }
     catch (error){
         console.log('ERROR IN addManureSource POST', error);
