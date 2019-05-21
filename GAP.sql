@@ -43,7 +43,8 @@ CREATE TABLE "person"
   "person_first" varchar(50),
   "person_last" varchar(50),
   "person_status" boolean DEFAULT true,
-  "user_id" INT REFERENCES "user"
+  "user_id" INT REFERENCES "user",
+  "current_harvest_id" INT REFERENCES "harvest_year"
 );
 
 CREATE TABLE "employee_training"
