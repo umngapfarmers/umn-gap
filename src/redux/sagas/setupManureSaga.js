@@ -20,7 +20,8 @@ function* addManureSource(action){
 function* getManureSource(action){
     // console.log('in addManureSource', action.payload)
     try{
-        let result = yield axios.get(`/setup/manure/${action.payload.harvest_year_id}`);
+        let result = yield axios.get(`/setup/manure`);
+        yield put({type: 'SET_MANURE_SETUP', payload: result.data})
 
 
     }
@@ -34,7 +35,8 @@ function* deleteManureSource(action) {
     console.log('in deleteManureSource', action.payload)
     try {
         yield axios.delete(`/setup/manure/${action.payload.id}`);
-
+        let result = yield axios.get(`/setup/manure`);
+        yield put({type: 'SET_MANURE_SETUP', payload: result.data})
 
     } catch (error) {
         console.log('ERROR IN deleteManureSource DELETE', error);
