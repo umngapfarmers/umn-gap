@@ -8,6 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 
 class CreateFields extends Component {
@@ -39,8 +40,8 @@ class CreateFields extends Component {
     })
   }
 
-  removeFieldSource = () => {
-    this.props.dispatch({ type: 'REMOVE_FIELD_SOURCE', payload: this.state.farm_field_id })
+  removeFieldSource = (event) => {
+    this.props.dispatch({ type: 'DELETE_FIELD_SOURCE', payload: event.currentTarget.name })
 
   }
 
@@ -78,7 +79,9 @@ class CreateFields extends Component {
             {
               this.props.reduxState.cropSetup.fieldSetup.map(crop =>
                 <li key={crop.farm_field_id}>{crop.field_name}
-                  <Button size="large" color="primary" onClick={this.removeFieldSource} >
+                  <Button size="large" color="primary" 
+                  onClick={this.removeFieldSource} 
+                  name={crop.farm_field_id} >
                     Remove
                 </Button>
                 </li>
@@ -108,4 +111,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect( mapReduxStateToProps )(withStyles(styles)(CreateFields));
+export default withRouter(connect( mapReduxStateToProps )(withStyles(styles)(CreateFields)));

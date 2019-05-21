@@ -5,7 +5,7 @@ function* addWaterSource(action) {
     console.log('Hit the addWaterSaga', action);
 
     try {
-        yield axios.put(`/api/setupWater`);
+        yield axios.post(`/api/setupWater`, action.payload);
         yield put({ type: 'GET_WATER_SOURCE' });
     }
     catch (error) {
@@ -18,7 +18,7 @@ function* getWaterSource(action) {
     console.log('in getWaterSource', action);
 
     try {
-        yield axios.put(`/api/setupWater`);
+        yield axios.get(`/api/setupWater`);
         yield put({type: 'SET_WATER_SOURCE'})
     }
     catch (error) {
