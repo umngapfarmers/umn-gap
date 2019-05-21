@@ -16,7 +16,13 @@ import WorkerDashboard from '../WorkerDashboard/WorkerDashboard';
 import NewHarvestYearDate from '../AdminComponents/HarvestYear/NewHarvestYear/SelectNewHarvestYearDate/SelectNewHarvestYearDate';
 import EnterFarmInformationHierarchyMenu from '../AdminComponents/HarvestYear/NewHarvestYear/EnterFarmInformationHierarchyMenu/EnterFarmInformationHierarchyMenu';
 import CreateManure from '../AdminComponents/HarvestYear/NewHarvestYear/NewManureCompost/CreateManure/CreateManure.js';
+import LogDashboard from '../AllUsersComponents/Logs/LogsHierarchyMenu/LogsHierarchyMenu';
 import './App.css';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRecycle, faTint, faSeedling, faTractor, faClipboard, faUsers } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faRecycle, faSeedling, faTint, faTractor, faClipboard, faUsers);
 
 class App extends Component {
   componentDidMount () {
@@ -103,6 +109,12 @@ class App extends Component {
               exact
               path="/create_manure"
               component={CreateManure}
+            />
+
+            <Route
+            exact
+            path='/logdashboard'
+            component={LogDashboard}
             />
 
               {/* If none of the other routes matched, we will show a 404. */}

@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 import Fab from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import LogoutButton from '../LogOutButton/LogOutButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 class AdminDashboard extends Component {
@@ -16,6 +17,10 @@ class AdminDashboard extends Component {
     
   }
 
+  navToLogDashboard = () => {
+    this.props.history.push('/logdashboard');
+  }
+
 
 
 
@@ -23,8 +28,8 @@ class AdminDashboard extends Component {
     const {classes} = this.props;
     return (
       <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-          <h1>Admin Dashboard </h1>
+      <Typography variant="h6" gutterBottom align="center">
+          Admin Dashboard
         
       </Typography>
         < Grid container spacing={24}
@@ -41,9 +46,11 @@ class AdminDashboard extends Component {
               color="primary"
               aria-label="Add"
               className={classes.margin}
+              onClick={this.navToLogDashboard}
+              style={{width:'80vw'}}
             >
-              <NavigationIcon className={classes.extendedIcon} />
               Create Logs
+              <FontAwesomeIcon icon="clipboard" style={{marginLeft: 5}} />
         </Fab>
         </Grid>
             <Grid item xs={10} sm={6}>
@@ -53,9 +60,10 @@ class AdminDashboard extends Component {
               color="primary"
               aria-label="Add"
               className={classes.margin}
+              style={{width:'80vw'}}
             >
-              <NavigationIcon className={classes.extendedIcon} />
               Manage Roles
+              <FontAwesomeIcon icon="users" style={{marginLeft: 5}} />
         </Fab>
           </Grid>
           <Grid item xs={10} sm={6}>
@@ -65,6 +73,7 @@ class AdminDashboard extends Component {
               color="primary"
               aria-label="Add"
               className={classes.margin}
+              style={{width:'80vw'}}
             >
               <NavigationIcon className={classes.extendedIcon} />
               View Records
@@ -77,9 +86,10 @@ class AdminDashboard extends Component {
               color="primary"
               aria-label="Add"
               className={classes.margin}
+              style={{width:'80vw'}}
             >
-              <NavigationIcon className={classes.extendedIcon} />
-              Manage Harvest Year
+               Manage Harvest Year
+              <FontAwesomeIcon icon="tractor" style={{marginLeft: 5}} />
         </Fab>
           </Grid>
       </Grid>
