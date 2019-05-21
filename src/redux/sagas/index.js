@@ -2,6 +2,9 @@ import { all } from 'redux-saga/effects';
 import loginSaga from './loginSaga';
 import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
+import waterSetup from './waterSetup';
+import cropSetup from './cropSetup';
+
 import setupSaga from './setupSaga';
 import getLabelCodeSaga from './getLabelCodeSaga';
 
@@ -17,7 +20,10 @@ export default function* rootSaga() {
     loginSaga(),
     registrationSaga(),
     userSaga(),
+    waterSetup(),
+    cropSetup(),
+    getLabelCodeSaga(),
     setupSaga(),
-    getLabelCodeSaga()
+
   ]);
 }
