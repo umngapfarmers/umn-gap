@@ -18,27 +18,31 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.post('/register', async (req, res) => {
   const client = await pool.connect();
     console.log('in register');
-    const username = req.body.username;
-    const password = encryptLib.encryptPassword(req.body.password);
-    const user_role = req.body.user_role;
-    let registrationCode = req.body.registrationCode;
-    console.log(registrationCode);
-  if ( registrationCode == 122090 ){
-      try {
-      //    console.log(req.body);
-        const username = req.body.username;
-        const password = encryptLib.encryptPassword(req.body.password);
-        const user_role = req.body.user_role;
-        const person_first = req.body.person_first;
-        const person_last = req.body.person_last;
-        const person_status = req.body.person_status;
-        let registrationCode = req.body.registrationCode;
+    const username = req.body.newUser.username;
+    const password = encryptLib.encryptPassword(req.body.newUser.password);
+    const user_role = req.body.newUser.user_role;
+    const person_first = req.body.newUser.person_first;
+    const person_last = req.body.newUser.person_last;
+    const person_status = req.body.newUser.person_status;
+    const registrationCode = req.body.newUser.registrationCode;
+    const newFarm = req.body.newFarm;
+    console.log('in registration POST')
+    console.log('registrationCode is:', req.body.newUser.registrationCode);
+
+    if(registrationCode == 122090) {
+        try {
+        
         console.log(registrationCode);
       
-        const usernameQuery=  `INSERT INTO "user" (username, password, user_role) VALUES ($1, $2, $3) RETURNING user_id`;
+        const farmQuery = `INSERT INTO "farm_registry" ("farm_name", "address", "city", "state", "zip_code") VALUES ($1, $2, $3, $4, $5) RETURNING "farm_id"`
+        const usernameQuery=  `INSERT INTO "user" (username, password, user_role, farm_registry_id) VALUES ($1, $2, $3, $4) RETURNING user_id`;
         const personQuery = `INSERT INTO "person" ("person_first", "person_last", "person_status", "user_id") VALUES ($1, $2, $3, $4)`;
         await client.query('BEGIN')
-          const userInsertResults = await client.query(usernameQuery, [username, password, user_role]);
+          
+          const farmInsertResults = await client.query(farmQuery,  [newFarm.farm_name, newFarm.address, newFarm.city, newFarm.state, newFarm.zip_code]);
+          const farm_id = farmInsertResults.rows[0].farm_id;
+          
+          const userInsertResults = await client.query(usernameQuery, [username, password, user_role, farm_id]);
           const user_id = userInsertResults.rows[0].user_id;
           console.log(user_id);
 
@@ -51,9 +55,9 @@ router.post('/register', async (req, res) => {
           res.sendStatus(500);
       } finally {
           client.release()
-      }
+    }
   }
-  else{
+  else {
     res.sendStatus(500);
   }
 });
@@ -84,6 +88,8 @@ router.post('/register', async (req, res) => {
 // userStrategy.authenticate('local') is middleware that we run on this route
 // this middleware will run our POST if successful
 // this middleware will send a 404 if not successful
+
+
 router.post('/login', userStrategy.authenticate('local'), (req, res) => {
   res.sendStatus(200);
 });

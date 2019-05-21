@@ -7,6 +7,7 @@ import WorkerDashboard from '../../WorkerDashboard/WorkerDashboard';
 import AdminDashboard from '../../AdminDashboard/AdminDashboard';
 import SetupFarm from '../../AdminComponents/SetupFarm/SetupFarm';
 import SuperAdminDashboard from '../../SuperAdminDashboard/SuperAdminDashboard';
+import CreateHarvestYear from '../../AdminComponents/HarvestYear/NewHarvestYear/SelectNewHarvestYearDate/SelectNewHarvestYearDate';
 // A Custom Wrapper Component -- This will keep our code DRY.
 // Responsible for watching redux state, and returning an appropriate component
 // API for this component is the same as a regular route
@@ -42,7 +43,7 @@ const ProtectedRoute = (props) => {
 
 
     else if (loginMode === 'registerFarm'){
-      ComponentToShow = SetupFarm;
+      ComponentToShow = CreateHarvestYear;
     }
     
     else if (otherProps.path === '/home' && user.user_role === 'admin'){
