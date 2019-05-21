@@ -55,10 +55,9 @@ class CreateLabelCodes extends Component {
   }
 
   nextPage = () => {
-    this.props.history.push('/labelcode')
+    this.props.history.push('/newfarminfo')
     this.props.dispatch({ type:'SET_MENU_BOOLEAN', payload: 1})
   }
-
 
   render() {
     const {classes} = this.props;
