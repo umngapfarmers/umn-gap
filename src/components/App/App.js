@@ -19,10 +19,20 @@ import WorkerDashboard from '../WorkerDashboard/WorkerDashboard';
 import NewHarvestYearDate from '../AdminComponents/HarvestYear/NewHarvestYear/SelectNewHarvestYearDate/SelectNewHarvestYearDate';
 import EnterFarmInformationHierarchyMenu from '../AdminComponents/HarvestYear/NewHarvestYear/EnterFarmInformationHierarchyMenu/EnterFarmInformationHierarchyMenu';
 import CreateManure from '../AdminComponents/HarvestYear/NewHarvestYear/NewManureCompost/CreateManure/CreateManure.js';
+import LogDashboard from '../AllUsersComponents/Logs/LogsHierarchyMenu/LogsHierarchyMenu';
+import HarvestLog from '../AllUsersComponents/Logs/HarvestLog/HarvestLog';
+import './App.css';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import theme from './theme';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRecycle, faTint, faSeedling, faTractor, faClipboard, faUsers, faTable } from '@fortawesome/free-solid-svg-icons';
 
 import './App.css';
 import FieldTypes from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateFields/CreateFields';
 import LabelCode from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateLabelCodes/CreateLabelCodes';
+
+library.add(faRecycle, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable);
 
 class App extends Component {
   componentDidMount () {
@@ -31,7 +41,7 @@ class App extends Component {
 
   render() {
     return (
-
+      <MuiThemeProvider theme={theme}>
         <Router>
           <div>
             <Switch>
@@ -137,11 +147,23 @@ class App extends Component {
               component={CreateManure}
             />
 
+            <Route
+            exact
+            path='/logdashboard'
+            component={LogDashboard}
+            />
+
+            <Route
+            exactpath='/harvestlog'
+            component={HarvestLog}
+            />
+
               {/* If none of the other routes matched, we will show a 404. */}
               <Route render={() => <h1>404</h1>} />
             </Switch>
           </div>
         </Router>
+      </MuiThemeProvider>
   )}
 }
 

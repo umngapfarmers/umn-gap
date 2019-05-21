@@ -6,8 +6,8 @@ const router = express.Router();
  * GET route template
  */
 
-router.get('/:harvest_year_id', (req, res) => {
-    let harvestYear = req.params.harvest_year_id
+router.get('/', (req, res) => {
+    let harvestYear = req.user.current_harvest_year;
     let sqlQuery = `SELECT * FROM "label_code" where "harvest_year_id" = $1;`
     pool.query(sqlQuery, [harvestYear])
         .then((response) => {
