@@ -1,6 +1,8 @@
 const express = require('express');
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
+const encryptLib = require('../modules/encryption');
+
 const router = express.Router();
 
 
@@ -13,23 +15,23 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
-router.post('/addworker', async (req, res) => {
+router.post('/', async (req, res) => {
     const client = await pool.connect();
     console.log('in add worker');
     const username = req.body.username;
     const password = encryptLib.encryptPassword(req.body.password);
-    const user_role = req.body.user_role;
+    const user_role = req.body.roleSelect;
     let registrationCode = req.body.registrationCode;
     console.log(registrationCode);
     if (registrationCode == 122090) {
         try {
-            //    console.log(req.body);
-            const username = req.body.username;
+                console.log(req.body);
+            const username = req.body.userName;
             const password = encryptLib.encryptPassword(req.body.password);
-            const user_role = req.body.user_role;
-            const person_first = req.body.person_first;
-            const person_last = req.body.person_last;
-            const person_status = req.body.person_status;
+            const user_role = req.body.roleSelect;
+            const person_first = req.body.firstName;
+            const person_last = req.body.lastName;
+            const person_status = req.body.workerStatus;
             let registrationCode = req.body.registrationCode;
             console.log(registrationCode);
 

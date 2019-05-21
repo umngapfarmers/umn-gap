@@ -29,22 +29,24 @@ const styles = theme => ({
 });
 class AddWorker extends Component {
   state = {
-    UserName: "",
-    Password: "",
-    FirstName: "",
-    LastName: "",
-    roleSelect: ""
+    registrationCode: "",
+    userName: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    roleSelect: "",
+    workerStatus: ""
   };
   handleSelect = event => {
     this.setState({ [event.target.name]: event.target.value });
-    //let roleSelect = event.target.value;
-    //console.log('selected role',this.state.roleSelect)
   };
   // handles on inputs on form and sets state
   handleChange = property => event => {
     this.setState({
       ...this.state,
-      [property]: event.target.value
+      [property]: event.target.value,
+      workerStatus: true,
+      registrationCode: 122090
     });
     console.log("in handle change", event.target.value);
   };
@@ -55,13 +57,17 @@ class AddWorker extends Component {
     console.log("in handle submit", this.state);
 
     this.props.dispatch({ type: "POST_WORKER", payload: this.state });
-    this.setState({
-      UserName: "",
-      Password: "",
-      FirstName: "",
-      LastName: "",
-      roleSelect: ""
-    });
+    // this.setState({
+    //     newWorker:{
+    //   registrationCode: "",
+    //   userName: "",
+    //   password: "",
+    //   firstName: "",
+    //   lastName: "",
+    //   roleSelect: "",
+    //   workerStatus: ""
+    //     }
+    // });
     this.props.history.push("/");
   };
 
@@ -144,22 +150,25 @@ class AddWorker extends Component {
               {this.state.roleSelect !== "Employee" ? (
                 <TextField
                   required
-                  id="uName"
-                  name="uName"
+                  id="userName"
+                  name="userName"
                   label="User Name"
                   disabled={false}
                   fullWidth
                   autoComplete="User Name"
+                  onChange={this.handleChange("userName")}
+                  value={this.state.userName}
                 />
               ) : (
                 <TextField
                   required
-                  id="uName"
-                  name="uName"
+                  id="userName"
+                  name="userName"
                   label="User Name"
                   disabled
                   fullWidth
                   autoComplete="User Name"
+                  value=""
                 />
               )}
             </Grid>
@@ -173,6 +182,9 @@ class AddWorker extends Component {
                   disabled={false}
                   fullWidth
                   autoComplete="Password"
+                  onChange={this.handleChange("password")}
+                  type="password"
+                  value={this.state.password}
                 />
               ) : (
                 <TextField
@@ -183,6 +195,7 @@ class AddWorker extends Component {
                   disabled
                   fullWidth
                   autoComplete="Password"
+                  value=""
                 />
               )}
             </Grid>
@@ -193,7 +206,9 @@ class AddWorker extends Component {
                 name="firstName"
                 label="First name"
                 //fullWidth
-                autoComplete="fname"
+                autoComplete="firstName"
+                onChange={this.handleChange("firstName")}
+                value={this.state.firstName}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -204,6 +219,8 @@ class AddWorker extends Component {
                 label="Last name"
                 fullWidth
                 autoComplete="lname"
+                onChange={this.handleChange("lastName")}
+                value={this.state.lastName}
               />
             </Grid>
             <Grid item xs={8} sm={6}>

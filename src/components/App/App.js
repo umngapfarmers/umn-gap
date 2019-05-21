@@ -59,7 +59,7 @@ class App extends Component {
             />
             <Route
               exact
-              path="/addworker"
+              path="/add-worker"
               component={AddWorker}
             />
             {/* For protected routes, the view could show one of several things on the same route.
