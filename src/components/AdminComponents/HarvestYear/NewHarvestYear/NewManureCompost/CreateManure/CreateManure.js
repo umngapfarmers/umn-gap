@@ -34,6 +34,7 @@ class CreateManure extends Component {
   
   render() {
     const {classes} = this.props;
+    console.log(this.props.reduxState.user);
     return (
       <React.Fragment>
       <Typography variant="h6" gutterBottom align="center">
