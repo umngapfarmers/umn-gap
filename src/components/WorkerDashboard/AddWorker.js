@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
-import Form from '@material-ui/core/FormControl';
+import FormControl from '@material-ui/core/FormControl'
+import Button from '@material-ui/core/Button'
 
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -46,7 +47,8 @@ class AddWorker extends Component {
     };
 
     // handles form submit button, sends post dispatch to redux with payload of all selected form inputs + clears form
-    handleSubmit = () => {
+    handleSubmit = (event) => {
+        event.preventDefault();
         console.log("in handle submit", this.state);
 
         this.props.dispatch({ type: "POST_WORKER", payload: this.state });
@@ -57,6 +59,7 @@ class AddWorker extends Component {
             LastName: ""
 
         });
+        this.props.history.push('/');
     };
 
     render() {
@@ -69,7 +72,7 @@ class AddWorker extends Component {
             <Typography variant="h6" gutterBottom>
                 Registration
       </Typography>
-            <Form
+            <FormControl
                 ref="form"
                 //justify="center"
                 //alignItems="center"
@@ -125,9 +128,13 @@ class AddWorker extends Component {
                         autoComplete="lname"
                     />
                 </Grid>
-
+                    <Grid item xs={8} sm={6} >
+                        <FormControl>
+                            <Button onClick={this.handleSubmit}>Submit</Button>
+                        </FormControl>
+                    </Grid>
             </Grid>
-            </Form>
+            </FormControl>
         </React.Fragment>
 
     );
