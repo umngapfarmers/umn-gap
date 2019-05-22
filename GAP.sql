@@ -12,23 +12,20 @@ CREATE TABLE "harvest_year"
 (
   "harvest_id" SERIAL PRIMARY KEY,
   "harvest_year" INT,
+  -------should this be a true date or just an int?
   "farm_id" INT REFERENCES "farm_registry"
 );
-
-
 
 CREATE TABLE "user"
 (
   "user_id" SERIAL PRIMARY KEY,
-  "username" varchar(50) NOT NULL,
+  "username" varchar(50) UNIQUE,
   "password" VARCHAR(255) NOT NULL,
   "user_role" VARCHAR (255) NOT NULL,
   "farm_registry_id" INT REFERENCES "farm_registry",
-  "current_harvest_year" INT REFERENCES "harvest_year"
+  "current_harvest_year" INT REFERENCES "harvest_year",
+  "user_status" boolean DEFAULT TRUE
 );
-
-
-
 
 
 ------------------------ person and employee training ----------------------
@@ -107,7 +104,7 @@ CREATE TABLE "farm_manure"
   "farm_manure_description" VARCHAR(255) NOT NULL,
   "farm_manure_rate" VARCHAR(255) ,
   "label_code_id" INT REFERENCES "label_code",
-  "harvest_year_id" INT REFERENCES "harvest_year"("harvest_id"),
+  "harvest_year_id" INT REFERENCES "harvest_year",
   "farm_manure_status" boolean DEFAULT true
 );
 
