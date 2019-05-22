@@ -23,7 +23,6 @@ function* getManureSource(action){
         let result = yield axios.get(`/setup/manure`);
         yield put({type: 'SET_MANURE_SETUP', payload: result.data})
 
-
     }
     catch (error){
         console.log('ERROR IN getManureSource GET', error);

@@ -7,7 +7,6 @@ import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
-import './CreateManure.css';
 const moment = require('moment');
 
 // Allows farmer to create a manure source.
@@ -33,7 +32,7 @@ class CreateManure extends Component {
 
   componentDidMount(){
     this.props.dispatch({type: 'GET_LABEL_CODE', payload:{harvest_year_id: this.props.reduxState.user.current_harvest_year}})
-    this.props.dispatch({type:'GET_MANURE_SOURCE'}) 
+    // this.props.dispatch({type: }) 
   }
 
   onSubmitManure = () => {
