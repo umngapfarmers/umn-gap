@@ -6,21 +6,19 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
-import MenuItem from '@material-ui/core/MenuItem';
 const moment = require('moment');
 
 // Allows farmer to create a manure source.
 // Accessed as part of intial farm set up workflow and through harvest year edit
-class CreateManure extends Component {
+class CreateCompost extends Component {
 
 
   state= {
-    farm_manure_date: '',
-    farm_manure_description: '',
-    farm_manure_rate: '',
-    label_code_id: '',
-    harvest_year_id: this.props.reduxState.user.current_harvest_year,
-    farm_manure_status: true
+    farm_compost_name: '',
+    farm_compost_date: '',
+    farm_compost_description: '',
+    harvest_year_id: this.props.reduxState.user.user_id,
+    farm_compost_status:true
   }
 
   handleChangeFor = property => event => {
@@ -31,24 +29,19 @@ class CreateManure extends Component {
   }
 
   componentDidMount(){
-    this.props.dispatch({type: 'GET_LABEL_CODE', payload:{harvest_year_id: this.props.reduxState.user.current_harvest_year}})
+    // this.props.dispatch({type: 'GET_LABEL_CODE', payload:{harvest_year_id: this.props.reduxState.user.current_harvest_year}})
     // this.props.dispatch({type: }) 
   }
 
-  onSubmitManure = () => {
-    this.props.dispatch({type: 'ADD_MANURE_SOURCE', payload:{...this.state}});
-    this.setState({
-      farm_manure_date: '',
-      farm_manure_description: '',
-      farm_manure_rate: '',
-      label_code_id: '',
-      harvest_year_id: this.props.reduxState.user.current_harvest_year,
-      farm_manure_status: true
-    })
+  onSubmit = () => {
+    // this.props.dispatch({type: 'ADD_MANURE_SOURCE', payload:{...this.state}});
+    // this.setState({
+
+    // })
   }
   
   handleRemove = (id) => {
-    this.props.dispatch({type: 'DELETE_MANURE_SOURCE', payload:{id,}})
+    // this.props.dispatch({type: 'DELETE_MANURE_SOURCE', payload:{id,}})
   }
 
   handleNext = () => {
@@ -56,14 +49,14 @@ class CreateManure extends Component {
   }
   
   render() {
-    console.log(`state in createManure form `, this.state);
+    console.log(`state in creat compost form `, this.state);
     
     const {classes} = this.props;
     console.log(this.props.reduxState.user);
     return (
       <React.Fragment>
       <Typography variant="h6" gutterBottom align="center">
-          Create New Manure Source
+          Create New Compost Pile 
       </Typography>
       <Grid 
         container 
@@ -75,12 +68,12 @@ class CreateManure extends Component {
         <Grid item xs={8} sm={6} >
             <FormControl>
                 <TextField 
-                    label="Application Date" 
+                    label="Start Date" 
                     variant="outlined" 
                     color="primary"
-                    onChange={this.handleChangeFor('farm_manure_date')}
+                    onChange={this.handleChangeFor('farm_compost_date')}
                     type="date"
-                    value={this.state.farm_manure_date}
+                    value={this.state.farm_compost_date}
                     InputLabelProps={{
                       shrink: true,
                     }}
@@ -92,12 +85,11 @@ class CreateManure extends Component {
         <Grid item xs={8} sm={6} >
             <FormControl>
                 <TextField 
-                    label="Describe Manure" 
+                    label="Name Compost" 
                     variant="outlined" 
                     color="primary"
-                    onChange={this.handleChangeFor('farm_manure_description')}
-                    value={this.state.farm_manure_description}
-                    multiline
+                    onChange={this.handleChangeFor('farm_compost_name')}
+                    value={this.state.farm_compost_name}
                   >
                 </TextField>
             </FormControl>
@@ -106,46 +98,27 @@ class CreateManure extends Component {
         <Grid item xs={8} sm={6} >
             <FormControl>
                 <TextField 
-                  label="Application Rate" 
+                  label = "farm_compost_description"
                   variant="outlined" 
                   color="primary"
-                  onChange={this.handleChangeFor('farm_manure_rate')}
-                  value={this.state.farm_manure_rate}
+                  onChange={this.handleChangeFor('farm_compost_description')}
+                  value={this.state.farm_compost_description}
                 >
                 </TextField>
             </FormControl>
         </Grid>
 
         <Grid item xs={8} sm={6} >
-            <FormControl>
-                <TextField 
-                  label="Label Code" 
-                  variant="outlined" 
-                  color="primary"
-                  onChange={this.handleChangeFor('label_code_id')}
-                  value={this.state.label_code_id}
-                  select
-                >
-                  {this.props.reduxState.labelCode.map( code => (
-                    <MenuItem key={code.label_code_id} value={code.label_code_id}>
-                      {code.label_code_text}
-                    </MenuItem>
-                  ))}
-                </TextField>
-            </FormControl>
-        </Grid>
-
-        <Grid item xs={8} sm={6} >
-          <Button size="large" color="primary" onClick={this.onSubmitManure}>Add New Manure Source</Button>
+          <Button size="large" color="primary" onClick={this.onSubmit}>Add New Compost</Button>
         </Grid>
  
         <Grid item xs={8} sm={6} >
           <ul>
-            {this.props.reduxState.setupManure.map(manure =>
+            {/* {this.props.reduxState.setupManure.map(manure =>
               <li key={manure.farm_manure_id}>{manure.label_code_text+' '+ moment(manure.farm_manure_date).format('YYYY-MM-DD')}
                 <Button size="large" color="primary" onClick={() => this.handleRemove(manure.farm_manure_id)}>Remove</Button>
               </li>
-            )}
+            )} */}
           </ul>
         </Grid>  
 
@@ -174,4 +147,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect( mapReduxStateToProps )(withStyles(styles)(CreateManure));
+export default connect(mapReduxStateToProps)(withStyles(styles)(CreateCompost));

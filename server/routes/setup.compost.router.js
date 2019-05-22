@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
     pool.query(sqlText, [harvest_id])
         .then((result) => {
             // console.log(`result from manure GET`, result.rows);
-            res.sendStatus(201)
+            res.send(result.rows)
         })
         .catch((error)=>{
             console.log(`error getting manure`, error);
@@ -24,26 +24,24 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     
-    let sqlText = `INSERT INTO "farm_manure"
-        ("farm_manure_date", "farm_manure_description", "farm_manure_rate", "label_code_id", "harvest_year_id","farm_manure_status")
-        VALUES ($1, $2, $3, $4, $5, $6);`;
+    let sqlText = `INSERT INTO "farm_compost"
+        ("farm_compost_name", "farm_compost_date", "farm_compost_description", "harvest_year_id", "farm_compost_status")
+        VALUES ($1, $2, $3, $4, $5);`;
     let values = [
-        req.body.farm_manure_date,
-        req.body.farm_manure_description, 
-        req.body.farm_manure_rate, 
-        req.body.label_code_id, 
+        req.body.farm_compost_name,
+        req.body.farm_compost_date,
+        req.body.farm_compost_description,
         req.body.harvest_year_id,
-        req.body.farm_manure_status
+        req.body.farm_compost_status
     ];
 
     pool.query(sqlText, values)
         .then((result) => {
-            console.log('added manure source ', result.rows[0]);
-            
-            res.send(result.rows[0]);
+
+            res.sendStatus(201);
         })
         .catch((error)=>{
-            console.log(`error in farm_manure post `, error);
+            console.log(`error in farm_compost post `, error);
             res.sendStatus(500);
         })
 });

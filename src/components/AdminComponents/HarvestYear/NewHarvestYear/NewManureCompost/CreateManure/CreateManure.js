@@ -57,7 +57,7 @@ class CreateManure extends Component {
   }
   
   render() {
-    console.log(`state in createManure form `, this.state);
+    // console.log(`state in createManure form `, this.state);
     
     const {classes} = this.props;
     console.log(this.props.reduxState.user);
