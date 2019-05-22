@@ -2,9 +2,14 @@ import { all } from 'redux-saga/effects';
 import loginSaga from './loginSaga';
 import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
+import waterSetup from './waterSetup';
+import cropSetup from './cropSetup';
+
 import setupSaga from './setupSaga';
 import getLabelCodeSaga from './getLabelCodeSaga';
 import setupManureSaga from './setupManureSaga';
+import personSaga from './personSaga';
+import harvestSaga from './harvestLogSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -18,8 +23,13 @@ export default function* rootSaga() {
     loginSaga(),
     registrationSaga(),
     userSaga(),
-    setupSaga(),
+    waterSetup(),
+    cropSetup(),
     getLabelCodeSaga(),
-    setupManureSaga()
+    setupSaga(),
+    setupManureSaga(),
+    personSaga(),
+    harvestSaga()
+
   ]);
 }

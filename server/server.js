@@ -10,9 +10,14 @@ const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
+const setupWaterRouter = require('./routes/setup.water.router')
+const setupCropRouter = require('./routes/setup.crop.router')
+const labelCodeRouter = require('./routes/setup.labelCode.router')
 const setupRouter = require('./routes/setup.router');
 const labelCodeRouter = require('./routes/setup.labelCode.router');
 const setupManureRouter = require('./routes/setup.manure.router');
+const log_harvestRouter = require('./routes/log.harvest.router');
+
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -27,9 +32,13 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
+app.use('/api/setupWater', setupWaterRouter);
+app.use('/api/setupCrop', setupCropRouter);
 app.use('/setup', setupRouter);
 app.use('/setup/label_code', labelCodeRouter);
 app.use('/setup/manure', setupManureRouter);
+app.use('/log/harvest/', log_harvestRouter)
+
 
 // Serve static files
 app.use(express.static('build'));

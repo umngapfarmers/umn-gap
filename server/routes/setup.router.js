@@ -13,7 +13,8 @@ router.post('/addHarvestYear', rejectUnauthenticated, async (req, res) => {
 
           try {
           const harvest_year_query = `INSERT INTO "harvest_year" ("harvest_year", "farm_id") VALUES ($1, $2) returning harvest_id;`
-          const usernameUpdateQuery=  `UPDATE "user" SET "current_harvest_year" = $1 WHERE "farm_registry_id" = $2;          `;
+          const usernameUpdateQuery=  `UPDATE "user" SET "current_harvest_year" = $1 WHERE "farm_registry_id" = $2;`;
+          const personUpdateQuery = `UPDATE "person" SET "current_harvest_id" = $1 , "farm_id" = $2;`;
           await client.query('BEGIN')
             
             const harvestInsertResults = await client.query(harvest_year_query,  [newHarvestYear.harvest_year, farm_id]);
@@ -21,6 +22,8 @@ router.post('/addHarvestYear', rejectUnauthenticated, async (req, res) => {
             console.log(current_harvest_year);
             
             const usernameInsertResults = await client.query(usernameUpdateQuery, [current_harvest_year, farm_id ]);
+            const personInsertResults = await client.query(personUpdateQuery, [current_harvest_year, farm_id ]);
+            console.log('currentHarvestYear is:', current_harvest_year, 'farm_id is:', farm_id);
             await client.query('COMMIT')
             res.sendStatus(201);
         } catch (error) {

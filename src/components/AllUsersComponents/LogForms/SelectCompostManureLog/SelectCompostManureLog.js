@@ -1,14 +1,12 @@
-
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import './CreateWaterSourcesLabelCodes.css'
-import { withRouter } from 'react-router-dom';
+import './SelectCompostManureLog.css'
 
 
-class CreateWaterSourcesLabelCodes extends Component {
+class SelectCompostManureLog extends Component {
 
 
   state= {
@@ -23,7 +21,7 @@ class CreateWaterSourcesLabelCodes extends Component {
     return (
       <React.Fragment>
       <Typography variant="h6" gutterBottom>
-          Create Water SOurce with label codes
+         Select Compost Manure Log
       </Typography>
       <Grid container spacing={24}>
          
@@ -46,9 +44,8 @@ const styles = theme => ({
 });
 
 
-
 const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default withRouter(connect( mapReduxStateToProps )(withStyles(styles)(CreateWaterSourcesLabelCodes)));
+export default connect( mapReduxStateToProps )(withStyles(styles)(SelectCompostManureLog));
