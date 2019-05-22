@@ -1,6 +1,15 @@
 import { combineReducers } from 'redux';
 
-const waterSetup = (state = [], action) => {
+const waterSource = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_WATER_SOURCE':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+const waterLabel = (state = [], action) => {
     switch (action.type) {
         case 'SET_WATER_SOURCE':
             return action.payload;
@@ -10,5 +19,6 @@ const waterSetup = (state = [], action) => {
 }
 
 export default combineReducers({
-    waterSetup,
+    waterSource,
+    waterLabel
 });

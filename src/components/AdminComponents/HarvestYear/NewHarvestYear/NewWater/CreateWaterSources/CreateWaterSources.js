@@ -74,6 +74,7 @@ class CreateWaterSources extends Component {
                     <TextField label="Water Sources" variant="outlined" color="primary"
                       onChange={this.handleInputChangeFor('name')}
                       value={this.state.newWaterSource.name}
+                      style={{ width: '80vw', maxWidth: 400 }}
                     >
                     </TextField>
                     <Button size="large" color="primary" onClick={this.addWaterSource} >Add</Button>

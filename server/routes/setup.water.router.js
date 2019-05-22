@@ -17,11 +17,11 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     const newWaterSource = req.body;
-    const queryText = `INSERT INTO "farm_water_source" ("farm_water_source_name", "harvest_year_id")
-                    VALUES ($1, $2)`;
+    const queryText = `INSERT INTO "farm_water_source" ("farm_water_source_name")
+                    VALUES ($1)`;
     const queryValues = [
         newWaterSource.name,
-        req.user.current_harvest_year,
+        
     ];
     pool.query(queryText, queryValues)
         .then(() => { res.sendStatus(201); })
