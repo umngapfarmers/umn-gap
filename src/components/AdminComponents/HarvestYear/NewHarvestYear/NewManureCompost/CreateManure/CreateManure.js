@@ -51,6 +51,10 @@ class CreateManure extends Component {
   handleRemove = (id) => {
     this.props.dispatch({type: 'DELETE_MANURE_SOURCE', payload:{id,}})
   }
+
+  handleNext = () => {
+    
+  }
   
   render() {
     console.log(`state in createManure form `, this.state);
@@ -145,6 +149,12 @@ class CreateManure extends Component {
             )}
           </ul>
         </Grid>  
+
+        <Grid item xs={8} sm={6} >
+          <Button size="large" color="primary" onClick={this.handleNext}>Next</Button>
+
+        </Grid>  
+
         
       </Grid>
      
