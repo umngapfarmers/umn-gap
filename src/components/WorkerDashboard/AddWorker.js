@@ -62,8 +62,9 @@ class AddWorker extends Component {
   handleSubmit = event => {
     event.preventDefault();
     console.log("in handle submit", this.state);
-
+   
     this.props.dispatch({ type: "POST_WORKER", payload: this.state });
+   
     // this.setState({
     //     newWorker:{
     //   registrationCode: "",

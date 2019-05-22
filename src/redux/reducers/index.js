@@ -1,7 +1,3 @@
-import { combineReducers } from "redux";
-import errors from "./errorsReducer";
-import loginMode from "./loginModeReducer";
-import user from "./userReducer";
 import worker from "./workerReducer";
 import harvestYear from "./harvestYearReducer";
 import { combineReducers } from 'redux';

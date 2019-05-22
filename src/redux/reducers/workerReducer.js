@@ -5,6 +5,9 @@ const workerReducer = (state = [], action) => {
         case "SET_WORKER":
             console.log("yayh", action.payload);
             return action.payload;
+        case "SET_EMPLOYEE":
+            console.log("yayh", action.payload);
+            return action.payload;
 
         default:
             return state;

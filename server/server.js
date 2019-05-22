@@ -10,7 +10,6 @@ const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
-const setupFarmRouter = require('./routes/setupFarm.router');
 const addWorkerRouter = require ('./routes/addWorker.router')
 const harvestYearRouter= require('./routes/harvestYear.router')
 const setupWaterRouter = require('./routes/setup.water.router')
@@ -34,7 +33,6 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
-app.use('/addFarm', setupFarmRouter)
 app.use('/addworker',addWorkerRouter);
 app.use('/hyear',harvestYearRouter);
 app.use('/setupWater', setupWaterRouter);

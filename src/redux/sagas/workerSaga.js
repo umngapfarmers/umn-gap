@@ -15,6 +15,8 @@ function* addWorkerSaga(action) {
 
 function* workerSaga() {
     yield takeLatest("POST_WORKER", addWorkerSaga);
+    yield takeLatest("POST_EMPLOYEE", addWorkerSaga);
+
 }
 
 export default workerSaga;
