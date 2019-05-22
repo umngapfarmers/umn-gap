@@ -4,19 +4,17 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
-    let sqlText = `SELECT * FROM "farm_manure" 
-        JOIN "label_code" on "farm_manure"."label_code_id" = "label_code"."label_code_id"
-        WHERE "farm_manure"."harvest_year_id" = $1;`
+    let sqlText = `SELECT * FROM "farm_compost" WHERE "farm_compost"."harvest_year_id" = $1;`
     let harvest_id = req.user.current_harvest_year;
     console.log(`harvest id off user `, harvest_id);
-    
+    // let harvest_id = 2
     pool.query(sqlText, [harvest_id])
         .then((result) => {
             // console.log(`result from manure GET`, result.rows);
             res.send(result.rows)
         })
         .catch((error)=>{
-            console.log(`error getting manure`, error);
+            console.log(`error getting compost`, error);
             res.sendStatus(500);
         })
 });
