@@ -20,7 +20,7 @@ class EnterFarmInformationHierarchyMenu extends Component {
   }
 
   componentDidMount(){
-    this.props.dispatch({type:'SET_MENU_BOOLEAN', payload: 2})
+    this.props.dispatch({type:'SET_MENU_BOOLEAN', payload: 0})
   }
 
 
@@ -34,7 +34,7 @@ class EnterFarmInformationHierarchyMenu extends Component {
     if (menuBoolean ===0){
       menuToDisplay =
       <List>
-      <ListItem button onClick={() => {this.props.history.push('/crop')}}>
+      <ListItem button onClick={() => {this.props.history.push('/crops')}}>
         <ListItemIcon>
           Step 1
         </ListItemIcon>
@@ -68,7 +68,7 @@ class EnterFarmInformationHierarchyMenu extends Component {
       if (menuBoolean ===1){
         menuToDisplay =
         <List>
-        <ListItem button onClick={() => {this.props.history.push('/crop')}}>
+        <ListItem button onClick={() => {this.props.history.push('/crops')}}>
           <ListItemIcon>
             Step 1
           </ListItemIcon>
