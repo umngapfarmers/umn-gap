@@ -1,4 +1,4 @@
-const farmMenuConditionalReducer = (state = {}, action) => {
+const farmMenuConditionalReducer = (state = 0, action) => {
     switch (action.type) {
       case 'SET_MENU_BOOLEAN':
         return action.payload;
