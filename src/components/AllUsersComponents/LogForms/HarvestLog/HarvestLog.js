@@ -24,6 +24,7 @@ class HarvestLog extends Component {
 
   componentDidMount(){
     this.props.dispatch({type: 'GET_LABEL_CODE'});
+    this.props.dispatch({type: 'GET_PERSON'});
   }
 
   handleChange = (propertyName) => {
