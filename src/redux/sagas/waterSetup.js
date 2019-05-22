@@ -5,7 +5,20 @@ function* addWaterSource(action) {
     console.log('Hit the addWaterSaga', action);
 
     try {
-        yield axios.post(`/api/setupWater`, action.payload);
+        yield axios.post(`/setupWater`, action.payload);
+        yield put({ type: 'GET_WATER_SOURCE' });
+    }
+    catch (error) {
+        console.log(`Couldn't add the water source`, action.payload, error);
+        alert(`Sorry, couldn't add the water source. Try again later`);
+    }
+}
+
+function* addWaterLabel(action) {
+    console.log('Hit the addWaterSaga', action);
+
+    try {
+        yield axios.post(`/setupWater`, action.payload);
         yield put({ type: 'GET_WATER_SOURCE' });
     }
     catch (error) {
@@ -18,7 +31,7 @@ function* getWaterSource(action) {
     console.log('in getWaterSource', action);
 
     try {
-        yield axios.get(`/api/setupWater`);
+        yield axios.get(`/setupWater`);
         yield put({type: 'SET_WATER_SOURCE'})
     }
     catch (error) {
@@ -30,7 +43,8 @@ function* getWaterSource(action) {
 
 function* waterSourceSaga() {
     yield takeLatest('ADD_WATER_SOURCE', addWaterSource);
-    yield takeLatest('GET_WATER_SOURCE', getWaterSource)
+    yield takeLatest('GET_WATER_SOURCE', getWaterSource);
+    yield takeLatest('ADD_WATER_LABEL', addWaterLabel);
 }
 
 

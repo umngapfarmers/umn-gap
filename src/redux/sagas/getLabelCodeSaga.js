@@ -36,7 +36,7 @@ function* deleteLabelCode(action) {
         yield axios.delete(`/setup/label_code/${action.payload}`);
         console.log('saga id is', action.payload);
 
-        yield put({ type: 'GET_CROP_SOURCE' });
+        yield put({ type: 'GET_LABEL_CODE' });
     }
     catch (error) {
         console.log(`Couldn't delete labelCode`, error);

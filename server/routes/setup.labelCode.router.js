@@ -12,6 +12,7 @@ router.get('/', (req, res) => {
     console.log(`req.user `, req.user);
     
     pool.query(sqlQuery, [harvestYear])
+
         .then((response) => {
             console.log(`response label_code`, response.rows);
 
@@ -25,7 +26,7 @@ router.get('/', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-    const queryText = 'DELETE FROM "farm_field" WHERE farm_field_id=$1';
+    const queryText = 'DELETE FROM "label_code" WHERE label_code_id=$1';
     pool.query(queryText, [req.params.id])
         .then(() => { res.sendStatus(200); })
         .catch((err) => {
@@ -46,7 +47,7 @@ router.post('/', (req, res) => {
         newLabel.farm_crop_id,
         newLabel.farm_field_id,
         newLabel.label_code_text,
-        newLabel.harvest_year_id,
+        req.user.current_harvest_year,
     ];
     pool.query(queryText, queryValues)
         .then(() => { res.sendStatus(201); })
