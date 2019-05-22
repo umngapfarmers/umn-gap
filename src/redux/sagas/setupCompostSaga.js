@@ -6,9 +6,9 @@ function* addCompostSource(action){
     // console.log('in addManureSource', action.payload)
     try{
         yield axios.post('/setup/compost', action.payload);
-        // let result = yield axios.get(`/setup/manure`);
-        // console.log(`result get after add manure`, result.data);
-        // yield put({type: 'SET_MANURE_SETUP', payload: result.data})
+        let result = yield axios.get(`/setup/compost`);
+        console.log(`result get after add manure`, result.data);
+        yield put({type: 'SET_COMPOST_SETUP', payload: result.data})
 
     }
     catch (error){
@@ -18,33 +18,30 @@ function* addCompostSource(action){
 }
 
 function* getCompostSource(action){
-    // console.log('in addManureSource', action.payload)
+    // console.log('in getCompostSource', action.payload)
     try{
-        let result = yield axios.get(`/setup/manure`);
-        yield put({type: 'SET_MANURE_SETUP', payload: result.data})
+        let result = yield axios.get(`/setup/compost`);
+        yield put({type: 'SET_COMPOST_SETUP', payload: result.data})
 
     }
     catch (error){
-        console.log('ERROR IN getManureSource GET', error);
-        alert(`Sorry! Was unable to setup the farm's manure! Try again later.`)
+        console.log('ERROR IN getCompostSource GET', error);
+        alert(`Sorry! Was unable to setup the farm's compost! Try again later.`)
     }
 }
 
 function* deleteCompostSource(action) {
-    console.log('in deleteManureSource', action.payload)
+    console.log('in deleteCompostSource', action.payload)
     try {
-        yield axios.delete(`/setup/manure/${action.payload.id}`);
-        let result = yield axios.get(`/setup/manure`);
-        yield put({type: 'SET_MANURE_SETUP', payload: result.data})
+        yield axios.delete(`/setup/compost/${action.payload.id}`);
+        let result = yield axios.get(`/setup/compost`);
+        yield put({type: 'SET_COMPOST_SETUP', payload: result.data})
 
     } catch (error) {
-        console.log('ERROR IN deleteManureSource DELETE', error);
-        alert(`Sorry! Was unable to setup the farm's manure! Try again later.`)
+        console.log('ERROR IN deleteCompostSource DELETE', error);
+        alert(`Sorry! Was unable to setup the farm's compost! Try again later.`)
     }
 }
-
-
-
 
 function* setupManureSaga() {
   yield takeLatest('ADD_COMPOST_SOURCE', addCompostSource);

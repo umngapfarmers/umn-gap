@@ -29,18 +29,22 @@ class CreateCompost extends Component {
   }
 
   componentDidMount(){
-    // this.props.dispatch({type: }) 
+    this.props.dispatch({type: 'GET_COMPOST_SOURCE'}) 
   }
 
   onSubmit = () => {
     this.props.dispatch({type: 'ADD_COMPOST_SOURCE', payload:{...this.state}});
-    // this.setState({
-
-    // })
+    this.setState({
+        farm_compost_name: '',
+        farm_compost_date: '',
+        farm_compost_description: '',
+        harvest_year_id: this.props.reduxState.user.current_harvest_year,
+        farm_compost_status:true
+    })
   }
   
   handleRemove = (id) => {
-    // this.props.dispatch({type: 'DELETE_MANURE_SOURCE', payload:{id,}})
+    this.props.dispatch({type: 'DELETE_COMPOST_SOURCE', payload:{id,}})
   }
 
   handleNext = () => {
@@ -113,11 +117,11 @@ class CreateCompost extends Component {
  
         <Grid item xs={8} sm={6} >
           <ul>
-            {/* {this.props.reduxState.setupManure.map(manure =>
-              <li key={manure.farm_manure_id}>{manure.label_code_text+' '+ moment(manure.farm_manure_date).format('YYYY-MM-DD')}
-                <Button size="large" color="primary" onClick={() => this.handleRemove(manure.farm_manure_id)}>Remove</Button>
+            {this.props.reduxState.setupCompost.map(compost =>
+              <li key={compost.farm_compost_id}>{compost.farm_compost_name+' '+ moment(compost.farm_compost_date).format('YYYY-MM-DD')}
+                <Button size="large" color="primary" onClick={() => this.handleRemove(compost.farm_compost_id)}>Remove</Button>
               </li>
-            )} */}
+            )}
           </ul>
         </Grid>  
 
