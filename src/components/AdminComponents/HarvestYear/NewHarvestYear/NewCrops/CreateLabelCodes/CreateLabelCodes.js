@@ -21,7 +21,9 @@ class CreateLabelCodes extends Component {
       farm_crop_id:'',
       farm_field_id: '',
       label_code_text: '',
-    }
+    },
+    disable: true,
+    disableNext:true
     
   }
 
@@ -37,7 +39,8 @@ class CreateLabelCodes extends Component {
         newLabel: {
           ...this.state.newLabel,
           [propertyName]: event.target.value,
-        }
+        },
+        disable: false
       })
     }
   }
@@ -50,9 +53,9 @@ class CreateLabelCodes extends Component {
         farm_crop_id: '',
         farm_field_id: '',
         label_code_text: '',
-      }
+      },
+      disableNext: false
     })
-    event.target.value = "";
   }
 
   removeLabelCode = (event) => {
@@ -69,9 +72,7 @@ class CreateLabelCodes extends Component {
     const {classes} = this.props;
     return (
       <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        Create Label Codes
-      </Typography>
+      
       <Grid container spacing={24}
           container
           direction="column"
@@ -128,11 +129,16 @@ class CreateLabelCodes extends Component {
           <Grid item xs={12} sm={6}>
             <TextField label="Name Your Label Code" variant="outlined" color="primary"
               onChange={this.handleChangeFor('label_code_text')}
-              value={this.state.newLabel.lable_code_tex}
+              value={this.state.newLabel.label_code_text}
               style={{ width: '80vw', maxWidth: 400 }}
             >
             </TextField>
-            <Button size="large" color="primary" onClick={this.addNewLabel} >Add</Button>
+            <Button size="large" color="primary" 
+            onClick={this.addNewLabel} 
+            disabled={this.state.disable}
+            >
+            Add
+            </Button>
           </Grid>
           <Grid item xs={12} sm={6}>
             <ul> My labels:</ul>
@@ -148,7 +154,12 @@ class CreateLabelCodes extends Component {
               )
             }
             <Grid item xs={12} sm={6}>
-              <Button size="large" color="primary" onClick={this.nextPage}>Next</Button>
+              <Button size="large" color="primary" 
+              onClick={this.nextPage} 
+              disabled={this.state.disableNext}
+              >
+              Next
+              </Button>
             </Grid>
 
           </Grid>

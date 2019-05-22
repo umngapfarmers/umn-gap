@@ -16,7 +16,9 @@ class CreateFields extends Component {
   state= {
     newField: {
       name: '',
-    }
+    },
+    disable: true,
+    disableNext: true,
   }
 
   handleInputChangeFor = propertyName => (event) => {
@@ -24,8 +26,8 @@ class CreateFields extends Component {
       newField: {
         ...this.setState,
         [propertyName]: event.target.value,
-
-      }
+      },
+      disable: false
     });
   }
 
@@ -35,8 +37,8 @@ class CreateFields extends Component {
     this.setState({
       newField: {
         name: '',
-        harvest_year_id: this.props.reduxState.user.current_harvest_year,
-      }
+      },
+      disableNext: false
     })
   }
 
@@ -68,11 +70,16 @@ class CreateFields extends Component {
           <Grid item xs={12} sm={6}>
             <TextField label="Field name" variant="outlined" color="primary"
               onChange={this.handleInputChangeFor('name')}
-              value={this.state.newField.type}
+              value={this.state.newField.name}
               style={{ width: '80vw', maxWidth: 400 }}
             >
             </TextField>
-            <Button size="large" color="primary" onClick={this.addFieldSource} >Add</Button>
+            <Button size="large" color="primary" 
+            onClick={this.addFieldSource} 
+            disabled={this.state.disable} 
+            >
+            Add
+            </Button>
 
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -84,13 +91,18 @@ class CreateFields extends Component {
                   onClick={this.removeFieldSource} 
                   name={crop.farm_field_id} 
                   >
-                    Remove
-                </Button>
+                  Remove
+                  </Button>
                 </li>
               )
             }
             <Grid item xs={12} sm={6}>
-              <Button size="large" color="primary" onClick={this.nextPage}>Next</Button>
+              <Button size="large" color="primary" 
+              onClick={this.nextPage} 
+              disabled={this.state.disableNext}
+              >
+              Next
+              </Button>
             </Grid>
 
           </Grid>
