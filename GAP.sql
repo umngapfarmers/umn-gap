@@ -158,7 +158,7 @@ CREATE TABLE "farm_water"
   "farm_water_source_id" int references "farm_water_source",
   "farm_water_status" boolean DEFAULT true,
   "label_code_id" int references "label_code",
-  "harvest_year_id" int references "label_code"
+  "harvest_year_id" int references "harvest_year"
 
 );
 

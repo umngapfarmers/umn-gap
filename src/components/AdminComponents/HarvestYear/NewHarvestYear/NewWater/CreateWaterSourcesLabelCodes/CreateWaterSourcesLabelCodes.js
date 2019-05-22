@@ -138,7 +138,7 @@ class CreateWaterSourcesLabelCodes extends Component {
                   <li>{label.label_code_text}
                     <Button size="large" color="primary"
                     onClick={this.removeLabelCode}
-                    name={label.farm_water_source}>
+                    name={label.farm_water_source_id}>
                     Remove
                   </Button>
                   </li>
