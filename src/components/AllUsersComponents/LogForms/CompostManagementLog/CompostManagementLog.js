@@ -20,7 +20,7 @@ class CompostManagementLog extends Component {
     const {classes} = this.props;
     return (
       <React.Fragment>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h6" gutterBottom align="center">
          Compost Management Log
       </Typography>
       <Grid container spacing={24}>

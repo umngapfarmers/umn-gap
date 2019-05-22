@@ -37,21 +37,27 @@ class LogsHierarchyMenu extends Component {
           <Grid item xs={12} sm={6}>
             <List>
               <ListItem button onClick={() => {this.props.history.push('/harvestlog')}}>
-                <ListItemText primary="Crops and Fields"/>
+                <ListItemText primary="Harvest Traceability"/>
                 < ListItemIcon>
                   <FontAwesomeIcon icon="seedling" />
               </ListItemIcon>
               </ListItem>
-              <ListItem button onClick={() => {this.props.history.push('/create_manure')}}>
-              <ListItemText primary="Manure and Compost"/>
+              <ListItem button onClick={() => {this.props.history.push('/compostlog')}}>
+              <ListItemText primary="Compost Management"/>
               <ListItemIcon>
                   <FontAwesomeIcon icon="recycle"/>
                 </ListItemIcon>
-            </ListItem>
-              <ListItem button>
+              </ListItem>
+              <ListItem button onClick={() => {this.props.history.push('/waterlogdashboard')}}>
                 <ListItemText primary="Water Sources"/>
                 <ListItemIcon>
                 <FontAwesomeIcon icon="tint" />
+                </ListItemIcon>
+              </ListItem>
+              <ListItem button onClick={() => {this.props.history.push('/employeelog')}}>
+                <ListItemText primary="Employee Training"/>
+                <ListItemIcon>
+                <FontAwesomeIcon icon="id-card" />
                 </ListItemIcon>
               </ListItem>
           </List> 

@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+
 import './EmployeeTrainingLog.css'
 
 
@@ -20,7 +22,7 @@ class EmployeeTrainingLog extends Component {
     const {classes} = this.props;
     return (
       <React.Fragment>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h6" gutterBottom align="center">
          Employee Training Log
       </Typography>
       <Grid container spacing={24}>
