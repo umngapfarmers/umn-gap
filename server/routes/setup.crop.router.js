@@ -3,8 +3,10 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.get('/crop', (req, res) => {
-    const queryText = `SELECT * FROM "farm_crop"`;
-    pool.query(queryText)
+    let harvestYear = req.user.current_harvest_year;
+
+    let sqlQuery = `SELECT * FROM "label_code" WHERE "harvest_year_id" = $1`;
+    pool.query(sqlQuery, [harvestYear])
         .then(result => {
             res.send(result.rows);
         })
@@ -16,8 +18,10 @@ router.get('/crop', (req, res) => {
 });
 
 router.get('/field', (req, res) => {
-    const queryText = `SELECT * FROM "farm_field"`;
-    pool.query(queryText)
+    let harvestYear = req.user.current_harvest_year;
+
+    let sqlQuery = `SELECT * FROM "label_code" WHERE "harvest_year_id" = $1`;
+    pool.query(sqlQuery, [harvestYear])
         .then(result => {
             res.send(result.rows);
         })

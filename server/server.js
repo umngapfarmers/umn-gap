@@ -29,7 +29,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 /* Routes */
-app.use('api/user', userRouter);
+app.use('/api/user', userRouter);
 app.use('/setupWater', setupWaterRouter);
 app.use('/setupCrop', setupCropRouter);
 app.use('/setup/label_code', labelCodeRouter)

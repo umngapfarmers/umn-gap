@@ -52,6 +52,7 @@ class CreateLabelCodes extends Component {
         label_code_text: '',
       }
     })
+    event.target.value = "";
   }
 
   removeLabelCode = (event) => {
