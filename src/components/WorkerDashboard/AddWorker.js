@@ -8,6 +8,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import NavBar from "../NavBar/NavBar";
 
 const styles = theme => ({
@@ -37,6 +38,11 @@ class AddWorker extends Component {
     roleSelect: "",
     workerStatus: ""
   };
+
+    componentDidMount = () => {
+        this.props.dispatch({ type: "FETCH_HARVEST_YEAR" });
+    };
+
   handleSelect = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -74,6 +80,8 @@ class AddWorker extends Component {
   render() {
     const { classes } = this.props;
     console.log("selected role", this.state.roleSelect);
+      console.log("selected year", this.props.harvestYearReducer);
+
 
     return (
       <React.Fragment>
@@ -145,7 +153,32 @@ class AddWorker extends Component {
                 </Select>
               </FormControl>
             </Grid>
-
+                    <Grid item xs={12} sm={6}>
+                        <TextField
+                            id="year"
+                            select
+                            fullWidth
+                            label="* Select a Year"
+                            className={classes.textField}
+                            //value={this.state.selectedYear}
+                            //onChange={this.handleChange("selectedYear")}
+                            SelectProps={{
+                                MenuProps: {
+                                    className: classes.menu
+                                }
+                            }}
+                            validators={["required"]}
+                            errorMessages={["this field is required"]}
+                            margin="normal"
+                            variant="outlined"
+                        >
+                            {this.props.harvestYearReducer && this.props.harvestYearReducer.map(option => (
+                                <MenuItem key={option.id} >
+                                    {option.harvest_year}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                    </Grid>
             <Grid item xs={12} sm={6}>
               {this.state.roleSelect !== "Employee" ? (
                 <TextField

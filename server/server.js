@@ -12,6 +12,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const setupFarmRouter = require('./routes/setupFarm.router');
 const addWorkerRouter = require ('./routes/addWorker.router')
+const harvestYearRouter= require('./routes/harvestYear.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -28,6 +29,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/addFarm', setupFarmRouter)
 app.use('/addworker',addWorkerRouter);
+app.use('/hyear',harvestYearRouter);
 
 // Serve static files
 app.use(express.static('build'));
