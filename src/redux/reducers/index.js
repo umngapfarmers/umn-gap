@@ -6,11 +6,8 @@ import waterSetup from './waterSetup';
 import cropSetup from './cropSetup';
 import farmMenuConditional from './farmMenuConditionalReducer';
 import labelCode from './labelCodesReducer';
-<<<<<<< HEAD
 import setupManure from './setupManureReducer';
-=======
 import person from './personReducer';
->>>>>>> b9726ecd2522702cc651953951e1c04185db3cd2
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -26,11 +23,8 @@ const rootReducer = combineReducers({
   cropSetup,
   farmMenuConditional,
   labelCode,
-<<<<<<< HEAD
-  setupManure
-=======
+  setupManure,
   person,
->>>>>>> b9726ecd2522702cc651953951e1c04185db3cd2
 });
 
 export default rootReducer;

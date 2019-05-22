@@ -12,7 +12,6 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const setupWaterRouter = require('./routes/setup.water.router')
 const setupCropRouter = require('./routes/setup.crop.router')
-const labelCodeRouter = require('./routes/setup.labelCode.router')
 const setupRouter = require('./routes/setup.router');
 const labelCodeRouter = require('./routes/setup.labelCode.router');
 const setupManureRouter = require('./routes/setup.manure.router');
