@@ -36,12 +36,13 @@ class AddWorker extends Component {
     firstName: "",
     lastName: "",
     roleSelect: "",
-    workerStatus: ""
+    workerStatus: "",
+    selectedYear: ""
   };
 
-    componentDidMount = () => {
-        this.props.dispatch({ type: "FETCH_HARVEST_YEAR" });
-    };
+  componentDidMount = () => {
+    this.props.dispatch({ type: "FETCH_HARVEST_YEAR" });
+  };
 
   handleSelect = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -80,8 +81,7 @@ class AddWorker extends Component {
   render() {
     const { classes } = this.props;
     console.log("selected role", this.state.roleSelect);
-      console.log("selected year", this.props.harvestYearReducer);
-
+    console.log("fetch harvest year", this.props.harvestYear);
 
     return (
       <React.Fragment>
@@ -118,6 +118,8 @@ class AddWorker extends Component {
                   }}
                   value={this.state.roleSelect}
                   onChange={this.handleSelect}
+                  style={{ width: '60vw', maxWidth: 400 }}
+
                   inputProps={{
                     name: "roleSelect",
                     id: "role-select"
@@ -153,32 +155,33 @@ class AddWorker extends Component {
                 </Select>
               </FormControl>
             </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <TextField
-                            id="year"
-                            select
-                            fullWidth
-                            label="* Select a Year"
-                            className={classes.textField}
-                            //value={this.state.selectedYear}
-                            //onChange={this.handleChange("selectedYear")}
-                            SelectProps={{
-                                MenuProps: {
-                                    className: classes.menu
-                                }
-                            }}
-                            validators={["required"]}
-                            errorMessages={["this field is required"]}
-                            margin="normal"
-                            variant="outlined"
-                        >
-                            {this.props.harvestYearReducer && this.props.harvestYearReducer.map(option => (
-                                <MenuItem key={option.id} >
-                                    {option.harvest_year}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-                    </Grid>
+            <Grid item xs={12} sm={12}>
+              <TextField
+                id="selectedYear"
+                name="selectedYear"
+                select
+                style={{width:'80vw',maxWidth:400}}
+                label="* Select harvest Year"
+                className={classes.textField}
+                value={this.state.selectedYear}
+                onChange={this.handleChange("selectedYear")}
+                
+                SelectProps={{
+                  MenuProps: {
+                    className: classes.menu
+                  }
+                }}
+                // validators={["required"]}
+                // errorMessages={["this field is required"]}
+                // margin="normal"
+                // variant="outlined"
+              >
+                {this.props.harvestYear.map(option => (
+                  <MenuItem key={option.id} value={option.harvest_id}>
+                  {option.harvest_year}</MenuItem>
+                ))}
+              </TextField>
+            </Grid>
             <Grid item xs={12} sm={6}>
               {this.state.roleSelect !== "Employee" ? (
                 <TextField
@@ -268,8 +271,8 @@ class AddWorker extends Component {
   }
 }
 
-const mapReduxStateToProps = reduxState => ({
-  reduxState
-});
+const mapReduxStateToProps = reduxState => {
+  return reduxState;
+};
 
 export default connect(mapReduxStateToProps)(withStyles(styles)(AddWorker));

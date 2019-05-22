@@ -36,9 +36,9 @@ router.post('/', async (req, res) => {
             console.log(registrationCode);
 
             const usernameQuery = `INSERT INTO "user" (username, password, user_role) VALUES ($1, $2, $3) RETURNING user_id`;
-            const personQuery = `INSERT INTO "person" ("person_first", "person_last", "person_status", "user_id") VALUES ($1, $2, $3, $4)`;
+            const personQuery = `INSERT INTO "person" ("person_first", "person_last", "person_status", "user_id","farm_registry_id") VALUES ($1, $2, $3, $4,$5)`;
             await client.query('BEGIN')
-            const userInsertResults = await client.query(usernameQuery, [username, password, user_role]);
+            const userInsertResults = await client.query(usernameQuery, [username, password, user_role,farm_id]);
             const user_id = userInsertResults.rows[0].user_id;
             console.log(user_id);
 

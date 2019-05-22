@@ -14,9 +14,9 @@ import { put, takeLatest } from 'redux-saga/effects';
 // }
 function* GetHarvestYearSaga() {
     try {
-        const harvestyear = yield axios.get("/hyear");
-        console.log("this is fetch havest year", harvestyear.data);
-        yield put({ type: "SET_HARVEST_YEAR", payload: harvestyear.data });
+        const hYear = yield axios.get("/hyear");
+        console.log("this is fetch havest year", hYear.data);
+        yield put({ type: "SET_HARVEST_YEAR", payload: hYear.data });
     } catch (err) {
         console.log(`couldn't fetch harvest Years`, err);
     }
