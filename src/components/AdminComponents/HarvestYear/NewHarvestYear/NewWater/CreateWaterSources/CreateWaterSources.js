@@ -7,7 +7,6 @@ import './CreateWaterSources.css'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
-import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 
@@ -17,7 +16,6 @@ class CreateWaterSources extends Component {
   state= {
     newWaterSource: {
       name: '',
-      harvest_year_id: this.props.reduxState.user.current_harvest_year,
     }
     
   }
@@ -25,7 +23,7 @@ class CreateWaterSources extends Component {
   handleInputChangeFor = propertyName => (event) => {
     this.setState({
       newWaterSource: {
-        ...this.state.newUser,
+        ...this.state.newWaterSource,
         [propertyName]: event.target.value,
         
       }
@@ -35,7 +33,7 @@ class CreateWaterSources extends Component {
   addWaterSource = (event) => {
     event.preventDefault();
     console.log('New water');
-    this.props.dispatch({type:'ADD_WATER_SOURCE', payload:this.state})
+    this.props.dispatch({type:'ADD_WATER_SOURCE', payload: this.state.newWaterSource})
     this.setState({
       newWaterSource: {
         name: '',
@@ -47,7 +45,7 @@ class CreateWaterSources extends Component {
   removeWaterSource = (event) => {
     event.preventDefault();
     console.log('Remove water');
-    this.props.dispatch({ type: 'REMOVE_WATER_SOURCE', payload: this.props.source.farm_water_id })
+    this.props.dispatch({ type: 'REMOVE_WATER_SOURCE', payload: this.props.source.farm_water_source_id })
   }
 
   nextPage = () => {
@@ -75,6 +73,7 @@ class CreateWaterSources extends Component {
                     <TextField label="Water Sources" variant="outlined" color="primary"
                       onChange={this.handleInputChangeFor('name')}
                       value={this.state.newWaterSource.name}
+                      style={{ width: '80vw', maxWidth: 400 }}
                     >
                     </TextField>
                     <Button size="large" color="primary" onClick={this.addWaterSource} >Add</Button>
@@ -84,10 +83,10 @@ class CreateWaterSources extends Component {
             <ul> Wtaer Sources:</ul>
             {
               this.props.reduxState.waterSetup.waterSetup.map(source =>
-                <li key={source.farm_water_id}>{source.farm_water_source}
+                <li key={source.farm_water_source_id}>{source.farm_water_source_name}
                   <Button size="large" color="primary"
                     onClick={this.removeWaterSource}
-                    name={source.farm_water_id}>
+                    name={source.farm_water_source_id}>
                     Remove
                 </Button>
                 </li>

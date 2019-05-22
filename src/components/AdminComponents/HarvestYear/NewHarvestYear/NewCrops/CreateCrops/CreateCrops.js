@@ -74,6 +74,7 @@ class CreateCrops extends Component {
             <TextField label="Crops to track" variant="outlined" color="primary"
               onChange={this.handleInputChangeFor('type')}
               value={this.state.newCrop.type}
+              style={{ width: '80vw', maxWidth: 400 }}
             >
             </TextField>
             <Button size="large" color="primary" onClick={this.addCropSource} >Add</Button>
