@@ -23,6 +23,7 @@ router.get('/', (req, res) => {
 
 
 router.post('/', (req, res) => {
+    // console.log(`in post compost `, req.body);
     
     let sqlText = `INSERT INTO "farm_compost"
         ("farm_compost_name", "farm_compost_date", "farm_compost_description", "harvest_year_id", "farm_compost_status")
@@ -37,7 +38,8 @@ router.post('/', (req, res) => {
 
     pool.query(sqlText, values)
         .then((result) => {
-
+            console.log(`sent compost`);
+            
             res.sendStatus(201);
         })
         .catch((error)=>{

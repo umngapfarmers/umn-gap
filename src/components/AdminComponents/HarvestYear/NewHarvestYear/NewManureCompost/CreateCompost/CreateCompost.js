@@ -29,12 +29,11 @@ class CreateCompost extends Component {
   }
 
   componentDidMount(){
-    // this.props.dispatch({type: 'GET_LABEL_CODE', payload:{harvest_year_id: this.props.reduxState.user.current_harvest_year}})
     // this.props.dispatch({type: }) 
   }
 
   onSubmit = () => {
-    // this.props.dispatch({type: 'ADD_MANURE_SOURCE', payload:{...this.state}});
+    this.props.dispatch({type: 'ADD_COMPOST_SOURCE', payload:{...this.state}});
     // this.setState({
 
     // })
@@ -98,7 +97,7 @@ class CreateCompost extends Component {
         <Grid item xs={8} sm={6} >
             <FormControl>
                 <TextField 
-                  label = "farm_compost_description"
+                  label = "Compost Ingredients"
                   variant="outlined" 
                   color="primary"
                   onChange={this.handleChangeFor('farm_compost_description')}
