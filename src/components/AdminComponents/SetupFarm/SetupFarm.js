@@ -17,6 +17,7 @@ class SetupFarm extends Component {
         city: '',
         state: '',
         zip_code: '',
+        registrationCode: '',
     },
   };
 
@@ -55,6 +56,16 @@ class SetupFarm extends Component {
        justify="center"
        alignItems="center"
      >
+              <Grid item xs={8} sm={6} >
+                    <FormControl>
+                        <TextField label="Registration Code" variant="outlined" color="primary"
+                          onChange={this.handleInputChangeFor('registrationCode')}
+                          type="password"
+                          value={this.state.newFarm.registrationCode}
+                          >
+                        </TextField>
+                    </FormControl>
+                </Grid>
         
                 <Grid item xs={8} sm={6} >
                     <FormControl>
@@ -113,7 +124,7 @@ class SetupFarm extends Component {
 
                 <Grid item xs={8} sm={6} >
                     <FormControl>
-                        <Button onClick={this.handleSubmit}>Submit Form</Button>
+                        <Button onClick={this.handleSubmit}>Submit</Button>
                     </FormControl>
                 </Grid>
 

@@ -12,7 +12,7 @@ function* registerUser(action) {
     yield axios.post('api/user/register', action.payload);
 
     // automatically log a user in after registration
-    yield put({ type: 'LOGIN', payload: action.payload });
+    yield put({ type: 'LOGIN', payload: action.payload.newUser });
     
   
     yield put({type: 'SET_TO_REGISTER_FARM'});

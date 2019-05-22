@@ -19,7 +19,14 @@ class RegisterPage extends Component {
         password: '',
         person_status: '',
         user_role: '',
-    }
+    },
+    newFarm:{
+      farm_name: '',
+      address: '',
+      city: '',
+      state: '',
+      zip_code: '',
+  },
   };
   registerUser = (event) => {
     event.preventDefault();
@@ -27,7 +34,9 @@ class RegisterPage extends Component {
     if (this.state.newUser.username && this.state.newUser.password) {
       this.props.dispatch({
         type: 'REGISTER',
-        payload: this.state.newUser
+        payload: { newUser: this.state.newUser,
+          newFarm: this.state.newFarm,
+        }
       });
       // if(this.props.errors.loginMode === 'createProfile'){
       //   this.props.history.push('/createProfile')
@@ -38,7 +47,7 @@ class RegisterPage extends Component {
     }
   } // end registerUser
 
-  handleInputChangeFor = propertyName => (event) => {
+  handleInputChangeForNewUser = propertyName => (event) => {
     this.setState({
       newUser: {
         ...this.state.newUser,
@@ -48,6 +57,18 @@ class RegisterPage extends Component {
       }
     });
   }
+
+
+  handleInputChangeForNewFarm = propertyName => (event) => {
+    this.setState({
+      newFarm: {
+        ...this.state.newFarm,
+        [propertyName]: event.target.value,
+      }
+    });
+  }
+
+
 
 
   //FUNCTION- on click of login button, dispatches 'SET_TO_LOGIN_MODE which redirects user to login view(has to do with protected route '/')
@@ -75,7 +96,7 @@ class RegisterPage extends Component {
                 <Grid item xs={8} sm={6} >
                     <FormControl>
                         <TextField label="Registration Code" variant="outlined" color="primary"
-                          onChange={this.handleInputChangeFor('registrationCode')}
+                          onChange={this.handleInputChangeForNewUser('registrationCode')}
                           type="password"
                           value={this.state.newUser.registrationCode}
                           >
@@ -85,31 +106,86 @@ class RegisterPage extends Component {
 
                 <Grid item xs={8} sm={6}>
                     <TextField label="First Name" variant="outlined" color="primary"
-                      onChange={this.handleInputChangeFor('person_first')}
+                      onChange={this.handleInputChangeForNewUser('person_first')}
                       value={this.state.newUser.person_first}
                       ></TextField>
                 </Grid>
 
                 <Grid item xs={8} sm={6}>
                     <TextField label="Last Name" variant="outlined" color="primary"
-                      onChange={this.handleInputChangeFor('person_last')}
+                      onChange={this.handleInputChangeForNewUser('person_last')}
                       value={this.state.newUser.person_last}
                       ></TextField>
                 </Grid>
 
                 <Grid item xs={8} sm={6}>
                     <TextField label="Username" variant="outlined" color="primary"
-                      onChange={this.handleInputChangeFor('username')}
+                      onChange={this.handleInputChangeForNewUser('username')}
                       value={this.state.newUser.username}
                       ></TextField>
                 </Grid>
 
                 <Grid item xs={8} sm={6}>
                     <TextField label="Password" variant="outlined" color="primary"
-                      onChange={this.handleInputChangeFor('password')}
+                      onChange={this.handleInputChangeForNewUser('password')}
                       type="password"
                       value={this.state.newUser.password}
                       ></TextField>
+                </Grid>
+
+                <Grid item xs={8} sm={6} >
+                    <FormControl>
+                        <TextField label="Farm Name" variant="outlined" color="primary"
+                          onChange={this.handleInputChangeForNewFarm('farm_name')}
+                          type="text"
+                          value={this.state.newFarm.farm_name}
+                          >
+                        </TextField>
+                    </FormControl>
+                </Grid>
+
+                <Grid item xs={8} sm={6} >
+                    <FormControl>
+                        <TextField label="Address" variant="outlined" color="primary"
+                          onChange={this.handleInputChangeForNewFarm('address')}
+                          type="text"
+                          value={this.state.newFarm.address}
+                          >
+                        </TextField>
+                    </FormControl>
+                </Grid>
+
+                <Grid item xs={8} sm={6} >
+                    <FormControl>
+                        <TextField label="City" variant="outlined" color="primary"
+                          onChange={this.handleInputChangeForNewFarm('city')}
+                          type="text"
+                          value={this.state.newFarm.city}
+                          >
+                        </TextField>
+                    </FormControl>
+                </Grid>
+
+                <Grid item xs={8} sm={6} >
+                    <FormControl>
+                        <TextField label="State" variant="outlined" color="primary"
+                          onChange={this.handleInputChangeForNewFarm('state')}
+                          type="text"
+                          value={this.state.newFarm.state}
+                          >
+                        </TextField>
+                    </FormControl>
+                </Grid>
+
+                <Grid item xs={8} sm={6} >
+                    <FormControl>
+                        <TextField label="Zip Code" variant="outlined" color="primary"
+                          onChange={this.handleInputChangeForNewFarm('zip_code')}
+                          type="text"
+                          value={this.state.newFarm.zip_code}
+                          >
+                        </TextField>
+                    </FormControl>
                 </Grid>
                 
                 <Grid item xs={8} sm={6}>
