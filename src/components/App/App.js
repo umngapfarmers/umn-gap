@@ -19,8 +19,8 @@ import WorkerDashboard from '../WorkerDashboard/WorkerDashboard';
 import NewHarvestYearDate from '../AdminComponents/HarvestYear/NewHarvestYear/SelectNewHarvestYearDate/SelectNewHarvestYearDate';
 import EnterFarmInformationHierarchyMenu from '../AdminComponents/HarvestYear/NewHarvestYear/EnterFarmInformationHierarchyMenu/EnterFarmInformationHierarchyMenu';
 import CreateManure from '../AdminComponents/HarvestYear/NewHarvestYear/NewManureCompost/CreateManure/CreateManure.js';
-import LogDashboard from '../AllUsersComponents/LogForms/LogsHierarchyMenu/LogsHierarchyMenu';
-import HarvestLog from '../AllUsersComponents/LogForms/HarvestLog/HarvestLog';
+import LogDashboard from '../AllUsersComponents/Logs/LogsHierarchyMenu/LogsHierarchyMenu';
+import HarvestLog from '../AllUsersComponents/Logs/HarvestLog/HarvestLog';
 import './App.css';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import theme from './theme';
@@ -114,6 +114,7 @@ class App extends Component {
               path="/labelcode"
               component={LabelCode}
             />
+            <Route
               exact
               path="/admin"
               component={AdminDashboard}

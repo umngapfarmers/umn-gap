@@ -89,7 +89,7 @@ class CreateLabelCodes extends Component {
                 onChange={this.handleChangeFor('farm_crop_id')}
                 >
                 <MenuItem value="">
-                  <em>Label Code</em>
+                  <em>Crop</em>
                 </MenuItem>
                 {this.props.reduxState.cropSetup.cropSetup.map(crop =>
                   <MenuItem key={crop.farm_crop_id} 
@@ -112,7 +112,7 @@ class CreateLabelCodes extends Component {
                   id: 'type-simple',
                 }}>
                 <MenuItem value="">
-                  <em>Label Code</em>
+                  <em>Field</em>
                 </MenuItem>
                 {this.props.reduxState.cropSetup.fieldSetup.map(field =>
                   <MenuItem key={field.farm_field_id} 
