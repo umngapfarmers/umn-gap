@@ -3,8 +3,10 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.get('/crop', (req, res) => {
-    const queryText = `SELECT * FROM "farm_crop"`;
-    pool.query(queryText)
+    let harvestYear = req.user.current_harvest_year;
+
+    let sqlQuery = `SELECT * FROM "farm_crop" WHERE "harvest_year_id" = $1`;
+    pool.query(sqlQuery, [harvestYear])
         .then(result => {
             res.send(result.rows);
         })
@@ -16,8 +18,10 @@ router.get('/crop', (req, res) => {
 });
 
 router.get('/field', (req, res) => {
-    const queryText = `SELECT * FROM "farm_field"`;
-    pool.query(queryText)
+    let harvestYear = req.user.current_harvest_year;
+
+    let sqlQuery = `SELECT * FROM "farm_field" WHERE "harvest_year_id" = $1`;
+    pool.query(sqlQuery, [harvestYear])
         .then(result => {
             res.send(result.rows);
         })
@@ -32,10 +36,11 @@ router.post('/crop', (req, res) => {
     console.log('in post router');
 
     const newCrop = req.body;
-    const queryText = `INSERT INTO "farm_crop" ("farm_crop_type")
-                    VALUES ($1)`;
+    const queryText = `INSERT INTO "farm_crop" ("farm_crop_type", "harvest_year_id")
+                    VALUES ($1, $2)`;
     const queryValues = [
         newCrop.type,
+        req.user.current_harvest_year
     ];
     pool.query(queryText, queryValues)
         .then(() => { res.sendStatus(201); })
@@ -49,10 +54,11 @@ router.post('/field', (req, res) => {
     console.log('in post router');
 
     const newField = req.body;
-    const queryText = `INSERT INTO "farm_field" ("field_name")
-                    VALUES ($1)`;
+    const queryText = `INSERT INTO "farm_field" ("field_name", "harvest_year_id")
+                    VALUES ($1, $2)`;
     const queryValues = [
         newField.name,
+        req.user.current_harvest_year,
     ];
     pool.query(queryText, queryValues)
         .then(() => { res.sendStatus(201); })

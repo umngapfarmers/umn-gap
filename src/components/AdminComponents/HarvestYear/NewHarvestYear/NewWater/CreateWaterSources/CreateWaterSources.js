@@ -17,7 +17,9 @@ class CreateWaterSources extends Component {
   state= {
     newWaterSource: {
       name: '',
-    }
+    },
+    disable: true,
+    disableNext: true
     
   }
 
@@ -26,8 +28,8 @@ class CreateWaterSources extends Component {
       newWaterSource: {
         ...this.state.newWaterSource,
         [propertyName]: event.target.value,
-        
-      }
+      },
+      disable: false
     });
   }
 
@@ -39,6 +41,7 @@ class CreateWaterSources extends Component {
       newWaterSource: {
         name: '',
       },
+      disableNext: false
     })
 
   }
@@ -46,7 +49,7 @@ class CreateWaterSources extends Component {
   removeWaterSource = (event) => {
     event.preventDefault();
     console.log('Remove water');
-    this.props.dispatch({ type: 'REMOVE_WATER_SOURCE', payload: this.props.source.farm_water_source_id })
+    this.props.dispatch({ type: 'DELETE_WATER_SOURCE', payload: event.currentTarget.name })
   }
 
   nextPage = () => {
@@ -77,17 +80,23 @@ class CreateWaterSources extends Component {
                       style={{ width: '80vw', maxWidth: 400 }}
                     >
                     </TextField>
-                    <Button size="large" color="primary" onClick={this.addWaterSource} >Add</Button>
+              <Button size="large" color="primary" 
+              onClick={this.addWaterSource} 
+              disabled={this.state.disable}
+              >
+              Add
+              </Button>
                   </FormControl>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-            <ul> Wtaer Sources:</ul>
+            <ul> Water Sources:</ul>
             {
-              this.props.reduxState.waterSetup.waterSetup.map(source =>
+              this.props.reduxState.waterSetup.waterSource.map(source =>
                 <li key={source.farm_water_source_id}>{source.farm_water_source_name}
                   <Button size="large" color="primary"
                     onClick={this.removeWaterSource}
-                    name={source.farm_water_source_id}>
+                    name={source.farm_water_source_id}
+                    >
                     Remove
                 </Button>
                 </li>
@@ -95,7 +104,12 @@ class CreateWaterSources extends Component {
             }
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <Button size="large" color="primary" onClick={this.nextPage}>Next</Button>
+                <Button size="large" color="primary" 
+                onClick={this.nextPage} 
+                disabled={this.state.disableNext}
+                >
+                Next
+                </Button>
                 </Grid>
 
             </Grid>
