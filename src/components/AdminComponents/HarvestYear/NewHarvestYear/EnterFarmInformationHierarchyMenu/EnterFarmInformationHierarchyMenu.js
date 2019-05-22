@@ -20,7 +20,7 @@ class EnterFarmInformationHierarchyMenu extends Component {
   }
 
   componentDidMount(){
-    this.props.dispatch({type:'SET_MENU_BOOLEAN', payload: 0})
+    // this.props.dispatch({type:'SET_MENU_BOOLEAN', payload: 0})
   }
 
 
