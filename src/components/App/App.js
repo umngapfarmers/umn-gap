@@ -89,10 +89,9 @@ class App extends Component {
               component={AboutPage}
             />
             <Route
-
-            exact
-            path="/water"
-            component={WaterSource}
+              exact
+              path="/water"
+              component={WaterSource}
             />
             <Route
               exact
@@ -142,7 +141,7 @@ class App extends Component {
               component={InfoPage}
             />
             
-              <Route
+              <ProtectedRoute
               exact
               path="/create_manure"
               component={CreateManure}

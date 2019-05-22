@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     let sqlQuery = `SELECT * FROM "label_code" WHERE "harvest_year_id" = $1`;
     pool.query(sqlQuery, [harvestYear])
         .then((response) => {
-            console.log(`response label_code`, response.rows);
+            // console.log(`response label_code`, response.rows);
 
             res.send(response.rows)  
         })

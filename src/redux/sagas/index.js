@@ -7,6 +7,7 @@ import cropSetup from './cropSetup';
 
 import setupSaga from './setupSaga';
 import getLabelCodeSaga from './getLabelCodeSaga';
+import setupManureSaga from './setupManureSaga';
 import personSaga from './personSaga';
 import harvestSaga from './harvestLogSaga';
 
@@ -26,8 +27,9 @@ export default function* rootSaga() {
     cropSetup(),
     getLabelCodeSaga(),
     setupSaga(),
+    setupManureSaga(),
     personSaga(),
-    harvestSaga(),
+    harvestSaga()
 
   ]);
 }

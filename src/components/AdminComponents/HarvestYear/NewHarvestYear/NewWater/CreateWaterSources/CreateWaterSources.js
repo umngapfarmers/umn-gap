@@ -1,6 +1,5 @@
 
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
@@ -9,6 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import { withRouter } from 'react-router-dom';
+import {connect} from 'react-redux';
 
 
 class CreateWaterSources extends Component {
