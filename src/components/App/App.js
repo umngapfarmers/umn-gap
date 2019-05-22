@@ -19,6 +19,7 @@ import WorkerDashboard from '../WorkerDashboard/WorkerDashboard';
 import NewHarvestYearDate from '../AdminComponents/HarvestYear/NewHarvestYear/SelectNewHarvestYearDate/SelectNewHarvestYearDate';
 import EnterFarmInformationHierarchyMenu from '../AdminComponents/HarvestYear/NewHarvestYear/EnterFarmInformationHierarchyMenu/EnterFarmInformationHierarchyMenu';
 import CreateManure from '../AdminComponents/HarvestYear/NewHarvestYear/NewManureCompost/CreateManure/CreateManure.js';
+import CreateCompost from '../AdminComponents/HarvestYear/NewHarvestYear/NewManureCompost/CreateCompost/CreateCompost.js';
 import LogDashboard from '../AllUsersComponents/LogForms/LogsHierarchyMenu/LogsHierarchyMenu';
 import HarvestLog from '../AllUsersComponents/LogForms/HarvestLog/HarvestLog';
 import './App.css';
@@ -147,40 +148,47 @@ class App extends Component {
               component={InfoPage}
             />
             
-              <ProtectedRoute
+            <ProtectedRoute
               exact
               path="/create_manure"
               component={CreateManure}
             />
 
+            <ProtectedRoute
+              exact
+              path="/create_compost"
+              component={CreateCompost}
+            />
+
+
             <Route
-            exact
-            path='/logdashboard'
-            component={LogDashboard}
+              exact
+              path='/logdashboard'
+              component={LogDashboard}
             />
 
             <Route
-            exact
-            path='/harvestlog'
-            component={HarvestLog}
+              exact
+              path='/harvestlog'
+              component={HarvestLog}
             />
 
             <Route
-            exact
-            path='/waterlogdashboard'
-            component={WaterLogDashboard}
+              exact
+              path='/waterlogdashboard'
+              component={WaterLogDashboard}
             />    
 
             <Route
-            exact
-            path = '/compostlog'
-            component={CompostLog}
+              exact
+              path = '/compostlog'
+              component={CompostLog}
             /> 
 
             <Route
-            exact
-            path='/employeelog'
-            component={EmployeeLog}
+              exact
+              path='/employeelog'
+              component={EmployeeLog}
             />
 
             <Route

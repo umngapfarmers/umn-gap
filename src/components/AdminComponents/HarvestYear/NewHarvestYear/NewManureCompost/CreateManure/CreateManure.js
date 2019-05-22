@@ -33,7 +33,7 @@ class CreateManure extends Component {
 
   componentDidMount(){
     this.props.dispatch({type: 'GET_LABEL_CODE', payload:{harvest_year_id: this.props.reduxState.user.current_harvest_year}})
-    // this.props.dispatch({}) 
+    this.props.dispatch({type:'GET_MANURE_SOURCE'}) 
   }
 
   onSubmitManure = () => {
@@ -51,9 +51,13 @@ class CreateManure extends Component {
   handleRemove = (id) => {
     this.props.dispatch({type: 'DELETE_MANURE_SOURCE', payload:{id,}})
   }
+
+  handleNext = () => {
+    
+  }
   
   render() {
-    console.log(`state in createManure form `, this.state);
+    // console.log(`state in createManure form `, this.state);
     
     const {classes} = this.props;
     console.log(this.props.reduxState.user);
@@ -145,6 +149,12 @@ class CreateManure extends Component {
             )}
           </ul>
         </Grid>  
+
+        <Grid item xs={8} sm={6} >
+          <Button size="large" color="primary" onClick={this.handleNext}>Next</Button>
+
+        </Grid>  
+
         
       </Grid>
      
