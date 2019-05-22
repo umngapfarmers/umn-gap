@@ -29,10 +29,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 /* Routes */
-app.use('/api/user', userRouter);
-app.use('/api/setupWater', setupWaterRouter);
-app.use('/api/setupCrop', setupCropRouter);
-app.use('/api/setup/label_code', labelCodeRouter)
+app.use('/user', userRouter);
+app.use('/setupWater', setupWaterRouter);
+app.use('/setupCrop', setupCropRouter);
+app.use('/setup/label_code', labelCodeRouter)
 app.use('/setup', setupRouter);
 app.use('/log/harvest/', log_harvestRouter)
 

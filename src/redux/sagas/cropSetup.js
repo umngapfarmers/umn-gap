@@ -5,7 +5,7 @@ function* addCropSource(action) {
     console.log('Hit the addCropSaga', action.payload);
 
     try {
-        yield axios.post(`/api/setupCrop/crop`, action.payload);
+        yield axios.post(`/setupCrop/crop`, action.payload);
         yield put({ type: 'GET_CROP_SOURCE' });
     }
     catch (error) {
@@ -18,7 +18,7 @@ function* addFieldSource(action) {
     console.log('Hit the addFieldSaga', action.payload);
 
     try {
-        yield axios.post(`/api/setupCrop/field`, action.payload);
+        yield axios.post(`/setupCrop/field`, action.payload);
         yield put({ type: 'GET_FIELD_SOURCE' });
     }
     catch (error) {
@@ -31,7 +31,7 @@ function* getCropSource(action) {
     console.log('in getCropSource', action);
 
     try {
-        const response = yield axios.get(`/api/setupCrop/crop`);
+        const response = yield axios.get(`/setupCrop/crop`);
         yield put({ type: 'SET_CROP_SOURCE', payload: response.data })
     }
     catch (error) {
@@ -44,7 +44,7 @@ function* getFieldSource(action) {
     console.log('in getFieldSource', action);
 
     try {
-        const response = yield axios.get(`/api/setupCrop/field`);
+        const response = yield axios.get(`/setupCrop/field`);
         yield put({ type: 'SET_FIELD_SOURCE', payload: response.data })
     }
     catch (error) {
@@ -57,7 +57,7 @@ function* deleteCropSource(action) {
     console.log('Hit the deleteCropSource', action);
 
     try {
-        yield axios.delete(`/api/setupCrop/crop/${action.payload}`);
+        yield axios.delete(`/setupCrop/crop/${action.payload}`);
         console.log('saga id is', action.payload);
         
         yield put({ type: 'GET_CROP_SOURCE' });
@@ -72,12 +72,12 @@ function* deleteFieldSource(action) {
     console.log('Hit the deleteFieldSource', action);
 
     try {
-        yield axios.delete(`/api/setupCrop/field/${action.payload}`);
+        yield axios.delete(`/setupCrop/field/${action.payload}`);
         yield put({ type: 'GET_FIELD_SOURCE' });
     }
     catch (error) {
-        console.log(`Couldn't delete crop`, error);
-        alert(`Sorry, couldn't delete your crop. Try again later`);
+        console.log(`Couldn't delete field`, error);
+        alert(`Sorry, couldn't delete your field. Try again later`);
     }
 }
 

@@ -72,7 +72,7 @@ router.delete('/crop/:id', (req, res) => {
         });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/field/:id', (req, res) => {
     const queryText = 'DELETE FROM "farm_field" WHERE farm_field_id=$1';
     pool.query(queryText, [req.params.id])
         .then(() => { res.sendStatus(200); })

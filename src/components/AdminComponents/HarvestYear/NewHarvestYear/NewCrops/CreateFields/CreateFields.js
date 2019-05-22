@@ -7,7 +7,6 @@ import { withStyles } from '@material-ui/core/styles';
 import './CreateFields.css'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
 import { withRouter } from 'react-router-dom';
 
 
@@ -67,9 +66,10 @@ class CreateFields extends Component {
             </Typography>
                 </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField label="Crops to track" variant="outlined" color="primary"
+            <TextField label="Field name" variant="outlined" color="primary"
               onChange={this.handleInputChangeFor('name')}
               value={this.state.newField.type}
+              style={{ width: '80vw', maxWidth: 400 }}
             >
             </TextField>
             <Button size="large" color="primary" onClick={this.addFieldSource} >Add</Button>
@@ -82,7 +82,8 @@ class CreateFields extends Component {
                 <li key={crop.farm_field_id}>{crop.field_name}
                   <Button size="large" color="primary" 
                   onClick={this.removeFieldSource} 
-                  name={crop.farm_field_id} >
+                  name={crop.farm_field_id} 
+                  >
                     Remove
                 </Button>
                 </li>

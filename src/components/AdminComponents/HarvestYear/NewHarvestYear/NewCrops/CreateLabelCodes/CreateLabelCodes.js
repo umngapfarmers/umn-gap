@@ -26,8 +26,9 @@ class CreateLabelCodes extends Component {
   }
 
   componentDidMount = () => {
-    this.props.dispatch({ type: 'GET_CROP_SOURCE' })
-    this.props.dispatch({ type: 'GET_FIELD_SOURCE' })
+    this.props.dispatch({ type: 'GET_CROP_SOURCE' });
+    this.props.dispatch({ type: 'GET_FIELD_SOURCE' });
+    this.props.dispatch({ type: 'GET_LABEL_CODE' });
   }
 
   handleChangeFor = propertyName => {
@@ -87,6 +88,7 @@ class CreateLabelCodes extends Component {
               <Select
                 value={this.state.newLabel.farm_crop_id}
                 onChange={this.handleChangeFor('farm_crop_id')}
+                style={{ width: '80vw', maxWidth: 400 }}
                 >
                 <MenuItem value="">
                   <em>Crop</em>
@@ -107,10 +109,8 @@ class CreateLabelCodes extends Component {
               <Select
                 value={this.state.newLabel.farm_field_id}
                 onChange={this.handleChangeFor('farm_field_id')}
-                inputProps={{
-                  name: 'type',
-                  id: 'type-simple',
-                }}>
+                style={{ width: '80vw', maxWidth: 400 }}
+                >
                 <MenuItem value="">
                   <em>Field</em>
                 </MenuItem>
@@ -128,6 +128,7 @@ class CreateLabelCodes extends Component {
             <TextField label="Name Your Label Code" variant="outlined" color="primary"
               onChange={this.handleChangeFor('label_code_text')}
               value={this.state.newLabel.lable_code_tex}
+              style={{ width: '80vw', maxWidth: 400 }}
             >
             </TextField>
             <Button size="large" color="primary" onClick={this.addNewLabel} >Add</Button>
@@ -135,7 +136,7 @@ class CreateLabelCodes extends Component {
           <Grid item xs={12} sm={6}>
             <ul> My labels:</ul>
             {
-              this.props.reduxState.labelCodesReducer.getLabelCodes.map(code =>
+              this.props.reduxState.labelCode.map(code =>
                 <li key={code.label_code_id}>{code.label_code_text}
                   <Button size="large" color="primary"
                     onClick={this.removeLabelCode}
