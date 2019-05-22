@@ -38,6 +38,7 @@ import WaterLogDashboard from '../AllUsersComponents/LogForms/SelectWaterLog/Sel
 // import ManureLogDashboard from '../AllUsersComponents/LogForms/SelectCompostManureLog/SelectCompostManureLog';
 import CompostLog from '../AllUsersComponents/LogForms/CompostManagementLog/CompostManagementLog';
 import EmployeeLog from '../AllUsersComponents/LogForms/EmployeeTrainingLog/EmployeeTrainingLog';
+import EditWorker from '../WorkerDashboard/EditWorker';
 
 library.add(faRecycle, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard);
 
@@ -140,6 +141,11 @@ class App extends Component {
               path="/add-worker"
               component={AddWorker}
             />
+              <Route
+                exact
+                path="/edit-worker"
+                component={EditWorker}
+              />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.

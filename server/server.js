@@ -34,6 +34,8 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/addworker',addWorkerRouter);
+//app.use('/editworker', addWorkerRouter);
+
 app.use('/hyear',harvestYearRouter);
 app.use('/setupWater', setupWaterRouter);
 app.use('/setupCrop', setupCropRouter);
