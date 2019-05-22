@@ -37,8 +37,15 @@ class CreateManure extends Component {
   }
 
   onSubmitManure = () => {
-    this.props.dispatch({type: 'ADD_MANURE_SOURCE', payload:{...this.state}})
-     
+    this.props.dispatch({type: 'ADD_MANURE_SOURCE', payload:{...this.state}});
+    this.setState({
+      farm_manure_date: '',
+      farm_manure_description: '',
+      farm_manure_rate: '',
+      label_code_id: '',
+      harvest_year_id: this.props.reduxState.user.current_harvest_year,
+      farm_manure_status: true
+    })
   }
   
   handleRemove = (id) => {
