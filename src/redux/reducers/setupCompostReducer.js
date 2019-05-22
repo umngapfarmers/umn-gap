@@ -1,5 +1,5 @@
-// stores current manure per harvest year
-const setupManureReducer = (state = [], action) => {
+// stores current compost per harvest year
+const setupCompostReducer = (state = '', action) => {
     if (action.type === 'SET_COMPOST_SETUP') {
         return action.payload
     }
@@ -7,4 +7,4 @@ const setupManureReducer = (state = [], action) => {
 };
 
 
-export default setupManureReducer;
+export default setupCompostReducer;

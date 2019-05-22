@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
     pool.query(sqlText, [harvest_id])
         .then((result) => {
             // console.log(`result from manure GET`, result.rows);
-            res.sendStatus(201)
+            res.send(result.rows)
         })
         .catch((error)=>{
             console.log(`error getting manure`, error);

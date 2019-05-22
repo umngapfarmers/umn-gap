@@ -55,6 +55,21 @@ class CreateManure extends Component {
   handleNext = () => {
     
   }
+
+  toRenderList = (list) => {
+    let listEl = null
+    if (list.length>0){
+      listEl =
+            <ul>
+              {this.props.reduxState.setupManure.map(manure =>
+                <li key={manure.farm_manure_id}>{manure.label_code_text+' '+ moment(manure.farm_manure_date).format('YYYY-MM-DD')}
+                  <Button size="large" color="primary" onClick={() => this.handleRemove(manure.farm_manure_id)}>Remove</Button>
+                </li>
+              )}
+            </ul>
+    }
+    return listEl
+  }
   
   render() {
     // console.log(`state in createManure form `, this.state);
@@ -141,13 +156,14 @@ class CreateManure extends Component {
         </Grid>
  
         <Grid item xs={8} sm={6} >
-          <ul>
-            {this.props.reduxState.setupManure.map(manure =>
+          {/* <ul>
+            {this.props.reduxState.setupManure.length && this.props.reduxState.setupManure.map(manure =>
               <li key={manure.farm_manure_id}>{manure.label_code_text+' '+ moment(manure.farm_manure_date).format('YYYY-MM-DD')}
                 <Button size="large" color="primary" onClick={() => this.handleRemove(manure.farm_manure_id)}>Remove</Button>
               </li>
             )}
-          </ul>
+          </ul> */}
+          {this.toRenderList(this.props.reduxState.setupManure)}
         </Grid>  
 
         <Grid item xs={8} sm={6} >
