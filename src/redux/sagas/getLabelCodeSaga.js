@@ -20,7 +20,7 @@ function* addLabelCode(action) {
     console.log('Hit the addLabelCode', action.payload);
 
     try {
-        yield axios.post(`/api/setup/label_code`, action.payload);
+        yield axios.post(`/setup/label_code`, action.payload);
         yield put({ type: 'GET_LABEL_CODE' });
     }
     catch (error) {
@@ -33,7 +33,7 @@ function* deleteLabelCode(action) {
     console.log('Hit the deleteLabelCode', action);
 
     try {
-        yield axios.delete(`/api/setup/label_code/${action.payload}`);
+        yield axios.delete(`/setup/label_code/${action.payload}`);
         console.log('saga id is', action.payload);
 
         yield put({ type: 'GET_CROP_SOURCE' });

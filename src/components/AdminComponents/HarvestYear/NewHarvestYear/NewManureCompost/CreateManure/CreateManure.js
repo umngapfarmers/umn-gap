@@ -33,7 +33,7 @@ class CreateManure extends Component {
 
   componentDidMount(){
     this.props.dispatch({type: 'GET_LABEL_CODE', payload:{harvest_year_id: this.props.reduxState.user.current_harvest_year}})
-    this.props.dispatch({}) 
+    // this.props.dispatch({}) 
   }
 
   onSubmitManure = () => {
