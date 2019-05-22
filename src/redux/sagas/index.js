@@ -10,6 +10,7 @@ import getLabelCodeSaga from './getLabelCodeSaga';
 import setupManureSaga from './setupManureSaga';
 import personSaga from './personSaga';
 import harvestSaga from './harvestLogSaga';
+import employeeLogSaga from './employeeLogSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -29,7 +30,8 @@ export default function* rootSaga() {
     setupSaga(),
     setupManureSaga(),
     personSaga(),
-    harvestSaga()
+    harvestSaga(),
+    employeeLogSaga(),
 
   ]);
 }
