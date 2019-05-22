@@ -12,20 +12,23 @@ CREATE TABLE "harvest_year"
 (
   "harvest_id" SERIAL PRIMARY KEY,
   "harvest_year" INT,
-  -------should this be a true date or just an int?
   "farm_id" INT REFERENCES "farm_registry"
 );
+
+
 
 CREATE TABLE "user"
 (
   "user_id" SERIAL PRIMARY KEY,
-  "username" varchar(50) UNIQUE,
+  "username" varchar(50) NOT NULL,
   "password" VARCHAR(255) NOT NULL,
   "user_role" VARCHAR (255) NOT NULL,
   "farm_registry_id" INT REFERENCES "farm_registry",
-  "current_harvest_year" INT REFERENCES "harvest_year",
-  "user_status" boolean DEFAULT TRUE
+  "current_harvest_year" INT REFERENCES "harvest_year"
 );
+
+
+
 
 
 ------------------------ person and employee training ----------------------
@@ -104,7 +107,7 @@ CREATE TABLE "farm_manure"
   "farm_manure_description" VARCHAR(255) NOT NULL,
   "farm_manure_rate" VARCHAR(255) ,
   "label_code_id" INT REFERENCES "label_code",
-  "harvest_year_id" INT REFERENCES "harvest_year",
+  "harvest_year_id" INT REFERENCES "harvest_year"("harvest_id"),
   "farm_manure_status" boolean DEFAULT true
 );
 
@@ -139,13 +142,22 @@ CREATE TABLE "compost"
 ------------------------ water ------------------------
 
 --setup
+CREATE TABLE "farm_water_source"
+(
+  "farm_water_source_id" serial primary key,
+  "farm_water_source_name" Varchar (255),
+  "farm_water_status" boolean DEFAULT true,
+  "harvest_year_id" int references "harvest_year"
+  -- does this need to be many-many?
+);
 CREATE TABLE "farm_water"
 (
   "farm_water_id" serial primary key,
-  "farm_water_source" Varchar (255),
+  "farm_water_source_id" int references "farm_water_source",
   "farm_water_status" boolean DEFAULT true,
-  "label_code_id" int references "label_code"
-  -- does this need to be many-many?
+  "label_code_id" int references "label_code",
+  "harvest_year_id" int references "harvest_year"
+
 );
 
 -- logs
@@ -274,10 +286,7 @@ VALUES
 --setup
 
 -- "farm_water"
-INSERT INTO "farm_water"
-  ("farm_water_source", "farm_water_status", "label_code_id")
-VALUES
-  ('pond', 'true', '1');
+
 
 -- logs
 
