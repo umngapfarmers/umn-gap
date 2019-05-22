@@ -117,7 +117,7 @@ class CreateCompost extends Component {
  
         <Grid item xs={8} sm={6} >
           <ul>
-            {this.props.reduxState.setupCompost.map(compost =>
+            {this.props.reduxState.setupCompost[0] && this.props.reduxState.setupCompost.map(compost =>
               <li key={compost.farm_compost_id}>{compost.farm_compost_name+' '+ moment(compost.farm_compost_date).format('YYYY-MM-DD')}
                 <Button size="large" color="primary" onClick={() => this.handleRemove(compost.farm_compost_id)}>Remove</Button>
               </li>
