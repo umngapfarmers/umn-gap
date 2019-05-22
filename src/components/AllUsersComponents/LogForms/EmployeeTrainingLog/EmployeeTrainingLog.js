@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
 
 import './EmployeeTrainingLog.css'
 
@@ -40,9 +41,23 @@ class EmployeeTrainingLog extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     console.log('in handleSubmit');
+    this.props.dispatch({type: 'ADD_EMPLOYEE_LOG', payload: this.state.newTraining});
   }
 
-
+  handleError = () => {
+    if (this.state.newTraining.topic !== '' && this.state.newTraining.person_id !== '' && 
+    this.state.newTraining.trainer_name !== '' && this.state.newTraining.date_trained !== '' &&
+    this.state.newTraining.employee_training_sig !== '') {
+    return (
+      <Button onClick={this.handleSubmit}>Submit</Button>
+    ) 
+  }
+  else {
+    return(
+      <Button disabled>Submit</Button>
+    )
+  }
+  }
 
 
   render() {
@@ -121,8 +136,36 @@ class EmployeeTrainingLog extends Component {
               onChange={this.handleChange('date_trained')}
               style={{width:'80vw', maxWidth:400}}
               />
+          </Grid>
 
+          <Grid item xs={12} sm={6}>
+            <TextField
+              id="employee_training_sig"
+              select
+              label="Select Employee Signature"
+              value={this.state.newTraining.employee_training_sig}
+              onChange={this.handleChange('employee_training_sig')}
+              SelectProps={{
+                MenuProps: {
+                  className: classes.menu,
+                },
+              }}
+              helperText="Required"
+              margin="normal"
+              variant="outlined"
+              style={{width:'80vw', maxWidth:400}}
+            >
+              <MenuItem disabled>Select Employee Signature</MenuItem>
+              {this.props.reduxState.person.map(option => (
+                  <MenuItem key={option.person_id} value={option.person_first + ' ' + option.person_last}>
+                  {option.person_first} {option.person_last}
+                  </MenuItem>
+              ))}
+           </TextField>
+          </Grid>
 
+          <Grid item xs={12} sm={6}>
+            {this.handleError()}
           </Grid>
 
 
