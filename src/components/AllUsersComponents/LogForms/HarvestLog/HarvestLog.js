@@ -19,11 +19,25 @@ class HarvestLog extends Component {
       crop_harvest_sig: '',
       label_code_id: '',
     }
-    
+  }
+
+  handleError = () => {
+    if (this.state.newHarvestLog.crop_harvest_date !== '' && this.state.newHarvestLog.crop_harvest_amount !== '' && 
+    this.state.newHarvestLog.crop_harvest_sig !== '' && this.state.newHarvestLog.label_code_id !== '') {
+    return (
+      <Button onClick={this.handleSubmit}>Submit</Button>
+    ) 
+  }
+  else {
+    return(
+      <Button disabled>Submit</Button>
+    )
+  }
   }
 
   componentDidMount(){
     this.props.dispatch({type: 'GET_LABEL_CODE'});
+    this.props.dispatch({type: 'GET_PERSON'});
   }
 
   handleChange = (propertyName) => {
@@ -138,7 +152,7 @@ class HarvestLog extends Component {
           </Grid>
           
           <Grid item xs={12} sm={6}>
-            <Typography align="center"><Button onClick={this.handleSubmit}>Submit</Button></Typography>
+             <Typography align="center">{this.handleError()}</Typography> 
           </Grid>
 
 

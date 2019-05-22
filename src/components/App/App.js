@@ -27,7 +27,7 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import theme from './theme';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRecycle, faTint, faSeedling, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard } from '@fortawesome/free-solid-svg-icons';
+import { faRecycle, faTint, faSeedling, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial } from '@fortawesome/free-solid-svg-icons';
 
 import './App.css';
 import FieldTypes from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateFields/CreateFields';
@@ -36,9 +36,10 @@ import WaterLogDashboard from '../AllUsersComponents/LogForms/SelectWaterLog/Sel
 // import ManureLogDashboard from '../AllUsersComponents/LogForms/SelectCompostManureLog/SelectCompostManureLog';
 import CompostLog from '../AllUsersComponents/LogForms/CompostManagementLog/CompostManagementLog';
 import EmployeeLog from '../AllUsersComponents/LogForms/EmployeeTrainingLog/EmployeeTrainingLog';
+import WaterTreatLog from '../AllUsersComponents/LogForms/WaterTreatmentLog/WaterTreatmentLog';
+import WaterInspectLog from '../AllUsersComponents/LogForms/WaterInspectionLog/WaterInspectionLog';
 
-
-library.add(faRecycle, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard);
+library.add(faRecycle, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial);
 
 class App extends Component {
   componentDidMount () {
@@ -188,6 +189,18 @@ class App extends Component {
               exact
               path='/employeelog'
               component={EmployeeLog}
+            />
+
+            <Route
+            exact
+            path="/watertreatlog"
+            component={WaterTreatLog}
+            />
+
+            <Route
+            exact
+            path="/waterinspectlog"
+            component={WaterInspectLog}
             />
 
             {/* <Route
