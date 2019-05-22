@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     let sqlQuery = `SELECT * FROM "label_code"`;
     pool.query(sqlQuery)
         .then((response) => {
-            console.log(`response label_code`, response.rows);
+            // console.log(`response label_code`, response.rows);
 
             res.send(response.rows)  
         })
