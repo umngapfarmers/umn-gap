@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import './WaterInspectionLog.css'
+import Nav from '../../../Nav/Nav';
 
 
 class WaterInspectionLog extends Component {
@@ -20,6 +21,7 @@ class WaterInspectionLog extends Component {
     const {classes} = this.props;
     return (
       <React.Fragment>
+        <Nav/>
       <Typography variant="h6" gutterBottom>
          Water Inspection Log
       </Typography>

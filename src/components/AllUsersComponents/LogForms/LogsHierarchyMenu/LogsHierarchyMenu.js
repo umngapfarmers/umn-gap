@@ -10,6 +10,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import LocalFloristIcon from '@material-ui/icons/LocalFlorist';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './LogsHierarchyMenu.css'
+import Nav from '../../../Nav/Nav';
 
 
 class LogsHierarchyMenu extends Component {
@@ -26,6 +27,7 @@ class LogsHierarchyMenu extends Component {
     const {classes} = this.props;
     return (
       <React.Fragment>
+        <Nav/>
       <Typography variant="h6" gutterBottom align="center">
       Choose a Category to View Logs
       </Typography>

@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import './RecordsChooseYear.css'
+import Nav from '../../../Nav/Nav';
 
 
 class RecordsChooseYear extends Component {
@@ -20,6 +21,7 @@ class RecordsChooseYear extends Component {
     const {classes} = this.props;
     return (
       <React.Fragment>
+        <Nav/>
       <Typography variant="h6" gutterBottom>
          Records Choose Harvest Year
       </Typography>

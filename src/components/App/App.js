@@ -31,20 +31,35 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import theme from './theme';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRecycle, faTint, faSeedling, faHome, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faRecycle, faTint, faSeedling, faHome, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters } from '@fortawesome/free-solid-svg-icons';
 
 import './App.css';
+import ManageWorker from '../WorkerDashboard/ManageWorker';
+
+import AddWorker from '../WorkerDashboard/AddWorker';
 import FieldTypes from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateFields/CreateFields';
 import LabelCode from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateLabelCodes/CreateLabelCodes';
 import WaterLogDashboard from '../AllUsersComponents/LogForms/SelectWaterLog/SelectWaterLog';
 // import ManureLogDashboard from '../AllUsersComponents/LogForms/SelectCompostManureLog/SelectCompostManureLog';
 import CompostLog from '../AllUsersComponents/LogForms/CompostManagementLog/CompostManagementLog';
 import EmployeeLog from '../AllUsersComponents/LogForms/EmployeeTrainingLog/EmployeeTrainingLog';
+import EditWorker from '../WorkerDashboard/EditWorker';
+import EditEmployee from '../WorkerDashboard/EditEmployee';
+
 import WaterTreatLog from '../AllUsersComponents/LogForms/WaterTreatmentLog/WaterTreatmentLog';
 import WaterInspectLog from '../AllUsersComponents/LogForms/WaterInspectionLog/WaterInspectionLog';
 import RecordDashboard from '../AllUsersComponents/Records/RecordsHierarchyMenu/RecordsHierarchyMenu';
+import RecordHarvest from '../AllUsersComponents/Records/HarvestRecord/HarvestRecord';
+import RecordEmployeeTraining from '../AllUsersComponents/Records/EmployeeTrainingRecord/EmployeeTrainingRecord';
+import RecordWaterDashboard from '../AllUsersComponents/Records/SelectWaterRecord/SelectWaterRecord';
+import RecordManureDashboard from '../AllUsersComponents/Records/SelectManureCompostRecord/SelectManureCompostRecord';
+import RecordWaterInspect from '../AllUsersComponents/Records/WaterInspectionRecord/WaterInspectionRecord';
+import RecordWaterTreat from '../AllUsersComponents/Records/WaterTreatmentRecord/WaterTreatmentRecord';
+import RecordManure from '../AllUsersComponents/Records/ManureRecord/ManureRecord';
+import RecordCompostPile from '../AllUsersComponents/Records/CompostPileRecord/CompostPileRecord';
+import RecordCompostTurn from '../AllUsersComponents/Records/CompostTurningRecord/CompostTurningRecord';
 
-library.add(faHome, faRecycle, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt);
+library.add(faHome, faRecycle, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters);
 
 class App extends Component {
   componentDidMount () {
@@ -150,6 +165,26 @@ class App extends Component {
               path="/worker"
               component={WorkerDashboard}
             />
+            <Route
+              exact
+              path="/manageuser"
+              component={ManageWorker}
+            />
+            <Route
+              exact
+              path="/addworker"
+              component={AddWorker}
+            />
+              <Route
+                exact
+                path="/editworker"
+                component={EditWorker}
+              />
+              <Route
+                exact
+                path="/editemployee"
+                component={EditEmployee}
+              />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
@@ -232,6 +267,61 @@ class App extends Component {
             path="/recorddashboard"
             component={RecordDashboard}
             />
+
+            <Route
+            exact
+            path='/recordharvest'
+            component={RecordHarvest}
+            />
+
+            <Route
+            exact
+            path='/recordemployeetraining'
+            component={RecordEmployeeTraining}
+            />
+
+            <Route
+            exact
+            path='/recordwaterdashboard'
+            component={RecordWaterDashboard}
+            />
+
+            <Route
+            exact
+            path='/recordmanuredashboard'
+            component={RecordManureDashboard}
+            />
+
+            <Route
+            exact
+            path='/recordwaterinspect'
+            component={RecordWaterInspect}
+            />
+
+            <Route
+            exact
+            path='/recordwatertreat'
+            component={RecordWaterTreat}
+            />
+
+          <Route
+            exact
+            path='/recordmanure'
+            component={RecordManure}
+            />  
+
+          <Route
+            exact
+            path='/recordcompostpile'
+            component={RecordCompostPile}
+            />  
+
+          <Route
+            exact
+            path='/recordcompostturn'
+            component={RecordCompostTurn}
+            />  
+
 
             {/* <Route
             exact

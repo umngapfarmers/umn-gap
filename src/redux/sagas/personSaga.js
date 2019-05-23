@@ -17,9 +17,11 @@ function* getPersonSaga(action){
     }
 }
 
+
 function* personSaga() {
 //   yield takeLatest('ADD_FARM', addFarmSaga);
   yield takeLatest('GET_PERSON', getPersonSaga);
+  
 }
 
 export default personSaga;
