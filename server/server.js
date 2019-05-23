@@ -41,7 +41,6 @@ app.use('/setup/label_code', labelCodeRouter);
 app.use('/setup/manure', setupManureRouter);
 app.use('/setup/compost', setupCompostRouter)
 app.use('/log/harvest/', log_harvestRouter)
-app.use('/log/harvest/', log_harvestRouter);
 app.use('/log/employee', log_employeeRouter);
 
 
