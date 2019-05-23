@@ -47,6 +47,11 @@ import RecordHarvest from '../AllUsersComponents/Records/HarvestRecord/HarvestRe
 import RecordEmployeeTraining from '../AllUsersComponents/Records/EmployeeTrainingRecord/EmployeeTrainingRecord';
 import RecordWaterDashboard from '../AllUsersComponents/Records/SelectWaterRecord/SelectWaterRecord';
 import RecordManureDashboard from '../AllUsersComponents/Records/SelectManureCompostRecord/SelectManureCompostRecord';
+import RecordWaterInspect from '../AllUsersComponents/Records/WaterInspectionRecord/WaterInspectionRecord';
+import RecordWaterTreat from '../AllUsersComponents/Records/WaterTreatmentRecord/WaterTreatmentRecord';
+import RecordManure from '../AllUsersComponents/Records/ManureRecord/ManureRecord';
+import RecordCompostPile from '../AllUsersComponents/Records/CompostPileRecord/CompostPileRecord';
+import RecordCompostTurn from '../AllUsersComponents/Records/CompostTurningRecord/CompostTurningRecord';
 
 library.add(faHome, faRecycle, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt);
 
@@ -260,6 +265,38 @@ class App extends Component {
             path='/recordmanuredashboard'
             component={RecordManureDashboard}
             />
+
+            <Route
+            exact
+            path='/recordwaterinspec'
+            component={RecordWaterInspec}
+            />
+
+            <Route
+            exact
+            path='/recordwatertreat'
+            component={RecordWaterTreat}
+            />
+
+          <Route
+            exact
+            path='/recordmanure'
+            component={RecordManure}
+            />  
+
+          <Route
+            exact
+            path='/recordcompostpile'
+            component={RecordCompostPile}
+            />  
+
+          <Route
+            exact
+            path='/recordcompostturn'
+            component={RecordCompostTurn}
+            />  
+
+
             {/* <Route
             exact
             path = '/manurelogdashboard' 
