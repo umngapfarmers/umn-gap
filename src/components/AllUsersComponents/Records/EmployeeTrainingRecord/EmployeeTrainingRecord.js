@@ -5,6 +5,8 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import './EmployeeTrainingRecord.css'
 import Nav from '../../../Nav/Nav';
+import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
 
 
 class EmployeeTrainingRecord extends Component {
@@ -12,6 +14,10 @@ class EmployeeTrainingRecord extends Component {
 
   state= {
     
+  }
+
+  componentDidMount() {
+    this.props.dispatch({type:'GET_HARVEST_YEAR'});
   }
 
 
@@ -30,9 +36,29 @@ class EmployeeTrainingRecord extends Component {
         justify="center"
         alignItems="center">
          
-          <Grid item xs={12} sm={6}>
-             
-          </Grid>
+         {/* <Grid item xs={12} sm={6}>
+            <TextField
+                    id="harvest_year"
+                    select
+                    label="Select New Harvest Year"
+                    value={this.state.newHarvestYear.harvest_year}
+                    onChange={this.handleChange('harvest_year')}
+                    SelectProps={{
+                      MenuProps: {
+                        className: classes.menu,
+                      },
+                    }}
+                    margin="normal"
+                    variant="outlined"
+                    style={{width: 250}}
+                  >
+                    <MenuItem disabled>Select a New Harvest Year</MenuItem>
+                    {this.props.reduxState.harvestYears.map( year =>
+                          <MenuItem value={year.id} key={year} >{year}</MenuItem>
+                          )}
+                        
+                  </TextField> 
+            </Grid> */}
 
       </Grid>
      
