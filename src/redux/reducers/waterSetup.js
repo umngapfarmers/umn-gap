@@ -11,7 +11,7 @@ const waterSource = (state = [], action) => {
 
 const waterLabel = (state = [], action) => {
     switch (action.type) {
-        case 'SET_WATER_SOURCE':
+        case 'SET_WATER_LABEL':
             return action.payload;
         default:
             return state;
@@ -20,5 +20,5 @@ const waterLabel = (state = [], action) => {
 
 export default combineReducers({
     waterSource,
-    waterLabel
+    waterLabel,
 });

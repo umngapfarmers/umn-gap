@@ -1,6 +1,6 @@
 const getLabelCode = (state = [], action) => {
 
-    if(action.type == "SET_LABEL_CODE"){
+    if(action.type === "SET_LABEL_CODE"){
       return action.payload
     }
   return state

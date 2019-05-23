@@ -32,7 +32,7 @@ class EmployeeList extends Component {
         return (
             <React.Fragment>
                 <Typography variant="h6" gutterBottom align="center">
-                    Employee Training Log
+                    Edit Employee 
       </Typography>
                 <List component="nav">
                     <ListItem

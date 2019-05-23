@@ -9,6 +9,7 @@ import cropSetup from './cropSetup';
 import farmMenuConditional from './farmMenuConditionalReducer';
 import labelCode from './labelCodesReducer';
 import setupManure from './setupManureReducer';
+import setupCompost from './setupCompostReducer'
 import person from './personReducer';
 
 // rootReducer is the primary reducer for our entire project
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   farmMenuConditional,
   labelCode,
   setupManure,
+  setupCompost,
   person,
 });
 

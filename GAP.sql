@@ -1,5 +1,3 @@
-
------------------------------ Create registry, user, harvest_year info first -------------------------
 CREATE TABLE "farm_registry"
 (
   "farm_id" SERIAL PRIMARY KEY,
@@ -14,10 +12,9 @@ CREATE TABLE "harvest_year"
 (
   "harvest_id" SERIAL PRIMARY KEY,
   "harvest_year" INT,
+  -------should this be a true date or just an int?
   "farm_id" INT REFERENCES "farm_registry"
 );
-
-
 
 CREATE TABLE "user"
 (
@@ -26,11 +23,9 @@ CREATE TABLE "user"
   "password" VARCHAR(255) NOT NULL,
   "user_role" VARCHAR (255) NOT NULL,
   "farm_registry_id" INT REFERENCES "farm_registry",
-  "current_harvest_year" INT REFERENCES "harvest_year"
+  "current_harvest_year" INT REFERENCES "harvest_year",
+  "user_status" boolean DEFAULT TRUE
 );
-
-
-
 
 
 ------------------------ person and employee training ----------------------
@@ -158,7 +153,7 @@ CREATE TABLE "farm_water"
   "farm_water_source_id" int references "farm_water_source",
   "farm_water_status" boolean DEFAULT true,
   "label_code_id" int references "label_code",
-  "harvest_year_id" int references "label_code"
+  "harvest_year_id" int references "harvest_year"
 
 );
 
@@ -199,115 +194,107 @@ CREATE TABLE "water_treatment"
 
 --"farm_registry"
 
--- INSERT INTO "farm_registry"
---   ("farm_name", "address", "city", "state", "zip_code")
--- VALUES
---   ('Farmy McFarm', '0000 A Real Place', 'Farm Town', 'MN', 55555);
+INSERT INTO "farm_registry"
+  ("farm_name", "address", "city", "state", "zip_code")
+VALUES
+  ('Farmy McFarm', '0000 A Real Place', 'Farm Town', 'MN', 55555);
 
--- -- "user"
--- INSERT INTO "user"
---   ("username", "password", "user_role", "farm_registry_id")
--- VALUES
---   ('admin', 'CHANGE TO REAL HASH', 'admin', 1);
+-- "user"
+INSERT INTO "user"
+  ("username", "password", "user_role", "farm_registry_id")
+VALUES
+  ('admin', 'CHANGE TO REAL HASH', 'admin', 1);
 
--- -- "harvest_year"
--- INSERT INTO "harvest_year"
---   ("harvest_year", "farm_id")
--- VALUES
---   ('2019', '1');
+-- "harvest_year"
+INSERT INTO "harvest_year"
+  ("havest_year", "farm_id")
+VALUES
+  ('2019-01-01', '1');
 
--- -- "person"
--- INSERT INTO "person"
---   ("person_first", "person_last", "person_status", "user_id")
--- VALUES
---   ('Walter', 'Benson', 'true', '1');
+-- "person"
+INSERT INTO "person"
+  ("person_first", "person_last", "person_status", "user_id", "current_harvest_id", "farm_id")
+VALUES
+  ('Lili', 'Bourgeois', 'true', 7, 9, 14 );
 
--- -- "employee_training"
--- INSERT INTO "employee_training"
---   ("topic", "person_id", "trainer_name", "date_trained", "employee_training_sig", "harvest_year_id")
--- VALUES
---   ('Good agricultural practices', '1', 'Farmy Farmer', '2018-05-05', 'Walter Benson', '1');
-
-
--- ------------------------harvest tracebility------------------------
--- --setup
-
--- -- "farm_field"
--- INSERT INTO "farm_field"
---   ("field_name", "harvest_year_id", "farm_field_status")
--- VALUES
---   ('North Field', '1', 'true');
-
--- -- "farm_crop"
--- INSERT INTO "farm_crop"
---   ("farm_crop_type", "harvest_year_id", "farm_crop_status")
--- VALUES
---   ('tomatoes', '1', 'true');
-
--- -- "label_code"
--- INSERT INTO "label_code"
---   ("farm_crop_id", "farm_field_id", "label_code_text","harvest_year_id")
--- VALUES
---   ('1', '1', 'NF_tom', '1');
-
--- --logs
-
--- --"crop_harvest"
--- INSERT INTO "crop_harvest"
---   ("crop_harvest_date", "crop_harvest_amount", "crop_harvest_sig", "label_code_id", "user_id")
--- VALUES
---   ('2018-08-08 04:05:06', '100 lbs', 'WB', '1', '1');
-
--- ------------------------ manure and compost ------------------------
-
--- -- setup
-
--- --"farm_manure"
--- INSERT INTO "farm_manure"
---   ("farm_manure_date", "farm_manure_description", "farm_manure_rate", "label_code_id", "harvest_year_id","farm_manure_status")
--- VALUES
---   ('2018-03-08 04:05:06', 'Manure from the manure store', 'much', '1', '1', 'true');
-
--- -- "farm_compost"
--- INSERT INTO "farm_compost"
---   ("farm_compost_name", "farm_compost_date", "farm_compost_description", "user_id", "harvest_year_id","farm_compost_status")
--- VALUES
---   ('pile 1', '2018-03-08 04:05:06', 'random veg and stuff', '1', '1', 'true');
-
--- --logs
-
--- --"compost"
--- INSERT INTO "compost"
---   ("farm_compost_id", "compost_turned", "compost_date", "test_area_1_temp","test_area_2_temp", "test_area_3_temp", "test_area_4_temp","label_code_id","compost_sig","user_id","harvest_year_id")
--- VALUES
---   ('1', 'true', '2018-04-08 04:05:06', '', '', '', '', '1', 'WB', '1', '1');
+-- "employee_training"
+INSERT INTO "employee_training"
+  ("topic", "person_id", "trainer_name", "date_trained", "employee_training_sig", "harvest_year_id")
+VALUES
+  ('Good agricultural practices', '1', 'Farmy Farmer', '2018-05-05', 'Walter Benson', '1');
 
 
--- ------------------------ water ------------------------
+------------------------harvest tracebility------------------------
+--setup
 
--- --setup
+-- "farm_field"
+INSERT INTO "farm_field"
+  ("field_name", "harvest_year_id", "farm_field_status")
+VALUES
+  ('North Field', '1', 'true');
 
--- -- "farm_water"
---  INSERT INTO "farm_water_source"
---   ("farm_water_source_name", "farm_water_status", "harvest_year_id")
--- VALUES
---   ('pond', 'true', '1');
--- INSERT INTO "farm_water"
---   ("farm_water_source_id", "farm_water_status", "label_code_id", "harvest_year_id")
--- VALUES
---   ('1', 'true', '1', '1');
+-- "farm_crop"
+INSERT INTO "farm_crop"
+  ("farm_crop_type", "harvest_year_id", "farm_crop_status")
+VALUES
+  ('tomatoes', '1', 'true');
+
+-- "label_code"
+INSERT INTO "label_code"
+  ("farm_crop_id", "farm_field_id", "label_code_text", "harvest_year_id")
+VALUES
+  ('1', '1', 'NF_tom', 9);
+
+--logs
+
+--"crop_harvest"
+INSERT INTO "crop_harvest"
+  ("crop_harvest_date", "crop_harvest_amount", "crop_harvest_sig", "label_code_id", "user_id")
+VALUES
+  ('2018-08-08 04:05:06', '100 lbs', 'WB', '1', '1');
+
+------------------------ manure and compost ------------------------
+
+-- setup
+
+--"farm_manure"
+INSERT INTO "farm_manure"
+  ("farm_manure_date", "farm_manure_description", "farm_manure_rate", "label_code_id", "harvest_year_id","farm_manure_status")
+VALUES
+  ('2018-03-08 04:05:06', 'Manure from the manure store', 'much', '1', '1', 'true');
+
+-- "farm_compost"
+INSERT INTO "farm_compost"
+  ("farm_compost_name", "farm_compost_date", "farm_compost_description", "user_id", "harvest_year_id","farm_compost_status")
+VALUES
+  ('pile 1', '2018-03-08 04:05:06', 'random veg and stuff', '1', '1', 'true');
+
+--logs
+
+--"compost"
+INSERT INTO "compost"
+  ("farm_compost_id", "compost_turned", "compost_date", "test_area_1_temp","test_area_2_temp", "test_area_3_temp", "test_area_4_temp","label_code_id","compost_sig","user_id","harvest_year_id")
+VALUES
+  ('1', 'true', '2018-04-08 04:05:06', '', '', '', '', '1', 'WB', '1', '1');
 
 
+------------------------ water ------------------------
 
--- -- logs
+--setup
 
--- -- -- "water_inspection"
--- -- INSERT INTO "water_inspection" ("treatment_date", "water_ph", "water_temp", "turbidity", "sanitizer", "corrective_action","user_id","harvest_year_id" )
--- -- VALUES ('2018-04-08 04:05:06', '7.1', '', '', '', '','1','1');
+-- "farm_water"
 
--- -- -- "water_treatment"
--- -- INSERT INTO "water_inspection" ("treatment_date", "water_ph", "water_temp", "turbidity", "sanitizer", "corrective_action","user_id","harvest_year_id" )
--- -- VALUES ('2018-04-08 04:05:06', '7.1', '', '', '', '','1','1');
 
+-- logs
+
+-- -- "water_inspection"
+-- INSERT INTO "water_inspection" ("treatment_date", "water_ph", "water_temp", "turbidity", "sanitizer", "corrective_action","user_id","harvest_year_id" )
+-- VALUES ('2018-04-08 04:05:06', '7.1', '', '', '', '','1','1');
+
+-- -- "water_treatment"
+-- INSERT INTO "water_inspection" ("treatment_date", "water_ph", "water_temp", "turbidity", "sanitizer", "corrective_action","user_id","harvest_year_id" )
+-- VALUES ('2018-04-08 04:05:06', '7.1', '', '', '', '','1','1');
+
+INSERT INTO "user" ("farm_registry_id") VALUES () WHERE "user_id" = $2
 
 

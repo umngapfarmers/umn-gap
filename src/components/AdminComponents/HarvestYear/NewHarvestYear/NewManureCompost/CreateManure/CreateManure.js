@@ -33,7 +33,7 @@ class CreateManure extends Component {
 
   componentDidMount(){
     this.props.dispatch({type: 'GET_LABEL_CODE', payload:{harvest_year_id: this.props.reduxState.user.current_harvest_year}})
-    // this.props.dispatch({}) 
+    this.props.dispatch({type:'GET_MANURE_SOURCE'}) 
   }
 
   onSubmitManure = () => {
@@ -51,9 +51,28 @@ class CreateManure extends Component {
   handleRemove = (id) => {
     this.props.dispatch({type: 'DELETE_MANURE_SOURCE', payload:{id,}})
   }
+
+  handleNext = () => {
+    
+  }
+
+  toRenderList = (list) => {
+    let listEl = null
+    if (list.length>0){
+      listEl =
+            <ul>
+              {this.props.reduxState.setupManure.map(manure =>
+                <li key={manure.farm_manure_id}>{manure.label_code_text+' '+ moment(manure.farm_manure_date).format('YYYY-MM-DD')}
+                  <Button size="large" color="primary" onClick={() => this.handleRemove(manure.farm_manure_id)}>Remove</Button>
+                </li>
+              )}
+            </ul>
+    }
+    return listEl
+  }
   
   render() {
-    console.log(`state in createManure form `, this.state);
+    // console.log(`state in createManure form `, this.state);
     
     const {classes} = this.props;
     console.log(this.props.reduxState.user);
@@ -137,14 +156,21 @@ class CreateManure extends Component {
         </Grid>
  
         <Grid item xs={8} sm={6} >
-          <ul>
-            {this.props.reduxState.setupManure.map(manure =>
+          {/* <ul>
+            {this.props.reduxState.setupManure.length && this.props.reduxState.setupManure.map(manure =>
               <li key={manure.farm_manure_id}>{manure.label_code_text+' '+ moment(manure.farm_manure_date).format('YYYY-MM-DD')}
                 <Button size="large" color="primary" onClick={() => this.handleRemove(manure.farm_manure_id)}>Remove</Button>
               </li>
             )}
-          </ul>
+          </ul> */}
+          {this.toRenderList(this.props.reduxState.setupManure)}
         </Grid>  
+
+        <Grid item xs={8} sm={6} >
+          <Button size="large" color="primary" onClick={this.handleNext}>Next</Button>
+
+        </Grid>  
+
         
       </Grid>
      

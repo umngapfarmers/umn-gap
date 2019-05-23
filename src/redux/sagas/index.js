@@ -12,8 +12,10 @@ import cropSetup from './cropSetup';
 import setupSaga from './setupSaga';
 import getLabelCodeSaga from './getLabelCodeSaga';
 import setupManureSaga from './setupManureSaga';
+import setupCompostSaga from './setupCompostSaga';
 import personSaga from './personSaga';
 import harvestSaga from './harvestLogSaga';
+import employeeLogSaga from './employeeLogSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -36,8 +38,10 @@ export default function* rootSaga() {
     getLabelCodeSaga(),
     setupSaga(),
     setupManureSaga(),
+    setupCompostSaga(),
     personSaga(),
-    harvestSaga()
+    harvestSaga(),
+    employeeLogSaga(),
 
   ]);
 }

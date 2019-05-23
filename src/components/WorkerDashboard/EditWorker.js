@@ -27,6 +27,7 @@ class EditWorker extends Component {
     };
   render() {
     const { classes } = this.props;
+      console.log('role selected is', this.state.roleSelect)
     return (
       <React.Fragment>
         <Typography variant="h6" gutterBottom align="center">
@@ -88,7 +89,7 @@ class EditWorker extends Component {
                     </Select>
                 </FormControl>
             </Grid>
-                {this.state.roleSelect !== "Employee" ?(
+                {this.state.roleSelect == "Employees" ?(
                     <EmployeeList/>
                 ):(
                     <UserList/>
