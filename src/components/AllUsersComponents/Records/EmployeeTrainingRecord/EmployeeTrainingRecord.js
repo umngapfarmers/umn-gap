@@ -13,18 +13,29 @@ class EmployeeTrainingRecord extends Component {
 
 
   state= {
+    selectHarvestYear: '',
     
   }
 
   componentDidMount() {
     this.props.dispatch({type:'GET_HARVEST_YEAR'});
   }
+  
+  handleChange = propertyName => {
+    return event => {
+      this.setState({
+        ...this.state,
+        [propertyName]: event.target.value,
+      })
+      }
+    }
 
 
 
 
   render() {
     const {classes} = this.props;
+    console.log(this.state);
     return (
       <React.Fragment>
       <Nav/>
@@ -36,13 +47,13 @@ class EmployeeTrainingRecord extends Component {
         justify="center"
         alignItems="center">
          
-         {/* <Grid item xs={12} sm={6}>
+         <Grid item xs={12} sm={6}>
             <TextField
                     id="harvest_year"
                     select
-                    label="Select New Harvest Year"
-                    value={this.state.newHarvestYear.harvest_year}
-                    onChange={this.handleChange('harvest_year')}
+                    label="Select Record Harvest Year"
+                    value={this.state.selectHarvestYear}
+                    onChange={this.handleChange('selectHarvestYear')}
                     SelectProps={{
                       MenuProps: {
                         className: classes.menu,
@@ -52,13 +63,13 @@ class EmployeeTrainingRecord extends Component {
                     variant="outlined"
                     style={{width: 250}}
                   >
-                    <MenuItem disabled>Select a New Harvest Year</MenuItem>
-                    {this.props.reduxState.harvestYears.map( year =>
-                          <MenuItem value={year.id} key={year} >{year}</MenuItem>
+                    <MenuItem disabled>Select Record Harvest Year</MenuItem>
+                    {this.props.reduxState.recordharvestyear.map( year =>
+                          <MenuItem value={year.harvest_id} key={year.harvest_id} >{year.harvest_year}</MenuItem>
                           )}
                         
                   </TextField> 
-            </Grid> */}
+            </Grid>
 
       </Grid>
      
