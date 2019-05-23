@@ -23,6 +23,9 @@ import CreateManure from '../AdminComponents/HarvestYear/NewHarvestYear/NewManur
 import CreateCompost from '../AdminComponents/HarvestYear/NewHarvestYear/NewManureCompost/CreateCompost/CreateCompost.js';
 import LogDashboard from '../AllUsersComponents/LogForms/LogsHierarchyMenu/LogsHierarchyMenu';
 import HarvestLog from '../AllUsersComponents/LogForms/HarvestLog/HarvestLog';
+import EditHierarchy from '../AdminComponents/HarvestYear/EditHarvestYear/EditFarmInformationHierarchyMenu/EditFarmInformationHierarchyMenu';
+import HarvestDashboard from '../AdminComponents/HarvestYear/HarvestYearDashboard/HarvestYearDashboard';
+import NewHarvestYearDashboard from '../AdminComponents/HarvestYear/NewHarvestYear/NewHarvestDashboard/NewHarvestDashboard';
 import './App.css';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import theme from './theme';
@@ -126,6 +129,21 @@ class App extends Component {
               path="/admin"
               component={AdminDashboard}
             />
+            <Route
+              exact
+              path="/edithierarchy"
+              component={EditHierarchy}
+            />
+            <Route
+              exact
+              path="/harvestdashboard"
+              component={HarvestDashboard}
+            />
+              <Route
+                exact
+                path="/newharvestyeardashboard"
+                component={NewHarvestYearDashboard}
+              />
             <Route
               exact
               path="/worker"
