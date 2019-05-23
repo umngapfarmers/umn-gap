@@ -63,7 +63,7 @@ class CreateManure extends Component {
             <ul>
               {this.props.reduxState.setupManure.map(manure =>
                 <li key={manure.farm_manure_id}>{manure.label_code_text+' '+ moment(manure.farm_manure_date).format('YYYY-MM-DD')}
-                  <Button size="large" color="primary" onClick={() => this.handleRemove(manure.farm_manure_id)}>Remove</Button>
+                  <Button size="small" color="primary" variant='contained'  onClick={() => this.handleRemove(manure.farm_manure_id)}>Remove</Button>
                 </li>
               )}
             </ul>
@@ -152,22 +152,17 @@ class CreateManure extends Component {
         </Grid>
 
         <Grid item xs={8} sm={6} >
-          <Button size="large" color="primary" onClick={this.onSubmitManure}>Add New Manure Source</Button>
+          <Typography align="center">
+            <Button size="medium" color="primary" variant='contained'  onClick={this.onSubmitManure}>Add Manure</Button>
+          </Typography>
         </Grid>
  
         <Grid item xs={8} sm={6} >
-          {/* <ul>
-            {this.props.reduxState.setupManure.length && this.props.reduxState.setupManure.map(manure =>
-              <li key={manure.farm_manure_id}>{manure.label_code_text+' '+ moment(manure.farm_manure_date).format('YYYY-MM-DD')}
-                <Button size="large" color="primary" onClick={() => this.handleRemove(manure.farm_manure_id)}>Remove</Button>
-              </li>
-            )}
-          </ul> */}
           {this.toRenderList(this.props.reduxState.setupManure)}
         </Grid>  
 
         <Grid item xs={8} sm={6} >
-          <Button size="large" color="primary" onClick={this.handleNext}>Next</Button>
+          <Button size="medium" color="primary" variant='contained' onClick={this.handleNext}>Next</Button>
 
         </Grid>  
 
