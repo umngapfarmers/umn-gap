@@ -26,8 +26,8 @@ class HarvestYearDashboard extends Component {
     return (
       <React.Fragment>
         <Typography align="right"><LogoutButton /></Typography>
-        <Typography variant="h6" gutterBottom align="center" className={classes.titleColor}>
-          Admin Dashboard
+        <Typography variant="h6" gutterBottom align="center" className={classes.titleColor} align="center">
+          Harvest Year Dashboard
 
       </Typography>
         < Grid container spacing={24}

@@ -34,7 +34,7 @@ class EditFarmInformationHierarchyMenu extends Component {
         >
           <Grid item xs={12} sm={6}>
             <Typography variant="h6" gutterBottom align="center" className={classes.titleColor}>
-              Select category to edit or add information
+              Select Category to Edit Information
     
             </Typography>   
 
