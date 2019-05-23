@@ -46,14 +46,13 @@ router.post('/', async (req, res) => {
 
     const userUpdateQuery = `UPDATE "user" SET "current_harvest_year" = $1 WHERE "user_id" = $2`;
     
-    // mutates previous year info by removing ids and updating to new harvest year
+    // updates harvest year of each item    
     // after item is mutated it is posted to the db
     // params are list to mutate, the property holding id for specfic table, insertQuery for specific table, and property keys for list item values
     const changeAndPost = (list, idKey, insertQuery, keys, newHarvestId) => {
         console.log(`tochange `, list);
         for (item of list) {
-            // remove ids 
-            delete item[idKey];
+
             // change harvest years
             item.harvest_year_id = newHarvestId;
             let values = keys.map(key => item[key])
