@@ -53,7 +53,7 @@ class CreateManure extends Component {
   }
 
   handleNext = () => {
-    
+    this.props.history.push('/fertilizerdash');
   }
 
   toRenderList = (list) => {
@@ -153,7 +153,7 @@ class CreateManure extends Component {
 
         <Grid item xs={8} sm={6} >
           <Typography align="center">
-            <Button size="medium" color="primary" variant='contained'  onClick={this.onSubmitManure}>Add Manure</Button>
+            <Button size="medium" color="primary" variant='contained' onClick={this.onSubmitManure}>Add Manure</Button>
           </Typography>
         </Grid>
  
@@ -162,14 +162,14 @@ class CreateManure extends Component {
         </Grid>  
 
         <Grid item xs={8} sm={6} >
-          <Button size="medium" color="primary" variant='contained' onClick={this.handleNext}>Next</Button>
+          <Button size="medium" color="primary" variant='contained' onClick={this.handleNext}>Continue</Button>
 
         </Grid>  
 
         
       </Grid>
      
-  </React.Fragment>
+    </React.Fragment>
     );
   }
 }
