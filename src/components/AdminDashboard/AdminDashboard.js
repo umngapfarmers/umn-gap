@@ -17,8 +17,6 @@ class AdminDashboard extends Component {
     
   }
 
-  
-
   render() {
     const {classes} = this.props;
     return (
@@ -84,7 +82,7 @@ class AdminDashboard extends Component {
               color="primary"
               aria-label="Add"
               className={classes.margin}
-              onClick={() => {this.props.history.push('/harvestdashboard')}}
+              onClick={() => { this.props.history.push('/harvestdashboard') }}
               style={{width:'80vw', maxWidth:400}}
             >
                <Typography className={classes.fabColor}>Manage Harvest Year</Typography>

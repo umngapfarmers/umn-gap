@@ -77,7 +77,7 @@ class EnterFarmInformationHierarchyMenu extends Component {
             <CheckCircleOutline/>
           </ListItemIcon>
         </ListItem>
-        <ListItem button onClick={() => {this.props.history.push('/create_manure')}}>
+        <ListItem button onClick={() => {this.props.history.push('/fertilizerdash')}}>
           <ListItemIcon>
             Step 2
           </ListItemIcon>
