@@ -9,7 +9,9 @@ router.post('/', async (req, res) => {
     const client = await pool.connect();
     console.log('in import harvest');
     const harvest_year_id = 1;   // CHANGE ME -----------
-    const newHarvestId = req.body.new_harvest_id;
+
+    const newHarvest = req.body;
+    const newHarvestQuery = `INSERT INTO "harvest_year" ("harvest_year", "farm_id") VALUES ($1, $2) RETURNING "harvest_id";`
 
     // select and insert queries, as well as property names for each table to be imported
     const getCropQuery = `SELECT * FROM "farm_crop" WHERE "harvest_year_id" = $1;`;
@@ -35,55 +37,71 @@ router.post('/', async (req, res) => {
     const farmCompostKeys = ["farm_compost_name", "farm_compost_date", "farm_compost_description", "user_id", "harvest_year_id", "farm_compost_status"];
     
     const getFarmWaterSource = `SELECT * FROM "farm_water_source" WHERE "harvest_year_id" = $1;`;
-
+    const insertFarmWaterSourceQuery = `INSERT INTO "farm_water_source" ("farm_water_source_name", "harvest_year_id") VALUES ($1, $2);`;
+    const farmWaterSourceKeys = ["farm_water_source_name", "harvest_year_id"];
+    
     const getFarmWater = `SELECT * FROM "farm_water" WHERE "harvest_year_id" = $1;`;
+    const insertFarmWaterQuery = `INSERT INTO "farm_water" ("farm_water_source_id", "label_code_id", "harvest_year_id")VALUES ($1, $2, $3);`;
+    const farmWaterKeys = ["farm_water_source_id", "label_code_id", "harvest_year_id"];
 
+    const userUpdateQuery = `UPDATE "user" SET "current_harvest_year" = $1 WHERE "user_id" = $2`;
+    
     // mutates previous year info by removing ids and updating to new harvest year
     // after item is mutated it is posted to the db
     // params are list to mutate, the property holding id for specfic table, insertQuery for specific table, and property keys for list item values
-    const changeAndPost = (list, idKey, insertQuery, keys) => {
+    const changeAndPost = (list, idKey, insertQuery, keys, newHarvestId) => {
         console.log(`tochange `, list);
-
         for (item of list) {
-
             // remove ids 
             delete item[idKey];
             // change harvest years
             item.harvest_year_id = newHarvestId;
-           let values = keys.map(key => item[key])
-           console.log(`new values `, values);
-           client.query(insertQuery, values)
+            let values = keys.map(key => item[key])
+            console.log(`new values `, values);
+            client.query(insertQuery, values)
         }
     }
 
-          try {
-            await client.query('BEGIN')
-            
-            const cropResult = await client.query(getCropQuery, [harvest_year_id]);
-            await changeAndPost(cropResult.rows, 'farm_crop_id', insertCropQuery, cropKeys);
 
-            const fieldResult = await client.query(getFieldQuery, [harvest_year_id]);
-            await changeAndPost(fieldResult.rows, 'farm_field_id', insertFieldQuery, fieldKeys);
-            
-            const labelCodeResult = await client.query(getLabelCodeQuery, [harvest_year_id]);
-            await changeAndPost(labelCodeResult.rows, 'label_code_id', insertLabelCodeQuery, labelCodeKeys);
+    try {
+        await client.query('BEGIN')
+        
+        const result = await client.query(newHarvestQuery, [newHarvest.harvest_year, newHarvest.farm_id]);
+        const newHarvestId = result.rows[0].harvest_id
+        console.log(`newHarvestId `, newHarvestId);
 
-            const farmManureResult = await client.query(getFarmManureQuery, [harvest_year_id]);
-            await changeAndPost(farmManureResult.rows, 'farm_manure_id', insertFarmManureQuery, farmManureKeys);
+        const cropResult = await client.query(getCropQuery, [harvest_year_id]);
+        await changeAndPost(cropResult.rows, 'farm_crop_id', insertCropQuery, cropKeys, newHarvestId);
 
-            const farmCompostResult = await client.query(getFarmCompost, [harvest_year_id]);
-            await changeAndPost(farmCompostResult.rows, 'farm_manure_id', insertFarmCompostQuery, farmCompostKeys);
+        const fieldResult = await client.query(getFieldQuery, [harvest_year_id]);
+        await changeAndPost(fieldResult.rows, 'farm_field_id', insertFieldQuery, fieldKeys, newHarvestId);
+        
+        const labelCodeResult = await client.query(getLabelCodeQuery, [harvest_year_id]);
+        await changeAndPost(labelCodeResult.rows, 'label_code_id', insertLabelCodeQuery, labelCodeKeys, newHarvestId);
 
+        const farmManureResult = await client.query(getFarmManureQuery, [harvest_year_id]);
+        await changeAndPost(farmManureResult.rows, 'farm_manure_id', insertFarmManureQuery, farmManureKeys, newHarvestId);
 
-            await client.query('COMMIT')
-            res.sendStatus(200);
-        } catch (error) {
-            await client.query('ROLLBACK')
-            console.log('Error harvest year import', error);
-            res.sendStatus(500);
-        } finally {
-            client.release()
-      }
+        const farmCompostResult = await client.query(getFarmCompost, [harvest_year_id]);
+        await changeAndPost(farmCompostResult.rows, 'farm_compost_id', insertFarmCompostQuery, farmCompostKeys, newHarvestId);
+
+        const farmWaterSourceResult = await client.query(getFarmWaterSource, [harvest_year_id]);
+        await changeAndPost(farmWaterSourceResult.rows, 'farm_water_source_id', insertFarmWaterSourceQuery, farmWaterSourceKeys, newHarvestId);
+
+        const farmWaterResult = await client.query(getFarmWater, [harvest_year_id]);
+        await changeAndPost(farmWaterResult.rows, 'farm_water_id', insertFarmWaterQuery, farmWaterKeys, newHarvestId);
+
+//// -------------------------------------------------------------CHANGE ME!----------------------------------------------------
+        await client.query(userUpdateQuery, [newHarvestId, 1]) // req.user.user_id
+        await client.query('COMMIT')
+        res.sendStatus(200);
+    } catch (error) {
+        await client.query('ROLLBACK')
+        console.log('Error harvest year import', error);
+        res.sendStatus(500);
+    } finally {
+        client.release()
+    }
   });
 
 
