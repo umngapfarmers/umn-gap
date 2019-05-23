@@ -16,8 +16,9 @@ class CreateCrops extends Component {
   state= {
     newCrop: {
       type:'',
-      harvest_year_id: this.props.reduxState.user.current_harvest_year,
-    }
+    },
+    disable: true,
+    disableNext: true
     
   }
 
@@ -26,8 +27,8 @@ class CreateCrops extends Component {
       newCrop: {
         ...this.setState,
         [propertyName]: event.target.value,
-
-      }
+      },
+      disable: false
     });
   }
 
@@ -37,7 +38,8 @@ class CreateCrops extends Component {
     this.setState({
       newCrop: {
         type:'',
-      }
+      },
+      disableNext: false
     })
   }
 
@@ -77,7 +79,12 @@ class CreateCrops extends Component {
               style={{ width: '80vw', maxWidth: 400 }}
             >
             </TextField>
-            <Button size="large" color="primary" onClick={this.addCropSource} >Add</Button>
+            <Button size="large" color="primary" 
+            onClick={this.addCropSource} 
+            disabled={this.state.disable}
+            >
+            Add
+            </Button>
                    
                 </Grid>
           
@@ -95,7 +102,12 @@ class CreateCrops extends Component {
 
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Button size="large" color="primary" onClick={this.nextPage}>Next</Button>
+            <Button size="large" color="primary"
+             onClick={this.nextPage} 
+             disabled={this.state.disableNext}
+             >
+             Next
+             </Button>
 
           </Grid>
 
