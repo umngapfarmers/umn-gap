@@ -18,6 +18,7 @@ import AdminDashboard from '../AdminDashboard/AdminDashboard';
 import WorkerDashboard from '../WorkerDashboard/WorkerDashboard';
 import NewHarvestYearDate from '../AdminComponents/HarvestYear/NewHarvestYear/SelectNewHarvestYearDate/SelectNewHarvestYearDate';
 import EnterFarmInformationHierarchyMenu from '../AdminComponents/HarvestYear/NewHarvestYear/EnterFarmInformationHierarchyMenu/EnterFarmInformationHierarchyMenu';
+import ManureCompostDash from '../AdminComponents/HarvestYear/NewHarvestYear/NewManureCompost/ManureCompostDash/ManureCompostDash';
 import CreateManure from '../AdminComponents/HarvestYear/NewHarvestYear/NewManureCompost/CreateManure/CreateManure.js';
 import CreateCompost from '../AdminComponents/HarvestYear/NewHarvestYear/NewManureCompost/CreateCompost/CreateCompost.js';
 import LogDashboard from '../AllUsersComponents/LogForms/LogsHierarchyMenu/LogsHierarchyMenu';
@@ -165,19 +166,23 @@ class App extends Component {
               path="/info"
               component={InfoPage}
             />
+            <ProtectedRoute
+              exact
+              path="/fertilizerdash"
+              component={ManureCompostDash}
+            />
             
             <ProtectedRoute
               exact
-              path="/create_manure"
+              path="/createmanure"
               component={CreateManure}
             />
 
             <ProtectedRoute
               exact
-              path="/create_compost"
+              path="/createcompost"
               component={CreateCompost}
             />
-
 
             <Route
               exact
@@ -210,15 +215,15 @@ class App extends Component {
             />
 
             <Route
-            exact
-            path="/watertreatlog"
-            component={WaterTreatLog}
+              exact
+              path="/watertreatlog"
+              component={WaterTreatLog}
             />
 
             <Route
-            exact
-            path="/waterinspectlog"
-            component={WaterInspectLog}
+              exact
+              path="/waterinspectlog"
+              component={WaterInspectLog}
             />
 
             {/* <Route
