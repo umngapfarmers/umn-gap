@@ -48,7 +48,7 @@ class CreateCompost extends Component {
   }
 
   handleNext = () => {
-    
+    this.props.history.push('/fertilizerdash');
   }
   
   render() {
@@ -68,7 +68,7 @@ class CreateCompost extends Component {
         justify = "center"
         alignItems = "center"
       >
-        <Grid item xs={8} sm={6} >
+        <Grid item xs={10} sm={6} >
             <FormControl>
                 <TextField 
                     label="Start Date" 
@@ -85,7 +85,7 @@ class CreateCompost extends Component {
             </FormControl>
         </Grid>
 
-        <Grid item xs={8} sm={6} >
+        <Grid item xs={10} sm={6} >
             <FormControl>
                 <TextField 
                     label="Name Compost" 
@@ -98,7 +98,7 @@ class CreateCompost extends Component {
             </FormControl>
         </Grid>
 
-        <Grid item xs={8} sm={6} >
+        <Grid item xs={10} sm={6} >
             <FormControl>
                 <TextField 
                   label = "Compost Ingredients"
@@ -111,22 +111,22 @@ class CreateCompost extends Component {
             </FormControl>
         </Grid>
 
-        <Grid item xs={8} sm={6} >
+        <Grid item xs={10} sm={6} >
           <Button size="large" color="primary" onClick={this.onSubmit}>Add New Compost</Button>
         </Grid>
  
-        <Grid item xs={8} sm={6} >
+        <Grid item xs={10} sm={6} >
           <ul>
             {this.props.reduxState.setupCompost[0] && this.props.reduxState.setupCompost.map(compost =>
               <li key={compost.farm_compost_id}>{compost.farm_compost_name+' '+ moment(compost.farm_compost_date).format('YYYY-MM-DD')}
-                <Button size="large" color="primary" onClick={() => this.handleRemove(compost.farm_compost_id)}>Remove</Button>
+                <Button size="large" color="primary" variant='contained' onClick={() => this.handleRemove(compost.farm_compost_id)}>Remove</Button>
               </li>
             )}
           </ul>
         </Grid>  
 
-        <Grid item xs={8} sm={6} >
-          <Button size="large" color="primary" onClick={this.handleNext}>Next</Button>
+        <Grid item xs={10} sm={6} >
+          <Button size="large" color="primary" variant='contained' onClick={this.handleNext}>Continue</Button>
 
         </Grid>  
 

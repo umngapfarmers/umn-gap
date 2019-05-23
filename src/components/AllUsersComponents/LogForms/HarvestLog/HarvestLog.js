@@ -6,7 +6,9 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
+import Nav from '../../../Nav/Nav';
 import './HarvestLog.css'
+
 
 
 class HarvestLog extends Component {
@@ -25,12 +27,12 @@ class HarvestLog extends Component {
     if (this.state.newHarvestLog.crop_harvest_date !== '' && this.state.newHarvestLog.crop_harvest_amount !== '' && 
     this.state.newHarvestLog.crop_harvest_sig !== '' && this.state.newHarvestLog.label_code_id !== '') {
     return (
-      <Button onClick={this.handleSubmit}>Submit</Button>
+      <Button variant="contained" color="primary" style={{width:'80vw', maxWidth:400}} onClick={this.handleSubmit}>Submit</Button>
     ) 
   }
   else {
     return(
-      <Button disabled>Submit</Button>
+      <Button variant="contained" color="primary" style={{width:'80vw', maxWidth:400}} disabled>Submit</Button>
     )
   }
   }
@@ -66,6 +68,7 @@ class HarvestLog extends Component {
     console.log(this.state.newHarvestLog);
     return (
       <React.Fragment>
+        <Nav/>
       <Typography variant="h6" gutterBottom align="center">
          Harvest Tracking Log
       </Typography>

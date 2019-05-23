@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
-
+import Nav from '../../../Nav/Nav';
 import './EmployeeTrainingLog.css'
 
 
@@ -54,7 +54,7 @@ class EmployeeTrainingLog extends Component {
   }
   else {
     return(
-      <Button disabled>Submit</Button>
+      <Button variant="contained" color="primary" style={{width:'80vw', maxWidth:400}} disabled>Submit</Button>
     )
   }
   }
@@ -65,6 +65,7 @@ class EmployeeTrainingLog extends Component {
     console.log(this.state.newTraining);
     return (
       <React.Fragment>
+        <Nav/>
       <Typography variant="h6" gutterBottom align="center">
          Employee Training Log
       </Typography>

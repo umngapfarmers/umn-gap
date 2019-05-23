@@ -18,16 +18,20 @@ import AdminDashboard from '../AdminDashboard/AdminDashboard';
 import WorkerDashboard from '../WorkerDashboard/WorkerDashboard';
 import NewHarvestYearDate from '../AdminComponents/HarvestYear/NewHarvestYear/SelectNewHarvestYearDate/SelectNewHarvestYearDate';
 import EnterFarmInformationHierarchyMenu from '../AdminComponents/HarvestYear/NewHarvestYear/EnterFarmInformationHierarchyMenu/EnterFarmInformationHierarchyMenu';
+import ManureCompostDash from '../AdminComponents/HarvestYear/NewHarvestYear/NewManureCompost/ManureCompostDash/ManureCompostDash';
 import CreateManure from '../AdminComponents/HarvestYear/NewHarvestYear/NewManureCompost/CreateManure/CreateManure.js';
 import CreateCompost from '../AdminComponents/HarvestYear/NewHarvestYear/NewManureCompost/CreateCompost/CreateCompost.js';
 import LogDashboard from '../AllUsersComponents/LogForms/LogsHierarchyMenu/LogsHierarchyMenu';
 import HarvestLog from '../AllUsersComponents/LogForms/HarvestLog/HarvestLog';
+import EditHierarchy from '../AdminComponents/HarvestYear/EditHarvestYear/EditFarmInformationHierarchyMenu/EditFarmInformationHierarchyMenu';
+import HarvestDashboard from '../AdminComponents/HarvestYear/HarvestYearDashboard/HarvestYearDashboard';
+import NewHarvestYearDashboard from '../AdminComponents/HarvestYear/NewHarvestYear/NewHarvestDashboard/NewHarvestDashboard';
 import './App.css';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import theme from './theme';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRecycle, faTint, faSeedling, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial } from '@fortawesome/free-solid-svg-icons';
+import { faRecycle, faTint, faSeedling, faHome, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters } from '@fortawesome/free-solid-svg-icons';
 
 import './App.css';
 import ManageWorker from '../WorkerDashboard/ManageWorker';
@@ -44,8 +48,18 @@ import EditEmployee from '../WorkerDashboard/EditEmployee';
 
 import WaterTreatLog from '../AllUsersComponents/LogForms/WaterTreatmentLog/WaterTreatmentLog';
 import WaterInspectLog from '../AllUsersComponents/LogForms/WaterInspectionLog/WaterInspectionLog';
+import RecordDashboard from '../AllUsersComponents/Records/RecordsHierarchyMenu/RecordsHierarchyMenu';
+import RecordHarvest from '../AllUsersComponents/Records/HarvestRecord/HarvestRecord';
+import RecordEmployeeTraining from '../AllUsersComponents/Records/EmployeeTrainingRecord/EmployeeTrainingRecord';
+import RecordWaterDashboard from '../AllUsersComponents/Records/SelectWaterRecord/SelectWaterRecord';
+import RecordManureDashboard from '../AllUsersComponents/Records/SelectManureCompostRecord/SelectManureCompostRecord';
+import RecordWaterInspect from '../AllUsersComponents/Records/WaterInspectionRecord/WaterInspectionRecord';
+import RecordWaterTreat from '../AllUsersComponents/Records/WaterTreatmentRecord/WaterTreatmentRecord';
+import RecordManure from '../AllUsersComponents/Records/ManureRecord/ManureRecord';
+import RecordCompostPile from '../AllUsersComponents/Records/CompostPileRecord/CompostPileRecord';
+import RecordCompostTurn from '../AllUsersComponents/Records/CompostTurningRecord/CompostTurningRecord';
 
-library.add(faRecycle, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial);
+library.add(faHome, faRecycle, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters);
 
 class App extends Component {
   componentDidMount () {
@@ -133,6 +147,21 @@ class App extends Component {
             />
             <Route
               exact
+              path="/edithierarchy"
+              component={EditHierarchy}
+            />
+            <Route
+              exact
+              path="/harvestdashboard"
+              component={HarvestDashboard}
+            />
+              <Route
+                exact
+                path="/newharvestyeardashboard"
+                component={NewHarvestYearDashboard}
+              />
+            <Route
+              exact
               path="/worker"
               component={WorkerDashboard}
             />
@@ -173,19 +202,23 @@ class App extends Component {
               path="/info"
               component={InfoPage}
             />
+            <ProtectedRoute
+              exact
+              path="/fertilizerdash"
+              component={ManureCompostDash}
+            />
             
             <ProtectedRoute
               exact
-              path="/create_manure"
+              path="/createmanure"
               component={CreateManure}
             />
 
             <ProtectedRoute
               exact
-              path="/create_compost"
+              path="/createcompost"
               component={CreateCompost}
             />
-
 
             <Route
               exact
@@ -218,16 +251,77 @@ class App extends Component {
             />
 
             <Route
-            exact
-            path="/watertreatlog"
-            component={WaterTreatLog}
+              exact
+              path="/watertreatlog"
+              component={WaterTreatLog}
+            />
+
+            <Route
+              exact
+              path="/waterinspectlog"
+              component={WaterInspectLog}
             />
 
             <Route
             exact
-            path="/waterinspectlog"
-            component={WaterInspectLog}
+            path="/recorddashboard"
+            component={RecordDashboard}
             />
+
+            <Route
+            exact
+            path='/recordharvest'
+            component={RecordHarvest}
+            />
+
+            <Route
+            exact
+            path='/recordemployeetraining'
+            component={RecordEmployeeTraining}
+            />
+
+            <Route
+            exact
+            path='/recordwaterdashboard'
+            component={RecordWaterDashboard}
+            />
+
+            <Route
+            exact
+            path='/recordmanuredashboard'
+            component={RecordManureDashboard}
+            />
+
+            <Route
+            exact
+            path='/recordwaterinspect'
+            component={RecordWaterInspect}
+            />
+
+            <Route
+            exact
+            path='/recordwatertreat'
+            component={RecordWaterTreat}
+            />
+
+          <Route
+            exact
+            path='/recordmanure'
+            component={RecordManure}
+            />  
+
+          <Route
+            exact
+            path='/recordcompostpile'
+            component={RecordCompostPile}
+            />  
+
+          <Route
+            exact
+            path='/recordcompostturn'
+            component={RecordCompostTurn}
+            />  
+
 
             {/* <Route
             exact

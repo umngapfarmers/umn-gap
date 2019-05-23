@@ -21,6 +21,7 @@ const setupCompostRouter = require('./routes/setup.compost.router');
 const log_harvestRouter = require('./routes/log.harvest.router');
 const log_employeeRouter = require('./routes/log.employee.router');
 const manageUserRouter = require('./routes/manageuser.router');
+const record_harvestYearRouter = require('./routes/record.harvestYear.router');
 
 
 // Body parser middleware
@@ -48,9 +49,9 @@ app.use('/setup/label_code', labelCodeRouter);
 app.use('/setup/manure', setupManureRouter);
 app.use('/setup/compost', setupCompostRouter)
 app.use('/log/harvest/', log_harvestRouter)
-app.use('/log/harvest/', log_harvestRouter);
 app.use('/log/employee', log_employeeRouter);
 app.use('/manage', manageUserRouter);
+app.use('/record/harvestYear', record_harvestYearRouter);
 
 
 // Serve static files
