@@ -31,7 +31,7 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import theme from './theme';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRecycle, faTint, faSeedling, faHome, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faRecycle, faTint, faSeedling, faHome, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters } from '@fortawesome/free-solid-svg-icons';
 
 import './App.css';
 import FieldTypes from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateFields/CreateFields';
@@ -53,7 +53,7 @@ import RecordManure from '../AllUsersComponents/Records/ManureRecord/ManureRecor
 import RecordCompostPile from '../AllUsersComponents/Records/CompostPileRecord/CompostPileRecord';
 import RecordCompostTurn from '../AllUsersComponents/Records/CompostTurningRecord/CompostTurningRecord';
 
-library.add(faHome, faRecycle, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt);
+library.add(faHome, faRecycle, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters);
 
 class App extends Component {
   componentDidMount () {
@@ -268,8 +268,8 @@ class App extends Component {
 
             <Route
             exact
-            path='/recordwaterinspec'
-            component={RecordWaterInspec}
+            path='/recordwaterinspect'
+            component={RecordWaterInspect}
             />
 
             <Route

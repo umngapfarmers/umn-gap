@@ -9,6 +9,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './SelectWaterLog.css'
+import Nav from '../../../Nav/Nav';
 
 
 class SelectWaterLog extends Component {
@@ -25,6 +26,7 @@ class SelectWaterLog extends Component {
     const {classes} = this.props;
     return (
       <React.Fragment>
+        <Nav/>
       <Typography variant="h6" gutterBottom align="center">
          Select Water Log
       </Typography>

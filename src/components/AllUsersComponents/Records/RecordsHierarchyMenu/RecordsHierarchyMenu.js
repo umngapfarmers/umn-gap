@@ -9,7 +9,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './RecordsHierarchyMenu.css'
-
+import Nav from '../../../Nav/Nav';
 
 class RecordsHierarchyMenu extends Component {
 
@@ -25,6 +25,7 @@ class RecordsHierarchyMenu extends Component {
     const {classes} = this.props;
     return (
       <React.Fragment>
+        <Nav/>
       <Typography variant="h6" gutterBottom align="center">
         Select Category to View Record
       </Typography>
