@@ -8,7 +8,7 @@ import Fab from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import LogoutButton from '../LogOutButton/LogOutButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import Nav from '../Nav/Nav';
 
 class AdminDashboard extends Component {
 
@@ -21,6 +21,7 @@ class AdminDashboard extends Component {
     const {classes} = this.props;
     return (
       <React.Fragment>
+        <Nav/>
       <Typography align="right"><LogoutButton /></Typography>
       <Typography variant="h6" gutterBottom align="center" className={classes.titleColor}>
           Admin Dashboard
@@ -54,7 +55,7 @@ class AdminDashboard extends Component {
               color="primary"
               aria-label="Add"
               className={classes.margin}
-              onClick={() => {this.props.history.push('/mangageuser')}}
+              onClick={() => {this.props.history.push('/manageuser')}}
               style={{width:'80vw', maxWidth:400}}
             >
               <Typography className={classes.fabColor}>Manage Roles</Typography>

@@ -6,7 +6,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import './WorkerDashboard.css'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Nav from '../Nav/Nav';
 
 class WorkerDashboard extends Component {
 
@@ -22,16 +23,17 @@ class WorkerDashboard extends Component {
     const {classes} = this.props;
     return (
       <React.Fragment>
-      <Typography variant="h6" gutterBottom>
+        <Nav/>
+      <Typography variant="h6" gutterBottom align="center" className={classes.titleColor}>
          Worker Dashboard
       </Typography>
-        < Grid container spacing={24}
+      < Grid container spacing={24}
           container
           direction="column"
           justify="center"
           alignItems="center"
         >
-
+         
           <Grid item xs={10} sm={6}>
             <Fab
               variant="extended"
@@ -39,11 +41,14 @@ class WorkerDashboard extends Component {
               color="primary"
               aria-label="Add"
               className={classes.margin}
+              onClick={() => {this.props.history.push('/logdashboard')}}
+              style={{width:'80vw', maxWidth:400}}
             >
-              <NavigationIcon className={classes.extendedIcon} />
-              Create Logs
-        </Fab>
+              <Typography className={classes.fabColor}>Create Logs</Typography>
+              <FontAwesomeIcon icon="clipboard" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+             </Fab>
           </Grid>
+      
           <Grid item xs={10} sm={6}>
             <Fab
               variant="extended"
@@ -51,13 +56,16 @@ class WorkerDashboard extends Component {
               color="primary"
               aria-label="Add"
               className={classes.margin}
+              onClick={() => {this.props.history.push('/recorddashboard')}}
+              style={{width:'80vw', maxWidth:400}}
             >
-              <NavigationIcon className={classes.extendedIcon} />
-              Manage Records
-        </Fab>   
+              <Typography className={classes.fabColor}>View Records</Typography>
+              <FontAwesomeIcon icon="table" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+            </Fab>
           </Grid>
-
+       
       </Grid>
+
      
   </React.Fragment>
     );
@@ -69,8 +77,23 @@ const styles = theme => ({
       display: 'flex',
       flexWrap: 'wrap',
   },
+  
+  margin: {
+    margin: theme.spacing.unit,
+  },
+  extendedIcon: {
+    marginRight: theme.spacing.unit,
+  },
+  fabIconColor:{
+    color: '#E6CD30',
+  },
+  fabColor:{
+    color: 'white',
+  },
+  titleColor:{
+    color: '#D19124',
+  }
 });
-
 
 
 

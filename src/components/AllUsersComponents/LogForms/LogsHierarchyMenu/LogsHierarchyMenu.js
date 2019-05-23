@@ -28,7 +28,7 @@ class LogsHierarchyMenu extends Component {
     return (
       <React.Fragment>
         <Nav/>
-      <Typography variant="h6" gutterBottom align="center">
+      <Typography variant="h6" gutterBottom align="center" className={classes.titleColor}>
       Choose a Category to View Logs
       </Typography>
       <Grid container spacing={24}
@@ -41,25 +41,25 @@ class LogsHierarchyMenu extends Component {
               <ListItem button onClick={() => {this.props.history.push('/harvestlog')}}>
                 <ListItemText primary="Harvest Traceability"/>
                 < ListItemIcon>
-                  <FontAwesomeIcon icon="seedling" />
+                  <FontAwesomeIcon icon="seedling" className={classes.iconColor}/>
               </ListItemIcon>
               </ListItem>
               <ListItem button onClick={() => {this.props.history.push('/compostlog')}}>
               <ListItemText primary="Compost Management"/>
               <ListItemIcon>
-                  <FontAwesomeIcon icon="recycle"/>
+                  <FontAwesomeIcon icon="recycle"className={classes.iconColor}/>
                 </ListItemIcon>
               </ListItem>
               <ListItem button onClick={() => {this.props.history.push('/waterlogdashboard')}}>
                 <ListItemText primary="Water Sources"/>
                 <ListItemIcon>
-                <FontAwesomeIcon icon="tint" />
+                <FontAwesomeIcon icon="tint" className={classes.iconColor} />
                 </ListItemIcon>
               </ListItem>
               <ListItem button onClick={() => {this.props.history.push('/employeelog')}}>
                 <ListItemText primary="Employee Training"/>
                 <ListItemIcon>
-                <FontAwesomeIcon icon="id-card" />
+                <FontAwesomeIcon icon="id-card" className={classes.iconColor}/>
                 </ListItemIcon>
               </ListItem>
           </List> 
@@ -77,6 +77,12 @@ const styles = theme => ({
       display: 'flex',
       flexWrap: 'wrap',
   },
+  titleColor: {
+    color: '#D19124',
+  },
+  iconColor:{
+    color:'#7690B8',
+  }
 });
 
 

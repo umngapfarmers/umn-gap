@@ -9,7 +9,7 @@ import Fab from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import LogoutButton from '../../../LogOutButton/LogOutButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import Nav from '../../../Nav/Nav';
 
 class HarvestYearDashboard extends Component {
 
@@ -25,6 +25,7 @@ class HarvestYearDashboard extends Component {
     const {classes} = this.props;
     return (
       <React.Fragment>
+        <Nav/>
         <Typography align="right"><LogoutButton /></Typography>
         <Typography variant="h6" gutterBottom align="center" className={classes.titleColor} align="center">
           Harvest Year Dashboard
@@ -48,6 +49,7 @@ class HarvestYearDashboard extends Component {
               style={{ width: '80vw', maxWidth: 400 }}
             >
               <Typography className={classes.fabColor}>Create New Harvest Year</Typography>
+              <FontAwesomeIcon icon="plus" style={{ marginLeft: 5 }} className={classes.fabIconColor} />
             </Fab>
           </Grid>
           <Grid item xs={10} sm={6}>
@@ -61,7 +63,7 @@ class HarvestYearDashboard extends Component {
               style={{ width: '80vw', maxWidth: 400 }}
             >
               <Typography className={classes.fabColor}>Edit Current Harvest Year</Typography>
-              <FontAwesomeIcon icon="users" style={{ marginLeft: 5 }} className={classes.fabIconColor} />
+              <FontAwesomeIcon icon="pen" style={{ marginLeft: 5 }} className={classes.fabIconColor} />
             </Fab>
           </Grid>
           
