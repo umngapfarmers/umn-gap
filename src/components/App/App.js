@@ -40,6 +40,8 @@ import WaterLogDashboard from '../AllUsersComponents/LogForms/SelectWaterLog/Sel
 import CompostLog from '../AllUsersComponents/LogForms/CompostManagementLog/CompostManagementLog';
 import EmployeeLog from '../AllUsersComponents/LogForms/EmployeeTrainingLog/EmployeeTrainingLog';
 import EditWorker from '../WorkerDashboard/EditWorker';
+import EditEmployee from '../WorkerDashboard/EditEmployee';
+
 import WaterTreatLog from '../AllUsersComponents/LogForms/WaterTreatmentLog/WaterTreatmentLog';
 import WaterInspectLog from '../AllUsersComponents/LogForms/WaterInspectionLog/WaterInspectionLog';
 
@@ -136,18 +138,23 @@ class App extends Component {
             />
             <Route
               exact
-              path="/manage-user"
+              path="/manageuser"
               component={ManageWorker}
             />
             <Route
               exact
-              path="/add-worker"
+              path="/addworker"
               component={AddWorker}
             />
               <Route
                 exact
-                path="/edit-worker"
+                path="/editworker"
                 component={EditWorker}
+              />
+              <Route
+                exact
+                path="/editemployee"
+                component={EditEmployee}
               />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.

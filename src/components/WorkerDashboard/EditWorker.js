@@ -15,6 +15,7 @@ import LocalFloristIcon from "@material-ui/icons/LocalFlorist";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EmployeeList from "./EmployeeList";
 import UserList from "./UserList";
+import NavBar from "../NavBar/NavBar";
 
 
 class EditWorker extends Component {
@@ -30,6 +31,9 @@ class EditWorker extends Component {
       console.log('role selected is', this.state.roleSelect)
     return (
       <React.Fragment>
+        
+        <NavBar/>
+
         <Typography variant="h6" gutterBottom align="center">
           Choose a User Type to Edit
         </Typography>

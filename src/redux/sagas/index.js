@@ -16,6 +16,7 @@ import setupCompostSaga from './setupCompostSaga';
 import personSaga from './personSaga';
 import harvestSaga from './harvestLogSaga';
 import employeeLogSaga from './employeeLogSaga';
+import manageUserSaga from './manageUserSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -42,6 +43,7 @@ export default function* rootSaga() {
     personSaga(),
     harvestSaga(),
     employeeLogSaga(),
+    manageUserSaga(),
 
   ]);
 }
