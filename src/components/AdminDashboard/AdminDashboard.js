@@ -17,17 +17,6 @@ class AdminDashboard extends Component {
     
   }
 
-  navToLogDashboard = () => {
-    this.props.history.push('/logdashboard');
-  }
-
-  navToHarvestDashboard = () => {
-    this.props.history.push('/harvestDashboard');
-  }
-
-
-
-
   render() {
     const {classes} = this.props;
     return (
@@ -51,7 +40,7 @@ class AdminDashboard extends Component {
               color="primary"
               aria-label="Add"
               className={classes.margin}
-              onClick={this.navToLogDashboard}
+              onClick={() => {this.props.history.push('/logdashboard')}}
               style={{width:'80vw', maxWidth:400}}
             >
               <Typography className={classes.fabColor}>Create Logs</Typography>
@@ -65,6 +54,7 @@ class AdminDashboard extends Component {
               color="primary"
               aria-label="Add"
               className={classes.margin}
+              onClick={() => {this.props.history.push('/mangageuser')}}
               style={{width:'80vw', maxWidth:400}}
             >
               <Typography className={classes.fabColor}>Manage Roles</Typography>
@@ -78,6 +68,7 @@ class AdminDashboard extends Component {
               color="primary"
               aria-label="Add"
               className={classes.margin}
+              onClick={() => {this.props.history.push('/recorddashboard')}}
               style={{width:'80vw', maxWidth:400}}
             >
               <Typography className={classes.fabColor}>View Records</Typography>

@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import './SelectRecord.css'
-
+import Nav from '../../../Nav/Nav';
 
 class SelectRecord extends Component {
 
@@ -20,6 +20,7 @@ class SelectRecord extends Component {
     const {classes} = this.props;
     return (
       <React.Fragment>
+        <Nav/>
       <Typography variant="h6" gutterBottom>
          Select Record
       </Typography>

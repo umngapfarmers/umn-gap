@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import './HarvestRecord.css'
+import Nav from '../../../Nav/Nav';
 
 
 class HarvestRecord extends Component {
@@ -20,10 +21,14 @@ class HarvestRecord extends Component {
     const {classes} = this.props;
     return (
       <React.Fragment>
-      <Typography variant="h6" gutterBottom>
+        <Nav/>
+      <Typography variant="h6" gutterBottom align="center">
          Harvest Record
       </Typography>
-      <Grid container spacing={24}>
+      <Grid container spacing={24}
+        direction="column"
+        justify="center"
+        alignItems="center">
          
           <Grid item xs={12} sm={6}>
              

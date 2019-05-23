@@ -9,6 +9,7 @@ import labelCode from './labelCodesReducer';
 import setupManure from './setupManureReducer';
 import setupCompost from './setupCompostReducer'
 import person from './personReducer';
+import recordharvestyear from './recordHarvestYearReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   setupManure,
   setupCompost,
   person,
+  recordharvestyear,
 });
 
 export default rootReducer;
