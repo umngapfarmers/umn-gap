@@ -54,7 +54,7 @@ class EmployeeTrainingLog extends Component {
   }
   else {
     return(
-      <Button disabled>Submit</Button>
+      <Button variant="contained" color="primary" style={{width:'80vw', maxWidth:400}} disabled>Submit</Button>
     )
   }
   }

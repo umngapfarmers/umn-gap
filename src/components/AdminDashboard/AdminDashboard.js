@@ -21,6 +21,10 @@ class AdminDashboard extends Component {
     this.props.history.push('/logdashboard');
   }
 
+  navToHarvestDashboard = () => {
+    this.props.history.push('/harvestDashboard');
+  }
+
 
 
 
@@ -87,6 +91,7 @@ class AdminDashboard extends Component {
               color="primary"
               aria-label="Add"
               className={classes.margin}
+              onClick={() => { this.props.history.push('/harvestdashboard') }}
               style={{width:'80vw', maxWidth:400}}
             >
                <Typography className={classes.fabColor}>Manage Harvest Year</Typography>
