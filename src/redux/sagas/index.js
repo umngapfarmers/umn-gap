@@ -2,6 +2,10 @@ import { all } from 'redux-saga/effects';
 import loginSaga from './loginSaga';
 import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
+//import setupFarmSaga from './setupFarmSaga'
+import workerSaga from './workerSaga';
+import harvestYearSaga from './harvestYearSaga';
+
 import waterSetup from './waterSetup';
 import cropSetup from './cropSetup';
 
@@ -12,6 +16,7 @@ import setupCompostSaga from './setupCompostSaga';
 import personSaga from './personSaga';
 import harvestSaga from './harvestLogSaga';
 import employeeLogSaga from './employeeLogSaga';
+import manageUserSaga from './manageUserSaga';
 import recordHarvestYearSaga from './recordHarvestYearSaga';
 
 // rootSaga is the primary saga.
@@ -26,6 +31,10 @@ export default function* rootSaga() {
     loginSaga(),
     registrationSaga(),
     userSaga(),
+   // setupFarmSaga(),
+    workerSaga(),
+    harvestYearSaga(),
+    
     waterSetup(),
     cropSetup(),
     getLabelCodeSaga(),
@@ -35,7 +44,8 @@ export default function* rootSaga() {
     personSaga(),
     harvestSaga(),
     employeeLogSaga(),
-    recordHarvestYearSaga(),
+    manageUserSaga(),
+    recordHarvestYearSaga()
 
   ]);
 }

@@ -34,12 +34,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRecycle, faTint, faSeedling, faHome, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters } from '@fortawesome/free-solid-svg-icons';
 
 import './App.css';
+import ManageWorker from '../WorkerDashboard/ManageWorker';
+
+import AddWorker from '../WorkerDashboard/AddWorker';
 import FieldTypes from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateFields/CreateFields';
 import LabelCode from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateLabelCodes/CreateLabelCodes';
 import WaterLogDashboard from '../AllUsersComponents/LogForms/SelectWaterLog/SelectWaterLog';
 // import ManureLogDashboard from '../AllUsersComponents/LogForms/SelectCompostManureLog/SelectCompostManureLog';
 import CompostLog from '../AllUsersComponents/LogForms/CompostManagementLog/CompostManagementLog';
 import EmployeeLog from '../AllUsersComponents/LogForms/EmployeeTrainingLog/EmployeeTrainingLog';
+import EditWorker from '../WorkerDashboard/EditWorker';
+import EditEmployee from '../WorkerDashboard/EditEmployee';
+
 import WaterTreatLog from '../AllUsersComponents/LogForms/WaterTreatmentLog/WaterTreatmentLog';
 import WaterInspectLog from '../AllUsersComponents/LogForms/WaterInspectionLog/WaterInspectionLog';
 import RecordDashboard from '../AllUsersComponents/Records/RecordsHierarchyMenu/RecordsHierarchyMenu';
@@ -159,6 +165,26 @@ class App extends Component {
               path="/worker"
               component={WorkerDashboard}
             />
+            <Route
+              exact
+              path="/manageuser"
+              component={ManageWorker}
+            />
+            <Route
+              exact
+              path="/addworker"
+              component={AddWorker}
+            />
+              <Route
+                exact
+                path="/editworker"
+                component={EditWorker}
+              />
+              <Route
+                exact
+                path="/editemployee"
+                component={EditEmployee}
+              />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
