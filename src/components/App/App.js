@@ -160,7 +160,6 @@ class App extends Component {
               component={CreateCompost}
             />
 
-
             <Route
               exact
               path='/logdashboard'
