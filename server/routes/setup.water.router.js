@@ -5,7 +5,7 @@ const router = express.Router();
 router.get('/source', (req, res) => {
     let harvestYear = req.user.current_harvest_year;
 
-    const queryText = `SELECT * FROM "farm_water_source" WHERE "harvest_year_id" = $1`;
+    const queryText = `SELECT * FROM "farm_water_source" WHERE "harvest_year_id" = $1 AND farm_water_source = true`;
     pool.query(queryText, [harvestYear])
         .then(result => {
             res.send(result.rows);
