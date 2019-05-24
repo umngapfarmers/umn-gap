@@ -80,7 +80,8 @@ CREATE TABLE "label_code"
   "farm_crop_id" int references "farm_crop",
   "farm_field_id" int references "farm_field",
   "harvest_year_id" int references "harvest_year",
-  "label_code_text" varchar(200)
+  "label_code_text" varchar(200),
+  "label_code_status" boolean DEFAULT true
 );
 
 -- logs

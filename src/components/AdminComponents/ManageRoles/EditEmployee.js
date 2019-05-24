@@ -8,7 +8,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
-import NavBar from "../NavBar/NavBar";
+import NavBar from '../../Nav/Nav';
 
 const styles = theme => ({
     container: {

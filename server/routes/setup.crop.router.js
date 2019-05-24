@@ -5,7 +5,7 @@ const router = express.Router();
 router.get('/crop', (req, res) => {
     let harvestYear = req.user.current_harvest_year;
 
-    let sqlQuery = `SELECT * FROM "farm_crop" WHERE "harvest_year_id" = $1`;
+    let sqlQuery = `SELECT * FROM "farm_crop" WHERE "harvest_year_id" = $1 AND "farm_crop_status" = TRUE`;
     pool.query(sqlQuery, [harvestYear])
         .then(result => {
             res.send(result.rows);
@@ -20,7 +20,7 @@ router.get('/crop', (req, res) => {
 router.get('/field', (req, res) => {
     let harvestYear = req.user.current_harvest_year;
 
-    let sqlQuery = `SELECT * FROM "farm_field" WHERE "harvest_year_id" = $1`;
+    let sqlQuery = `SELECT * FROM "farm_field" WHERE "harvest_year_id" = $1 AND "farm_field_status" = TRUE`;
     pool.query(sqlQuery, [harvestYear])
         .then(result => {
             res.send(result.rows);

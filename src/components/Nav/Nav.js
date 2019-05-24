@@ -7,14 +7,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import LogoutButton from '../LogOutButton/LogOutButton';
-import HomeIcon from '@material-ui/icons/Home'
 import {withRouter} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -105,6 +100,93 @@ class MenuAppBar extends React.Component {
       const { classes } = this.props;
       const { auth, anchorEl } = this.state;
       const open = Boolean(anchorEl);
+
+      let conditionalMenu = null;
+
+      if(this.props.reduxState.user.user_role == 'admin'){
+        conditionalMenu =
+        <Menu
+        id="menu-appbar"
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        open={open}
+        onClose={this.handleClose}
+        >
+            <MenuItem onClick={() => {this.props.history.push('/')}}>
+            <FontAwesomeIcon icon="home"  style={{color: '#7690B8',
+            marginRight: 5}}/>
+                <Typography>Home </Typography>
+            </MenuItem>
+
+            <MenuItem onClick={() => {this.props.history.push('/logdashboard')}}>
+                <FontAwesomeIcon icon="clipboard"  style={{color: '#7690B8',
+            marginRight: 5}}/>
+                <Typography>Create Logs </Typography>
+            </MenuItem>
+
+            <MenuItem onClick={() => {this.props.history.push('/manageuser')}}>
+                <FontAwesomeIcon icon="users"  style={{color: '#7690B8',
+            marginRight: 5}}/>
+                <Typography>Manage Roles </Typography>
+            </MenuItem>
+
+            <MenuItem onClick={() => {this.props.history.push('/recorddashboard')}}>
+                <FontAwesomeIcon icon="table"  style={{color: '#7690B8',
+            marginRight: 5}}/>
+                <Typography>View Records </Typography>
+            </MenuItem>
+
+            <MenuItem onClick={() => {this.props.history.push('/harvestdashboard')}}>
+                <FontAwesomeIcon icon="tractor" style={{color: '#7690B8',
+            marginRight: 5}}/>
+                <Typography>Manage Harvest Year </Typography>
+            </MenuItem>
+        </Menu>
+    }
+    if(this.props.reduxState.user.user_role == 'worker'){
+      conditionalMenu =
+            <Menu
+            id="menu-appbar"
+            anchorEl={anchorEl}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            open={open}
+            onClose={this.handleClose}
+            >
+                <MenuItem onClick={() => {this.props.history.push('/')}}>
+                <FontAwesomeIcon icon="home"  style={{color: '#7690B8',
+                marginRight: 5}}/>
+                    <Typography>Home </Typography>
+                </MenuItem>
+
+                <MenuItem onClick={() => {this.props.history.push('/logdashboard')}}>
+                    <FontAwesomeIcon icon="clipboard"  style={{color: '#7690B8',
+                marginRight: 5}}/>
+                    <Typography>Create Logs </Typography>
+                </MenuItem>
+
+
+                <MenuItem onClick={() => {this.props.history.push('/recorddashboard')}}>
+                    <FontAwesomeIcon icon="table"  style={{color: '#7690B8',
+                marginRight: 5}}/>
+                    <Typography>View Records </Typography>
+                </MenuItem>
+            </Menu>
+        }
+    
   
       return (
         <div className={classes.root}>
@@ -120,23 +202,9 @@ class MenuAppBar extends React.Component {
                   >
                      <MenuIcon />
                   </IconButton>
-                  <Menu
-                    id="menu-appbar"
-                    anchorEl={anchorEl}
-                    anchorOrigin={{
-                      vertical: 'top',
-                      horizontal: 'right',
-                    }}
-                    transformOrigin={{
-                      vertical: 'top',
-                      horizontal: 'right',
-                    }}
-                    open={open}
-                    onClose={this.handleClose}
-                  >
-                   {this.conditionallyRenderMenuItems()}
+                 
+                   {conditionalMenu}
 
-                  </Menu>
                 </div>
               )}
               <Typography variant="h6" color="inherit" className={classes.grow}>

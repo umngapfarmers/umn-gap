@@ -15,7 +15,7 @@ import LocalFloristIcon from "@material-ui/icons/LocalFlorist";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EmployeeList from "./EmployeeList";
 import UserList from "./UserList";
-import NavBar from "../NavBar/NavBar";
+import NavBar from '../../Nav/Nav';
 
 
 class EditWorker extends Component {

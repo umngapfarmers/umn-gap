@@ -36,19 +36,17 @@ const ProtectedRoute = (props) => {
       ComponentToShow = WorkerDashboard;
     }
 
-    if (otherProps.path === '/home' && user.user_role === 'superAdmin'){
-      ComponentToShow = SuperAdminDashboard;
-    }
-
-
-
     else if (loginMode === 'registerFarm'){
       ComponentToShow = CreateHarvestYear;
     }
     
+    else if (otherProps.path === '/home' && user.user_role === 'superAdmin'){
+      ComponentToShow = SuperAdminDashboard;
+    }
     else if (otherProps.path === '/home' && user.user_role === 'admin'){
       ComponentToShow = AdminDashboard;
     }
+
     else{
     // if the user is logged in (only logged in users have ids)
     // show the component that is protected

@@ -5,9 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
-import './WorkerDashboard.css'
-import NavBar from '../NavBar/NavBar';
-
+import NavBar from '../../Nav/Nav';
 
 class ManageWorker extends Component {
 

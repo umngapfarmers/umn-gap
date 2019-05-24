@@ -8,9 +8,6 @@ import {
 import {connect} from 'react-redux';
 import ProtectedRoute from '../Auth/ProtectedRoute/ProtectedRoute';
 import AdminProtectedRoute from '../Auth/ProtectedRoute/AdminProtectedRoute';
-import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
 import WaterSource from '../AdminComponents/HarvestYear/NewHarvestYear/NewWater/CreateWaterSources/CreateWaterSources'
 import WaterLabel from '../AdminComponents/HarvestYear/NewHarvestYear/NewWater/CreateWaterSourcesLabelCodes/CreateWaterSourcesLabelCodes';
 import CropTypes from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateCrops/CreateCrops';
@@ -31,23 +28,22 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import theme from './theme';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRecycle, faTint, faSeedling, faHome, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters } from '@fortawesome/free-solid-svg-icons';
+import { faRecycle, faTint, faPen, faPlus, faSeedling, faHome, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters } from '@fortawesome/free-solid-svg-icons';
 
 import './App.css';
-import ManageWorker from '../WorkerDashboard/ManageWorker';
+import ManageWorker from '../AdminComponents/ManageRoles/ManageWorker';
 
-import AddWorker from '../WorkerDashboard/AddWorker';
+import AddWorker from '../AdminComponents/ManageRoles/AddWorker';
 import FieldTypes from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateFields/CreateFields';
 import LabelCode from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateLabelCodes/CreateLabelCodes';
 import WaterLogDashboard from '../AllUsersComponents/LogForms/SelectWaterLog/SelectWaterLog';
 // import ManureLogDashboard from '../AllUsersComponents/LogForms/SelectCompostManureLog/SelectCompostManureLog';
 import CompostLog from '../AllUsersComponents/LogForms/CompostManagementLog/CompostManagementLog';
 import EmployeeLog from '../AllUsersComponents/LogForms/EmployeeTrainingLog/EmployeeTrainingLog';
-import EditWorker from '../WorkerDashboard/EditWorker';
-import EditEmployee from '../WorkerDashboard/EditEmployee';
+import EditCrops from '../AdminComponents/HarvestYear/EditHarvestYear/EditCrops/EditCrops';
+import EditWorker from '../AdminComponents/ManageRoles/EditWorker';
+import EditEmployee from '../AdminComponents/ManageRoles/EditEmployee';
 
-import WaterTreatLog from '../AllUsersComponents/LogForms/WaterTreatmentLog/WaterTreatmentLog';
-import WaterInspectLog from '../AllUsersComponents/LogForms/WaterInspectionLog/WaterInspectionLog';
 import RecordDashboard from '../AllUsersComponents/Records/RecordsHierarchyMenu/RecordsHierarchyMenu';
 import RecordHarvest from '../AllUsersComponents/Records/HarvestRecord/HarvestRecord';
 import RecordEmployeeTraining from '../AllUsersComponents/Records/EmployeeTrainingRecord/EmployeeTrainingRecord';
@@ -58,8 +54,9 @@ import RecordWaterTreat from '../AllUsersComponents/Records/WaterTreatmentRecord
 import RecordManure from '../AllUsersComponents/Records/ManureRecord/ManureRecord';
 import RecordCompostPile from '../AllUsersComponents/Records/CompostPileRecord/CompostPileRecord';
 import RecordCompostTurn from '../AllUsersComponents/Records/CompostTurningRecord/CompostTurningRecord';
-
-library.add(faHome, faRecycle, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters);
+import WaterInspectLog from '../AllUsersComponents/LogForms/WaterInspectionLog/WaterInspectionLog';
+import WaterTreatLog from '../AllUsersComponents/LogForms/WaterTreatmentLog/WaterTreatmentLog';
+library.add(faHome, faRecycle, faPen, faPlus, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters);
 
 class App extends Component {
   componentDidMount () {
@@ -76,29 +73,19 @@ class App extends Component {
               <Redirect exact from="/" to="/home" />
               {/* Visiting localhost:3000/about will show the about page.
               This is a route anyone can see, no login necessary */}
-              <Route
-                exact
-                path="/about"
-                component={AboutPage}
-              />
+             <ProtectedRoute
+              exact
+              path="/home"
+            />
               {/* For protected routes, the view could show one of several things on the same route.
               Visiting localhost:3000/home will show the UserPage if the user is logged in.
               If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
               Even though it seems like they are different pages, the user is always on localhost:3000/home */}
-              <ProtectedRoute
-                exact
-                path="/home"
-                component={UserPage}
-              />
+          
               {/* This works the same as the other protected route, except that if the user is logged in,
               they will see the info page instead. */}
-              <Route
-                exact
-                path="/info"
-                component={InfoPage}
-              />
-
-              <Route
+              
+              <ProtectedRoute
                 exact
                 path="/newharvestyear"
                 component={NewHarvestYearDate}
@@ -110,11 +97,8 @@ class App extends Component {
                 component={EnterFarmInformationHierarchyMenu}
               />
 
-            <Route
-              exact
-              path="/about"
-              component={AboutPage}
-            />
+              
+          
             <Route
               exact
               path="/water"
@@ -149,6 +133,11 @@ class App extends Component {
               exact
               path="/edithierarchy"
               component={EditHierarchy}
+            />
+            <Route
+              exact
+              path="/editcrops"
+              component={EditCrops}
             />
             <Route
               exact
@@ -189,19 +178,10 @@ class App extends Component {
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
             Even though it seems like they are different pages, the user is always on localhost:3000/home */}
-            <Route
-              exact
-              path="/home"
-              component={UserPage}
-            />
-            
+        
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
-            <Route
-              exact
-              path="/info"
-              component={InfoPage}
-            />
+            
             <ProtectedRoute
               exact
               path="/fertilizerdash"
