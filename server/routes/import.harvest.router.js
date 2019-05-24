@@ -32,9 +32,9 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
     const farmManureKeys = ["farm_manure_date", "farm_manure_description", "farm_manure_rate", "label_code_id", "harvest_year_id", "farm_manure_status"];
 
     const getFarmCompost = `SELECT * FROM "farm_compost" WHERE "harvest_year_id" = $1;`;
-    const insertFarmCompostQuery = ` INSERT INTO "farm_compost"("farm_compost_name", "farm_compost_date", "farm_compost_description", "user_id", "harvest_year_id","farm_compost_status")
-                                    VALUES($1, $2, $3, $4, $5, $6);`;
-    const farmCompostKeys = ["farm_compost_name", "farm_compost_date", "farm_compost_description", "user_id", "harvest_year_id", "farm_compost_status"];
+    const insertFarmCompostQuery = ` INSERT INTO "farm_compost"("farm_compost_name", "farm_compost_date", "farm_compost_description", "harvest_year_id","farm_compost_status")
+                                    VALUES($1, $2, $3, $4, $5);`;
+    const farmCompostKeys = ["farm_compost_name", "farm_compost_date", "farm_compost_description", "harvest_year_id", "farm_compost_status"];
     
     const getFarmWaterSource = `SELECT * FROM "farm_water_source" WHERE "harvest_year_id" = $1;`;
     const insertFarmWaterSourceQuery = `INSERT INTO "farm_water_source" ("farm_water_source_name", "harvest_year_id") VALUES ($1, $2);`;
@@ -96,6 +96,7 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
     } catch (error) {
         await client.query('ROLLBACK')
         console.log('Error harvest year import', error);
+        alert("That didn't work, please try again")
         res.sendStatus(500);
     } finally {
         client.release()
