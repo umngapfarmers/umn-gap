@@ -42,6 +42,7 @@ class SelectNewHarvestYearDate extends Component {
     event.preventDefault();
     console.log('in handleSubmit');
     this.props.dispatch({type:'ADD_HARVEST_YEAR', payload: this.state.newHarvestYear});
+    this.props.dispatch({type:'SET_TO_LOGIN_MODE'});
     this.props.history.push('/newfarminfo')
   }
 
