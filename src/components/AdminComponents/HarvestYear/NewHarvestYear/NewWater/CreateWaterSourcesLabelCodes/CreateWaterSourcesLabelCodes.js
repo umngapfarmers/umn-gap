@@ -60,7 +60,7 @@ class CreateWaterSourcesLabelCodes extends Component {
   }
 
   nextPage = () => {
-    this.props.history.push('/newfarminfo');
+    this.props.history.push('/');
   }
 
 

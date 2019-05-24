@@ -18,6 +18,7 @@ import harvestSaga from './harvestLogSaga';
 import employeeLogSaga from './employeeLogSaga';
 import manageUserSaga from './manageUserSaga';
 import recordHarvestYearSaga from './recordHarvestYearSaga';
+import importHarvestSaga from './importHarvestSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -31,10 +32,8 @@ export default function* rootSaga() {
     loginSaga(),
     registrationSaga(),
     userSaga(),
-   // setupFarmSaga(),
     workerSaga(),
     harvestYearSaga(),
-    
     waterSetup(),
     cropSetup(),
     getLabelCodeSaga(),
@@ -45,7 +44,8 @@ export default function* rootSaga() {
     harvestSaga(),
     employeeLogSaga(),
     manageUserSaga(),
-    recordHarvestYearSaga()
+    recordHarvestYearSaga(),
+    importHarvestSaga()
 
   ]);
 }

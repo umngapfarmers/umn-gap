@@ -38,7 +38,7 @@ class CreateCompost extends Component {
         farm_compost_name: '',
         farm_compost_date: '',
         farm_compost_description: '',
-        harvest_year_id: this.props.reduxState.user.current_harvest_year,
+        harvest_year_id: '',
         farm_compost_status:true
     })
   }

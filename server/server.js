@@ -20,6 +20,7 @@ const setupManureRouter = require('./routes/setup.manure.router');
 const setupCompostRouter = require('./routes/setup.compost.router');
 const log_harvestRouter = require('./routes/log.harvest.router');
 const log_employeeRouter = require('./routes/log.employee.router');
+const importHarvestRouter = require('./routes/import.harvest.router');
 const manageUserRouter = require('./routes/manageuser.router');
 const record_harvestYearRouter = require('./routes/record.harvestYear.router');
 
@@ -50,6 +51,7 @@ app.use('/setup/manure', setupManureRouter);
 app.use('/setup/compost', setupCompostRouter)
 app.use('/log/harvest/', log_harvestRouter)
 app.use('/log/employee', log_employeeRouter);
+app.use('/import', importHarvestRouter);
 app.use('/manage', manageUserRouter);
 app.use('/record/harvestYear', record_harvestYearRouter);
 
