@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 
-router.post('/', async (req, res) => {
+router.post('/', rejectUnauthenticated, async (req, res) => {
     const client = await pool.connect();
     console.log('in import harvest');
     const harvest_year_id = 1;   // CHANGE ME -----------
@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
     const farmWaterKeys = ["farm_water_source_id", "label_code_id", "harvest_year_id"];
 
     const userUpdateQuery = `UPDATE "user" SET "current_harvest_year" = $1 WHERE "user_id" = $2`;
-    
+
     // updates harvest year of each item    
     // after item is mutated it is posted to the db
     // params are list to mutate, the property holding id for specfic table, insertQuery for specific table, and property keys for list item values
@@ -90,8 +90,7 @@ router.post('/', async (req, res) => {
         const farmWaterResult = await client.query(getFarmWater, [harvest_year_id]);
         await changeAndPost(farmWaterResult.rows, 'farm_water_id', insertFarmWaterQuery, farmWaterKeys, newHarvestId);
 
-//// -------------------------------------------------------------CHANGE ME!----------------------------------------------------
-        await client.query(userUpdateQuery, [newHarvestId, 1]) // req.user.user_id
+        await client.query(userUpdateQuery, [newHarvestId, req.user.user_id]) // req.user.user_id
         await client.query('COMMIT')
         res.sendStatus(200);
     } catch (error) {

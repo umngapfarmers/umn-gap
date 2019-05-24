@@ -45,7 +45,7 @@ class NewHarvestDashboard extends Component {
   handlePrevious = event => {
     event.preventDefault();
     console.log('in handlePrevious');
-    this.props.dispatch({ type: 'ADD_HARVEST_YEAR', payload: this.state.newHarvestYear });
+    this.props.dispatch({ type: 'IMPORT_HARVEST', payload: this.state.newHarvestYear });
     this.props.history.push('/edithierarchy')
   }
 
@@ -53,18 +53,26 @@ class NewHarvestDashboard extends Component {
     console.log('in handleError');
     if (this.state.newHarvestYear.harvest_year !== '') {
       return (
-        <section>
-          <Button size="large" color="primary" onClick={this.handleCreate} >Create New Year</Button>
-          <Button size="large" color="primary" onClick={this.handlePrevious} >Use Previous Year</Button>
-        </section>
+      <>
+        <Grid item xs={12} sm={6}>
+          <Button size="large" color="primary" variant={'contained'} onClick={this.handleCreate} >Create New Year</Button>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Button size="large" color="primary" variant={'contained'} onClick={this.handlePrevious} >Use Previous Year</Button>
+        </Grid>
+      </>
       )
     }
     else {
       return (
-        <section>
-          <Button disabled>Create New Year</Button>
-          <Button disabled>Use Previous Year</Button>
-        </section>
+      <>
+        <Grid item xs={8} sm={6}>
+          <Button size="large" color="primary" variant={'contained'} disabled >Create New Year</Button>
+        </Grid>
+        <Grid item xs={8} sm={6}>
+          <Button size="large" color="primary" variant={'contained'} disabled >Use Previous Year</Button>
+        </Grid>
+      </>
       )
     }
   }
@@ -75,7 +83,7 @@ class NewHarvestDashboard extends Component {
     return (
       <React.Fragment>
             <Typography variant="h6" gutterBottom align="center">
-                New Harvest/ Use Previous Years Info
+                New Harvest Year
             </Typography>
         <Grid container spacing={24}
           container
@@ -107,10 +115,7 @@ class NewHarvestDashboard extends Component {
             </TextField>
           </Grid>
 
-          <Grid item xs={8} sm={6}>
             {this.handleError()}
-          </Grid>
-
         </Grid>
            
         </React.Fragment>
