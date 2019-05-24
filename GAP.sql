@@ -114,7 +114,6 @@ CREATE TABLE "farm_compost"
   "farm_compost_name" varchar (200) NOT NULL,
   "farm_compost_date" timestamp,
   "farm_compost_description" varchar (250),
-  "user_id" INT REFERENCES "user",
   "harvest_year_id" INT REFERENCES "harvest_year",
   "farm_compost_status" boolean DEFAULT true
 );
