@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import './EditCrops.css'
+import './EditCrops.css';
+import CropComponent from './Crops/Crops';
 
 
 class EditCrops extends Component {
@@ -19,10 +20,10 @@ class EditCrops extends Component {
   render() {
     const {classes} = this.props;
     return (
+      
       <React.Fragment>
-            <Typography variant="h6" gutterBottom>
-            Edit Crops
-            </Typography>
+        <CropComponent />
+            
             <Grid container spacing={24}>
                
                 <Grid item xs={12} sm={6}>

@@ -40,11 +40,10 @@ import WaterLogDashboard from '../AllUsersComponents/LogForms/SelectWaterLog/Sel
 // import ManureLogDashboard from '../AllUsersComponents/LogForms/SelectCompostManureLog/SelectCompostManureLog';
 import CompostLog from '../AllUsersComponents/LogForms/CompostManagementLog/CompostManagementLog';
 import EmployeeLog from '../AllUsersComponents/LogForms/EmployeeTrainingLog/EmployeeTrainingLog';
+import EditCrops from '../AdminComponents/HarvestYear/EditHarvestYear/EditCrops/EditCrops';
 import EditWorker from '../AdminComponents/ManageRoles/EditWorker';
 import EditEmployee from '../AdminComponents/ManageRoles/EditEmployee';
 
-import WaterTreatLog from '../AllUsersComponents/LogForms/WaterTreatmentLog/WaterTreatmentLog';
-import WaterInspectLog from '../AllUsersComponents/LogForms/WaterInspectionLog/WaterInspectionLog';
 import RecordDashboard from '../AllUsersComponents/Records/RecordsHierarchyMenu/RecordsHierarchyMenu';
 import RecordHarvest from '../AllUsersComponents/Records/HarvestRecord/HarvestRecord';
 import RecordEmployeeTraining from '../AllUsersComponents/Records/EmployeeTrainingRecord/EmployeeTrainingRecord';
@@ -55,7 +54,8 @@ import RecordWaterTreat from '../AllUsersComponents/Records/WaterTreatmentRecord
 import RecordManure from '../AllUsersComponents/Records/ManureRecord/ManureRecord';
 import RecordCompostPile from '../AllUsersComponents/Records/CompostPileRecord/CompostPileRecord';
 import RecordCompostTurn from '../AllUsersComponents/Records/CompostTurningRecord/CompostTurningRecord';
-
+import WaterInspectLog from '../AllUsersComponents/LogForms/WaterInspectionLog/WaterInspectionLog';
+import WaterTreatLog from '../AllUsersComponents/LogForms/WaterTreatmentLog/WaterTreatmentLog';
 library.add(faHome, faRecycle, faPen, faPlus, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters);
 
 class App extends Component {
@@ -133,6 +133,11 @@ class App extends Component {
               exact
               path="/edithierarchy"
               component={EditHierarchy}
+            />
+            <Route
+              exact
+              path="/editcrops"
+              component={EditCrops}
             />
             <Route
               exact

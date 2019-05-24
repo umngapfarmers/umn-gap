@@ -81,6 +81,36 @@ function* deleteFieldSource(action) {
     }
 }
 
+function* disableCropSource(action) {
+    console.log('Hit the disableCropSource', action);
+
+    try {
+        yield axios.put(`/setupCrop/crop/${action.payload}`);
+        console.log('saga id is', action.payload);
+
+        yield put({ type: 'GET_CROP_SOURCE' });
+    }
+    catch (error) {
+        console.log(`Couldn't change crop`, error);
+        alert(`Sorry, couldn't change your crop. Try again later`);
+    }
+}
+
+function* disableFieldSource(action) {
+    console.log('Hit the disableFieldSource', action);
+
+    try {
+        yield axios.put(`/setupCrop/field/${action.payload}`);
+        console.log('saga id is', action.payload);
+
+        yield put({ type: 'GET_FIELD_SOURCE' });
+    }
+    catch (error) {
+        console.log(`Couldn't change field`, error);
+        alert(`Sorry, couldn't change your field. Try again later`);
+    }
+}
+
 function* cropSourceSaga() {
     yield takeLatest('ADD_CROP_SOURCE', addCropSource);
     yield takeLatest('GET_CROP_SOURCE', getCropSource);
@@ -88,6 +118,8 @@ function* cropSourceSaga() {
     yield takeLatest('GET_FIELD_SOURCE', getFieldSource);
     yield takeLatest('DELETE_CROP_SOURCE', deleteCropSource);
     yield takeLatest('DELETE_FIELD_SOURCE', deleteFieldSource);
+    yield takeLatest('DISABLE_FIELD_SOURCE', disableFieldSource);
+    yield takeLatest('DISABLE_CROP_SOURCE', disableCropSource);
 }
 
 
