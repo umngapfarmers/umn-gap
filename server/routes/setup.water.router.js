@@ -5,7 +5,7 @@ const router = express.Router();
 router.get('/source', (req, res) => {
     let harvestYear = req.user.current_harvest_year;
 
-    const queryText = `SELECT * FROM "farm_water_source" WHERE "harvest_year_id" = $1 AND farm_water_source = true`;
+    const queryText = `SELECT * FROM "farm_water_source" WHERE "harvest_year_id" = $1 AND farm_water_status = true`;
     pool.query(queryText, [harvestYear])
         .then(result => {
             res.send(result.rows);
@@ -24,7 +24,7 @@ router.get('/label', (req, res) => {
     JOIN "farm_water" ON "farm_water"."farm_water_source_id" = "farm_water_source"."farm_water_source_id"
     JOIN "label_code" ON "label_code"."label_code_id" = 
     "farm_water"."label_code_id"
-    WHERE "farm_water"."harvest_year_id" = $1; AND "farm_water_status" = TRUE`;
+    WHERE "farm_water"."harvest_year_id" = $1 AND "farm_water"."farm_water_status" = TRUE`;
     pool.query(queryText, [harvestYear])
         .then(result => {
             res.send(result.rows);
