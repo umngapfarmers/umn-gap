@@ -13,12 +13,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-
-
 
 class EditCrops extends Component {
-
 
     state = {
         newCrop: {
@@ -28,7 +24,7 @@ class EditCrops extends Component {
             type: ''
         },
         disable: true,
-        checkedA: true,
+        checkedA: [],
         setOpen: false,
         dialogState: [],
 
@@ -78,9 +74,7 @@ class EditCrops extends Component {
             ...this.state,
             dialogState: this.props.reduxState.cropSetup.cropSetup[i],
             setOpen: true,
-
         })
-        console.log('in click to open', this.state.dialogState);
     }
 
     handleClose = () => {
@@ -146,7 +140,7 @@ class EditCrops extends Component {
                                     <Grid item xs={12} sm={6}
                                             style={{ display: "flex"}}
                                         >
-                                        <Checkbox checked={this.state.checkedA}
+                                        <Checkbox 
                                             onChange={this.handleCheck('checkedA')}
                                             value="checkedA"
                                         />
@@ -158,7 +152,7 @@ class EditCrops extends Component {
                                 </Grid>
                             )}
                                 <Grid item xs={12} sm={6}>
-                                    <Dialog open={this.state.setOpen} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+                                    <Dialog open={this.state.setOpen}  aria-labelledby="form-dialog-title">
                                         <DialogContent >
                                             <TextField
                                                 autoFocus
