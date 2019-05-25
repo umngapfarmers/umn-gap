@@ -10,11 +10,18 @@ class CompostPileLog extends Component {
 
 
   state= {
-    
+    entry:{
+      compost_date:'',
+      farm_compost_id: '',
+      compost_turned: '',
+      test_area_1_temp: '',
+      test_area_2_temp: '',
+      test_area_3_temp: '',
+      test_area_4_temp: '',
+      label_code_id: '',
+      compost_sig: '',
+    } 
   }
-
-
-
 
   render() {
     const {classes} = this.props;
@@ -25,9 +32,38 @@ class CompostPileLog extends Component {
          Compost Pile Log
       </Typography>
       <Grid container spacing={24}>
+          <Grid item xs={12} sm={6}>
+            <FormControl>
+                <TextField 
+                    label="Entry Date" 
+                    variant="outlined" 
+                    color="primary"
+                    onChange={this.handleChangeFor('compost_date')}
+                    type="date"
+                    value={this.state.entry.compost_date}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  >
+                </TextField>
+            </FormControl>
+          </Grid>
          
           <Grid item xs={12} sm={6}>
-             
+            <FormControl>
+                <TextField 
+                    label="Entry Date" 
+                    variant="outlined" 
+                    color="primary"
+                    onChange={this.handleChangeFor('compost_date')}
+                    type="date"
+                    value={this.state.entry.compost_date}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  >
+                </TextField>
+            </FormControl>
           </Grid>
 
       </Grid>
