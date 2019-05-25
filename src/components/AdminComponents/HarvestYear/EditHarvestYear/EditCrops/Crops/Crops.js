@@ -21,20 +21,31 @@ class EditCrops extends Component {
             type: '',
         },
         editCrop: {
-            type: ''
+            change: '',
+        },
+        dialogState: {
+            array: '',
         },
         disable: true,
         checkedA: [],
         setOpen: false,
-        dialogState: [],
 
     }
 
     handleInputChangeFor = propertyName => (event) => {
         this.setState({
             newCrop: {
-                ...this.setState,
+                ...this.state,
                 [propertyName]: event.target.value,
+            },
+            editCrop: {
+                [propertyName]: event.target.value,
+            }, 
+            dialogState: {
+                array: {
+                    ...this.state.dialogState.array,
+                    [propertyName]: event.target.value,
+                }
             },
             disable: false
         });
@@ -72,9 +83,16 @@ class EditCrops extends Component {
         
         this.setState({
             ...this.state,
-            dialogState: this.props.reduxState.cropSetup.cropSetup[i],
+            dialogState: {
+                array: this.props.reduxState.cropSetup.cropSetup[i],
+            },
+            editCrop: {
+                change: this.props.reduxState.cropSetup.cropSetup[i],
+            },
             setOpen: true,
         })
+        console.log('sate is', this.dialogState);
+        
     }
 
     handleClose = () => {
@@ -91,7 +109,11 @@ class EditCrops extends Component {
             setOpen: false
 
         })
-        this.props.dispatch({type: "EDIT_CROP_SOURCE", payload: this.state.editCrop})
+        this.props.dispatch({type: "EDIT_CROP_SOURCE", payload: this.state.dialogState.array})
+        this.props.dispatch({ type: "GET_CROP_SOURCE"})
+        console.log('id is', this.state.dialogState);
+        
+
     }
 
     render() {
@@ -158,9 +180,9 @@ class EditCrops extends Component {
                                                 autoFocus
                                                 margin="dense"
                                                 id="name"
-                                                label="Crop Name"
-                                                value={this.state.dialogState.farm_crop_type}
-                                                onChange={this.handleInputChangeFor('editCrop')}
+                                                label={"Crop Name"}
+                                                value={this.state.dialogState.array.farm_crop_type}
+                                                onChange={this.handleInputChangeFor('farm_crop_type')}
                                                 fullWidth
                                             />
                                         </DialogContent>
@@ -168,7 +190,7 @@ class EditCrops extends Component {
                                             <Button onClick={this.handleClose} color="primary">
                                                 Cancel
                                             </Button>
-                                            <Button onClick={this.handleCloseSave} color="primary">
+                                            <Button onClick={this.handleCloseSave} color="primary" name={this.state.editCrop.change}>
                                                 Update
                                             </Button>
                                         </DialogActions>
