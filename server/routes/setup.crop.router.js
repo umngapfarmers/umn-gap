@@ -92,7 +92,6 @@ router.put('/editcrop', (req, res) => {
 
     const id = req.body.farm_crop_id
     const type = req.body.farm_crop_type
-    console.log('body is', req.body);
     
 
     const queryText = 'UPDATE "farm_crop" SET "farm_crop_type"=$1 WHERE farm_crop_id=$2';

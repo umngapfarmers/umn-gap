@@ -20,9 +20,6 @@ class EditCrops extends Component {
         newCrop: {
             type: '',
         },
-        editCrop: {
-            change: '',
-        },
         dialogState: {
             array: '',
         },
@@ -36,9 +33,6 @@ class EditCrops extends Component {
         this.setState({
             newCrop: {
                 ...this.state,
-                [propertyName]: event.target.value,
-            },
-            editCrop: {
                 [propertyName]: event.target.value,
             }, 
             dialogState: {
@@ -85,9 +79,6 @@ class EditCrops extends Component {
             ...this.state,
             dialogState: {
                 array: this.props.reduxState.cropSetup.cropSetup[i],
-            },
-            editCrop: {
-                change: this.props.reduxState.cropSetup.cropSetup[i],
             },
             setOpen: true,
         })
@@ -190,7 +181,7 @@ class EditCrops extends Component {
                                             <Button onClick={this.handleClose} color="primary">
                                                 Cancel
                                             </Button>
-                                            <Button onClick={this.handleCloseSave} color="primary" name={this.state.editCrop.change}>
+                                            <Button onClick={this.handleCloseSave} color="primary">
                                                 Update
                                             </Button>
                                         </DialogActions>
