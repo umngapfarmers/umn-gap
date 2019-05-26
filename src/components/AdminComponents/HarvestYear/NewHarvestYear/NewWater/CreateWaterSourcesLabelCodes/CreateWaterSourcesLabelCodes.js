@@ -123,41 +123,41 @@ class CreateWaterSourcesLabelCodes extends Component {
               )}
             </Select>
           </FormControl>
-          </Grid>
+        </Grid>
 
-          <Grid item xs={12} sm={6}>
-            <Button size="large" color="primary" variant="conatined"
-              onClick={this.addWaterLabel}
-              disabled={this.state.disable}
-            >
-            Add
-            </Button>
-          </Grid>
+        <Grid item xs={12} sm={6}>
+          <Button size="large" color="primary" variant="conatined"
+            onClick={this.addWaterLabel}
+            disabled={this.state.disable}
+          >
+          Add
+          </Button>
+        </Grid>
 
-          <Grid item xs={12} sm={6}> 
-            {this.props.reduxState.waterSetup.waterLabel.map(label =>
-              <ul key={ label.farm_water_id }>
-                {label.farm_water_source_name}:
-                  <li>{label.label_code_text}
-                    <Button size="large" color="primary" variant="contained"
-                    onClick={this.removeLabelCode}
-                    name={label.farm_water_id}
-                    >
-                    Remove
-                    </Button>
-                  </li>
-                </ul>
-            )}
-          </Grid>
+        <Grid item xs={12} sm={6}> 
+          {this.props.reduxState.waterSetup.waterLabel.map(label =>
+            <ul key={ label.farm_water_id }>
+              {label.farm_water_source_name}:
+                <li>{label.label_code_text}
+                  <Button size="large" color="primary" variant="contained"
+                  onClick={this.removeLabelCode}
+                  name={label.farm_water_id}
+                  >
+                  Remove
+                  </Button>
+                </li>
+              </ul>
+          )}
+        </Grid>
 
-          <Grid item xs={12} sm={6}>
-            <Button size="large" color="primary" variant="contained"
-            onClick={this.nextPage} 
-            disabled={this.state.disableNext}
-            >
-            Next
-            </Button>
-          </Grid>
+        <Grid item xs={12} sm={6}>
+          <Button size="large" color="primary" variant="contained"
+          onClick={this.nextPage} 
+          disabled={this.state.disableNext}
+          >
+          Next
+          </Button>
+        </Grid>
 
       </Grid>
      
