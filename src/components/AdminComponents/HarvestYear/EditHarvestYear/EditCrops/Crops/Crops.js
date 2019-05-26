@@ -13,6 +13,10 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
 
 class EditCrops extends Component {
 
@@ -136,59 +140,60 @@ class EditCrops extends Component {
                         </Button>
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        <ExpansionPanel>
+                        <ExpansionPanel style={{width: '80vw', maxWidth: 300}}>
                             <ExpansionPanelSummary
                                 expandIcon={<ExpandMoreIcon />}
                                 aria-controls="panel1a-content"
                                 id="panel1a-header"
-                                style={{ width: '80vw', maxWidth: 300 }}
+                                
                             >
                                 <Typography className={classes.heading}>My Crops</Typography>
                             </ExpansionPanelSummary>
-                            <ExpansionPanelDetails>
-                                {this.props.reduxState.cropSetup.cropSetup.map((crop, i) =>
-                                <Grid item xs={12} sm={6} key={crop.farm_crop_id}
-                                style={{ display: "flex", direction: "column"}}
-                                >
-                                    <Grid item xs={12} sm={6}
-                                            style={{ display: "flex"}}
-                                        >
-                                        <Checkbox 
-                                            onChange={this.handleCheck('checkedA')}
-                                            value="checkedA"
-                                        />
-                                        <Typography className={classes.heading}>{crop.farm_crop_type}</Typography>
-                                        <Button variant="outlined" color="primary" onClick={event => this.handleClickOpen(i)} value={crop.farm_crop_type}>
-                                            Edit
-                                        </Button>
-                                    </Grid>
-                                </Grid>
-                            )}
+                            <ExpansionPanelDetails style={{height: 400}}>
                                 <Grid item xs={12} sm={6}>
-                                    <Dialog open={this.state.setOpen}  aria-labelledby="form-dialog-title">
-                                        <DialogContent >
-                                            <TextField
-                                                autoFocus
-                                                margin="dense"
-                                                id="name"
-                                                label={"Crop Name"}
-                                                value={this.state.dialogState.array.farm_crop_type}
-                                                onChange={this.handleInputChangeFor('farm_crop_type')}
-                                                fullWidth
-                                            />
-                                        </DialogContent>
-                                        <DialogActions>
-                                            <Button onClick={this.handleClose} color="primary">
-                                                Cancel
-                                            </Button>
-                                            <Button onClick={this.handleCloseSave} color="primary">
-                                                Update
-                                            </Button>
-                                        </DialogActions>
-                                    </Dialog>
-                                </Grid>
+                                    <List>
+                                        {this.props.reduxState.cropSetup.cropSetup.map((crop, i) =>
+                                            <ListItem key={crop.farm_crop_id} 
+                                            style={{display: "flex", direction: "column", width: '80vw', maxWidth: 300}}
+                                            >
+                                                <ListItemText primary={crop.farm_crop_type} />
+                                                <ListItemSecondaryAction style={{  maxWidth: 300 }}>
+                                                <Button variant="outlined" color="primary" 
+                                                onClick={event => this.handleClickOpen(i)} 
+                                                value={crop.farm_crop_type}
+                                                >
+                                                    Edit
+                                                </Button>
+                                            </ListItemSecondaryAction>
+                                        </ListItem>
+                                        )}            
+                                    </List>
+                                </Grid>   
                             </ExpansionPanelDetails>
                         </ExpansionPanel>
+                        <Grid item xs={12} sm={6}>
+                            <Dialog open={this.state.setOpen} aria-labelledby="form-dialog-title">
+                                <DialogContent style={{ width: '80vw', maxWidth: 400 }}>
+                                    <TextField
+                                        autoFocus
+                                        margin="dense"
+                                        id="name"
+                                        label={"Crop Name"}
+                                        value={this.state.dialogState.array.farm_crop_type}
+                                        onChange={this.handleInputChangeFor('farm_crop_type')}
+                                        fullWidth
+                                    />
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={this.handleClose} color="primary">
+                                        Cancel
+                                            </Button>
+                                    <Button onClick={this.handleCloseSave} color="primary">
+                                        Update
+                                            </Button>
+                                </DialogActions>
+                            </Dialog>
+                        </Grid>
                     </Grid>
                 </Grid>
             </React.Fragment>

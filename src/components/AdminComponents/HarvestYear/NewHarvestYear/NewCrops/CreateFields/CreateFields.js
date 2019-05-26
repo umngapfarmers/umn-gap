@@ -56,17 +56,19 @@ class CreateFields extends Component {
     return (
       <React.Fragment>
             
-            <Grid container spacing={24}
+        <Grid container spacing={24}
           container
           direction="column"
           justify="center"
           alignItems="center">
                
-                <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={6}>
             <Typography variant="h6" gutterBottom>
               Create Fields
             </Typography>
-                </Grid>
+
+          </Grid>
+
           <Grid item xs={12} sm={6}>
             <TextField label="Field name" variant="outlined" color="primary"
               onChange={this.handleInputChangeFor('name')}
@@ -74,6 +76,10 @@ class CreateFields extends Component {
               style={{ width: '80vw', maxWidth: 400 }}
             >
             </TextField>
+
+          </Grid>
+          
+          <Grid item xs={12} sm={6}>
             <Button size="large" color="primary" 
             onClick={this.addFieldSource} 
             disabled={this.state.disable} 
@@ -82,10 +88,11 @@ class CreateFields extends Component {
             </Button>
 
           </Grid>
+
           <Grid item xs={12} sm={6}>
             <ul> My Fields:</ul>
-            {
-              this.props.reduxState.cropSetup.fieldSetup.map(crop =>
+            
+              {this.props.reduxState.cropSetup.fieldSetup.map(crop =>
                 <li key={crop.farm_field_id}>{crop.field_name}
                   <Button size="large" color="primary" 
                   onClick={this.removeFieldSource} 
@@ -94,8 +101,8 @@ class CreateFields extends Component {
                   Remove
                   </Button>
                 </li>
-              )
-            }
+              )}
+    
             <Grid item xs={12} sm={6}>
               <Button size="large" color="primary" 
               onClick={this.nextPage} 
@@ -107,9 +114,9 @@ class CreateFields extends Component {
 
           </Grid>
 
-            </Grid>
+        </Grid>
            
-        </React.Fragment>
+      </React.Fragment>
     );
   }
 }
