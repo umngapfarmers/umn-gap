@@ -15,6 +15,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
@@ -31,7 +32,7 @@ class EditCrops extends Component {
             array: '',
         },
         disable: true,
-        checkedA: [],
+        checked: [0],
         setOpen: false,
 
     }
@@ -73,11 +74,27 @@ class EditCrops extends Component {
         console.log('id is', event.currentTarget.name);
     }
 
-    handleCheck = propertyName => (event) => {
-        this.setState({
-            ...this.state,
-            [propertyName]: event.target.checked
-        })
+    handleCheck = value => () => {
+        const currentIndex = this.state.checked.indexOf(value)
+
+        if (currentIndex === -1) {
+            this.setState({
+                checked: [...this.state.checked, value]
+
+            })
+            
+        } else {
+            this.setState({
+                ...this.state.checked.splice(currentIndex, 1)
+
+            })
+            
+            console.log('in splice');
+            
+        }
+        console.log('state is', this.state.checked);
+        
+
     }
 
     handleClickOpen = (i) => {
@@ -164,13 +181,23 @@ class EditCrops extends Component {
                                         {this.props.reduxState.cropSetup.cropSetup.map((crop, i) =>
                                         <Grid item xs={12} sm={6} key={crop.farm_crop_id}>
                                             <ListItem key={crop.farm_crop_id} 
-                                            style={{ display: "flex", direction: "column", width: '80vw', maxWidth: 300 }}
+                                                style={{ display: "flex", direction: "column", width: '80vw', maxWidth: 300 }}
+                                                onClick={this.handleCheck(crop.farm_crop_id)}
                                             >
+                                                <ListItemIcon>
+                                                    <Checkbox
+                                                        edge="start"
+                                                        checked={this.state.checked.indexOf(crop.farm_crop_id) !== -1}
+                                                        value={crop.farm_crop_id}
+                                                        tabIndex={-1}
+                                                        disableRipple
+                                                    />
+                                                </ListItemIcon>
                                                 <ListItemText primary={crop.farm_crop_type} />
                                                 <ListItemSecondaryAction>
                                                 <Button variant="outlined" color="primary" variant="contained"
-                                                onClick={event => this.handleClickOpen(i)} 
-                                                value={crop.farm_crop_type}
+                                                    onClick={event => this.handleClickOpen(i)} 
+                                                    value={crop.farm_crop_type}
                                                 >
                                                     Edit
                                                 </Button>
