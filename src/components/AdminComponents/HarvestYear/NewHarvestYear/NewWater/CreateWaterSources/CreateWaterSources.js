@@ -112,7 +112,7 @@ class CreateWaterSources extends Component {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <Button size="large" color="primary" 
+            <Button size="large" color="primary" variant="filled"
               onClick={this.nextPage} 
               disabled={this.state.disableNext}
             >

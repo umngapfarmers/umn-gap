@@ -80,7 +80,7 @@ class CreateFields extends Component {
           </Grid>
           
           <Grid item xs={12} sm={6}>
-            <Button size="large" color="primary" 
+            <Button size="large" color="primary" variant="filled"
             onClick={this.addFieldSource} 
             disabled={this.state.disable} 
             >
@@ -91,10 +91,9 @@ class CreateFields extends Component {
 
           <Grid item xs={12} sm={6}>
             <ul> My Fields:</ul>
-            
               {this.props.reduxState.cropSetup.fieldSetup.map(crop =>
                 <li key={crop.farm_field_id}>{crop.field_name}
-                  <Button size="large" color="primary" 
+                  <Button size="large" color="primary" variant="filled"
                   onClick={this.removeFieldSource} 
                   name={crop.farm_field_id} 
                   >
@@ -102,15 +101,16 @@ class CreateFields extends Component {
                   </Button>
                 </li>
               )}
+
+          </Grid>
     
-            <Grid item xs={12} sm={6}>
-              <Button size="large" color="primary" 
-              onClick={this.nextPage} 
-              disabled={this.state.disableNext}
-              >
-              Next
-              </Button>
-            </Grid>
+          <Grid item xs={12} sm={6}>
+            <Button size="large" color="primary" variant="filled"
+            onClick={this.nextPage} 
+            disabled={this.state.disableNext}
+            >
+            Next
+            </Button>
 
           </Grid>
 
