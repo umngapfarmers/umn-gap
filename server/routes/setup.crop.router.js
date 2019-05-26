@@ -5,7 +5,7 @@ const router = express.Router();
 router.get('/crop', (req, res) => {
     let harvestYear = req.user.current_harvest_year;
 
-    let sqlQuery = `SELECT * FROM "farm_crop" WHERE "harvest_year_id" = $1 AND "farm_crop_status" = TRUE`;
+    let sqlQuery = `SELECT * FROM "farm_crop" WHERE "harvest_year_id" = $1 AND "farm_crop_status" = TRUE ORDER BY "farm_crop_id" DESC`;
     pool.query(sqlQuery, [harvestYear])
         .then(result => {
             res.send(result.rows);
@@ -20,7 +20,7 @@ router.get('/crop', (req, res) => {
 router.get('/field', (req, res) => {
     let harvestYear = req.user.current_harvest_year;
 
-    let sqlQuery = `SELECT * FROM "farm_field" WHERE "harvest_year_id" = $1 AND "farm_field_status" = TRUE`;
+    let sqlQuery = `SELECT * FROM "farm_field" WHERE "harvest_year_id" = $1 AND "farm_field_status" = TRUE ORDER BY "farm_field_id" DESC`;
     pool.query(sqlQuery, [harvestYear])
         .then(result => {
             res.send(result.rows);
@@ -93,8 +93,21 @@ router.put('/editcrop', (req, res) => {
     const id = req.body.farm_crop_id
     const type = req.body.farm_crop_type
     
-
     const queryText = 'UPDATE "farm_crop" SET "farm_crop_type"=$1 WHERE farm_crop_id=$2';
+    pool.query(queryText, [type, id])
+        .then(() => { res.sendStatus(200); })
+        .catch((err) => {
+            console.log('Error deleting crop query', err);
+            res.sendStatus(500);
+        });
+});
+
+router.put('/editfield', (req, res) => {
+
+    const id = req.body.farm_field_id
+    const type = req.body.farm_field_type
+
+    const queryText = 'UPDATE "farm_field" SET "field_name"=$1 WHERE farm_field_id=$2 ORDER BY farm_field_id DESC';
     pool.query(queryText, [type, id])
         .then(() => { res.sendStatus(200); })
         .catch((err) => {

@@ -66,7 +66,6 @@ class CreateFields extends Component {
             <Typography variant="h6" gutterBottom>
               Create Fields
             </Typography>
-
           </Grid>
 
           <Grid item xs={12} sm={6}>
@@ -76,24 +75,22 @@ class CreateFields extends Component {
               style={{ width: '80vw', maxWidth: 400 }}
             >
             </TextField>
-
           </Grid>
           
           <Grid item xs={12} sm={6}>
-            <Button size="large" color="primary" variant="filled"
+            <Button size="large" color="primary" variant="contained"
             onClick={this.addFieldSource} 
             disabled={this.state.disable} 
             >
             Add
             </Button>
-
           </Grid>
 
           <Grid item xs={12} sm={6}>
             <ul> My Fields:</ul>
               {this.props.reduxState.cropSetup.fieldSetup.map(crop =>
                 <li key={crop.farm_field_id}>{crop.field_name}
-                  <Button size="large" color="primary" variant="filled"
+                  <Button size="large" color="primary" variant="contained"
                   onClick={this.removeFieldSource} 
                   name={crop.farm_field_id} 
                   >
@@ -101,17 +98,15 @@ class CreateFields extends Component {
                   </Button>
                 </li>
               )}
-
           </Grid>
     
           <Grid item xs={12} sm={6}>
-            <Button size="large" color="primary" variant="filled"
+            <Button size="large" color="primary" variant="contained"
             onClick={this.nextPage} 
             disabled={this.state.disableNext}
             >
             Next
             </Button>
-
           </Grid>
 
         </Grid>

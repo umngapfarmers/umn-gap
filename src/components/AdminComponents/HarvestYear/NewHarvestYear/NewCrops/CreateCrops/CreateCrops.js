@@ -70,7 +70,6 @@ class CreateCrops extends Component {
             <Typography variant="h6" gutterBottom>
               List all crops you want to track
             </Typography>
-
           </Grid>
                
           <Grid item xs={12} sm={6}>
@@ -80,25 +79,26 @@ class CreateCrops extends Component {
               style={{ width: '80vw', maxWidth: 400 }}
             >
             </TextField>
-
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <Button size="large" color="primary" variant="filled"
+            <Button size="large" color="primary" variant="contained"
             onClick={this.addCropSource} 
             disabled={this.state.disable}
             >
             Add
-            </Button>
-                   
+            </Button> 
           </Grid>
           
           <Grid item xs={12} sm={6}>
           <ul> My Crops:</ul>
               {this.props.reduxState.cropSetup.cropSetup.map(crop =>
                 <li key={crop.farm_crop_id} value={crop.farm_crop_id}>{crop.farm_crop_type}
-                  <Button size="large" color="primary" onClick={this.removeCropSource} name={crop.farm_crop_id}>
-                    Remove
+                  <Button size="large" color="primary" variant="contained"
+                  onClick={this.removeCropSource} 
+                  name={crop.farm_crop_id}
+                  >
+                  Remove
                   </Button>
                 </li> 
               )}
@@ -106,7 +106,7 @@ class CreateCrops extends Component {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <Button size="large" color="primary" variant="filled"
+            <Button size="large" color="primary" variant="contained"
             onClick={this.nextPage} 
             disabled={this.state.disableNext}
             > 

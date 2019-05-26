@@ -17,6 +17,9 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
+import swal from 'sweetalert';
+
 
 class EditCrops extends Component {
 
@@ -104,6 +107,7 @@ class EditCrops extends Component {
             setOpen: false
 
         })
+        swal("Changes Saved!", "", "success");
         this.props.dispatch({type: "EDIT_CROP_SOURCE", payload: this.state.dialogState.array})
         this.props.dispatch({ type: "GET_CROP_SOURCE"})
         console.log('id is', this.state.dialogState);
@@ -125,6 +129,7 @@ class EditCrops extends Component {
                             Add crops you want to track
                         </Typography>
                     </Grid>
+
                     <Grid item xs={12} sm={6}>
                         <TextField label="Crops to track" variant="outlined" color="primary"
                             onChange={this.handleInputChangeFor('type')}
@@ -132,70 +137,81 @@ class EditCrops extends Component {
                             style={{ width: '80vw', maxWidth: 400 }}
                         >
                         </TextField>
-                        <Button size="large" color="primary"
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                         <Button size="large" color="primary" variant="contained"
                             onClick={this.addCropSource}
                             disabled={this.state.disable}
                         >
-                            Add
+                        Add
                         </Button>
                     </Grid>
+
                     <Grid item xs={12} sm={6}>
                         <ExpansionPanel style={{width: '80vw', maxWidth: 300}}>
                             <ExpansionPanelSummary
                                 expandIcon={<ExpandMoreIcon />}
                                 aria-controls="panel1a-content"
-                                id="panel1a-header"
-                                
+                                id="panel1a-header"    
                             >
                                 <Typography className={classes.heading}>My Crops</Typography>
                             </ExpansionPanelSummary>
-                            <ExpansionPanelDetails style={{height: 400}}>
+                            <ExpansionPanelDetails >
+
                                 <Grid item xs={12} sm={6}>
                                     <List>
                                         {this.props.reduxState.cropSetup.cropSetup.map((crop, i) =>
+                                        <Grid item xs={12} sm={6} key={crop.farm_crop_id}>
                                             <ListItem key={crop.farm_crop_id} 
-                                            style={{display: "flex", direction: "column", width: '80vw', maxWidth: 300}}
+                                            style={{ display: "flex", direction: "column", width: '80vw', maxWidth: 300 }}
                                             >
                                                 <ListItemText primary={crop.farm_crop_type} />
-                                                <ListItemSecondaryAction style={{  maxWidth: 300 }}>
-                                                <Button variant="outlined" color="primary" 
+                                                <ListItemSecondaryAction>
+                                                <Button variant="outlined" color="primary" variant="contained"
                                                 onClick={event => this.handleClickOpen(i)} 
                                                 value={crop.farm_crop_type}
                                                 >
                                                     Edit
                                                 </Button>
-                                            </ListItemSecondaryAction>
-                                        </ListItem>
-                                        )}            
+                                                </ListItemSecondaryAction>
+                        
+                                            </ListItem>
+                                                <Divider variant="middle" />
+                                        </Grid>
+                                    )}            
                                     </List>
                                 </Grid>   
+
                             </ExpansionPanelDetails>
                         </ExpansionPanel>
-                        <Grid item xs={12} sm={6}>
-                            <Dialog open={this.state.setOpen} aria-labelledby="form-dialog-title">
-                                <DialogContent style={{ width: '80vw', maxWidth: 400 }}>
-                                    <TextField
-                                        autoFocus
-                                        margin="dense"
-                                        id="name"
-                                        label={"Crop Name"}
-                                        value={this.state.dialogState.array.farm_crop_type}
-                                        onChange={this.handleInputChangeFor('farm_crop_type')}
-                                        fullWidth
-                                    />
-                                </DialogContent>
-                                <DialogActions>
-                                    <Button onClick={this.handleClose} color="primary">
-                                        Cancel
-                                            </Button>
-                                    <Button onClick={this.handleCloseSave} color="primary">
-                                        Update
-                                            </Button>
-                                </DialogActions>
-                            </Dialog>
-                        </Grid>
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                        <Dialog open={this.state.setOpen} aria-labelledby="form-dialog-title">
+                            <DialogContent style={{ width: '80vw', maxWidth: 200 }}>
+                                <TextField
+                                    autoFocus
+                                    margin="dense"
+                                    id="name"
+                                    label={"Crop Name"}
+                                    value={this.state.dialogState.array.farm_crop_type}
+                                    onChange={this.handleInputChangeFor('farm_crop_type')}
+                                    fullWidth
+                                />
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={this.handleClose} color="primary" variant="contained">
+                                    Cancel
+                                </Button>
+                                <Button onClick={this.handleCloseSave} color="primary" variant="contained">
+                                    Update
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
                     </Grid>
                 </Grid>
+
             </React.Fragment>
         );
     }

@@ -83,7 +83,6 @@ class CreateLabelCodes extends Component {
             <Typography variant="h6" gutterBottom>
               Create Label Codes
             </Typography>
-
           </Grid>
          
           <Grid item xs={12} sm={6}>
@@ -106,7 +105,6 @@ class CreateLabelCodes extends Component {
                 )}
               </Select>
             </FormControl> 
-
           </Grid>
 
           <Grid item xs={12} sm={6}>
@@ -129,7 +127,6 @@ class CreateLabelCodes extends Component {
                 )}
               </Select>
             </FormControl>
-
           </Grid>
 
           <Grid item xs={12} sm={6}>
@@ -139,7 +136,6 @@ class CreateLabelCodes extends Component {
               style={{ width: '80vw', maxWidth: 400 }}
             >
             </TextField>
-
           </Grid>
 
           <Grid item xs={12} sm={6}>
@@ -149,7 +145,6 @@ class CreateLabelCodes extends Component {
             >
             Add
             </Button>
-
           </Grid>
 
           <Grid item xs={12} sm={6}>
@@ -163,7 +158,6 @@ class CreateLabelCodes extends Component {
                 </Button>
                 </li>
               )}
-
           </Grid>
 
           <Grid item xs={12} sm={6}>
@@ -173,7 +167,6 @@ class CreateLabelCodes extends Component {
             >
             Next
             </Button>
-
           </Grid>
 
       </Grid>

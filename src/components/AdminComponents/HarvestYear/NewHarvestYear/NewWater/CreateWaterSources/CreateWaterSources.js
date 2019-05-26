@@ -71,7 +71,6 @@ class CreateWaterSources extends Component {
             <Typography variant="h6" gutterBottom>
               Create Water Sources
             </Typography>
-
           </Grid>
                
           <Grid item xs={12} sm={6}>
@@ -83,24 +82,22 @@ class CreateWaterSources extends Component {
               >
               </TextField>
             </FormControl>
-
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <Button size="large" color="primary" variant="filled"
+            <Button size="large" color="primary" variant="contained"
               onClick={this.addWaterSource} 
               disabled={this.state.disable}
             >
             Add
             </Button>
-                
           </Grid>
 
           <Grid item xs={12} sm={6}>
             <ul> Water Sources:</ul>
             {this.props.reduxState.waterSetup.waterSource.map(source =>
                 <li key={source.farm_water_source_id}>{source.farm_water_source_name}
-                  <Button size="large" color="primary" variant="filled"
+                  <Button size="large" color="primary" variant="contained"
                     onClick={this.removeWaterSource}
                     name={source.farm_water_source_id}
                     >
@@ -108,17 +105,15 @@ class CreateWaterSources extends Component {
                 </Button>
                 </li>
               )}
-          
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <Button size="large" color="primary" variant="filled"
+            <Button size="large" color="primary" variant="contained"
               onClick={this.nextPage} 
               disabled={this.state.disableNext}
             >
             Next
             </Button>
-
           </Grid>
 
         </Grid>
