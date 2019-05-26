@@ -11,10 +11,10 @@ const moment = require('moment');
 
 
 
-class EmployeeTrainingRecord extends Component {
+class HarvestRecordTable extends Component {
 
 
-    
+
   render() {
     console.log(this.state);
     const { classes} = this.props;
@@ -32,15 +32,12 @@ class EmployeeTrainingRecord extends Component {
           </TableRow>
         </TableHead>
         <TableBody>
-          {this.props.reduxState.recordemployee.map(row => (
-            <TableRow key={row.employee_training_id} hover='true'>
-              <TableCell align="left" scope="row"  className={classes.tableFontAndBorder}>
-                {row.topic}
-              </TableCell>
-              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.person_first} {row.person_last}</TableCell>
-              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.trainer_name}</TableCell>
-              <TableCell align="left"  className={classes.tableFontAndBorder}>{moment(row.date_trained).format('MM-DD-YYYY')}</TableCell>
-              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.employee_training_sig}</TableCell>
+          {this.props.reduxState.recordharvest.map(row => (
+            <TableRow key={row.crop_harvest_id} hover='true'>
+              <TableCell align="left" scope="row" className={classes.tableFontAndBorder}>{moment(row.crop_harvest_date).format('MM-DD-YYYY')}</TableCell>
+              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.crop_harvest_amount}</TableCell>
+              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.label_code_text}</TableCell>
+              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.crop_harvest_sig}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -73,4 +70,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect( mapReduxStateToProps )(withStyles(styles)(EmployeeTrainingRecord));
+export default connect( mapReduxStateToProps )(withStyles(styles)(HarvestRecordTable));
