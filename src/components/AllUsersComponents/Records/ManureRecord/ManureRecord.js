@@ -7,6 +7,8 @@ import Nav from '../../../Nav/Nav';
 import './ManureRecord.css'
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
+import ManureRecordTable from './ManureRecordTable';
 
 class ManureRecord extends Component {
 
@@ -27,6 +29,28 @@ class ManureRecord extends Component {
       }
     }
   
+    handleError = () => {
+      if(this.state.selectHarvestYear !== ''){
+        return (
+          <Button onClick={this.handleSubmit} variant="contained" color="primary"
+          style={{width:'80vw', maxWidth:400}}>Get Record</Button>
+        )
+      }
+      else{
+        return(
+          <Button disabled variant="contained" color="primary"
+          style={{width:'80vw', maxWidth:400}}>Get Record</Button>
+        )
+      }
+    }
+
+    handleSubmit = () => {
+      this.props.dispatch({type:'GET_RECORD_MANURE', payload: this.state.selectHarvestYear})
+    }
+
+  
+
+
 
 
 
@@ -57,7 +81,7 @@ class ManureRecord extends Component {
                     }}
                     margin="normal"
                     variant="outlined"
-                    style={{width: 250}}
+                    style={{width:'80vw', maxWidth:400}}
                   >
                     <MenuItem disabled>Select Record Harvest Year</MenuItem>
                     {this.props.reduxState.recordyear.map( year =>
@@ -65,6 +89,14 @@ class ManureRecord extends Component {
                           )}
                         
                   </TextField> 
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              {this.handleError()}
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <ManureRecordTable/>
             </Grid>
       </Grid>
      

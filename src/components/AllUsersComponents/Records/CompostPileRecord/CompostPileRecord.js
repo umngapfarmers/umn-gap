@@ -7,6 +7,8 @@ import './CompostPileRecord.css'
 import Nav from '../../../Nav/Nav';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
+import CompostPileRecordTable from './CompostPileRecordTable';
+import Button from '@material-ui/core/Button';
 
 class  CompostPileRecord extends Component {
 
@@ -27,6 +29,28 @@ class  CompostPileRecord extends Component {
       })
       }
     }
+
+    handleSubmit = () => {
+      this.props.dispatch({type:'GET_RECORD_COMPOST_PILE', payload: this.state.selectHarvestYear})
+    }
+
+    handleError = () => {
+      if(this.state.selectHarvestYear !== ''){
+        return (
+          <Button onClick={this.handleSubmit} variant="contained" color="primary"
+          style={{width:'80vw', maxWidth:400}}>Get Record</Button>
+        )
+      }
+      else{
+        return(
+          <Button disabled variant="contained" color="primary"
+          style={{width:'80vw', maxWidth:400}}>Get Record</Button>
+        )
+      }
+    }
+
+
+
   
 
 
@@ -58,7 +82,7 @@ class  CompostPileRecord extends Component {
                     }}
                     margin="normal"
                     variant="outlined"
-                    style={{width: 250}}
+                    style={{width:'80vw', maxWidth:400}}
                   >
                     <MenuItem disabled>Select Record Harvest Year</MenuItem>
                     {this.props.reduxState.recordyear.map( year =>
@@ -67,6 +91,17 @@ class  CompostPileRecord extends Component {
                         
                   </TextField> 
             </Grid>
+
+            <Grid item xs={12} sm={6}>
+              {this.handleError()}
+            </Grid>
+            
+            <Grid item xs={12} sm={6}>
+              <CompostPileRecordTable/>
+            </Grid>
+
+                    
+
       </Grid>
      
   </React.Fragment>
