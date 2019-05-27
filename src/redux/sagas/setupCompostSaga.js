@@ -3,7 +3,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 
 function* addCompostSource(action){
-    // console.log('in addManureSource', action.payload)
+    console.log('in addCompostSource', action.payload)
     try{
         yield axios.post('/setup/compost', action.payload);
         let result = yield axios.get(`/setup/compost`);
