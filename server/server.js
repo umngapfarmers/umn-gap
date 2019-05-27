@@ -22,6 +22,7 @@ const log_harvestRouter = require('./routes/log.harvest.router');
 const log_employeeRouter = require('./routes/log.employee.router');
 const manageUserRouter = require('./routes/manageuser.router');
 const record_harvestYearRouter = require('./routes/record.harvestYear.router');
+const record_waterInpectRouter = require('./routes/record.waterInspect.router');
 
 
 // Body parser middleware
@@ -52,6 +53,7 @@ app.use('/log/harvest/', log_harvestRouter)
 app.use('/log/employee', log_employeeRouter);
 app.use('/manage', manageUserRouter);
 app.use('/record/harvestYear', record_harvestYearRouter);
+app.use ('/record/waterinspect', record_waterInpectRouter)
 
 
 // Serve static files
