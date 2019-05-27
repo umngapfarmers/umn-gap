@@ -26,6 +26,10 @@ const record_harvestYearRouter = require('./routes/record.harvestYear.router');
 const record_waterInpectRouter = require('./routes/record.waterInspect.router');
 const record_employeeRouter = require('./routes/record.employee.router');
 const record_harvestRouter = require('./routes/record.harvest.router')
+const record_waterTreatRouter = require('./routes/record.waterTreat.router');
+const record_manureRouter = require('./routes/record.manure.router');
+const record_compostPileRouter = require ('./routes/record.compostPile.router');
+const log_waterRouter = require('./routes/log.water.router');
 
 
 // Body parser middleware
@@ -59,8 +63,11 @@ app.use('/manage', manageUserRouter);
 app.use('/record/harvestYear', record_harvestYearRouter);
 app.use ('/record/waterinspect', record_waterInpectRouter)
 app.use('/record/employee', record_employeeRouter);
-app.use('/record/harvest', record_harvestRouter)
-
+app.use('/record/harvest', record_harvestRouter);
+app.use('/record/waterTreat', record_waterTreatRouter);
+app.use('/record/manure', record_manureRouter);
+app.use('/record/compostPile', record_compostPileRouter);
+app.use('/log/water', log_waterRouter)
 
 // Serve static files
 app.use(express.static('build'));
