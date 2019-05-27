@@ -4,10 +4,10 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import './EditCrops.css';
-import Crops from './Crops/Crops';
-import Fields from './Fields/Fields';
+import Crop from './Crops/Crops';
+import Field from './Fields/Fields';
+import LabelCode from './LabelCodes/LabelCodes';
 import Nav from '../../../../Nav/Nav';
-
 
 class EditCrops extends Component {
 
@@ -17,16 +17,15 @@ class EditCrops extends Component {
   }
 
 
-
-
   render() {
     const {classes} = this.props;
     return (
       
       <React.Fragment>
         <Nav />
-        <Crops />
-        <Fields />
+        <Crop />
+        <Field />
+        <LabelCode />
             
             <Grid container spacing={24}>
                

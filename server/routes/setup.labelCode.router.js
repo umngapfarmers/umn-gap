@@ -57,4 +57,35 @@ router.post('/', (req, res) => {
 
 });
 
+router.put('/edit', (req, res) => {
+
+    const farmId = req.body.farm_field_id
+    const cropId = req.body.farm_crop_id
+    const text = req.body.label_code_text
+    const labelId = req.body.label_code_id
+
+    const queryText = 'UPDATE "label_code" SET "farm_field_id"=$1 "farm_crop_id"=$2 "label_code_text"=$3 WHERE label_code_id=$4';
+    pool.query(queryText, [farmId, cropId, text, labelId])
+        .then(() => { res.sendStatus(200); })
+        .catch((err) => {
+            console.log('Error deleting field query', err);
+            res.sendStatus(500);
+        });
+});
+
+router.put('/disable', (req, res) => {
+
+    const id = req.body.checked
+    console.log('checked is', req.body);
+    for (let num of id) {
+        const queryText = 'UPDATE "label_code" SET "label_code_status"= FALSE WHERE label_code_id=$1';
+        pool.query(queryText, [num])
+            .then(() => { res.sendStatus(200); })
+            .catch((err) => {
+                console.log('Error deleting crop query', err);
+                res.sendStatus(500);
+            });
+    }
+});
+
 module.exports = router;
