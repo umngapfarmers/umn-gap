@@ -20,7 +20,7 @@ class CreateManure extends Component {
     farm_manure_description: '',
     farm_manure_rate: '',
     label_code_id: '',
-    harvest_year_id: this.props.reduxState.user.current_harvest_year,
+    harvest_year_id: '',
     farm_manure_status: true
   }
 
@@ -43,7 +43,7 @@ class CreateManure extends Component {
       farm_manure_description: '',
       farm_manure_rate: '',
       label_code_id: '',
-      harvest_year_id: this.props.reduxState.user.current_harvest_year,
+      harvest_year_id: '',
       farm_manure_status: true
     })
   }

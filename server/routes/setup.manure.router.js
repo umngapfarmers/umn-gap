@@ -32,7 +32,7 @@ router.post('/', (req, res) => {
         req.body.farm_manure_description, 
         req.body.farm_manure_rate, 
         req.body.label_code_id, 
-        req.body.harvest_year_id,
+        req.user.current_harvest_year,
         req.body.farm_manure_status
     ];
 

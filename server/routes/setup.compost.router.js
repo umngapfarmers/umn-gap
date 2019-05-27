@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 
 
 router.post('/', (req, res) => {
-    // console.log(`in post compost `, req.body);
+    console.log(`in post compost `, req.user);
     
     let sqlText = `INSERT INTO "farm_compost"
         ("farm_compost_name", "farm_compost_date", "farm_compost_description", "harvest_year_id", "farm_compost_status")
@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
         req.body.farm_compost_name,
         req.body.farm_compost_date,
         req.body.farm_compost_description,
-        req.body.harvest_year_id,
+        req.user.current_harvest_year,
         req.body.farm_compost_status
     ];
 
