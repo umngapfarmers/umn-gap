@@ -5,7 +5,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-    let sqlText = `SELECT * FROM "farm_compost" WHERE "farm_compost"."harvest_year_id" = $1;`
+    let sqlText = `SELECT * FROM "farm_compost" WHERE "farm_compost"."harvest_year_id" = $1 AND "farm_compost"."farm_compost_status";`
     let harvest_id = req.user.current_harvest_year;
     console.log(`harvest id off user GET`, harvest_id);
     // let harvest_id = 2
