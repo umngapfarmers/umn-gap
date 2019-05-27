@@ -29,23 +29,23 @@ class WaterTreatmentRecordTable extends Component {
             <TableCell align="center" className={classes.tableFontBody}>Water Source</TableCell>
             <TableCell align="center"  className={classes.tableFontBody}>pH</TableCell>
             <TableCell align="center"  className={classes.tableFontBody}>Temperature</TableCell>
-            <TableCell align="center"  className={classes.tableFontBody}>Trubidity</TableCell>
+            <TableCell align="center"  className={classes.tableFontBody}>Turbidity</TableCell>
             <TableCell align="center"  className={classes.tableFontBody}>Sanitizer</TableCell>
             <TableCell align="center"  className={classes.tableFontBody}>Corrective Action</TableCell>
             <TableCell align="center"  className={classes.tableFontBody}>Signature</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {this.props.reduxState.recordwatertreatment.map(row => (
+          {this.props.reduxState.recordwatertreat.map(row => (
             <TableRow key={row.treatment_id} hover='true'>
               <TableCell align="left" scope="row" className={classes.tableFontAndBorder}>{moment(row.treatment_date).format('MM-DD-YYYY')}</TableCell>
-              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.farm_water_id}</TableCell>
+              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.farm_water_source_name}</TableCell>
               <TableCell align="left"  className={classes.tableFontAndBorder}>{row.water_ph}</TableCell>
               <TableCell align="left"  className={classes.tableFontAndBorder}>{row.water_temp}</TableCell>
               <TableCell align="left"  className={classes.tableFontAndBorder}>{row.turbidity}</TableCell>
               <TableCell align="left"  className={classes.tableFontAndBorder}>{row.sanitizer}</TableCell>
               <TableCell align="left"  className={classes.tableFontAndBorder}>{row.corrective_action}</TableCell>
-              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.treatment_sig}</TableCell>
+              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.person_first} {row.person_last}</TableCell>
             </TableRow>
           ))}
         </TableBody>
