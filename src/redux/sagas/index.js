@@ -48,7 +48,7 @@ export default function* rootSaga() {
     employeeLogSaga(),
     manageUserSaga(),
     recordHarvestYearSaga(),
-    recordWaterInspectSaga()
+    recordWaterInspectSaga(),
     recordEmployeeSaga(),
     recordHarvestSaga(),
     importHarvestSaga()

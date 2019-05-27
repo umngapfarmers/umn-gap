@@ -147,7 +147,7 @@ class HarvestLog extends Component {
             >
               <MenuItem disabled>Select Employee Signature</MenuItem>
               {this.props.reduxState.person.map(option => (
-                  <MenuItem key={option.person_id} value={option.person_first + ' ' + option.person_last}>
+                  <MenuItem key={option.person_id} value={option.person_id}>
                   {option.person_first} {option.person_last}
                   </MenuItem>
               ))}
