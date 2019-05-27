@@ -7,6 +7,8 @@ import './HarvestRecord.css'
 import Nav from '../../../Nav/Nav';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
+import HarvestRecordTable from './HarvestRecordTable';
 
 
 
@@ -29,6 +31,26 @@ class HarvestRecord extends Component {
       })
       }
     }
+
+    handleSubmit = () => {
+      this.props.dispatch({type:'GET_RECORD_HARVEST', payload: this.state.selectHarvestYear})
+    }
+
+    handleError = () => {
+      if(this.state.selectHarvestYear !== ''){
+        return (
+          <Button onClick={this.handleSubmit} variant="contained" color="primary"
+          style={{width:'80vw', maxWidth:400}}>Get Record</Button>
+        )
+      }
+      else{
+        return(
+          <Button disabled variant="contained" color="primary"
+          style={{width:'80vw', maxWidth:400}}>Get Record</Button>
+        )
+      }
+    }
+
   
 
 
@@ -63,11 +85,21 @@ class HarvestRecord extends Component {
                     style={{width: 250}}
                   >
                     <MenuItem disabled>Select Record Harvest Year</MenuItem>
-                    {this.props.reduxState.recordharvestyear.map( year =>
+                    {this.props.reduxState.recordyear.map( year =>
                           <MenuItem value={year.harvest_id} key={year.harvest_id} >{year.harvest_year}</MenuItem>
                           )}
                         
                   </TextField> 
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+                 {this.handleError()}
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+             
+                <HarvestRecordTable/>
+              
             </Grid>
 
       </Grid>

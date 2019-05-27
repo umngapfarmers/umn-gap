@@ -60,60 +60,64 @@ class CreateCrops extends Component {
     return (
       <React.Fragment>
             
-            <Grid container spacing={24}
+        <Grid container spacing={24}
           container
           direction="column"
           justify="center"
           alignItems="center">
+          
           <Grid item xs={12} sm={6}>
             <Typography variant="h6" gutterBottom>
               List all crops you want to track
             </Typography>
-
           </Grid>
                
-                <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={6}>
             <TextField label="Crops to track" variant="outlined" color="primary"
               onChange={this.handleInputChangeFor('type')}
               value={this.state.newCrop.type}
               style={{ width: '80vw', maxWidth: 400 }}
             >
             </TextField>
-            <Button size="large" color="primary" 
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
+            <Button size="large" color="primary" variant="contained"
             onClick={this.addCropSource} 
             disabled={this.state.disable}
             >
             Add
-            </Button>
-                   
-                </Grid>
+            </Button> 
+          </Grid>
           
           <Grid item xs={12} sm={6}>
           <ul> My Crops:</ul>
-            {
-              this.props.reduxState.cropSetup.cropSetup.map(crop =>
+              {this.props.reduxState.cropSetup.cropSetup.map(crop =>
                 <li key={crop.farm_crop_id} value={crop.farm_crop_id}>{crop.farm_crop_type}
-                  <Button size="large" color="primary" onClick={this.removeCropSource} name={crop.farm_crop_id}>
-                Remove
-                </Button>
+                  <Button size="large" color="primary" variant="contained"
+                  onClick={this.removeCropSource} 
+                  name={crop.farm_crop_id}
+                  >
+                  Remove
+                  </Button>
                 </li> 
-              )
-            }
+              )}
 
           </Grid>
+
           <Grid item xs={12} sm={6}>
-            <Button size="large" color="primary"
-             onClick={this.nextPage} 
-             disabled={this.state.disableNext}
-             >
-             Next
-             </Button>
+            <Button size="large" color="primary" variant="contained"
+            onClick={this.nextPage} 
+            disabled={this.state.disableNext}
+            > 
+            Next 
+            </Button>
 
           </Grid>
 
-            </Grid>
+        </Grid>
            
-        </React.Fragment>
+      </React.Fragment>
     );
   }
 }

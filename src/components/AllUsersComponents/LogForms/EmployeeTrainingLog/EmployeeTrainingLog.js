@@ -42,6 +42,7 @@ class EmployeeTrainingLog extends Component {
     event.preventDefault();
     console.log('in handleSubmit');
     this.props.dispatch({type: 'ADD_EMPLOYEE_LOG', payload: this.state.newTraining});
+    this.props.history.push('/logdashboard');
   }
 
   handleError = () => {
@@ -158,7 +159,7 @@ class EmployeeTrainingLog extends Component {
             >
               <MenuItem disabled>Select Employee Signature</MenuItem>
               {this.props.reduxState.person.map(option => (
-                  <MenuItem key={option.person_id} value={option.person_first + ' ' + option.person_last}>
+                  <MenuItem key={option.person_id} value={option.person_id}>
                   {option.person_first} {option.person_last}
                   </MenuItem>
               ))}
