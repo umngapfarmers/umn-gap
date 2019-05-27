@@ -29,9 +29,9 @@ class LabelCodes extends Component {
 
     state = {
         newLabel: {
-            farm_crop_id: '',
-            farm_field_id: '',
-            label_code_text: '',
+            crop_id: '',
+            field_id: '',
+            label_code: '',
         },
         dialogState: {
             array: '',
@@ -81,9 +81,9 @@ class LabelCodes extends Component {
         this.props.dispatch({ type: 'ADD_LABEL_CODE', payload: this.state.newLabel })
         this.setState({
             newLabel: {
-                farm_crop_id: '',
-                farm_field_id: '',
-                label_code_text: '',
+                crop_id: '',
+                field_id: '',
+                label_code: '',
             },
         })
     }
@@ -100,6 +100,9 @@ class LabelCodes extends Component {
             if (willDelete) {
                 this.props.dispatch({ type: 'DISABLE_LABEL_CODE', payload: this.state })
                 this.props.dispatch({ type: 'GET_LABEL_CODE' });
+                this.setState({
+                    disableDelete: true
+                })
             }
         });
     }
@@ -199,8 +202,8 @@ class LabelCodes extends Component {
                                 label="Crops"
                                 variant="outlined"
                                 color="primary"
-                                onChange={this.handleInputChangeFor('farm_crop_id')}
-                                value={this.state.newLabel.farm_crop_id}
+                                onChange={this.handleInputChangeFor('crop_id')}
+                                value={this.state.newLabel.crop_id}
                                 style={{ width: '80vw', maxWidth: 400 }}
                                 select
                             >
@@ -219,8 +222,8 @@ class LabelCodes extends Component {
                                 label="Fields"
                                 variant="outlined"
                                 color="primary"
-                                onChange={this.handleInputChangeFor('farm_field_id')}
-                                value={this.state.newLabel.farm_field_id}
+                                onChange={this.handleInputChangeFor('field_id')}
+                                value={this.state.newLabel.field_id}
                                 style={{ width: '80vw', maxWidth: 400 }}
                                 select
                             >
@@ -235,8 +238,8 @@ class LabelCodes extends Component {
 
                     <Grid item xs={12} sm={6}>
                         <TextField label="LabelCodes to track" variant="outlined" color="primary"
-                            onChange={this.handleInputChangeFor('label_code_text')}
-                            value={this.state.newLabel.label_code_text}
+                            onChange={this.handleInputChangeFor('label_code')}
+                            value={this.state.newLabel.label_code}
                             style={{ width: '80vw', maxWidth: 400, }}
                         >
                         </TextField>

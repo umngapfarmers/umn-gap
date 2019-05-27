@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
     let harvestYear = req.user.current_harvest_year;
     
-    let sqlQuery = `SELECT * FROM "label_code" WHERE "harvest_year_id" = $1 AND "label_code_status" = TRUE`;
+    let sqlQuery = `SELECT * FROM "label_code" WHERE "harvest_year_id" = $1 AND "label_code_status" = TRUE ORDER BY "label_code_id" DESC`;
     pool.query(sqlQuery, [harvestYear])
         .then((response) => {
             console.log(`response label_code`, response.rows);
@@ -42,9 +42,9 @@ router.post('/', (req, res) => {
     const queryText = `INSERT INTO "label_code" ("farm_crop_id","farm_field_id","label_code_text", "harvest_year_id")
                     VALUES ($1, $2, $3, $4)`;
     const queryValues = [
-        newLabel.farm_crop_id,
-        newLabel.farm_field_id,
-        newLabel.label_code_text,
+        newLabel.crop_id,
+        newLabel.field_id,
+        newLabel.label_code,
         req.user.current_harvest_year,
     ];
     pool.query(queryText, queryValues)
@@ -64,7 +64,7 @@ router.put('/edit', (req, res) => {
     const text = req.body.label_code_text
     const labelId = req.body.label_code_id
 
-    const queryText = 'UPDATE "label_code" SET "farm_field_id"=$1 "farm_crop_id"=$2 "label_code_text"=$3 WHERE label_code_id=$4';
+    const queryText = 'UPDATE "label_code" SET "farm_field_id"=$1, "farm_crop_id"=$2, "label_code_text"=$3 WHERE label_code_id=$4';
     pool.query(queryText, [farmId, cropId, text, labelId])
         .then(() => { res.sendStatus(200); })
         .catch((err) => {

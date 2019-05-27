@@ -18,9 +18,9 @@ class CreateLabelCodes extends Component {
 
   state= {
     newLabel: {
-      farm_crop_id:'',
-      farm_field_id: '',
-      label_code_text: '',
+      crop_id:'',
+      field_id: '',
+      label_code: '',
     },
     disable: true,
     disableNext:true
@@ -50,9 +50,9 @@ class CreateLabelCodes extends Component {
     this.props.dispatch({ type: 'ADD_LABEL_CODE', payload: this.state.newLabel })
     this.setState({
       newLabel: {
-        farm_crop_id: '',
-        farm_field_id: '',
-        label_code_text: '',
+        crop_id: '',
+        field_id: '',
+        label_code: '',
       },
       disableNext: false
     })
@@ -89,8 +89,8 @@ class CreateLabelCodes extends Component {
             <FormControl className={classes.formControl}>
               <InputLabel htmlFor="type-simple">Crop</InputLabel>
               <Select
-                value={this.state.newLabel.farm_crop_id}
-                onChange={this.handleChangeFor('farm_crop_id')}
+                value={this.state.newLabel.crop_id}
+                onChange={this.handleChangeFor('crop_id')}
                 style={{ width: '80vw', maxWidth: 400 }}
                 >
                 <MenuItem value="">
@@ -111,8 +111,8 @@ class CreateLabelCodes extends Component {
             <FormControl className={classes.formControl}>
               <InputLabel htmlFor="type-simple">Field</InputLabel>
               <Select
-                value={this.state.newLabel.farm_field_id}
-                onChange={this.handleChangeFor('farm_field_id')}
+                value={this.state.newLabel.field_id}
+                onChange={this.handleChangeFor('field_id')}
                 style={{ width: '80vw', maxWidth: 400 }}
                 >
                 <MenuItem value="">
@@ -131,8 +131,8 @@ class CreateLabelCodes extends Component {
 
           <Grid item xs={12} sm={6}>
             <TextField label="Name Your Label Code" variant="outlined" color="primary"
-              onChange={this.handleChangeFor('label_code_text')}
-              value={this.state.newLabel.label_code_text}
+              onChange={this.handleChangeFor('label_code')}
+              value={this.state.newLabel.label_code}
               style={{ width: '80vw', maxWidth: 400 }}
             >
             </TextField>
