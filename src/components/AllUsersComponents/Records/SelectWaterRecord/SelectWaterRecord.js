@@ -10,6 +10,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './SelectWaterRecord.css'
 import Nav from '../../../Nav/Nav';
+import Fab from '@material-ui/core/Fab';
 
 class SelectWaterRecord extends Component {
 
@@ -33,23 +34,39 @@ class SelectWaterRecord extends Component {
        direction="column"
        justify="center"
        alignItems="center">
-                
-          <Grid item xs={12} sm={6}>
-            <List>
-                <ListItem button onClick={() => {this.props.history.push('/recordwatertreat')}}>
-                  <ListItemText primary="Water Treatment"/>
-                  < ListItemIcon>
-                    <FontAwesomeIcon icon="vial" />
-                </ListItemIcon>
-                </ListItem>
-                <ListItem button onClick={() => {this.props.history.push('/recordwaterinspect')}}>
-                <ListItemText primary="Water Inspection"/>
-                <ListItemIcon>
-                    <FontAwesomeIcon icon="tint"/>
-                  </ListItemIcon>
-                </ListItem>
-            </List>  
-          </Grid>
+
+
+
+<Grid item xs={12} sm={6}>
+                 <Fab 
+                    variant="extended"
+                    size="large"
+                    color="primary"
+                    aria-label="Add"
+                    className={classes.margin}
+                    style={{width:'80vw', maxWidth:400}}
+                    onClick={() => {this.props.history.push('/recordwatertreat')}}
+                    >
+                      <Typography className={classes.fabColor}>Water Treatment</Typography>
+                      <FontAwesomeIcon icon="vial" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+                </Fab>
+              </Grid>
+
+
+              <Grid item xs={12} sm={6}>
+                 <Fab 
+                    variant="extended"
+                    size="large"
+                    color="primary"
+                    aria-label="Add"
+                    className={classes.margin}
+                    style={{width:'80vw', maxWidth:400}}
+                    onClick={() => {this.props.history.push('/recordwaterinspect')}}
+                    >
+                       <Typography className={classes.fabColor}>Water Inspection</Typography>
+                      <FontAwesomeIcon icon="tint" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+                  </Fab>
+              </Grid>
 
       </Grid>
      
@@ -63,6 +80,22 @@ const styles = theme => ({
       display: 'flex',
       flexWrap: 'wrap',
   },
+  
+  margin: {
+    margin: theme.spacing.unit,
+  },
+  extendedIcon: {
+    marginRight: theme.spacing.unit,
+  },
+  fabIconColor:{
+    color: '#E6CD30',
+  },
+  fabColor:{
+    color: 'white',
+  },
+  titleColor:{
+    color: '#D19124',
+  }
 });
 
 const mapReduxStateToProps = (reduxState) => ({

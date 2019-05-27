@@ -10,6 +10,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './SelectManureCompostRecord.css'
 import Nav from '../../../Nav/Nav';
+import Fab from '@material-ui/core/Fab';
 
 
 class SelectManureCompostRecord extends Component {
@@ -35,33 +36,54 @@ class SelectManureCompostRecord extends Component {
       justify="center"
       alignItems="center">
          
-          <Grid item xs={12} sm={6}>
-             <List>
-                 <ListItem button onClick={() => {this.props.history.push('/recordmanure')}}>
-                   <ListItemText primary="Manure Record"/>
-                   < ListItemIcon>
-                     <FontAwesomeIcon icon="horse" />
-                 </ListItemIcon>
-                 </ListItem>
+              <Grid item xs={12} sm={6}>
+                 <Fab 
+                    variant="extended"
+                    size="large"
+                    color="primary"
+                    aria-label="Add"
+                    className={classes.margin}
+                    style={{width:'80vw', maxWidth:400}}
+                    onClick={() => {this.props.history.push('/recordmanure')}}
+                    >
+                      <Typography className={classes.fabColor}>Manure Record</Typography>
+                      <FontAwesomeIcon icon="horse" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+                </Fab>
+              </Grid>
 
-                 <ListItem button onClick={() => {this.props.history.push('/recordcompostpile')}}>
-                 <ListItemText primary="Compost Pile Record"/>
-                 <ListItemIcon>
-                     <FontAwesomeIcon icon="recycle"/>
-                   </ListItemIcon>
-               </ListItem>
 
-               <ListItem button onClick={() => {this.props.history.push('/recordcompostturn')}}>
-                 <ListItemText primary="Compost Turning Record"/>
-                 <ListItemIcon>
-                     <FontAwesomeIcon icon="thermometer-three-quarters"/>
-                   </ListItemIcon>
-               </ListItem>
-            </List>
-           </Grid>
+              <Grid item xs={12} sm={6}>
+                 <Fab 
+                    variant="extended"
+                    size="large"
+                    color="primary"
+                    aria-label="Add"
+                    className={classes.margin}
+                    style={{width:'80vw', maxWidth:400}}
+                    onClick={() => {this.props.history.push('/recordcompostpile')}}
+                    >
+                       <Typography className={classes.fabColor}>Compost Pile Record</Typography>
+                      <FontAwesomeIcon icon="recycle" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+                  </Fab>
+              </Grid>
 
-      </Grid>
-     
+              <Grid item xs={12} sm={6}>
+                  <Fab 
+                    variant="extended"
+                    size="large"
+                    color="primary"
+                    aria-label="Add"
+                    className={classes.margin}
+                    style={{width:'80vw', maxWidth:400}}
+                    onClick={() => {this.props.history.push('/recordcompostturn')}}
+                    >
+                      <Typography className={classes.fabColor}>Compost Turning Record</Typography>
+                      <FontAwesomeIcon icon="thermometer-three-quarters" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+                  </Fab>
+              </Grid>
+                
+          </Grid>
+               
   </React.Fragment>
     );
   }
@@ -72,6 +94,22 @@ const styles = theme => ({
       display: 'flex',
       flexWrap: 'wrap',
   },
+  
+  margin: {
+    margin: theme.spacing.unit,
+  },
+  extendedIcon: {
+    marginRight: theme.spacing.unit,
+  },
+  fabIconColor:{
+    color: '#E6CD30',
+  },
+  fabColor:{
+    color: 'white',
+  },
+  titleColor:{
+    color: '#D19124',
+  }
 });
 
 

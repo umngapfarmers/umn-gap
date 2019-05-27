@@ -28,6 +28,8 @@ const record_waterInpectRouter = require('./routes/record.waterInspect.router');
 const record_employeeRouter = require('./routes/record.employee.router');
 const record_harvestRouter = require('./routes/record.harvest.router')
 const record_waterTreatRouter = require('./routes/record.waterTreat.router');
+const record_manureRouter = require('./routes/record.manure.router');
+const record_compostPileRouter = require ('./routes/record.compostPile.router');
 
 
 
@@ -65,6 +67,8 @@ app.use('/record/employee', record_employeeRouter);
 app.use('/record/harvest', record_harvestRouter);
 app.use('/record/waterTreat', record_waterTreatRouter);
 app.use('/log/compost', logCompost);
+app.use('/record/manure', record_manureRouter);
+app.use('/record/compostPile', record_compostPileRouter);
 
 // Serve static files
 app.use(express.static('build'));
