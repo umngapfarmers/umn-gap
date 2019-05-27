@@ -105,13 +105,13 @@ router.put('/editcrop', (req, res) => {
 router.put('/editfield', (req, res) => {
 
     const id = req.body.farm_field_id
-    const type = req.body.farm_field_type
+    const type = req.body.field_name
 
-    const queryText = 'UPDATE "farm_field" SET "field_name"=$1 WHERE farm_field_id=$2 ORDER BY farm_field_id DESC';
+    const queryText = 'UPDATE "farm_field" SET "field_name"=$1 WHERE farm_field_id=$2';
     pool.query(queryText, [type, id])
         .then(() => { res.sendStatus(200); })
         .catch((err) => {
-            console.log('Error deleting crop query', err);
+            console.log('Error deleting field query', err);
             res.sendStatus(500);
         });
 });
@@ -126,6 +126,21 @@ router.put('/disablecrop', (req, res) => {
             .then(() => { res.sendStatus(200); })
             .catch((err) => {
                 console.log('Error deleting crop query', err);
+                res.sendStatus(500);
+            });
+    }
+});
+
+router.put('/disablefield', (req, res) => {
+
+    const id = req.body.checked
+    console.log('checked is', req.body);
+    for (let num of id) {
+        const queryText = 'UPDATE "farm_field" SET "farm_field_status"= FALSE WHERE farm_field_id=$1';
+        pool.query(queryText, [num])
+            .then(() => { res.sendStatus(200); })
+            .catch((err) => {
+                console.log('Error deleting field query', err);
                 res.sendStatus(500);
             });
     }
