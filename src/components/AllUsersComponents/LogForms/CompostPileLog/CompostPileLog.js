@@ -26,7 +26,7 @@ class CompostPileLog extends Component {
       test_area_2_temp: '',
       test_area_3_temp: '',
       test_area_4_temp: '',
-      label_code_id: '',
+      label_code_id: null,
       compost_sig: '',
     }
   }
@@ -42,6 +42,8 @@ class CompostPileLog extends Component {
   }
 
   handleCheck = (event) => {
+    console.log(`in handleCheck`);
+    
     this.setState({
       entry:{
         ...this.state.entry,
@@ -70,6 +72,23 @@ class CompostPileLog extends Component {
     }
   }
 
+  handleSubmit = () => {
+    this.props.dispatch({type: 'ADD_COMPOST_LOG', payload: this.state.entry});
+    this.setState({
+      entry: {
+        compost_date: moment().format('YYYY-MM-DD'),
+        farm_compost_id: '',
+        compost_turned: false,
+        test_area_1_temp: '',
+        test_area_2_temp: '',
+        test_area_3_temp: '',
+        test_area_4_temp: '',
+        label_code_id: null,
+        compost_sig: '',
+      }
+    })
+  }
+
   render() {
 
     console.log(`state in compost pile log `, this.state);
@@ -79,7 +98,7 @@ class CompostPileLog extends Component {
       <React.Fragment>
         <Nav/>
       <Typography variant="h6" gutterBottom>
-         Compost Pile Log
+         Compost Treatment and Application
       </Typography>
       < Grid 
         container 
@@ -137,7 +156,8 @@ class CompostPileLog extends Component {
               control={
                 <Checkbox 
                   onChange={this.handleCheck} 
-                  value={this.state.entry.compost_turned} 
+                  value={this.state.entry.compost_turned}
+                  checked={this.state.entry.compost_turned}
                 />
               }
               label="Compost Turned"
@@ -284,7 +304,16 @@ class CompostPileLog extends Component {
           </Grid>
           
           <Grid item xs={12}>
-            <Button disabled={this.validateFilled()} size="large" color="primary" variant='contained' style={{width:'80vw', maxWidth:400}}>Submit</Button>
+            <Button 
+              disabled={this.validateFilled()} 
+              size="large" 
+              color="primary" 
+              variant='contained' 
+              style={{width:'80vw', maxWidth:400}}
+              onClick={this.handleSubmit}
+            >
+              Submit
+            </Button>
           </Grid>
 
       </Grid>
