@@ -81,7 +81,7 @@ class ManureRecord extends Component {
                     }}
                     margin="normal"
                     variant="outlined"
-                    style={{width: 250}}
+                    style={{width:'80vw', maxWidth:400}}
                   >
                     <MenuItem disabled>Select Record Harvest Year</MenuItem>
                     {this.props.reduxState.recordyear.map( year =>
