@@ -90,7 +90,7 @@ class CompostPileLog extends Component {
         justify = "center"
         alignItems = "center" 
       >
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} >
             <FormControl>
                 <TextField 
                     margin="dense"
@@ -113,7 +113,7 @@ class CompostPileLog extends Component {
             </FormControl>
           </Grid>
          
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}>
             <FormControl>
                 <TextField 
                     margin = "dense"
@@ -132,7 +132,7 @@ class CompostPileLog extends Component {
             </FormControl>
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}>
             <FormControlLabel
               control={
                 <Checkbox 
@@ -148,12 +148,15 @@ class CompostPileLog extends Component {
             container 
             item 
             xs={12} 
-            sm={6} 
+       
             spacing = {16}
             justify="center"
             alignItems="center"
           >
-              <Grid item xs={4} sm={6}>
+              <Grid item xs={4}            
+                align="right"
+
+              >
                 <FormControl>
                     <TextField 
                         margin="dense"
@@ -166,15 +169,13 @@ class CompostPileLog extends Component {
                         value = {
                           this.state.entry.test_area_1_temp
                         }
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
+  
 
                       >
                     </TextField>
                 </FormControl>
               </Grid>
-              <Grid  item xs={4} sm={6}>
+              <Grid  item xs={4} >
                 <FormControl>
                     <TextField 
                         margin="dense"
@@ -186,9 +187,7 @@ class CompostPileLog extends Component {
                         value = {
                           this.state.entry.test_area_2_temp
                         }
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
+
 
                       >
                     </TextField>
@@ -199,12 +198,11 @@ class CompostPileLog extends Component {
             container 
             item 
             xs={12} 
-            sm={6} 
             spacing = {16}
             justify="center"
             alignItems="center"
           >
-              <Grid item xs={4} sm={6}>
+              <Grid item xs={4} align={'right'}>
                 <FormControl>
                     <TextField 
                         margin = "dense"
@@ -216,15 +214,13 @@ class CompostPileLog extends Component {
                         value = {
                           this.state.entry.test_area_3_temp
                         }
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
+   
 
                       >
                     </TextField>
                 </FormControl>
               </Grid>
-              <Grid  item xs={4} sm={6}>
+              <Grid  item xs={4}>
                 <FormControl>
                     <TextField 
                         margin = "dense"
@@ -236,17 +232,14 @@ class CompostPileLog extends Component {
                         value = {
                           this.state.entry.test_area_4_temp
                         }
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
-
+ 
                       >
                     </TextField>
                 </FormControl>
               </Grid>
           </Grid>      
           
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}>
             <FormControl>
                 <TextField
                     margin = "dense"
@@ -268,7 +261,7 @@ class CompostPileLog extends Component {
             </FormControl>
           </Grid>
           
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}>
             <FormControl>
                 <TextField
                     margin = "dense"
@@ -290,7 +283,7 @@ class CompostPileLog extends Component {
             </FormControl>
           </Grid>
           
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}>
             <Button disabled={this.validateFilled()} size="large" color="primary" variant='contained' style={{width:'80vw', maxWidth:400}}>Submit</Button>
           </Grid>
 
