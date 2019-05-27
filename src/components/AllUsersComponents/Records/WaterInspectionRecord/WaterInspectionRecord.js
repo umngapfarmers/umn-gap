@@ -7,6 +7,8 @@ import './WaterInspectionRecord.css'
 import Nav from '../../../Nav/Nav';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
+import WaterInspectRecordTable from './WaterInspectRecordTable';
+import Button from '@material-ui/core/Button';
 
 class WaterInspectionRecord extends Component {
 
@@ -27,6 +29,25 @@ class WaterInspectionRecord extends Component {
       }
     }
   
+    handleSubmit = () => {
+      this.props.dispatch({type:'GET_RECORD_WATER_INSPECT', payload: this.state.selectHarvestYear})
+    }
+
+    handleError = () => {
+      if(this.state.selectHarvestYear !== ''){
+        return (
+          <Button onClick={this.handleSubmit} variant="contained" color="primary"
+          style={{width:'80vw', maxWidth:400}}>Get Record</Button>
+        )
+      }
+      else{
+        return(
+          <Button disabled variant="contained" color="primary"
+          style={{width:'80vw', maxWidth:400}}>Get Record</Button>
+        )
+      }
+    }
+
 
 
 
@@ -65,6 +86,15 @@ class WaterInspectionRecord extends Component {
                           )}
                         
                   </TextField> 
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+                {this.handleError()}
+            </Grid>
+
+                
+            <Grid item xs={12} sm={6}>
+              <WaterInspectRecordTable/>
             </Grid>
 
       </Grid>

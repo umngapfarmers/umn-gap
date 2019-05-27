@@ -11,6 +11,8 @@ import labelCode from './labelCodesReducer';
 import setupManure from './setupManureReducer';
 import setupCompost from './setupCompostReducer'
 import person from './personReducer';
+import recordharvestyear from './recordHarvestYearReducer';
+import recordwaterinspect from './recordWaterInspectReducer';
 import recordyear from './recordHarvestYearReducer';
 import recordemployee from './recordEmployeeReducer';
 import recordharvest from './recordHarvestReducer';
@@ -34,6 +36,8 @@ const rootReducer = combineReducers({
   setupManure,
   setupCompost,
   person,
+  recordharvestyear,
+  recordwaterinspect,
   recordyear,
   recordemployee,
   recordharvest,
