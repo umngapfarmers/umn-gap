@@ -60,7 +60,7 @@ class CompostTurningRecord extends Component {
                     style={{width: 250}}
                   >
                     <MenuItem disabled>Select Record Harvest Year</MenuItem>
-                    {this.props.reduxState.recordharvestyear.map( year =>
+                    {this.props.reduxState.recordyear.map( year =>
                           <MenuItem value={year.harvest_id} key={year.harvest_id} >{year.harvest_year}</MenuItem>
                           )}
                         

@@ -48,7 +48,7 @@ CREATE TABLE "employee_training"
   "person_id" INT REFERENCES "person" NOT NULL,
   "trainer_name" VARCHAR (255) NOT NULL,
   "date_trained" date NOT NULL,
-  "employee_training_sig" VARCHAR (200),
+  "employee_training_sig" int references "person",
   "harvest_year_id" INT REFERENCES "harvest_year"
 );
 
@@ -90,9 +90,9 @@ CREATE TABLE "crop_harvest"
   "crop_harvest_id" serial primary key,
   "crop_harvest_date" timestamp NOT NULL,
   "crop_harvest_amount" varchar(50),
-  "crop_harvest_sig" varchar(200),
+  "crop_harvest_sig" int references "person",
   "label_code_id" int references "label_code",
-  "user_id" int references "user"
+  "harvest_year_id" int references "harvest_year"
 );
 
 ------------------------ manure and compost ------------------------
@@ -131,7 +131,7 @@ CREATE TABLE "compost"
   "test_area_3_temp" VARCHAR (15),
   "test_area_4_temp" VARCHAR (15),
   "label_code_id" INT REFERENCES "label_code",
-  "compost_sig" VARCHAR (200),
+  "compost_sig" int references "person",
   "user_id" INT REFERENCES "user",
   "harvest_year_id" INT REFERENCES "harvest_year"
 );
@@ -160,14 +160,13 @@ CREATE TABLE "farm_water"
 -- logs
 CREATE TABLE "water_inspection"
 (
-  "treatment_id" serial primary key,
-  "treatment_date" timestamp Not Null,
-  "water_ph" varchar (255),
-  "water_temp" varchar (255),
-  "turbidity" varchar (255),
-  "sanitizer" varchar (200),
-  "corrective_action" varchar (200),
-  "user_id" INT REFERENCES "user",
+  "inspection_id" serial primary key,
+  "inspection_date" timestamp Not Null,
+  "inspection_water_source" INT REFERENCES "farm_water",
+  "distribution" varchar (255),
+  "observation" varchar (500),
+  "inspection_corrective_action" varchar (500),
+  "inspection_signature" int references "person",
   "harvest_year_id" int references "harvest_year"
 );
 
@@ -181,120 +180,9 @@ CREATE TABLE "water_treatment"
   "turbidity" varchar(10),
   "sanitizer" varchar(75),
   "corrective_action" varchar(255),
-  "treatment_sig" Varchar(200),
+  "treatment_sig" int references "person",
   "user_id" INT REFERENCES "user",
   "harvest_year_id" int references "harvest_year"
 );
-
-
-
-----------------------------------------------------------------------
----------------------------- Initial data ----------------------------
-----------------------------------------------------------------------
-
--- --"farm_registry"
-
--- INSERT INTO "farm_registry"
---   ("farm_name", "address", "city", "state", "zip_code")
--- VALUES
---   ('Farmy McFarm', '0000 A Real Place', 'Farm Town', 'MN', 55555);
-
--- -- "user"
--- INSERT INTO "user"
---   ("username", "password", "user_role", "farm_registry_id")
--- VALUES
---   ('admin', 'CHANGE TO REAL HASH', 'admin', 1);
-
--- -- "harvest_year"
--- INSERT INTO "harvest_year"
---   ("havest_year", "farm_id")
--- VALUES
---   ('2019-01-01', '1');
-
--- -- "person"
--- INSERT INTO "person"
---   ("person_first", "person_last", "person_status", "user_id", "current_harvest_id", "farm_id")
--- VALUES
---   ('Lili', 'Bourgeois', 'true', 7, 9, 14 );
-
--- -- "employee_training"
--- INSERT INTO "employee_training"
---   ("topic", "person_id", "trainer_name", "date_trained", "employee_training_sig", "harvest_year_id")
--- VALUES
---   ('Good agricultural practices', '1', 'Farmy Farmer', '2018-05-05', 'Walter Benson', '1');
-
-
--- ------------------------harvest tracebility------------------------
--- --setup
-
--- -- "farm_field"
--- INSERT INTO "farm_field"
---   ("field_name", "harvest_year_id", "farm_field_status")
--- VALUES
---   ('North Field', '1', 'true');
-
--- -- "farm_crop"
--- INSERT INTO "farm_crop"
---   ("farm_crop_type", "harvest_year_id", "farm_crop_status")
--- VALUES
---   ('tomatoes', '1', 'true');
-
--- -- "label_code"
--- INSERT INTO "label_code"
---   ("farm_crop_id", "farm_field_id", "label_code_text", "harvest_year_id")
--- VALUES
---   ('1', '1', 'NF_tom', 9);
-
--- --logs
-
--- --"crop_harvest"
--- INSERT INTO "crop_harvest"
---   ("crop_harvest_date", "crop_harvest_amount", "crop_harvest_sig", "label_code_id", "user_id")
--- VALUES
---   ('2018-08-08 04:05:06', '100 lbs', 'WB', '1', '1');
-
--- ------------------------ manure and compost ------------------------
-
--- -- setup
-
--- --"farm_manure"
--- INSERT INTO "farm_manure"
---   ("farm_manure_date", "farm_manure_description", "farm_manure_rate", "label_code_id", "harvest_year_id","farm_manure_status")
--- VALUES
---   ('2018-03-08 04:05:06', 'Manure from the manure store', 'much', '1', '1', 'true');
-
--- -- "farm_compost"
--- INSERT INTO "farm_compost"
---   ("farm_compost_name", "farm_compost_date", "farm_compost_description", "user_id", "harvest_year_id","farm_compost_status")
--- VALUES
---   ('pile 1', '2018-03-08 04:05:06', 'random veg and stuff', '1', '1', 'true');
-
--- --logs
-
--- --"compost"
--- INSERT INTO "compost"
---   ("farm_compost_id", "compost_turned", "compost_date", "test_area_1_temp","test_area_2_temp", "test_area_3_temp", "test_area_4_temp","label_code_id","compost_sig","user_id","harvest_year_id")
--- VALUES
---   ('1', 'true', '2018-04-08 04:05:06', '', '', '', '', '1', 'WB', '1', '1');
-
-
--- ------------------------ water ------------------------
-
--- --setup
-
--- -- "farm_water"
-
-
--- -- logs
-
--- -- -- "water_inspection"
--- -- INSERT INTO "water_inspection" ("treatment_date", "water_ph", "water_temp", "turbidity", "sanitizer", "corrective_action","user_id","harvest_year_id" )
--- -- VALUES ('2018-04-08 04:05:06', '7.1', '', '', '', '','1','1');
-
--- -- -- "water_treatment"
--- -- INSERT INTO "water_inspection" ("treatment_date", "water_ph", "water_temp", "turbidity", "sanitizer", "corrective_action","user_id","harvest_year_id" )
--- -- VALUES ('2018-04-08 04:05:06', '7.1', '', '', '', '','1','1');
-
--- INSERT INTO "user" ("farm_registry_id") VALUES () WHERE "user_id" = $2
 
 

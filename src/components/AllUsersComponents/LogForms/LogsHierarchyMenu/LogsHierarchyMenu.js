@@ -11,7 +11,7 @@ import LocalFloristIcon from '@material-ui/icons/LocalFlorist';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './LogsHierarchyMenu.css'
 import Nav from '../../../Nav/Nav';
-
+import Fab from '@material-ui/core/Fab';
 
 class LogsHierarchyMenu extends Component {
 
@@ -35,36 +35,64 @@ class LogsHierarchyMenu extends Component {
         direction="column"
         justify="center"
         alignItems="center">
-         
-          <Grid item xs={12} sm={6}>
-            <List>
-              <ListItem button onClick={() => {this.props.history.push('/harvestlog')}}>
-                <ListItemText primary="Harvest Traceability"/>
-                < ListItemIcon>
-                  <FontAwesomeIcon icon="seedling" className={classes.iconColor}/>
-              </ListItemIcon>
-              </ListItem>
-              <ListItem button onClick={() => {this.props.history.push('/compostlog')}}>
-              <ListItemText primary="Compost Management"/>
-              <ListItemIcon>
-                  <FontAwesomeIcon icon="recycle"className={classes.iconColor}/>
-                </ListItemIcon>
-              </ListItem>
-              <ListItem button onClick={() => {this.props.history.push('/waterlogdashboard')}}>
-                <ListItemText primary="Water Sources"/>
-                <ListItemIcon>
-                <FontAwesomeIcon icon="tint" className={classes.iconColor} />
-                </ListItemIcon>
-              </ListItem>
-              <ListItem button onClick={() => {this.props.history.push('/employeelog')}}>
-                <ListItemText primary="Employee Training"/>
-                <ListItemIcon>
-                <FontAwesomeIcon icon="id-card" className={classes.iconColor}/>
-                </ListItemIcon>
-              </ListItem>
-          </List> 
-          </Grid>
 
+      <Grid item xs={10} sm={6}>
+            <Fab
+              variant="extended"
+              size="large"
+              color="primary"
+              aria-label="Add"
+              className={classes.margin}
+              onClick={() => {this.props.history.push('/harvestlog')}}
+              style={{width:'80vw', maxWidth:400}}
+            >
+              <Typography className={classes.fabColor}>Harvest Traceability</Typography>
+              <FontAwesomeIcon icon="seedling" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+        </Fab>
+        </Grid>
+            <Grid item xs={10} sm={6}>
+            <Fab
+              variant="extended"
+              size="large"
+              color="primary"
+              aria-label="Add"
+              className={classes.margin}
+              onClick={() => {this.props.history.push('/compostlog')}}
+              style={{width:'80vw', maxWidth:400}}
+            >
+              <Typography className={classes.fabColor}>Compost Management</Typography>
+              <FontAwesomeIcon icon="recycle" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+        </Fab>
+          </Grid>
+          <Grid item xs={10} sm={6}>
+            <Fab
+              variant="extended"
+              size="large"
+              color="primary"
+              aria-label="Add"
+              className={classes.margin}
+              onClick={() => {this.props.history.push('/waterlogdashboard')}}
+              style={{width:'80vw', maxWidth:400}}
+            >
+              <Typography className={classes.fabColor}>Water Sources</Typography>
+              <FontAwesomeIcon icon="tint" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+        </Fab>
+          </Grid>
+          <Grid item xs={10} sm={6}>
+            <Fab
+              variant="extended"
+              size="large"
+              color="primary"
+              aria-label="Add"
+              className={classes.margin}
+              onClick={() => {this.props.history.push('/employeelog')}}
+              style={{width:'80vw', maxWidth:400}}
+            >
+               <Typography className={classes.fabColor}>Employee Training</Typography>
+              <FontAwesomeIcon icon="id-card" style={{marginLeft: 5}} className={classes.fabIconColor} />
+        </Fab>
+          </Grid>
+        
       </Grid>
      
   </React.Fragment>
@@ -72,16 +100,27 @@ class LogsHierarchyMenu extends Component {
   }
 }
 
+
 const styles = theme => ({
   container: {
       display: 'flex',
       flexWrap: 'wrap',
   },
-  titleColor: {
-    color: '#D19124',
+  
+  margin: {
+    margin: theme.spacing.unit,
   },
-  iconColor:{
-    color:'#7690B8',
+  extendedIcon: {
+    marginRight: theme.spacing.unit,
+  },
+  fabIconColor:{
+    color: '#E6CD30',
+  },
+  fabColor:{
+    color: 'white',
+  },
+  titleColor:{
+    color: '#D19124',
   }
 });
 

@@ -18,6 +18,9 @@ import harvestSaga from './harvestLogSaga';
 import employeeLogSaga from './employeeLogSaga';
 import manageUserSaga from './manageUserSaga';
 import recordHarvestYearSaga from './recordHarvestYearSaga';
+import recordWaterInspectSaga from './recordWaterInspectSaga';
+import recordEmployeeSaga from './recordEmployeeSaga';
+import recordHarvestSaga from './recordHarvestSaga';
 import importHarvestSaga from './importHarvestSaga';
 
 // rootSaga is the primary saga.
@@ -45,6 +48,9 @@ export default function* rootSaga() {
     employeeLogSaga(),
     manageUserSaga(),
     recordHarvestYearSaga(),
+    recordWaterInspectSaga(),
+    recordEmployeeSaga(),
+    recordHarvestSaga(),
     importHarvestSaga()
 
   ]);

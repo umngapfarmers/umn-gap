@@ -8,6 +8,5 @@ export default createMuiTheme({
   },
   typography: {
       fontFamily: 'Lato',
-
   }
 });
