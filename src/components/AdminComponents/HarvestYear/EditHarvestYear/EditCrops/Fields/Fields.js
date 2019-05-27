@@ -211,11 +211,11 @@ class Fields extends Component {
                             <ExpansionPanelDetails >
 
                                 <Grid item xs={12} sm={6}>
-                                    <List>
+                                    <List style={{ marginLeft: -25, width: '70vw', maxWidth: 300 }}>
                                         {this.props.reduxState.cropSetup.fieldSetup.map((field, i) =>
-                                        <Grid item xs={12} sm={6} key={field.farm_field_id}>
+                                        <section>
                                             <ListItem key={field.farm_field_id} 
-                                                style={{ display: "flex", direction: "column", width: '80vw', maxWidth: 300 }}
+                                                style={{ display: "flex", direction: "column", width: '70vw', maxWidth: 270 }}
                                                 onClick={this.handleCheck(field.farm_field_id)}
                                             >
                                                 <ListItemIcon>
@@ -232,6 +232,7 @@ class Fields extends Component {
                                                 <Button variant="outlined" color="primary" variant="contained"
                                                     onClick={event => this.handleClickOpen(i)} 
                                                     value={field.field_name}
+                                                    style={{ width: '200', maxWidth: 270 }}
                                                 >
                                                     Edit
                                                 </Button>
@@ -239,20 +240,16 @@ class Fields extends Component {
                         
                                             </ListItem>
                                                 <Divider variant="middle" />
-                                        </Grid>
+                                        </section>
                                     )}    
-                                        
-                                        <Grid item xs={12} sm={6}>
-                                            <Button size="large" color="secondary" variant="contained"
-                                                style={{marginTop: 18, marginLeft: 10, height:50, width: "60vw"}}
-                                                onClick={this.removeCropSource}
-                                                disabled={this.state.disableDelete}
-                                            >
-                                                <FontAwesomeIcon icon="trash-alt" style={{ marginRight: 10, marginTop: -2  }} className={classes.fabIconColor} />
-                                                <Typography className={classes.fabColor}>Remove Fields</Typography>
-                                            </Button>
-                                        </Grid>  
-
+                                        <Button size="large" color="secondary" variant="contained"
+                                            style={{ marginTop: 18, marginLeft: 10, height: 50, width: "70vw", maxWidth: 280 }}
+                                            onClick={this.removeCropSource}
+                                            disabled={this.state.disableDelete}
+                                        >
+                                            <FontAwesomeIcon icon="trash-alt" style={{ marginRight: 10, marginTop: -2  }} className={classes.fabIconColor} />
+                                            <Typography className={classes.fabColor}>Remove Fields</Typography>
+                                        </Button>    
                                     </List>
                                 </Grid>   
 
