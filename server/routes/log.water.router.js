@@ -18,6 +18,23 @@ router.post('/inspect', (req,res) =>{
     })
 
 })
+
+
+router.post('/treat', (req,res) =>{
+    console.log('IN ADD WATER TREAT LOG');
+    const newWaterTreatLog = req.body;
+    const harvest_year_id = req.user.current_harvest_year;
+    let sqlQuery = `INSERT INTO "water_treatment" ("treatment_date", "farm_water_source_id", "water_ph", "water_temp", "turbidity", "sanitizer", "corrective_action", "treatment_sig", "harvest_year_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`
+    pool.query(sqlQuery, [newWaterTreatLog.treatment_date, newWaterTreatLog.farm_water_source_id, newWaterTreatLog.water_ph, newWaterTreatLog.water_temp, newWaterTreatLog.turbidity, newWaterTreatLog.sanitizer, newWaterTreatLog.corrective_action, newWaterTreatLog.treatment_sig, harvest_year_id ])
+    .then((response) => {
+        res.sendStatus(201);
+    })
+    .catch((error) => {
+        console.log(`ERROR in WATER TREAT LOG POST`, error);
+        res.sendStatus(500);
+    })
+
+})
 /**
  * POST route template
  */

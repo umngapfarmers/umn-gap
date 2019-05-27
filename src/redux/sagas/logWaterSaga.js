@@ -13,11 +13,22 @@ function* addLogWaterInspect(action){
     }
 }
 
+function* addLogWaterTreatment(action){
+    console.log('in addLogWaterTreatment')
+    try{
+        let result = yield axios.post(`/log/water/treat`, action.payload)
+    }
+    catch (error){
+        console.log('ERROR IN WATER TREATMENT LOG POST', error);
+        alert(`Sorry! Was unable to add water treatment log! Try again later.`)
+    }
+}
 
 
 function* logWaterSaga() {
 //   yield takeLatest('ADD_FARM', addFarmSaga);
   yield takeLatest('ADD_RECORD_WATER_INSPECT', addLogWaterInspect);
+  yield takeLatest('ADD_RECORD_WATER_TREAT', addLogWaterTreatment)
 }
 
 export default logWaterSaga;
