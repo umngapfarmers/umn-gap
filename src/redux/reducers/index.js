@@ -16,6 +16,7 @@ import recordwaterinspect from './recordWaterInspectReducer';
 import recordyear from './recordHarvestYearReducer';
 import recordemployee from './recordEmployeeReducer';
 import recordharvest from './recordHarvestReducer';
+import recordwatertreat from './recordWaterTreatReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -41,6 +42,8 @@ const rootReducer = combineReducers({
   recordyear,
   recordemployee,
   recordharvest,
+  recordwatertreat
+  
 });
 
 export default rootReducer;
