@@ -116,5 +116,19 @@ router.put('/editfield', (req, res) => {
         });
 });
 
+router.put('/disablecrop', (req, res) => {
+
+    const id = req.body.checked
+    console.log('checked is', req.body);
+    for(let num of id){ 
+        const queryText = 'UPDATE "farm_crop" SET "farm_crop_status"= FALSE WHERE farm_crop_id=$1';
+        pool.query(queryText, [num])
+            .then(() => { res.sendStatus(200); })
+            .catch((err) => {
+                console.log('Error deleting crop query', err);
+                res.sendStatus(500);
+            });
+    }
+});
 
 module.exports = router;

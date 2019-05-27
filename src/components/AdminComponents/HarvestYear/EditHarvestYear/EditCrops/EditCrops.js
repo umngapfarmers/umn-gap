@@ -4,7 +4,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import './EditCrops.css';
-import CropComponent from './Crops/Crops';
+import Crops from './Crops/Crops';
+import Fields from './Fields/Fields';
+import Nav from '../../../../../Nav/Nav';
 
 
 class EditCrops extends Component {
@@ -22,7 +24,8 @@ class EditCrops extends Component {
     return (
       
       <React.Fragment>
-        <CropComponent />
+        <Nav />
+        <Fields />
             
             <Grid container spacing={24}>
                

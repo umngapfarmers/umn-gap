@@ -21,9 +21,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import swal from 'sweetalert';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+import Nav from '../../../../../Nav/Nav';
 
 
-class Crops extends Component {
+class EditCrops extends Component {
 
     state = {
         newCrop: {
@@ -99,7 +100,7 @@ class Crops extends Component {
     counter = () => {
         const count = this.state.checked.length;
         if(count > 0){
-            return `Disable Crops (${count})`;
+            return `Disable Fields (${count})`;
         }else {
             return "nothing here"
 
@@ -173,7 +174,7 @@ class Crops extends Component {
         const { classes } = this.props;
         return (
             <React.Fragment>
-                
+                <Nav />
                 <Grid container spacing={24}
                     container
                     direction="column"
@@ -181,12 +182,12 @@ class Crops extends Component {
                     alignItems="center">
                     <Grid item xs={12} sm={6}>
                         <Typography variant="h6" gutterBottom align="center" className={classes.titleColor} align="center">
-                            Add or Edit Crops You Want to Track
+                            Add or Edit Fields You Want to Track
                         </Typography>
                     </Grid>
 
                     <Grid item xs={12} sm={6}>
-                        <TextField label="Crops to track" variant="outlined" color="primary"
+                        <TextField label="Fields to track" variant="outlined" color="primary"
                             onChange={this.handleInputChangeFor('type')}
                             value={this.state.newCrop.type}
                             style={{ width: '80vw', maxWidth: 400, }}
@@ -211,7 +212,7 @@ class Crops extends Component {
                                 aria-controls="panel1a-content"
                                 id="panel1a-header"    
                             >
-                                <Typography className={classes.heading}>My Crops</Typography>
+                                <Typography className={classes.heading}>My Fields</Typography>
                             </ExpansionPanelSummary>
                             <ExpansionPanelDetails >
 
@@ -254,7 +255,7 @@ class Crops extends Component {
                                                 disabled={this.state.disableDelete}
                                             >
                                                 <FontAwesomeIcon icon="trash-alt" style={{ marginRight: 10, marginTop: -2  }} className={classes.fabIconColor} />
-                                                <Typography className={classes.fabColor}>Remove Crops</Typography>
+                                                <Typography className={classes.fabColor}>Remove Fields</Typography>
                                             </Button>
                                         </Grid>  
 
@@ -310,4 +311,4 @@ const mapReduxStateToProps = (reduxState) => ({
     reduxState,
 });
 
-export default connect(mapReduxStateToProps)(withStyles(styles)(Crops));
+export default connect(mapReduxStateToProps)(withStyles(styles)(EditCrops));

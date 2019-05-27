@@ -85,7 +85,7 @@ function* disableCropSource(action) {
     console.log('Hit the disableCropSource', action);
 
     try {
-        yield axios.put(`/setupCrop/crop/${action.payload}`);
+        yield axios.put(`/setupCrop/disablecrop`, action.payload);
         console.log('saga id is', action.payload);
 
         yield put({ type: 'GET_CROP_SOURCE' });
@@ -100,7 +100,7 @@ function* disableFieldSource(action) {
     console.log('Hit the disableFieldSource', action);
 
     try {
-        yield axios.put(`/setupCrop/field/${action.payload}`);
+        yield axios.put(`/setupCrop/disablefield`, action.payload);
         console.log('saga id is', action.payload);
 
         yield put({ type: 'GET_FIELD_SOURCE' });
