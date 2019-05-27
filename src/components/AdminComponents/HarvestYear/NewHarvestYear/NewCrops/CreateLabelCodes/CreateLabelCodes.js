@@ -78,6 +78,7 @@ class CreateLabelCodes extends Component {
           direction="column"
           justify="center"
           alignItems="center">
+
           <Grid item xs={12} sm={6}>
             <Typography variant="h6" gutterBottom>
               Create Label Codes
@@ -105,6 +106,7 @@ class CreateLabelCodes extends Component {
               </Select>
             </FormControl> 
           </Grid>
+
           <Grid item xs={12} sm={6}>
             <FormControl className={classes.formControl}>
               <InputLabel htmlFor="type-simple">Field</InputLabel>
@@ -126,6 +128,7 @@ class CreateLabelCodes extends Component {
               </Select>
             </FormControl>
           </Grid>
+
           <Grid item xs={12} sm={6}>
             <TextField label="Name Your Label Code" variant="outlined" color="primary"
               onChange={this.handleChangeFor('label_code_text')}
@@ -133,38 +136,37 @@ class CreateLabelCodes extends Component {
               style={{ width: '80vw', maxWidth: 400 }}
             >
             </TextField>
-            <Button size="large" color="primary" 
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
+            <Button size="large" color="primary" variant="contained"
             onClick={this.addNewLabel} 
             disabled={this.state.disable}
             >
             Add
             </Button>
           </Grid>
+
           <Grid item xs={12} sm={6}>
             <ul> My labels:</ul>
-            {
-              this.props.reduxState.labelCode.map(code =>
+            {this.props.reduxState.labelCode.map(code =>
                 <li key={code.label_code_id}>{code.label_code_text}
-                  <Button size="large" color="primary"
+                  <Button size="large" color="primary" variant="contained"
                     onClick={this.removeLabelCode}
                     name={code.label_code_id}>
                     Remove
                 </Button>
                 </li>
-              )
-            }
-            <Grid item xs={12} sm={6}>
-              <Button size="large" color="primary" 
-              onClick={this.nextPage} 
-              disabled={this.state.disableNext}
-              >
-              Next
-              </Button>
-            </Grid>
-
+              )}
           </Grid>
+
           <Grid item xs={12} sm={6}>
-            
+            <Button size="large" color="primary" variant="contained"
+            onClick={this.nextPage} 
+            disabled={this.state.disableNext}
+            >
+            Next
+            </Button>
           </Grid>
 
       </Grid>

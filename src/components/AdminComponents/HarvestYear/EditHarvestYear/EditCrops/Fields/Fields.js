@@ -23,11 +23,11 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
 
-class Crops extends Component {
+class Fields extends Component {
 
     state = {
-        newCrop: {
-            type: '',
+        newField: {
+            name: '',
         },
         dialogState: {
             array: '',
@@ -41,8 +41,8 @@ class Crops extends Component {
 
     handleInputChangeFor = propertyName => (event) => {
         this.setState({
-            newCrop: {
-                ...this.state,
+            newField: {
+                ...this.state.newField,
                 [propertyName]: event.target.value,
             },
             dialogState: {
@@ -65,33 +65,33 @@ class Crops extends Component {
     }
 
     componentDidMount = () => {
-        this.props.dispatch({ type: 'GET_CROP_SOURCE' });
+        this.props.dispatch({ type: 'GET_FIELD_SOURCE' });
         console.log('length is', this.state.checked.length);
         
     }
 
     addCropSource = (event) => {
         event.preventDefault();
-        this.props.dispatch({ type: 'ADD_CROP_SOURCE', payload: this.state.newCrop })
+        this.props.dispatch({ type: 'ADD_FIELD_SOURCE', payload: this.state.newField })
         this.setState({
-            newCrop: {
-                type: ''
+            newField: {
+                name: ''
             }
         })
     }
 
     removeCropSource = () => {
         swal({
-            title: `Delete (${this.state.checked.length}) crops?`,
-            text: "These crops will be removed from your harvest year but will still appear in your records",
+            title: `Delete (${this.state.checked.length}) fields?`,
+            text: "These fields will be removed from your harvest year but will still appear in your records",
             icon: "warning",
             buttons: true,
             dangerMode: true,
         })
         .then((willDelete) => {
             if (willDelete) {
-                this.props.dispatch({ type: 'DISABLE_CROP_SOURCE', payload: this.state })
-                this.props.dispatch({ type: 'GET_CROP_SOURCE' });
+                this.props.dispatch({ type: 'DISABLE_FIELD_SOURCE', payload: this.state })
+                this.props.dispatch({ type: 'GET_FIELD_SOURCE' });
             }
         });
     }
@@ -99,13 +99,11 @@ class Crops extends Component {
     counter = () => {
         const count = this.state.checked.length;
         if(count > 0){
-            return `Disable Crops (${count})`;
+            return `Disable Fields (${count})`;
         }else {
             return "nothing here"
 
         }
-        console.log('count is', count);
-        
     }
 
     handleCheck = value => () => {
@@ -116,7 +114,6 @@ class Crops extends Component {
                 ...this.state.checked.push(value)
                 /* checked: [...this.state.checked, value] */,
                 disableDelete: false
-
             })
             
         } else {
@@ -124,8 +121,8 @@ class Crops extends Component {
                 ...this.state.checked.splice(currentIndex, 1),
             
             })
-            console.log('in splice');
         }
+
         if(this.state.checked.length === 0) {
             this.setState({
                 disableDelete: true
@@ -143,12 +140,10 @@ class Crops extends Component {
         this.setState({
             ...this.state,
             dialogState: {
-                array: this.props.reduxState.cropSetup.cropSetup[i],
+                array: this.props.reduxState.cropSetup.fieldSetup[i],
             },
             setOpen: true,
         })
-        console.log('sate is', this.dialogState);
-        
     }
 
     handleClose = (event) => {
@@ -158,8 +153,8 @@ class Crops extends Component {
 
             })
             swal("Changes Saved!", "", "success");
-            this.props.dispatch({ type: "EDIT_CROP_SOURCE", payload: this.state.dialogState.array })
-            this.props.dispatch({ type: "GET_CROP_SOURCE" })
+            this.props.dispatch({ type: "EDIT_FIELD_SOURCE", payload: this.state.dialogState.array })
+            this.props.dispatch({ type: "GET_FIELD_SOURCE" })
             console.log('id is', this.state.dialogState);
 
         } else {
@@ -181,14 +176,14 @@ class Crops extends Component {
                     alignItems="center">
                     <Grid item xs={12} sm={6}>
                         <Typography variant="h6" gutterBottom align="center" className={classes.titleColor} align="center">
-                            Add or Edit Crops You Want to Track
+                            Add or Edit Fields 
                         </Typography>
                     </Grid>
 
                     <Grid item xs={12} sm={6}>
-                        <TextField label="Crops to track" variant="outlined" color="primary"
-                            onChange={this.handleInputChangeFor('type')}
-                            value={this.state.newCrop.type}
+                        <TextField label="Fields to track" variant="outlined" color="primary"
+                            onChange={this.handleInputChangeFor('name')}
+                            value={this.state.newField.name}
                             style={{ width: '80vw', maxWidth: 400, }}
                         >
                         </TextField>
@@ -200,7 +195,7 @@ class Crops extends Component {
                             disabled={this.state.disable}
                         >
                             <FontAwesomeIcon icon="plus" style={{ marginRight: 5, marginTop:-2, height: 10 }} className={classes.fabIconColor} />
-                            <Typography className={classes.fabColor}>Add Crop</Typography>
+                            <Typography className={classes.fabColor}>Add Field</Typography>
                         </Button>
                     </Grid>
 
@@ -211,32 +206,32 @@ class Crops extends Component {
                                 aria-controls="panel1a-content"
                                 id="panel1a-header"    
                             >
-                                <Typography className={classes.heading}>My Crops</Typography>
+                                <Typography className={classes.heading}>My Fields</Typography>
                             </ExpansionPanelSummary>
                             <ExpansionPanelDetails >
 
                                 <Grid item xs={12} sm={6}>
                                     <List style={{ marginLeft: -25, width: '70vw', maxWidth: 300 }}>
-                                        {this.props.reduxState.cropSetup.cropSetup.map((crop, i) =>
-                                        <section key={crop.farm_crop_id}>
-                                            <ListItem key={crop.farm_crop_id} 
+                                        {this.props.reduxState.cropSetup.fieldSetup.map((field, i) =>
+                                        <section>
+                                            <ListItem key={field.farm_field_id} 
                                                 style={{ display: "flex", direction: "column", width: '70vw', maxWidth: 270 }}
-                                                onClick={this.handleCheck(crop.farm_crop_id)}
+                                                onClick={this.handleCheck(field.farm_field_id)}
                                             >
                                                 <ListItemIcon>
                                                     <Checkbox
                                                         edge="start"
-                                                        checked={this.state.checked.indexOf(crop.farm_crop_id) !== -1}
+                                                        checked={this.state.checked.indexOf(field.farm_field_id) !== -1}
                                                         
                                                         tabIndex={-1}
                                                         disableRipple
                                                     />
                                                 </ListItemIcon>
-                                                    <ListItemText primary={crop.farm_crop_type} style={{ marginLeft: "-20px"}}/>
+                                                    <ListItemText primary={field.field_name} style={{ marginLeft: "-20px"}}/>
                                                 <ListItemSecondaryAction>
                                                 <Button variant="outlined" color="primary" variant="contained"
                                                     onClick={event => this.handleClickOpen(i)} 
-                                                    value={crop.farm_crop_type}
+                                                    value={field.field_name}
                                                     style={{ width: '200', maxWidth: 270 }}
                                                 >
                                                     Edit
@@ -247,18 +242,14 @@ class Crops extends Component {
                                                 <Divider variant="middle" />
                                         </section>
                                     )}    
-                                        
-                                        
-                                            <Button size="large" color="secondary" variant="contained"
-                                                style={{marginTop: 18, marginLeft: 10, height:50, width: "70vw", maxWidth: 280}}
-                                                onClick={this.removeCropSource}
-                                                disabled={this.state.disableDelete}
-                                            >
-                                                <FontAwesomeIcon icon="trash-alt" style={{ marginRight: 10, marginTop: -2  }} className={classes.fabIconColor} />
-                                                <Typography className={classes.fabColor}>Remove Crops</Typography>
-                                            </Button>
-                                         
-
+                                        <Button size="large" color="secondary" variant="contained"
+                                            style={{ marginTop: 18, marginLeft: 10, height: 50, width: "70vw", maxWidth: 280 }}
+                                            onClick={this.removeCropSource}
+                                            disabled={this.state.disableDelete}
+                                        >
+                                            <FontAwesomeIcon icon="trash-alt" style={{ marginRight: 10, marginTop: -2  }} className={classes.fabIconColor} />
+                                            <Typography className={classes.fabColor}>Remove Fields</Typography>
+                                        </Button>    
                                     </List>
                                 </Grid>   
 
@@ -273,9 +264,9 @@ class Crops extends Component {
                                     autoFocus
                                     margin="dense"
                                     id="name"
-                                    label={"Crop Name"}
-                                    value={this.state.dialogState.array.farm_crop_type}
-                                    onChange={this.handleInputChangeFor('farm_crop_type')}
+                                    label={"Field Name"}
+                                    value={this.state.dialogState.array.field_name}
+                                    onChange={this.handleInputChangeFor('field_name')}
                                     fullWidth
                                 />
                             </DialogContent>
@@ -311,4 +302,4 @@ const mapReduxStateToProps = (reduxState) => ({
     reduxState,
 });
 
-export default connect(mapReduxStateToProps)(withStyles(styles)(Crops));
+export default connect(mapReduxStateToProps)(withStyles(styles)(Fields));

@@ -27,14 +27,14 @@
     "query-string": "^6.5.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-material-ui-form-validator": "^2.0.7",
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.0.2",
-    "sweetalert": "^2.1.2",
-    "react-material-ui-form-validator": "^2.0.7"
+    "sweetalert": "^2.1.2"
   },
   "scripts": {
     "start": "node server/server.js",

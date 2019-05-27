@@ -61,60 +61,64 @@ class CreateWaterSources extends Component {
     return (
       <React.Fragment>
             
-            <Grid container spacing={24}
-            container
-            direction="column"
-            justify="center"
-            alignItems="center">
+        <Grid container spacing={24}
+          container
+          direction="column"
+          justify="center"
+          alignItems="center">
+
           <Grid item xs={12} sm={6}>
             <Typography variant="h6" gutterBottom>
               Create Water Sources
-                  </Typography>
+            </Typography>
           </Grid>
                
-                <Grid item xs={12} sm={6}>
-                  <FormControl>
-                    <TextField label="Water Sources" variant="outlined" color="primary"
-                      onChange={this.handleInputChangeFor('name')}
-                      value={this.state.newWaterSource.name}
-                      style={{ width: '80vw', maxWidth: 400 }}
-                    >
-                    </TextField>
-              <Button size="large" color="primary" 
+          <Grid item xs={12} sm={6}>
+            <FormControl>
+              <TextField label="Water Sources" variant="outlined" color="primary"
+                onChange={this.handleInputChangeFor('name')}
+                value={this.state.newWaterSource.name}
+                style={{ width: '80vw', maxWidth: 400 }}
+              >
+              </TextField>
+            </FormControl>
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
+            <Button size="large" color="primary" variant="contained"
               onClick={this.addWaterSource} 
               disabled={this.state.disable}
-              >
-              Add
-              </Button>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12} sm={6}>
+            >
+            Add
+            </Button>
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
             <ul> Water Sources:</ul>
-            {
-              this.props.reduxState.waterSetup.waterSource.map(source =>
+            {this.props.reduxState.waterSetup.waterSource.map(source =>
                 <li key={source.farm_water_source_id}>{source.farm_water_source_name}
-                  <Button size="large" color="primary"
+                  <Button size="large" color="primary" variant="contained"
                     onClick={this.removeWaterSource}
                     name={source.farm_water_source_id}
                     >
                     Remove
                 </Button>
                 </li>
-              )
-            }
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                <Button size="large" color="primary" 
-                onClick={this.nextPage} 
-                disabled={this.state.disableNext}
-                >
-                Next
-                </Button>
-                </Grid>
+              )}
+          </Grid>
 
-            </Grid>
+          <Grid item xs={12} sm={6}>
+            <Button size="large" color="primary" variant="contained"
+              onClick={this.nextPage} 
+              disabled={this.state.disableNext}
+            >
+            Next
+            </Button>
+          </Grid>
+
+        </Grid>
            
-        </React.Fragment>
+      </React.Fragment>
     );
   }
 }
