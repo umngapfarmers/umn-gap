@@ -1,22 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Button from "@material-ui/core/Button";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { withRouter } from 'react-router-dom';
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import PropTypes from "prop-types";
+
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import Divider from "@material-ui/core/Divider";
-import InboxIcon from "@material-ui/icons/Inbox";
-import DraftsIcon from "@material-ui/icons/Drafts";
-import RegisterPage from "../../Auth/RegisterPage/RegisterPage";
-import EditEmployee from "./EditEmployee";
+
 
 
 class EmployeeList extends Component {
@@ -67,9 +61,7 @@ class EmployeeList extends Component {
                     onClick={this.handleEdit(Person.person_id)}
                   >
                     {Person.person_first + " " + Person.person_last}
-                    <ListItemIcon>
-                      <FontAwesomeIcon icon="id-card" />
-                    </ListItemIcon>
+                    
                   </ListItem>
                 ))}
               

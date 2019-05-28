@@ -26,13 +26,14 @@ router.get("/user", (req, res) => {
   console.log("IN GET USER");
   const current_harvest_id = req.user.current_harvest_year;
   //let sqlQuery = `SELECT * FROM "user" WHERE "current_harvest_year" = $1;`
-  let sqlQuery = `SELECT "user".username,person.person_first,person.person_last FROM "user" JOIN 
-PERSON ON person.user_id = "user".user_id
-WHERE "current_harvest_year"= $1;`;
+  let sqlQuery = `SELECT "user".username,"user".user_id,"user".user_role,
+    "user".user_status,person.person_first,person.person_last FROM "user" JOIN 
+    PERSON ON person.user_id = "user".user_id
+      WHERE "current_harvest_year"= $1;`;
   pool
     .query(sqlQuery, [current_harvest_id])
     .then(response => {
-      console.log(`response person`, response.rows);
+      console.log(`response user`, response.rows);
       res.send(response.rows);
     })
     .catch(error => {
@@ -58,6 +59,23 @@ router.get("/person/edit/", (req, res) => {
     });
 });
 
+router.get("/user/edit/", (req, res) => {
+  console.log("IN pick for EDIT USER ", req.query.user_id);
+  pool
+    .query(`select * from "user"  WHERE "user_id" = $1;`, [req.query.user_id])
+    .then(response => {
+      selectedUser = response.rows;
+      console.log("in router selected User", selectedUser);
+
+      //console.log(`response person`, response.rows);
+      res.send(selectedUser);
+    })
+    .catch(error => {
+      console.log("errors with user Edit pickup query", error);
+      res.sendStatus(500);
+    });
+});
+
 router.put("/person", (req, res) => {
   console.log("IN EDIT PERSON ", req.body);
   pool
@@ -70,6 +88,25 @@ router.put("/person", (req, res) => {
 
       //console.log(`response person`, response.rows);
       res.send(selectedPerson);
+    })
+    .catch(error => {
+      console.log("errors with edit query", error);
+      res.sendStatus(500);
+    });
+});
+
+router.put("/user", (req, res) => {
+  console.log("IN EDIT User ", req.body);
+  pool
+    .query(`UPDATE "user" SET "user_status"=$1, "user_role"=$2 WHERE "user_id" = $3;`
+      , [req.body.user_status, req.body.user_role,
+      req.body.user_id])
+    .then(response => {
+      selectedUser = response.rows;
+      console.log("in router selected", selectedUser);
+
+      //console.log(`response person`, response.rows);
+      res.send(selectedUser);
     })
     .catch(error => {
       console.log("errors with edit query", error);
