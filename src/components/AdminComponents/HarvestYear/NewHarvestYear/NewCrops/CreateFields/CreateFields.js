@@ -8,6 +8,8 @@ import './CreateFields.css'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { withRouter } from 'react-router-dom';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import IconButton from '@material-ui/core/IconButton';
 
 
 class CreateFields extends Component {
@@ -87,17 +89,18 @@ class CreateFields extends Component {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <ul> My Fields:</ul>
+            <ul>
               {this.props.reduxState.cropSetup.fieldSetup.map(crop =>
                 <li key={crop.farm_field_id}>{crop.field_name}
-                  <Button size="large" color="primary" variant="contained"
+                  <IconButton size="large" color="primary" variant="contained"
                   onClick={this.removeFieldSource} 
                   name={crop.farm_field_id} 
                   >
-                  Remove
-                  </Button>
+                    <FontAwesomeIcon icon='minus-circle'/>
+                  </IconButton>
                 </li>
               )}
+            </ul>
           </Grid>
     
           <Grid item xs={12} sm={6}>

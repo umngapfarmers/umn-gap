@@ -8,6 +8,8 @@ import './CreateCrops.css'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { withRouter } from 'react-router-dom';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import IconButton from '@material-ui/core/IconButton';
 
 
 class CreateCrops extends Component {
@@ -91,17 +93,18 @@ class CreateCrops extends Component {
           </Grid>
           
           <Grid item xs={12} sm={6}>
-          <ul> My Crops:</ul>
+          <ul> 
               {this.props.reduxState.cropSetup.cropSetup.map(crop =>
                 <li key={crop.farm_crop_id} value={crop.farm_crop_id}>{crop.farm_crop_type}
-                  <Button size="large" color="primary" variant="contained"
+                  <IconButton size="small" color="primary" variant="contained"
                   onClick={this.removeCropSource} 
                   name={crop.farm_crop_id}
                   >
-                  Remove
-                  </Button>
+                  <FontAwesomeIcon icon='minus-circle'/>
+                  </IconButton>
                 </li> 
               )}
+          </ul>
 
           </Grid>
 

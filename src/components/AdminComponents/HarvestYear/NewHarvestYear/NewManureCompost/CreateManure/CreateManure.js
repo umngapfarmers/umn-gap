@@ -6,8 +6,10 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
 import './CreateManure.css';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 const moment = require('moment');
 
 // Allows farmer to create a manure source.
@@ -16,7 +18,7 @@ class CreateManure extends Component {
 
 
   state= {
-    farm_manure_date: '',
+    farm_manure_date: moment().format('YYYY-MM-DD'),
     farm_manure_description: '',
     farm_manure_rate: '',
     label_code_id: '',
@@ -63,12 +65,25 @@ class CreateManure extends Component {
             <ul>
               {this.props.reduxState.setupManure.map(manure =>
                 <li key={manure.farm_manure_id}>{manure.label_code_text+' '+ moment(manure.farm_manure_date).format('YYYY-MM-DD')}
-                  <Button size="small" color="primary" variant='contained'  onClick={() => this.handleRemove(manure.farm_manure_id)}>Remove</Button>
+                  <IconButton size="small" color="primary" variant='contained'  onClick={() => this.handleRemove(manure.farm_manure_id)}><FontAwesomeIcon icon='minus-circle'/></IconButton>
                 </li>
               )}
             </ul>
     }
     return listEl
+  }
+
+  validateFilled = () => {
+    console.log('validation')
+    if (this.state.farm_manure_description && this.state.label_code_id) {
+      console.log(`valdiated`)
+      return false
+    }
+    else {
+      console.log(`unvalidated`);
+      
+      return true
+    }
   }
   
   render() {
@@ -88,7 +103,7 @@ class CreateManure extends Component {
         justify = "center"
         alignItems = "center"
       >
-        <Grid item xs={8} sm={6} >
+        <Grid item xs={12}>
             <FormControl>
                 <TextField 
                     label="Application Date" 
@@ -100,12 +115,13 @@ class CreateManure extends Component {
                     InputLabelProps={{
                       shrink: true,
                     }}
+                    style={{width:'80vw', maxWidth:400}}
                   >
                 </TextField>
             </FormControl>
         </Grid>
 
-        <Grid item xs={8} sm={6} >
+        <Grid item xs={12}>
             <FormControl>
                 <TextField 
                     label="Describe Manure" 
@@ -114,12 +130,14 @@ class CreateManure extends Component {
                     onChange={this.handleChangeFor('farm_manure_description')}
                     value={this.state.farm_manure_description}
                     multiline
+                    helperText='required'
+                    style={{width:'80vw', maxWidth:400}}
                   >
                 </TextField>
             </FormControl>
         </Grid>
 
-        <Grid item xs={8} sm={6} >
+        <Grid item xs={12} >
             <FormControl>
                 <TextField 
                   label="Application Rate" 
@@ -127,12 +145,13 @@ class CreateManure extends Component {
                   color="primary"
                   onChange={this.handleChangeFor('farm_manure_rate')}
                   value={this.state.farm_manure_rate}
+                  style={{width:'80vw', maxWidth:400}}
                 >
                 </TextField>
             </FormControl>
         </Grid>
 
-        <Grid item xs={8} sm={6} >
+        <Grid item xs={12} >
             <FormControl>
                 <TextField 
                   label="Label Code" 
@@ -141,7 +160,10 @@ class CreateManure extends Component {
                   onChange={this.handleChangeFor('label_code_id')}
                   value={this.state.label_code_id}
                   select
+                  style={{width:'80vw', maxWidth:400}}
+                  helperText='required'
                 >
+
                   {this.props.reduxState.labelCode.map( code => (
                     <MenuItem key={code.label_code_id} value={code.label_code_id}>
                       {code.label_code_text}
@@ -151,18 +173,35 @@ class CreateManure extends Component {
             </FormControl>
         </Grid>
 
-        <Grid item xs={8} sm={6} >
+        <Grid item xs={12}>
           <Typography align="center">
-            <Button size="medium" color="primary" variant='contained' onClick={this.onSubmitManure}>Add Manure</Button>
+            <Button 
+              size="medium" 
+              color="primary" 
+              variant='contained' 
+              onClick={this.onSubmitManure}
+              style={{width:'80vw', maxWidth:400}}
+              disabled={this.validateFilled()}
+            >
+              Add Manure
+            </Button>
           </Typography>
         </Grid>
  
-        <Grid item xs={8} sm={6} >
+        <Grid item xs={12} sm={6} >
           {this.toRenderList(this.props.reduxState.setupManure)}
         </Grid>  
 
-        <Grid item xs={8} sm={6} >
-          <Button size="medium" color="primary" variant='contained' onClick={this.handleNext}>Continue</Button>
+        <Grid item xs={12} >
+          <Button 
+            size="medium" 
+            color="primary" 
+            variant='contained' 
+            onClick={this.handleNext}
+            style={{width:'80vw', maxWidth:400}}
+          >
+            Continue
+          </Button>
 
         </Grid>  
 
