@@ -22,10 +22,14 @@ import recordWaterInspectSaga from './recordWaterInspectSaga';
 import recordEmployeeSaga from './recordEmployeeSaga';
 import recordHarvestSaga from './recordHarvestSaga';
 import importHarvestSaga from './importHarvestSaga';
+import addCompostLogSaga from './logCompostSaga'
 import recordWaterTreatSaga from './recordWaterTreatSaga'
 import recordManureSaga from './recordManureSaga';
 import recordCompostPileSaga from './recordCompostPileSaga';
 import logWaterSaga from './logWaterSaga';
+import allUsersSaga from './allUsersSaga';
+import recordCropSaga from './recordCropSaga';
+import recordCompostTurnSaga from './recordCompostTurnSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -36,6 +40,8 @@ import logWaterSaga from './logWaterSaga';
 // and login triggers setting the user
 export default function* rootSaga() {
   yield all([
+    manageUserSaga(),
+
     loginSaga(),
     registrationSaga(),
     userSaga(),
@@ -57,8 +63,13 @@ export default function* rootSaga() {
     recordHarvestSaga(),
     importHarvestSaga(),
     recordWaterTreatSaga(),
+    addCompostLogSaga(),
     recordManureSaga(),
     recordCompostPileSaga(),
-    logWaterSaga()
+
+    logWaterSaga(),
+    allUsersSaga(),
+    recordCropSaga(),
+    recordCompostTurnSaga()
   ]);
 }

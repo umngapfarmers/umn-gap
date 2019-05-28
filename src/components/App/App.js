@@ -28,8 +28,7 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import theme from './theme';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRecycle, faTint, faPen, faPlus, faSeedling, faHome, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-
+import { faRecycle, faCarrot, faTint, faPen, faPlus, faSeedling, faHome, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters, faTrashAlt, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 import ManageWorker from '../AdminComponents/ManageRoles/ManageWorker';
 
@@ -38,12 +37,14 @@ import FieldTypes from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/C
 import LabelCode from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateLabelCodes/CreateLabelCodes';
 import WaterLogDashboard from '../AllUsersComponents/LogForms/SelectWaterLog/SelectWaterLog';
 // import ManureLogDashboard from '../AllUsersComponents/LogForms/SelectCompostManureLog/SelectCompostManureLog';
-import CompostLog from '../AllUsersComponents/LogForms/CompostManagementLog/CompostManagementLog';
+// import CompostLog from '../AllUsersComponents/LogForms/CompostManagementLog/CompostManagementLog';
 import EmployeeLog from '../AllUsersComponents/LogForms/EmployeeTrainingLog/EmployeeTrainingLog';
 import EditCrops from '../AdminComponents/HarvestYear/EditHarvestYear/EditCrops/EditCrops';
 import EditEmployee from '../AdminComponents/ManageRoles/EditEmployee';
 import EditWater from '../AdminComponents/HarvestYear/EditHarvestYear/EditWater/EditWater';
 import EditWorker from '../AdminComponents/ManageRoles/EditWorker';
+
+import CompostLog from '../AllUsersComponents/LogForms/CompostPileLog/CompostPileLog';
 
 import RecordDashboard from '../AllUsersComponents/Records/RecordsHierarchyMenu/RecordsHierarchyMenu';
 import RecordHarvest from '../AllUsersComponents/Records/HarvestRecord/HarvestRecord';
@@ -57,7 +58,12 @@ import RecordCompostPile from '../AllUsersComponents/Records/CompostPileRecord/C
 import RecordCompostTurn from '../AllUsersComponents/Records/CompostTurningRecord/CompostTurningRecord';
 import WaterInspectLog from '../AllUsersComponents/LogForms/WaterInspectionLog/WaterInspectionLog';
 import WaterTreatLog from '../AllUsersComponents/LogForms/WaterTreatmentLog/WaterTreatmentLog';
-library.add(faHome, faRecycle, faPen, faPlus, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters, faTrashAlt);
+import EditUser from '../AdminComponents/ManageRoles/EditUser';
+import ManageUserAccounts from '../SuperAdmin/ManageUserAccounts/ManageUserAccounts';
+import RecordHarvestDashboard from '../AllUsersComponents/Records/SelectHarvestRecord/SelectHarvestRecord';
+import RecordCropsFieldsLabelCode from '../AllUsersComponents/Records/CropsFieldsLabelCodeRecord/CropsFieldsLabelCodeRecord';
+
+library.add(faHome,faCarrot, faRecycle, faPen, faPlus, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters, faTrashAlt, faMinusCircle);
 
 class App extends Component {
   componentDidMount () {
@@ -180,6 +186,11 @@ class App extends Component {
                 path="/editemployee"
                 component={EditEmployee}
               />
+              <Route
+                exact
+                path="/edituser"
+                component={EditUser}
+              />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
@@ -224,7 +235,7 @@ class App extends Component {
               component={WaterLogDashboard}
             />    
 
-            <Route
+            <ProtectedRoute
               exact
               path = '/compostlog'
               component={CompostLog}
@@ -307,7 +318,24 @@ class App extends Component {
             path='/recordcompostturn'
             component={RecordCompostTurn}
             />  
+          
+          <Route
+            exact
+            path='/manageuseraccounts'
+            component={ManageUserAccounts}
+            />
 
+          <Route
+            exact
+            path='/recordharvestdashboard'
+            component={RecordHarvestDashboard}
+            />
+
+          <Route
+            exact
+            path='/recordcropsfields'
+            component={RecordCropsFieldsLabelCode}
+            />
 
             {/* <Route
             exact

@@ -6,20 +6,23 @@ import { withStyles } from '@material-ui/core/styles';
 import Nav from '../../../Nav/Nav';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-import CompostTurningRecordTable from './CompostTurningRecordTable';
 import Button from '@material-ui/core/Button';
+import CropFieldsLabelCodeTable from './CropsFieldsLabelCodeTable';
 
-class  CompostTurningRecord extends Component {
+
+
+class CropsFieldLabelCode extends Component {
 
 
   state= {
     selectHarvestYear: '',
+    
   }
 
   componentDidMount() {
     this.props.dispatch({type:'GET_HARVEST_YEAR'});
   }
-
+  
   handleChange = propertyName => {
     return event => {
       this.setState({
@@ -30,8 +33,7 @@ class  CompostTurningRecord extends Component {
     }
 
     handleSubmit = () => {
-      console.log(this.state.selectHarvestYear)
-      this.props.dispatch({type:'GET_RECORD_COMPOST_TURN', payload: this.state.selectHarvestYear})
+      this.props.dispatch({type:'GET_RECORD_CROP', payload: this.state.selectHarvestYear})
     }
 
     handleError = () => {
@@ -51,18 +53,14 @@ class  CompostTurningRecord extends Component {
 
 
 
-  
-
-
-
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
     console.log(this.state);
     return (
       <React.Fragment>
-        <Nav/>
+      <Nav/>
       <Typography variant="h6" gutterBottom align="center">
-         Compost Turning Record
+         Crop, Fields and Label Code Record
       </Typography>
       <Grid container spacing={24}
         direction="column"
@@ -92,16 +90,15 @@ class  CompostTurningRecord extends Component {
                         
                   </TextField> 
             </Grid>
-
             <Grid item xs={12} sm={6}>
-              {this.handleError()}
-            </Grid>
-            
-            <Grid item xs={12} sm={6}>
-              <CompostTurningRecordTable/>
+                 {this.handleError()}
             </Grid>
 
-                    
+            <Grid item xs={12} sm={6}>
+             
+                <CropFieldsLabelCodeTable/>
+              
+            </Grid>
 
       </Grid>
      
@@ -124,4 +121,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect( mapReduxStateToProps )(withStyles(styles)(CompostTurningRecord));
+export default connect( mapReduxStateToProps )(withStyles(styles)(CropsFieldLabelCode));

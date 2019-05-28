@@ -1,10 +1,11 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 
-router.get('/', (req, res) => {
-    let sqlText = `SELECT * FROM "farm_compost" WHERE "farm_compost"."harvest_year_id" = $1;`
+router.get('/', rejectUnauthenticated, (req, res) => {
+    let sqlText = `SELECT * FROM "farm_compost" WHERE "farm_compost"."harvest_year_id" = $1 AND "farm_compost"."farm_compost_status";`
     let harvest_id = req.user.current_harvest_year;
     console.log(`harvest id off user GET`, harvest_id);
     // let harvest_id = 2
@@ -20,7 +21,7 @@ router.get('/', (req, res) => {
 });
 
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     console.log(`in post compost `, req.user);
     
     let sqlText = `INSERT INTO "farm_compost"
@@ -46,7 +47,7 @@ router.post('/', (req, res) => {
         })
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
     let sqlText =  `DELETE FROM "farm_compost" WHERE "farm_compost_id" = $1`;
     let compost_id = req.params.id;
     pool.query(sqlText, [compost_id])

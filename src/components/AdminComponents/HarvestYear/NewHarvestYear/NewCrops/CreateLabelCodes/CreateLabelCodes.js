@@ -11,6 +11,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import IconButton from '@material-ui/core/IconButton';
 
 
 class CreateLabelCodes extends Component {
@@ -148,16 +150,17 @@ class CreateLabelCodes extends Component {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <ul> My labels:</ul>
-            {this.props.reduxState.labelCode.map(code =>
-                <li key={code.label_code_id}>{code.label_code_text}
-                  <Button size="large" color="primary" variant="contained"
-                    onClick={this.removeLabelCode}
-                    name={code.label_code_id}>
-                    Remove
-                </Button>
-                </li>
-              )}
+            <ul>
+              {this.props.reduxState.labelCode.map(code =>
+                  <li key={code.label_code_id}>{code.label_code_text}
+                    <IconButton size="small" color="primary" variant="contained"
+                      onClick={this.removeLabelCode}
+                      name={code.label_code_id}>
+                        <FontAwesomeIcon icon='minus-circle'/>
+                  </IconButton>
+                  </li>
+                )}
+            </ul>
           </Grid>
 
           <Grid item xs={12} sm={6}>

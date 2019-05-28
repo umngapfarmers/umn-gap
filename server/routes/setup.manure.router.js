@@ -1,9 +1,11 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 
-router.get('/', (req, res) => {
+
+router.get('/', rejectUnauthenticated, (req, res) => {
     let sqlText = `SELECT * FROM "farm_manure" 
         JOIN "label_code" on "farm_manure"."label_code_id" = "label_code"."label_code_id"
         WHERE "farm_manure"."harvest_year_id" = $1;`
@@ -22,7 +24,7 @@ router.get('/', (req, res) => {
 });
 
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     
     let sqlText = `INSERT INTO "farm_manure"
         ("farm_manure_date", "farm_manure_description", "farm_manure_rate", "label_code_id", "harvest_year_id","farm_manure_status")
@@ -48,7 +50,7 @@ router.post('/', (req, res) => {
         })
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
     let sqlText =  `DELETE FROM "farm_manure" WHERE "farm_manure_id" = $1`;
     let manure_id = req.params.id;
     pool.query(sqlText, [manure_id])

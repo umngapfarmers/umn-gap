@@ -32,7 +32,7 @@ const ProtectedRoute = (props) => {
   let ComponentToShow;
 
   if(user.user_id) {
-    if (otherProps.path === '/home' && user.user_role === 'worker'){
+    if (otherProps.path === '/home' && user.user_role === 'user'){
       ComponentToShow = WorkerDashboard;
     }
 
