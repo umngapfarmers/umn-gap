@@ -8,7 +8,6 @@ const router = express.Router();
 
 router.get('/person', (req, res) => {
     console.log('IN GET PERSON')
-    const current_harvest_id = req.user.current_harvest_year;
     let sqlQuery = `SELECT * FROM "person" WHERE "person_status" = TRUE;`
     pool.query(sqlQuery)
         .then((response) => {

@@ -28,8 +28,7 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import theme from './theme';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRecycle, faTint, faPen, faPlus, faSeedling, faHome, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters, faTrashAlt, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
-
+import { faRecycle, faCarrot, faTint, faPen, faPlus, faSeedling, faHome, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters, faTrashAlt, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 import ManageWorker from '../AdminComponents/ManageRoles/ManageWorker';
 
@@ -60,7 +59,10 @@ import WaterInspectLog from '../AllUsersComponents/LogForms/WaterInspectionLog/W
 import WaterTreatLog from '../AllUsersComponents/LogForms/WaterTreatmentLog/WaterTreatmentLog';
 import EditUser from '../AdminComponents/ManageRoles/EditUser';
 import ManageUserAccounts from '../SuperAdmin/ManageUserAccounts/ManageUserAccounts';
-library.add(faHome, faRecycle, faPen, faPlus, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters, faTrashAlt, faMinusCircle);
+import RecordHarvestDashboard from '../AllUsersComponents/Records/SelectHarvestRecord/SelectHarvestRecord';
+import RecordCropsFieldsLabelCode from '../AllUsersComponents/Records/CropsFieldsLabelCodeRecord/CropsFieldsLabelCodeRecord';
+
+library.add(faHome,faCarrot, faRecycle, faPen, faPlus, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters, faTrashAlt, faMinusCircle);
 
 class App extends Component {
   componentDidMount () {
@@ -317,6 +319,17 @@ class App extends Component {
             component={ManageUserAccounts}
             />
 
+          <Route
+            exact
+            path='/recordharvestdashboard'
+            component={RecordHarvestDashboard}
+            />
+
+          <Route
+            exact
+            path='/recordcropsfields'
+            component={RecordCropsFieldsLabelCode}
+            />
 
             {/* <Route
             exact
