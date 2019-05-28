@@ -11,6 +11,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import List from '@material-ui/core/List';
@@ -18,16 +19,19 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
+import MenuItem from '@material-ui/core/MenuItem';
 import swal from 'sweetalert';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
 
-class Fields extends Component {
+class LabelCodes extends Component {
 
     state = {
-        newField: {
-            name: '',
+        newLabel: {
+            crop_id: '',
+            field_id: '',
+            label_code: '',
         },
         dialogState: {
             array: '',
@@ -41,8 +45,8 @@ class Fields extends Component {
 
     handleInputChangeFor = propertyName => (event) => {
         this.setState({
-            newField: {
-                ...this.state.newField,
+            newLabel: {
+                ...this.state.newLabel,
                 [propertyName]: event.target.value,
             },
         })
@@ -80,33 +84,37 @@ class Fields extends Component {
     }
 
     componentDidMount = () => {
+        this.props.dispatch({ type: 'GET_CROP_SOURCE' });
         this.props.dispatch({ type: 'GET_FIELD_SOURCE' });
+        this.props.dispatch({ type: 'GET_LABEL_CODE' });
         console.log('length is', this.state.checked.length);
         
     }
 
     addCropSource = (event) => {
         event.preventDefault();
-        this.props.dispatch({ type: 'ADD_FIELD_SOURCE', payload: this.state.newField })
+        this.props.dispatch({ type: 'ADD_LABEL_CODE', payload: this.state.newLabel })
         this.setState({
-            newField: {
-                name: ''
-            }
+            newLabel: {
+                crop_id: '',
+                field_id: '',
+                label_code: '',
+            },
         })
     }
 
     removeCropSource = () => {
         swal({
-            title: `Delete (${this.state.checked.length}) fields?`,
-            text: "These fields will be removed from your harvest year but will still appear in your records",
+            title: `Delete (${this.state.checked.length}) labels?`,
+            text: "These labels will be removed from your harvest year but will still appear in your records",
             icon: "warning",
             buttons: true,
             dangerMode: true,
         })
         .then((willDelete) => {
             if (willDelete) {
-                this.props.dispatch({ type: 'DISABLE_FIELD_SOURCE', payload: this.state })
-                this.props.dispatch({ type: 'GET_FIELD_SOURCE' });
+                this.props.dispatch({ type: 'DISABLE_LABEL_CODE', payload: this.state })
+                this.props.dispatch({ type: 'GET_LABEL_CODE' });
                 this.setState({
                     disableDelete: true
                 })
@@ -117,11 +125,13 @@ class Fields extends Component {
     counter = () => {
         const count = this.state.checked.length;
         if(count > 0){
-            return `Disable Fields (${count})`;
+            return `Disable LabelCodes (${count})`;
         }else {
             return "nothing here"
 
         }
+        console.log('count is', count);
+        
     }
 
     handleCheck = value => () => {
@@ -132,6 +142,7 @@ class Fields extends Component {
                 ...this.state.checked.push(value)
                 /* checked: [...this.state.checked, value] */,
                 disableDelete: false
+
             })
             
         } else {
@@ -139,8 +150,8 @@ class Fields extends Component {
                 ...this.state.checked.splice(currentIndex, 1),
             
             })
+            console.log('in splice');
         }
-
         if(this.state.checked.length === 0) {
             this.setState({
                 disableDelete: true
@@ -158,10 +169,12 @@ class Fields extends Component {
         this.setState({
             ...this.state,
             dialogState: {
-                array: this.props.reduxState.cropSetup.fieldSetup[i],
+                array: this.props.reduxState.labelCode[i],
             },
             setOpen: true,
         })
+        console.log('sate is', this.dialogState);
+        
     }
 
     handleClose = (event) => {
@@ -171,8 +184,8 @@ class Fields extends Component {
 
             })
             swal("Changes Saved!", "", "success");
-            this.props.dispatch({ type: "EDIT_FIELD_SOURCE", payload: this.state.dialogState.array })
-            this.props.dispatch({ type: "GET_FIELD_SOURCE" })
+            this.props.dispatch({ type: "EDIT_LABEL_CODE", payload: this.state.dialogState.array })
+            this.props.dispatch({ type: "GET_LABEL_CODE" })
             console.log('id is', this.state.dialogState);
 
         } else {
@@ -188,6 +201,7 @@ class Fields extends Component {
             <React.Fragment>
                 
                 <Grid container spacing={24}
+                    container
                     direction="column"
                     justify="center"
                     alignItems="center"
@@ -195,14 +209,54 @@ class Fields extends Component {
                     >
                     <Grid item xs={12} sm={6}>
                         <Typography variant="h6" gutterBottom align="center" className={classes.titleColor} align="center">
-                            Add or Edit Fields 
+                            Add or Edit LabelCodes
                         </Typography>
                     </Grid>
 
+                    <Grid item xs={12} sm={6} >
+                        <FormControl>
+                            <TextField
+                                label="Crop Name"
+                                variant="outlined"
+                                color="primary"
+                                onChange={this.handleInputChangeFor('crop_id')}
+                                value={this.state.newLabel.crop_id}
+                                style={{ width: '80vw', maxWidth: 400 }}
+                                select
+                            >
+                                {this.props.reduxState.cropSetup.cropSetup.map(crop=> (
+                                    <MenuItem key={crop.farm_crop_id} value={crop.farm_crop_id}>
+                                        {crop.farm_crop_type}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12} sm={6} >
+                        <FormControl>
+                            <TextField
+                                label="Field Name"
+                                variant="outlined"
+                                color="primary"
+                                onChange={this.handleInputChangeFor('field_id')}
+                                value={this.state.newLabel.field_id}
+                                style={{ width: '80vw', maxWidth: 400 }}
+                                select
+                            >
+                                {this.props.reduxState.cropSetup.fieldSetup.map(field => (
+                                    <MenuItem key={field.farm_field_id} value={field.farm_field_id}>
+                                        {field.field_name}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </FormControl>
+                    </Grid>
+
                     <Grid item xs={12} sm={6}>
-                        <TextField label="Fields to track" variant="outlined" color="primary"
-                            onChange={this.handleInputChangeFor('name')}
-                            value={this.state.newField.name}
+                        <TextField label="Label Code Name" variant="outlined" color="primary"
+                            onChange={this.handleInputChangeFor('label_code')}
+                            value={this.state.newLabel.label_code}
                             style={{ width: '80vw', maxWidth: 400, }}
                         >
                         </TextField>
@@ -214,7 +268,7 @@ class Fields extends Component {
                             disabled={this.state.disable}
                         >
                             <FontAwesomeIcon icon="plus" style={{ marginRight: 5, marginTop:-2, height: 10 }} className={classes.fabIconColor} />
-                            <Typography className={classes.fabColor}>Add Field</Typography>
+                            <Typography className={classes.fabColor}>Add Label</Typography>
                         </Button>
                     </Grid>
 
@@ -225,32 +279,32 @@ class Fields extends Component {
                                 aria-controls="panel1a-content"
                                 id="panel1a-header"    
                             >
-                                <Typography className={classes.heading}>My Fields</Typography>
+                                <Typography className={classes.heading}>My LabelCodes</Typography>
                             </ExpansionPanelSummary>
                             <ExpansionPanelDetails >
 
                                 <Grid item xs={12} sm={6}>
                                     <List style={{ marginLeft: -25, width: '70vw', maxWidth: 300 }}>
-                                        {this.props.reduxState.cropSetup.fieldSetup.map((field, i) =>
-                                        <section key={field.farm_field_id}>
-                                            <ListItem key={field.farm_field_id} 
+                                        {this.props.reduxState.labelCode.map((code, i) =>
+                                        <section key={code.label_code_id}>
+                                            <ListItem key={code.label_code_id} 
                                                 style={{ display: "flex", direction: "column", width: '70vw', maxWidth: 270 }}
-                                                onClick={this.handleCheck(field.farm_field_id)}
+                                                onClick={this.handleCheck(code.label_code_id)}
                                             >
                                                 <ListItemIcon>
                                                     <Checkbox
                                                         edge="start"
-                                                        checked={this.state.checked.indexOf(field.farm_field_id) !== -1}
+                                                        checked={this.state.checked.indexOf(code.label_code_id) !== -1}
                                                         
                                                         tabIndex={-1}
                                                         disableRipple
                                                     />
                                                 </ListItemIcon>
-                                                    <ListItemText primary={field.field_name} style={{ marginLeft: "-20px"}}/>
+                                                    <ListItemText primary={code.label_code_text} style={{ marginLeft: "-20px"}}/>
                                                 <ListItemSecondaryAction>
                                                 <Button variant="outlined" color="primary" variant="contained"
                                                     onClick={event => this.handleClickOpen(i)} 
-                                                    value={field.field_name}
+                                                    value={code.label_code_text}
                                                     style={{ width: '200', maxWidth: 270 }}
                                                 >
                                                     Edit
@@ -258,17 +312,17 @@ class Fields extends Component {
                                                 </ListItemSecondaryAction>
                         
                                             </ListItem>
-                                                <Divider variant="middle" />
+                                            <Divider variant="middle" />
                                         </section>
                                     )}    
                                         <Button size="large" color="secondary" variant="contained"
-                                            style={{ marginTop: 18, marginLeft: 10, height: 50, width: "70vw", maxWidth: 280 }}
+                                            style={{marginTop: 18, marginLeft: 10, height:50, width: "70vw", maxWidth: 280}}
                                             onClick={this.removeCropSource}
                                             disabled={this.state.disableDelete}
                                         >
                                             <FontAwesomeIcon icon="trash-alt" style={{ marginRight: 10, marginTop: -2  }} className={classes.fabIconColor} />
-                                            <Typography className={classes.fabColor}>Remove Fields</Typography>
-                                        </Button>    
+                                            <Typography className={classes.fabColor}>Remove LabelCodes</Typography>
+                                        </Button>
                                     </List>
                                 </Grid>   
 
@@ -280,12 +334,42 @@ class Fields extends Component {
                         <Dialog open={this.state.setOpen} aria-labelledby="form-dialog-title">
                             <DialogContent style={{ width: '80vw', maxWidth: 200 }}>
                                 <TextField
+                                    label="Crop Name"
+                                    variant="outlined"
+                                    color="primary"
+                                    value={this.state.dialogState.array.farm_crop_id}
+                                    onChange={this.handleDialogChangeFor('farm_crop_id')}
+                                    style={{marginRight: 10, marginBottom: 30, width: 180,}}
+                                    select
+                                >
+                                    {this.props.reduxState.cropSetup.cropSetup.map(crop => (
+                                        <MenuItem key={crop.farm_crop_id} value={crop.farm_crop_id}>
+                                            {crop.farm_crop_type}
+                                        </MenuItem>
+                                    ))}
+                                </TextField>
+                                <TextField
+                                    label="Field Name"
+                                    variant="outlined"
+                                    color="primary"
+                                    value={this.state.dialogState.array.farm_field_id}
+                                    onChange={this.handleDialogChangeFor('farm_field_id')}
+                                    style={{ marginRight: 10, marginBottom: 30, width: 180, }}
+                                    select
+                                >
+                                    {this.props.reduxState.cropSetup.fieldSetup.map(field => (
+                                        <MenuItem key={field.farm_field_id} value={field.farm_field_id}>
+                                            {field.field_name}
+                                        </MenuItem>
+                                    ))}
+                                </TextField>
+                                <TextField
                                     autoFocus
                                     margin="dense"
                                     id="name"
-                                    label={"Field Name"}
-                                    value={this.state.dialogState.array.field_name}
-                                    onChange={this.handleDialogChangeFor('field_name')}
+                                    label={"Label Name"}
+                                    value={this.state.dialogState.array.label_code_text}
+                                    onChange={this.handleInputChangeFor('label_code_text')}
                                     fullWidth
                                 />
                             </DialogContent>
@@ -321,4 +405,4 @@ const mapReduxStateToProps = (reduxState) => ({
     reduxState,
 });
 
-export default connect(mapReduxStateToProps)(withStyles(styles)(Fields));
+export default connect(mapReduxStateToProps)(withStyles(styles)(LabelCodes));
