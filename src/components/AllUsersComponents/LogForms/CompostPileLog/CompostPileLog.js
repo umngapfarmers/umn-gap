@@ -26,7 +26,7 @@ class CompostPileLog extends Component {
       test_area_2_temp: '',
       test_area_3_temp: '',
       test_area_4_temp: '',
-      label_code_id: null,
+      label_code_id: '',
       compost_sig: '',
     }
   }
@@ -83,7 +83,7 @@ class CompostPileLog extends Component {
         test_area_2_temp: '',
         test_area_3_temp: '',
         test_area_4_temp: '',
-        label_code_id: null,
+        label_code_id: '',
         compost_sig: '',
       }
     })
