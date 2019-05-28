@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import './EditManureCompost.css'
+import Nav from '../../../../Nav/Nav';
 
 
 class EditManureCompost extends Component {
@@ -20,16 +21,9 @@ class EditManureCompost extends Component {
     const {classes} = this.props;
     return (
       <React.Fragment>
-            <Typography variant="h6" gutterBottom>
-                Edit Manure and Compost
-            </Typography>
-            <Grid container spacing={24}>
-               
-                <Grid item xs={12} sm={6}>
-                   
-                </Grid>
 
-            </Grid>
+        <Nav />
+        
            
         </React.Fragment>
     );
