@@ -150,7 +150,7 @@ class MenuAppBar extends React.Component {
             </MenuItem>
         </Menu>
     }
-    if(this.props.reduxState.user.user_role == 'worker'){
+    if(this.props.reduxState.user.user_role == 'user'){
       conditionalMenu =
             <Menu
             id="menu-appbar"
@@ -186,7 +186,8 @@ class MenuAppBar extends React.Component {
                 </MenuItem>
             </Menu>
         }
-    
+
+   
   
       return (
         <div className={classes.root}>
