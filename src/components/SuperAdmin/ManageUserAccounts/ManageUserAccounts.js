@@ -3,19 +3,24 @@ import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import LogoutButton from '../LogOutButton/LogOutButton';
 import Fab from '@material-ui/core/Fab';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import HomeIcon from '@material-ui/icons/Home';
+import LogoutButton from '../../LogOutButton/LogOutButton';
+import ManageUserAccountsTable from './ManageUserAccountsTable';
 
-class SuperAdminDashboard extends Component {
+class ManageUserAccounts extends Component {
 
 
   state= {
     
+  }
+
+  componentDidMount(){
+      this.props.dispatch({type: 'GET_ALL_USERS'})
   }
 
   render() {
@@ -39,7 +44,7 @@ class SuperAdminDashboard extends Component {
             </Toolbar>
           </AppBar>
       <Typography variant="h6" gutterBottom align="center" className={classes.titleColor}>
-         Super Admin Dashboard
+         Manage User Accounts
       </Typography>
       <Grid 
       container spacing={24}
@@ -48,19 +53,8 @@ class SuperAdminDashboard extends Component {
       justify="center"
       alignItems="center">
          
-        <Grid item xs={10} sm={6}>
-            <Fab
-              variant="extended"
-              size="large"
-              color="primary"
-              aria-label="Add"
-              className={classes.margin}
-              onClick={() => {this.props.history.push('/manageuseraccounts')}}
-              style={{width:'80vw', maxWidth:400}}
-            >
-              <Typography className={classes.fabColor}>Manage User Accounts</Typography>
-              <FontAwesomeIcon icon="users" style={{marginLeft: 5}} className={classes.fabIconColor}/>
-            </Fab>
+        <Grid item xs={12} sm={6}>
+            <ManageUserAccountsTable/>
         </Grid>
 
       </Grid>
@@ -72,37 +66,38 @@ class SuperAdminDashboard extends Component {
 
 
 const styles = {
-  root: {
-    flexGrow: 1,
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
-  fabIconColor:{
-    color: '#7690B8',
-    marginRight: 5,
-  },
-  appbar:{
-      backgroundColor: '#676B36',
-  },
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  fabIconColor:{
-    color: '#E6CD30',
-  },
-  fabColor:{
-    color: 'white',
-  },
-  titleColor:{
-    color: '#D19124',
+    root: {
+      flexGrow: 1,
+    },
+    grow: {
+      flexGrow: 1,
+    },
+    menuButton: {
+      marginLeft: -12,
+      marginRight: 20,
+    },
+    fabIconColor:{
+      color: '#7690B8',
+      marginRight: 5,
+    },
+    appbar:{
+        backgroundColor: '#676B36',
+    },
+    container: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+    fabIconColor:{
+      color: '#E6CD30',
+    },
+    fabColor:{
+      color: 'white',
+    },
+    titleColor:{
+      color: '#D19124',
+    }
   }
-}
+  
 
 
 
@@ -110,4 +105,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect( mapReduxStateToProps )(withStyles(styles)(SuperAdminDashboard));
+export default connect( mapReduxStateToProps )(withStyles(styles)(ManageUserAccounts));

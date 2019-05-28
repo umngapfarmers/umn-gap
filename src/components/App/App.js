@@ -56,6 +56,7 @@ import RecordCompostPile from '../AllUsersComponents/Records/CompostPileRecord/C
 import RecordCompostTurn from '../AllUsersComponents/Records/CompostTurningRecord/CompostTurningRecord';
 import WaterInspectLog from '../AllUsersComponents/LogForms/WaterInspectionLog/WaterInspectionLog';
 import WaterTreatLog from '../AllUsersComponents/LogForms/WaterTreatmentLog/WaterTreatmentLog';
+import ManageUserAccounts from '../SuperAdmin/ManageUserAccounts/ManageUserAccounts';
 library.add(faHome, faRecycle, faPen, faPlus, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters, faTrashAlt);
 
 class App extends Component {
@@ -301,6 +302,12 @@ class App extends Component {
             path='/recordcompostturn'
             component={RecordCompostTurn}
             />  
+          
+          <Route
+            exact
+            path='/manageuseraccounts'
+            component={ManageUserAccounts}
+            />
 
 
             {/* <Route
