@@ -40,6 +40,8 @@ import recordCompostTurnSaga from './recordCompostTurnSaga';
 // and login triggers setting the user
 export default function* rootSaga() {
   yield all([
+    manageUserSaga(),
+
     loginSaga(),
     registrationSaga(),
     userSaga(),
@@ -64,6 +66,7 @@ export default function* rootSaga() {
     addCompostLogSaga(),
     recordManureSaga(),
     recordCompostPileSaga(),
+
     logWaterSaga(),
     allUsersSaga(),
     recordCropSaga(),

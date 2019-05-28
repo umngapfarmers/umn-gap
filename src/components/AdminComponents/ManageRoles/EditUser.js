@@ -27,7 +27,7 @@ const styles = theme => ({
     width: 200
   }
 });
-class EditEmployee extends Component {
+class EditUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,7 +44,6 @@ class EditEmployee extends Component {
     console.log("in component did mount edit employee", this.props.editPerson);
 
     this.props.dispatch({ type: "FETCH_HARVEST_YEAR" });
-
   };
 
   componentDidUpdate = prevProps => {
@@ -126,7 +125,6 @@ class EditEmployee extends Component {
                     select: classes.select
                   }}
                   value="Employee"
-                  disabled
                   onChange={this.handleSelect("roleSelect")}
                   style={{ width: "60vw", maxWidth: 400 }}
                   inputProps={{
@@ -179,7 +177,6 @@ class EditEmployee extends Component {
                     className: classes.menu
                   }
                 }}
-               
               >
                 {this.props.harvestYear.map(option => (
                   <MenuItem key={option.id} value={option.harvest_id}>
@@ -195,7 +192,7 @@ class EditEmployee extends Component {
                   id="userName"
                   name="userName"
                   label="User Name"
-                  disabled
+                  disabled={false}
                   fullWidth
                   autoComplete="User Name"
                   onChange={this.handleChange("userName")}
@@ -222,7 +219,7 @@ class EditEmployee extends Component {
                   id="password"
                   name="password"
                   label="Password"
-                  disabled
+                  disabled={false}
                   fullWidth
                   autoComplete="Password"
                   onChange={this.handleChange("password")}
@@ -250,7 +247,7 @@ class EditEmployee extends Component {
                 id="firstName"
                 name="firstName"
                 label="First name"
-                //fullWidth
+                disabled
                 autoComplete="firstName"
                 value={this.state.person_first}
                 onChange={this.handleChange("person_first")}
@@ -264,6 +261,7 @@ class EditEmployee extends Component {
                 name="lastName"
                 label="Last name"
                 fullWidth
+                disabled
                 autoComplete="lname"
                 onChange={this.handleChange("person_last")}
                 value={this.state.person_last}
@@ -358,4 +356,4 @@ const mapReduxStateToProps = reduxState => {
   return reduxState;
 };
 
-export default connect(mapReduxStateToProps)(withStyles(styles)(EditEmployee));
+export default connect(mapReduxStateToProps)(withStyles(styles)(EditUser));

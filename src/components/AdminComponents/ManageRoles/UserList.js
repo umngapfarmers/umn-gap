@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom';
+
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
@@ -13,14 +15,30 @@ class UserList extends Component {
   componentDidMount = () => {
     this.props.dispatch({ type: "GET_USER" });
   };
-  handleEdit = event => {};
+
+  handleEdit = user_id => () => {
+    console.log("edit click for id", user_id);
+    this.setState({
+      editUser: true,
+      selectedId: user_id
+    });
+    //this.props.history.push(`/editemployee/?id=${person_id}`);
+    this.props.dispatch({
+      type: "GET_USER_TO_EDIT",
+      payload: user_id
+    });
+    this.props.history.push(`/edituser/`)
+  };
 
   render() {
     const { classes } = this.props;
+    console.log('User state', this.state);
     return (
+     
+      
       <React.Fragment>
         <Typography variant="h6" gutterBottom align="center">
-          Edit Employee
+          Edit Workers
         </Typography>
         <Grid
           container
@@ -37,7 +55,7 @@ class UserList extends Component {
                     key={User.user_id}
                     button
                     selected={this.state.selectedIndex === 0}
-                    onClick={() => this.handleEdit(User.user_id)}
+                    onClick={this.handleEdit(User.user_id)}
                   >
                     {User.person_first + " " + User.person_last}
                   </ListItem>
@@ -61,4 +79,4 @@ const mapReduxStateToProps = reduxState => ({
   reduxState
 });
 
-export default connect(mapReduxStateToProps)(withStyles(styles)(UserList));
+export default withRouter(connect(mapReduxStateToProps)(withStyles(styles)(UserList)));

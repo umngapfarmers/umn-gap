@@ -57,6 +57,7 @@ import RecordCompostPile from '../AllUsersComponents/Records/CompostPileRecord/C
 import RecordCompostTurn from '../AllUsersComponents/Records/CompostTurningRecord/CompostTurningRecord';
 import WaterInspectLog from '../AllUsersComponents/LogForms/WaterInspectionLog/WaterInspectionLog';
 import WaterTreatLog from '../AllUsersComponents/LogForms/WaterTreatmentLog/WaterTreatmentLog';
+import EditUser from '../AdminComponents/ManageRoles/EditUser';
 import ManageUserAccounts from '../SuperAdmin/ManageUserAccounts/ManageUserAccounts';
 import RecordHarvestDashboard from '../AllUsersComponents/Records/SelectHarvestRecord/SelectHarvestRecord';
 import RecordCropsFieldsLabelCode from '../AllUsersComponents/Records/CropsFieldsLabelCodeRecord/CropsFieldsLabelCodeRecord';
@@ -178,6 +179,11 @@ class App extends Component {
                 exact
                 path="/editemployee"
                 component={EditEmployee}
+              />
+              <Route
+                exact
+                path="/edituser"
+                component={EditUser}
               />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
