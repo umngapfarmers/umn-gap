@@ -3,10 +3,7 @@ import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+import Fab from '@material-ui/core/Fab';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './SelectWaterLog.css'
 import Nav from '../../../Nav/Nav';
@@ -30,24 +27,40 @@ class SelectWaterLog extends Component {
       <Typography variant="h6" gutterBottom align="center">
          Select Water Log
       </Typography>
-      <Grid container spacing={24}>
-         
-          <Grid item xs={12} sm={6}>
-          <List>
-              <ListItem button onClick={() => {this.props.history.push('/watertreatlog')}}>
-                <ListItemText primary="Water Treatment"/>
-                < ListItemIcon>
-                  <FontAwesomeIcon icon="vial" />
-              </ListItemIcon>
-              </ListItem>
-              <ListItem button onClick={() => {this.props.history.push('/waterinspectlog')}}>
-              <ListItemText primary="Water Inspection"/>
-              <ListItemIcon>
-                  <FontAwesomeIcon icon="tint"/>
-                </ListItemIcon>
-              </ListItem>
-          </List>  
-          </Grid>
+      <Grid container spacing={24}
+        direction="column"
+        justify="center"
+        alignItems="center">
+
+              <Grid item xs={12} sm={6}>
+                 <Fab 
+                    variant="extended"
+                    size="large"
+                    color="primary"
+                    aria-label="Add"
+                    className={classes.margin}
+                    style={{width:'80vw', maxWidth:400}}
+                    onClick={() => {this.props.history.push('/watertreatlog')}}
+                    >
+                       <Typography className={classes.fabColor}>Water Treatment</Typography>
+                      <FontAwesomeIcon icon="vial" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+                  </Fab>
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                 <Fab 
+                    variant="extended"
+                    size="large"
+                    color="primary"
+                    aria-label="Add"
+                    className={classes.margin}
+                    style={{width:'80vw', maxWidth:400}}
+                    onClick={() => {this.props.history.push('/waterinspectlog')}}
+                    >
+                       <Typography className={classes.fabColor}>Water Inspection</Typography>
+                      <FontAwesomeIcon icon="tint" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+                  </Fab>
+              </Grid>
 
       </Grid>
      
@@ -61,6 +74,22 @@ const styles = theme => ({
       display: 'flex',
       flexWrap: 'wrap',
   },
+  
+  margin: {
+    margin: theme.spacing.unit,
+  },
+  extendedIcon: {
+    marginRight: theme.spacing.unit,
+  },
+  fabIconColor:{
+    color: '#E6CD30',
+  },
+  fabColor:{
+    color: 'white',
+  },
+  titleColor:{
+    color: '#D19124',
+  }
 });
 
 

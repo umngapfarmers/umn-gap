@@ -163,7 +163,7 @@ CREATE TABLE "water_inspection"
 (
   "inspection_id" serial primary key,
   "inspection_date" timestamp Not Null,
-  "inspection_water_source" INT REFERENCES "farm_water",
+  "inspection_water_source" INT REFERENCES "farm_water_source",
   "distribution" varchar (255),
   "observation" varchar (500),
   "inspection_corrective_action" varchar (500),
@@ -184,3 +184,5 @@ CREATE TABLE "water_treatment"
   "treatment_sig" int references "person",
   "harvest_year_id" int references "harvest_year"
 );
+
+
