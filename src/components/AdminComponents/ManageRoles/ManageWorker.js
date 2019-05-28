@@ -38,6 +38,7 @@ class ManageWorker extends Component {
                         <Fab
                             variant="extended"
                             size="large"
+                           onClick={()=>this.props.history.push(`/addworker`)}
                             color="primary"
                             aria-label="Add"
                             className={classes.margin}
@@ -51,6 +52,8 @@ class ManageWorker extends Component {
                             variant="extended"
                             size="large"
                             color="primary"
+                            onClick={() => this.props.history.push(`/editworker`)}
+
                             aria-label="Add"
                             className={classes.margin}
                         >

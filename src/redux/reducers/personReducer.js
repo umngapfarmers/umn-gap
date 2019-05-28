@@ -2,6 +2,7 @@ const getPerson = (state = [], action) => {
     if(action.type == "SET_PERSON"){
       return action.payload
     }
+  
   return state
 };
 
