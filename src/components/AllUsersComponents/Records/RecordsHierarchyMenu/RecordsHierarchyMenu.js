@@ -40,9 +40,9 @@ class RecordsHierarchyMenu extends Component {
                 color="primary"
                 aria-label="Add"
                 className={classes.margin}
-                onClick={() => {this.props.history.push('/recordharvest')}}
+                onClick={() => {this.props.history.push('/recordharvestdashboard')}}
                 style={{width:'80vw', maxWidth:400}}>
-                    <Typography className={classes.fabColor}>Harvest Traceability</Typography> 
+                    <Typography className={classes.fabColor}>Harvest Management</Typography> 
                     <FontAwesomeIcon icon="seedling" style={{marginLeft: 5}} className={classes.fabIconColor}/>
               </Fab>
       </Grid>
