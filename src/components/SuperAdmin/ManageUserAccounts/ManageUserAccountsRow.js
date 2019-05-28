@@ -30,7 +30,8 @@ class ManageUserAccountsRow extends Component {
         user_id: this.props.user.user_id,
         user_status: this.props.user.user_status,
     },
-    checked: false,
+    checkedActive: false,
+    checkedInactive: false,
         
 
     }
@@ -64,12 +65,11 @@ handleEditSubmit = (event) => {
 }
 
 //FUNCTION- handle change for input-- set state with input values
-handleChange = propertyName => {
+handleChangeActive = propertyName => {
     return(event) =>{
-    console.log(event);
-    this.handleCheck()
     this.setState({
-        studentScore: {
+        checkedActive: !this.state.checkedActive,
+        userAccount: {
             ...this.state.userAccount,
             [propertyName]: event.target.value,
 
@@ -78,11 +78,20 @@ handleChange = propertyName => {
   }
 }
 
-handleCheck = () => {
+handleChangeInactive = propertyName => {
+    return(event) =>{
+    console.log('Inactive value is:', event.target.value);
     this.setState({
-        checked: !this.state.checked,
-    })
+        checkedInactive: !this.state.checkedInactive,
+        userAccount: {
+            ...this.state.userAccount,
+            [propertyName]: event.target.value,
+
+        }
+    });
+  }
 }
+
 
 
 
@@ -116,18 +125,24 @@ handleCheck = () => {
            {this.state.currentlyEditing === true ? 
            <FormControl component="fieldset" className={classes.formControl}>
           
-            <FormControlLabel value="TRUE" 
-                control={<Radio   value={this.state.userAccount.user_status}
-                onChange={this.handleChange('user_status')}
+            <FormControlLabel
+                control={<Radio   value={true}
+                onClick={this.handleChangeActive('user_status')}
                 icon={<RadioButtonUncheckedIcon/>}
-                checkedIcon={<RadioButtonCheckedIcon/>}/>} label="Active" checked={this.state.checked}/>
+                checkedIcon={<RadioButtonCheckedIcon/>}
+                checked={this.state.checkedActive}
+                />} label="Active" 
+               />
             
-            <FormControlLabel value="FALSE" 
-                control={<Radio value={this.state.userAccount.user_status}
-                onChange={this.handleChange('user_status')}
+            <FormControlLabel
+                control={<Radio value={false}
+                onClick={this.handleChangeInactive('user_status')}
                 icon={<RadioButtonUncheckedIcon/>}
-                checkedIcon={<RadioButtonCheckedIcon/>}/>} label="Inactive" checked={this.state.checked}/>
-                
+                checkedIcon={<RadioButtonCheckedIcon/>}
+                checked={this.state.checkedInactive}
+                />} label="Inactive"
+                />
+
            </FormControl>
             :
             statusToDisplay}
