@@ -3,12 +3,14 @@ import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import './CompostTurningRecord.css'
 import Nav from '../../../Nav/Nav';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
+import CompostTurningRecordTable from './CompostTurningRecordTable';
+import Button from '@material-ui/core/Button';
 
-class CompostTurningRecord extends Component {
+class  CompostTurningRecord extends Component {
+
 
   state= {
     selectHarvestYear: '',
@@ -26,12 +28,36 @@ class CompostTurningRecord extends Component {
       })
       }
     }
+
+    handleSubmit = () => {
+      console.log(this.state.selectHarvestYear)
+      this.props.dispatch({type:'GET_RECORD_COMPOST_TURN', payload: this.state.selectHarvestYear})
+    }
+
+    handleError = () => {
+      if(this.state.selectHarvestYear !== ''){
+        return (
+          <Button onClick={this.handleSubmit} variant="contained" color="primary"
+          style={{width:'80vw', maxWidth:400}}>Get Record</Button>
+        )
+      }
+      else{
+        return(
+          <Button disabled variant="contained" color="primary"
+          style={{width:'80vw', maxWidth:400}}>Get Record</Button>
+        )
+      }
+    }
+
+
+
   
 
 
 
   render() {
     const {classes} = this.props;
+    console.log(this.state);
     return (
       <React.Fragment>
         <Nav/>
@@ -67,6 +93,16 @@ class CompostTurningRecord extends Component {
                   </TextField> 
             </Grid>
 
+            <Grid item xs={12} sm={6}>
+              {this.handleError()}
+            </Grid>
+            
+            <Grid item xs={12} sm={6}>
+              <CompostTurningRecordTable/>
+            </Grid>
+
+                    
+
       </Grid>
      
   </React.Fragment>
@@ -80,6 +116,7 @@ const styles = theme => ({
       flexWrap: 'wrap',
   },
 });
+
 
 
 

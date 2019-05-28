@@ -21,6 +21,7 @@ import recordmanure from './recordManureReducer';
 import recordcompostpile from './recordCompostPileReducer';
 import userdata from './allUsersReducer';
 import recordcrops from './recordCropReducer';
+import recordcompostturn from './recordCompostTurnReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -50,7 +51,8 @@ const rootReducer = combineReducers({
   recordmanure,
   recordcompostpile,
   userdata, 
-  recordcrops
+  recordcrops,
+  recordcompostturn
   
 });
 
