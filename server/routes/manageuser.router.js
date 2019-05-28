@@ -46,11 +46,33 @@ router.get("/person/edit/", (req, res) => {
   pool
     .query(`select * from "person"  WHERE "person_id" = $1;`, [req.query.person_id])
     .then(response => {
-      console.log(`response person`, response.rows);
-      res.send(response.rows);
+      selectedPerson = response.rows;
+      console.log("in router selected", selectedPerson);
+
+      //console.log(`response person`, response.rows);
+      res.send(selectedPerson);
     })
     .catch(error => {
       console.log("errors with product delete query", error);
+      res.sendStatus(500);
+    });
+});
+
+router.put("/person", (req, res) => {
+  console.log("IN EDIT PERSON ", req.body);
+  pool
+    .query(`UPDATE "person" SET "person_first"=$1, "person_last"=$2, "person_status"=$3 WHERE "person_id" = $4;`
+      ,[req.body.person_first,req.body.person_last,
+      req.body.person_status,req.body.person_id])
+    .then(response => {
+      selectedPerson = response.rows;
+      console.log("in router selected", selectedPerson);
+
+      //console.log(`response person`, response.rows);
+      res.send(selectedPerson);
+    })
+    .catch(error => {
+      console.log("errors with edit query", error);
       res.sendStatus(500);
     });
 });

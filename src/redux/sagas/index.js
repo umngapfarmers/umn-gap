@@ -28,6 +28,8 @@ import recordHarvestYearSaga from './recordHarvestYearSaga';
 // and login triggers setting the user
 export default function* rootSaga() {
   yield all([
+    manageUserSaga(),
+
     loginSaga(),
     registrationSaga(),
     userSaga(),
@@ -44,7 +46,6 @@ export default function* rootSaga() {
     personSaga(),
     harvestSaga(),
     employeeLogSaga(),
-    manageUserSaga(),
     recordHarvestYearSaga()
 
   ]);

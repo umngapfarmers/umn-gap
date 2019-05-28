@@ -12,6 +12,7 @@ import setupManure from './setupManureReducer';
 import setupCompost from './setupCompostReducer'
 import person from './personReducer';
 import recordharvestyear from './recordHarvestYearReducer';
+import editPerson from './EditPersonReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -20,6 +21,7 @@ import recordharvestyear from './recordHarvestYearReducer';
 // Lets make a bigger object for our store, with the objects from our reducers.
 // This is what we get when we use 'state' inside of 'mapStateToProps'
 const rootReducer = combineReducers({
+  editPerson,
   errors, // contains registrationMessage and loginMessage
   loginMode, // will have a value of 'login' or 'registration' to control which screen is shown
   user, // will have an id and username if someone is logged in
@@ -32,7 +34,8 @@ const rootReducer = combineReducers({
   setupManure,
   setupCompost,
   person,
-  recordharvestyear,
+  recordharvestyear
+  
 });
 
 export default rootReducer;

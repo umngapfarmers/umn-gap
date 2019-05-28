@@ -20,7 +20,7 @@ class UserList extends Component {
     return (
       <React.Fragment>
         <Typography variant="h6" gutterBottom align="center">
-          Edit Employee
+          Edit Workers
         </Typography>
         <Grid
           container

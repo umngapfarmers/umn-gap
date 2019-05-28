@@ -16,11 +16,13 @@ import Divider from "@material-ui/core/Divider";
 import InboxIcon from "@material-ui/icons/Inbox";
 import DraftsIcon from "@material-ui/icons/Drafts";
 import RegisterPage from "../../Auth/RegisterPage/RegisterPage";
+import EditEmployee from "./EditEmployee";
 
 
 class EmployeeList extends Component {
   state = {
-      person_id:""
+      person_id:"",
+      editPerson:false
   };
 
   componentDidMount = () => {
@@ -29,7 +31,7 @@ class EmployeeList extends Component {
     handleEdit = person_id => () => {
         console.log("edit click for id", person_id);
         this.setState({
-            open: true,
+            editPerson: true,
             selectedId: person_id
         });
        // this.props.history.push(`/editemployee/?id=${person_id}`);
@@ -37,10 +39,11 @@ class EmployeeList extends Component {
             type: "GET_PERSON_TO_EDIT",
             payload: person_id
         });
-        this.props.history.push(`/editemployee`)
+      this.props.history.push(`/editemployee/`)
     };
   render() {
     const { classes } = this.props;
+   
     return (
       <React.Fragment>
         <Typography variant="h6" gutterBottom align="center">
@@ -60,7 +63,7 @@ class EmployeeList extends Component {
                   <ListItem
                     key={Person.person_id}
                     button
-                    selected={this.state.selectedIndex === 0}
+                    //selected={this.state.selectedIndex === 0}
                     onClick={this.handleEdit(Person.person_id)}
                   >
                     {Person.person_first + " " + Person.person_last}
@@ -76,6 +79,8 @@ class EmployeeList extends Component {
       </React.Fragment>
     );
   }
+  
+
 }
 
 const styles = theme => ({
