@@ -19,8 +19,8 @@ class ManageUserAccountsRow extends Component {
   state ={
     currentlyEditing: false,
     userAccount:{
-        user_id: this.props.user.user_id,
-        user_status: this.props.user.user_status,
+        user_id: '',
+        user_status: '',
     },
     checkedActive: false,
     checkedInactive: false,
@@ -40,6 +40,10 @@ handleEdit = (event) => {
   let user_id = event.currentTarget.value;
   this.setState({
     currentlyEditing: true,
+    userAccount:{
+      user_id: this.props.user.user_id,
+      user_status: this.props.user.user_status,
+    }
   })
   console.log(this.state.currentlyEditing);
 
@@ -144,7 +148,7 @@ handleChange = (propertyName) => {
               InputProps={{ classes: { root: classes.inputRoot } }}
               className={classes.dropDown}
             >
-                <MenuItem style={{fontSize: 12, height:12}} disable>
+                <MenuItem style={{fontSize: 12, height:12}} disable='disable'>
                   Select User Status
                 </MenuItem>
 
