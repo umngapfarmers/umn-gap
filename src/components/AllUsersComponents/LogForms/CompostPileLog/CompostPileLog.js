@@ -16,7 +16,6 @@ const moment = require('moment');
 
 class CompostPileLog extends Component {
 
-
   state= {
     entry:{
       compost_date: moment().format('YYYY-MM-DD'),

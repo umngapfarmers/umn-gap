@@ -6,6 +6,10 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import IconButton from '@material-ui/core/IconButton';
+
+
 const moment = require('moment');
 
 // Allows farmer to create a manure source.
@@ -119,14 +123,14 @@ class CreateCompost extends Component {
           <ul>
             {this.props.reduxState.setupCompost[0] && this.props.reduxState.setupCompost.map(compost =>
               <li key={compost.farm_compost_id}>{compost.farm_compost_name+' '+ moment(compost.farm_compost_date).format('YYYY-MM-DD')}
-                <Button size="large" color="primary" variant='contained' onClick={() => this.handleRemove(compost.farm_compost_id)}>Remove</Button>
+                <IconButton size="large" color="primary" variant='contained' onClick={() => this.handleRemove(compost.farm_compost_id)}><FontAwesomeIcon icon='minus-circle'/></IconButton>
               </li>
             )}
           </ul>
         </Grid>  
 
         <Grid item xs={10} sm={6} >
-          <Button size="large" color="primary" variant='contained' onClick={this.handleNext}>Continue</Button>
+          <Button size="small" color="primary" variant='contained' onClick={this.handleNext}>Continue</Button>
 
         </Grid>  
 

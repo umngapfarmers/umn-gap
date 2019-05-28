@@ -11,6 +11,9 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import IconButton from '@material-ui/core/IconButton';
+
 
 
 class CreateWaterSourcesLabelCodes extends Component {
@@ -137,14 +140,13 @@ class CreateWaterSourcesLabelCodes extends Component {
         <Grid item xs={12} sm={6}> 
           {this.props.reduxState.waterSetup.waterLabel.map(label =>
             <ul key={ label.farm_water_id }>
-              {label.farm_water_source_name}:
-                <li>{label.label_code_text}
-                  <Button size="large" color="primary" variant="contained"
+                <li>{label.farm_water_source_name + ': '+ label.label_code_text}
+                  <IconButton size="small" color="primary" variant="contained"
                   onClick={this.removeLabelCode}
                   name={label.farm_water_id}
                   >
-                  Remove
-                  </Button>
+                    <FontAwesomeIcon icon='minus-circle'/>
+                  </IconButton>
                 </li>
               </ul>
           )}
