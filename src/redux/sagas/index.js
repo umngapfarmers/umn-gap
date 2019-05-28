@@ -22,6 +22,7 @@ import recordWaterInspectSaga from './recordWaterInspectSaga';
 import recordEmployeeSaga from './recordEmployeeSaga';
 import recordHarvestSaga from './recordHarvestSaga';
 import importHarvestSaga from './importHarvestSaga';
+import addCompostLogSaga from './logCompostSaga'
 import recordWaterTreatSaga from './recordWaterTreatSaga'
 import recordManureSaga from './recordManureSaga';
 import recordCompostPileSaga from './recordCompostPileSaga';
@@ -57,6 +58,7 @@ export default function* rootSaga() {
     recordHarvestSaga(),
     importHarvestSaga(),
     recordWaterTreatSaga(),
+    addCompostLogSaga(),
     recordManureSaga(),
     recordCompostPileSaga(),
     logWaterSaga()

@@ -18,6 +18,7 @@ const setupRouter = require('./routes/setup.router');
 const labelCodeRouter = require('./routes/setup.labelCode.router');
 const setupManureRouter = require('./routes/setup.manure.router');
 const setupCompostRouter = require('./routes/setup.compost.router');
+const logCompost = require('./routes/log.compost.router')
 const log_harvestRouter = require('./routes/log.harvest.router');
 const log_employeeRouter = require('./routes/log.employee.router');
 const importHarvestRouter = require('./routes/import.harvest.router');
@@ -30,6 +31,7 @@ const record_waterTreatRouter = require('./routes/record.waterTreat.router');
 const record_manureRouter = require('./routes/record.manure.router');
 const record_compostPileRouter = require ('./routes/record.compostPile.router');
 const log_waterRouter = require('./routes/log.water.router');
+
 
 
 // Body parser middleware
@@ -65,6 +67,7 @@ app.use ('/record/waterinspect', record_waterInpectRouter)
 app.use('/record/employee', record_employeeRouter);
 app.use('/record/harvest', record_harvestRouter);
 app.use('/record/waterTreat', record_waterTreatRouter);
+app.use('/log/compost', logCompost);
 app.use('/record/manure', record_manureRouter);
 app.use('/record/compostPile', record_compostPileRouter);
 app.use('/log/water', log_waterRouter)

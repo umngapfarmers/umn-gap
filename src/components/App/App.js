@@ -38,11 +38,13 @@ import FieldTypes from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/C
 import LabelCode from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateLabelCodes/CreateLabelCodes';
 import WaterLogDashboard from '../AllUsersComponents/LogForms/SelectWaterLog/SelectWaterLog';
 // import ManureLogDashboard from '../AllUsersComponents/LogForms/SelectCompostManureLog/SelectCompostManureLog';
-import CompostLog from '../AllUsersComponents/LogForms/CompostManagementLog/CompostManagementLog';
+// import CompostLog from '../AllUsersComponents/LogForms/CompostManagementLog/CompostManagementLog';
 import EmployeeLog from '../AllUsersComponents/LogForms/EmployeeTrainingLog/EmployeeTrainingLog';
 import EditCrops from '../AdminComponents/HarvestYear/EditHarvestYear/EditCrops/EditCrops';
 import EditWorker from '../AdminComponents/ManageRoles/EditWorker';
 import EditEmployee from '../AdminComponents/ManageRoles/EditEmployee';
+
+import CompostLog from '../AllUsersComponents/LogForms/CompostPileLog/CompostPileLog';
 
 import RecordDashboard from '../AllUsersComponents/Records/RecordsHierarchyMenu/RecordsHierarchyMenu';
 import RecordHarvest from '../AllUsersComponents/Records/HarvestRecord/HarvestRecord';
@@ -218,7 +220,7 @@ class App extends Component {
               component={WaterLogDashboard}
             />    
 
-            <Route
+            <ProtectedRoute
               exact
               path = '/compostlog'
               component={CompostLog}
