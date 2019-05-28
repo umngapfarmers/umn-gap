@@ -31,27 +31,28 @@ class EditUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      person_first:
-        this.props.editPerson[0] && this.props.editPerson[0].person_first,
+      person_first:"",
       person_last: "",
       roleSelect: "",
+      password:"",
+      username:"",
       workerStatus: "",
       selectedYear: ""
     };
   }
 
   componentDidMount = () => {
-    console.log("in component did mount edit employee", this.props.editPerson);
+    console.log("in component did mount edit user", this.props.editUser);
 
     this.props.dispatch({ type: "FETCH_HARVEST_YEAR" });
   };
 
   componentDidUpdate = prevProps => {
-    if (this.props.editPerson !== prevProps.editPerson) {
-      console.log(`componentDidUpdate `, this.props.editPerson[0]);
+    if (this.props.editUser !== prevProps.editUser) {
+      console.log(`in componentDidUpdate `, this.props.editUser[0]);
 
       this.setState({
-        ...this.props.editPerson[0]
+        ...this.props.editUser[0]
       });
     }
   };
@@ -64,7 +65,7 @@ class EditUser extends Component {
     this.setState({
       ...this.state,
       [property]: event.target.value,
-      workerStatus: true,
+      //workerStatus: true,
       registrationCode: 122090
     });
     console.log("in handle change", event.target.value);
@@ -75,16 +76,16 @@ class EditUser extends Component {
     event.preventDefault();
     console.log("in handle submit", this.state);
 
-    this.props.dispatch({ type: "EDIT_PERSON", payload: this.state });
+    this.props.dispatch({ type: "EDIT_USER", payload: this.state });
 
     this.props.history.push("/");
   };
 
   render() {
     const { classes } = this.props;
-    console.log("selected role", this.props.editPerson);
+    console.log("selected role", this.props.editUser);
     console.log("fetch harvest year", this.props.harvestYear);
-    console.log("state ", this.state);
+    console.log("state edit user ", this.state);
 
     return (
       <React.Fragment>
@@ -124,7 +125,7 @@ class EditUser extends Component {
                   classes={{
                     select: classes.select
                   }}
-                  value="Employee"
+                  value="Worker"
                   onChange={this.handleSelect("roleSelect")}
                   style={{ width: "60vw", maxWidth: 400 }}
                   inputProps={{
@@ -192,11 +193,11 @@ class EditUser extends Component {
                   id="userName"
                   name="userName"
                   label="User Name"
-                  disabled={false}
+                  disabled
                   fullWidth
                   autoComplete="User Name"
                   onChange={this.handleChange("userName")}
-                  value={this.state.userName}
+                  value={this.state.username}
                 />
               ) : (
                 <TextField
@@ -207,7 +208,7 @@ class EditUser extends Component {
                   disabled
                   fullWidth
                   autoComplete="User Name"
-                  value=""
+                    value={this.state.username}
                 />
               )}
             </Grid>
@@ -232,10 +233,13 @@ class EditUser extends Component {
                   id="password"
                   name="password"
                   label="Password"
-                  disabled
+                  disabled={false}
                   fullWidth
                   autoComplete="Password"
-                  value=""
+                    type="password"
+                    onChange={this.handleChange("password")}
+
+                    value={this.state.password}
                 />
               )}
             </Grid>
@@ -267,7 +271,7 @@ class EditUser extends Component {
                 value={this.state.person_last}
               />
             </Grid>
-            {this.state.person_status === true ? (
+            {this.state.user_status === true ? (
               <Select
                 MenuProps={{
                   // className: classes.selectMenu
@@ -276,8 +280,8 @@ class EditUser extends Component {
                 classes={{
                   select: classes.select
                 }}
-                value={this.state.person_status}
-                onChange={this.handleSelect("person_status")}
+                value={this.state.user_status}
+                onChange={this.handleSelect("user_status")}
                 style={{ width: "60vw", maxWidth: 400 }}
                 inputProps={{
                   name: "statusSelect",
@@ -313,7 +317,7 @@ class EditUser extends Component {
                   select: classes.select
                 }}
                 value="Inactive"
-                onChange={this.handleSelect("person_status")}
+                onChange={this.handleSelect("user_status")}
                 style={{ width: "60vw", maxWidth: 400 }}
                 inputProps={{
                   name: "statusSelect",
