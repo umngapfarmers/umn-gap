@@ -28,41 +28,37 @@ const styles = theme => ({
   }
 });
 class EditEmployee extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
     this.state = {
-        person_first: this.props.editPerson[0] && this.props.editPerson[0].person_first,
-        person_last: "",
-        roleSelect: "",
-        workerStatus: "",
-        selectedYear: ""
-        }
+      person_first:
+        this.props.editPerson[0] && this.props.editPerson[0].person_first,
+      person_last: "",
+      roleSelect: "",
+      workerStatus: "",
+      selectedYear: ""
     };
+  }
 
   componentDidMount = () => {
     console.log("in component did mount edit employee", this.props.editPerson);
 
     this.props.dispatch({ type: "FETCH_HARVEST_YEAR" });
-      
-    this.setState({
-      ...this.props.editPerson[0]
-    });
 
-    //this.props.dispatch({ type: "GET_PERSON_TO_EDIT" });
   };
 
-  componentDidUpdate = (prevProps) => {
-    if(this.props.editPerson!==prevProps.editPerson){
+  componentDidUpdate = prevProps => {
+    if (this.props.editPerson !== prevProps.editPerson) {
       console.log(`componentDidUpdate `, this.props.editPerson[0]);
 
       this.setState({
         ...this.props.editPerson[0]
       });
     }
-  }
+  };
 
-  handleSelect = event => {
-    this.setState({ [event.target.name]: event.target.value });
+  handleSelect = property => event => {
+    this.setState({ [property]: event.target.value });
   };
   // handles on inputs on form and sets state
   handleChange = property => event => {
@@ -89,7 +85,7 @@ class EditEmployee extends Component {
     const { classes } = this.props;
     console.log("selected role", this.props.editPerson);
     console.log("fetch harvest year", this.props.harvestYear);
-    console.log('state ', this.state)
+    console.log("state ", this.state);
 
     return (
       <React.Fragment>
@@ -97,9 +93,8 @@ class EditEmployee extends Component {
         <Typography variant="h6" gutterBottom>
           Registration
         </Typography>
-           
+
         <FormControl
-                    
           ref="form"
           //justify="center"
           //alignItems="center"
@@ -108,9 +103,9 @@ class EditEmployee extends Component {
           onSubmit={this.handleSubmit}
           onError={errors => console.log(errors)}
         >
-                {JSON.stringify(this.props.editPerson)}
-                {JSON.stringify(this.state.editPerson)}
-                {JSON.stringify(this.props.reduxState)}
+          {/* {JSON.stringify(this.props.editPerson)}
+          {JSON.stringify(this.state.editPerson)}
+          {JSON.stringify(this.props.reduxState)} */}
           <Grid
             container
             spacing={24}
@@ -130,8 +125,8 @@ class EditEmployee extends Component {
                   classes={{
                     select: classes.select
                   }}
-                  value={this.state.roleSelect}
-                  onChange={this.handleSelect}
+                  value="Employee"
+                  onChange={this.handleSelect("roleSelect")}
                   style={{ width: "60vw", maxWidth: 400 }}
                   inputProps={{
                     name: "roleSelect",
@@ -183,10 +178,7 @@ class EditEmployee extends Component {
                     className: classes.menu
                   }
                 }}
-                // validators={["required"]}
-                // errorMessages={["this field is required"]}
-                // margin="normal"
-                // variant="outlined"
+               
               >
                 {this.props.harvestYear.map(option => (
                   <MenuItem key={option.id} value={option.harvest_id}>
@@ -194,7 +186,6 @@ class EditEmployee extends Component {
                   </MenuItem>
                 ))}
               </TextField>
-                        
             </Grid>
             <Grid item xs={12} sm={6}>
               {this.state.roleSelect !== "Employee" ? (
@@ -222,8 +213,8 @@ class EditEmployee extends Component {
                 />
               )}
             </Grid>
-                   
-                        <Grid item xs={12} sm={6}>
+
+            <Grid item xs={12} sm={6}>
               {this.state.roleSelect !== "Employee" ? (
                 <TextField
                   required
@@ -250,9 +241,9 @@ class EditEmployee extends Component {
                 />
               )}
             </Grid>
-      
-        {/* {this.props.reduxState.editPerson.map(row => ( */}
-            <Grid  item xs={8} sm={6}>
+
+            {/* {this.props.reduxState.editPerson.map(row => ( */}
+            <Grid item xs={8} sm={6}>
               <TextField
                 required
                 id="firstName"
@@ -264,7 +255,7 @@ class EditEmployee extends Component {
                 onChange={this.handleChange("person_first")}
               />
             </Grid>
-                           
+
             <Grid item xs={12} sm={6}>
               <TextField
                 required
@@ -277,16 +268,86 @@ class EditEmployee extends Component {
                 value={this.state.person_last}
               />
             </Grid>
+            {this.state.person_status === true ? (
+              <Select
+                MenuProps={{
+                  // className: classes.selectMenu
+                  className: classes.selectMenuItemSelected
+                }}
+                classes={{
+                  select: classes.select
+                }}
+                value={this.state.person_status}
+                onChange={this.handleSelect("person_status")}
+                style={{ width: "60vw", maxWidth: 400 }}
+                inputProps={{
+                  name: "statusSelect",
+                  id: "status-select"
+                }}
+              >
+                <MenuItem
+                  classes={{
+                    root: classes.selectMenuItem,
+                    selected: classes.selectMenuItemSelected
+                  }}
+                  value={true}
+                >
+                  Active
+                </MenuItem>
+                <MenuItem
+                  classes={{
+                    root: classes.selectMenuItem,
+                    selected: classes.selectMenuItemSelected
+                  }}
+                  value={false}
+                >
+                  Inactive
+                </MenuItem>
+              </Select>
+            ) : (
+              <Select
+                MenuProps={{
+                  // className: classes.selectMenu
+                  className: classes.selectMenuItemSelected
+                }}
+                classes={{
+                  select: classes.select
+                }}
+                value="Inactive"
+                onChange={this.handleSelect("person_status")}
+                style={{ width: "60vw", maxWidth: 400 }}
+                inputProps={{
+                  name: "statusSelect",
+                  id: "status-select"
+                }}
+              >
+                <MenuItem
+                  classes={{
+                    root: classes.selectMenuItem,
+                    selected: classes.selectMenuItemSelected
+                  }}
+                  value="Active"
+                >
+                  Active
+                </MenuItem>
+                <MenuItem
+                  classes={{
+                    root: classes.selectMenuItem,
+                    selected: classes.selectMenuItemSelected
+                  }}
+                  value="Inactive"
+                >
+                  Inactive
+                </MenuItem>
+              </Select>
+            )}
             <Grid item xs={8} sm={6}>
               <FormControl>
                 <Button onClick={this.handleSubmit}>Submit</Button>
               </FormControl>
             </Grid>
-           
           </Grid>
-         
         </FormControl>
-           
       </React.Fragment>
     );
   }
