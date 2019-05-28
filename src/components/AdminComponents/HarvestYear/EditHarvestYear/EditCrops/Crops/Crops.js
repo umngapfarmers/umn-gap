@@ -45,6 +45,21 @@ class Crops extends Component {
                 ...this.state,
                 [propertyName]: event.target.value,
             },
+        })
+        if (event.target.value === '') {
+            this.setState({
+                disable: true
+            })
+
+        } else {
+            this.setState({
+                disable: false
+            })
+        }
+    }
+
+    handleDialogChangeFor = propertyName => (event) => {
+        this.setState({
             dialogState: {
                 array: {
                     ...this.state.dialogState.array,
@@ -181,7 +196,9 @@ class Crops extends Component {
                     container
                     direction="column"
                     justify="center"
-                    alignItems="center">
+                    alignItems="center"
+                    style={{marginTop: 20}}
+                    >
                     <Grid item xs={12} sm={6}>
                         <Typography variant="h6" gutterBottom align="center" className={classes.titleColor} align="center">
                             Add or Edit Crops You Want to Track
@@ -278,7 +295,7 @@ class Crops extends Component {
                                     id="name"
                                     label={"Crop Name"}
                                     value={this.state.dialogState.array.farm_crop_type}
-                                    onChange={this.handleInputChangeFor('farm_crop_type')}
+                                    onChange={this.handleDialogChangeFor('farm_crop_type')}
                                     fullWidth
                                 />
                             </DialogContent>

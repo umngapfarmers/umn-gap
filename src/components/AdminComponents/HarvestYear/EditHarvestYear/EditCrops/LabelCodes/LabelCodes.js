@@ -49,6 +49,21 @@ class LabelCodes extends Component {
                 ...this.state.newLabel,
                 [propertyName]: event.target.value,
             },
+        })
+        if (event.target.value === '') {
+            this.setState({
+                disable: true
+            })
+
+        } else {
+            this.setState({
+                disable: false
+            })
+        }
+    }
+
+    handleDialogChangeFor = propertyName => (event) => {
+        this.setState({
             dialogState: {
                 array: {
                     ...this.state.dialogState.array,
@@ -189,7 +204,9 @@ class LabelCodes extends Component {
                     container
                     direction="column"
                     justify="center"
-                    alignItems="center">
+                    alignItems="center"
+                    style={{marginTop: 30}}
+                    >
                     <Grid item xs={12} sm={6}>
                         <Typography variant="h6" gutterBottom align="center" className={classes.titleColor} align="center">
                             Add or Edit LabelCodes
@@ -199,7 +216,7 @@ class LabelCodes extends Component {
                     <Grid item xs={12} sm={6} >
                         <FormControl>
                             <TextField
-                                label="Crops"
+                                label="Crop Name"
                                 variant="outlined"
                                 color="primary"
                                 onChange={this.handleInputChangeFor('crop_id')}
@@ -219,7 +236,7 @@ class LabelCodes extends Component {
                     <Grid item xs={12} sm={6} >
                         <FormControl>
                             <TextField
-                                label="Fields"
+                                label="Field Name"
                                 variant="outlined"
                                 color="primary"
                                 onChange={this.handleInputChangeFor('field_id')}
@@ -237,7 +254,7 @@ class LabelCodes extends Component {
                     </Grid>
 
                     <Grid item xs={12} sm={6}>
-                        <TextField label="LabelCodes to track" variant="outlined" color="primary"
+                        <TextField label="Label Code Name" variant="outlined" color="primary"
                             onChange={this.handleInputChangeFor('label_code')}
                             value={this.state.newLabel.label_code}
                             style={{ width: '80vw', maxWidth: 400, }}
@@ -317,12 +334,12 @@ class LabelCodes extends Component {
                         <Dialog open={this.state.setOpen} aria-labelledby="form-dialog-title">
                             <DialogContent style={{ width: '80vw', maxWidth: 200 }}>
                                 <TextField
-                                    label="Crops"
+                                    label="Crop Name"
                                     variant="outlined"
                                     color="primary"
                                     value={this.state.dialogState.array.farm_crop_id}
-                                    onChange={this.handleInputChangeFor('farm_crop_id')}
-                                    style={{marginRight: 5}}
+                                    onChange={this.handleDialogChangeFor('farm_crop_id')}
+                                    style={{marginRight: 10, marginBottom: 30, width: 180,}}
                                     select
                                 >
                                     {this.props.reduxState.cropSetup.cropSetup.map(crop => (
@@ -332,12 +349,12 @@ class LabelCodes extends Component {
                                     ))}
                                 </TextField>
                                 <TextField
-                                    label="Fields"
+                                    label="Field Name"
                                     variant="outlined"
                                     color="primary"
                                     value={this.state.dialogState.array.farm_field_id}
-                                    onChange={this.handleInputChangeFor('farm_field_id')}
-                                    style={{ marginRight: 5 }}
+                                    onChange={this.handleDialogChangeFor('farm_field_id')}
+                                    style={{ marginRight: 10, marginBottom: 30, width: 180, }}
                                     select
                                 >
                                     {this.props.reduxState.cropSetup.fieldSetup.map(field => (

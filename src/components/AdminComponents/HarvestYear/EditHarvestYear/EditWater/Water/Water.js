@@ -23,10 +23,10 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
 
-class Fields extends Component {
+class Water extends Component {
 
     state = {
-        newField: {
+        newWaterSource: {
             name: '',
         },
         dialogState: {
@@ -41,8 +41,8 @@ class Fields extends Component {
 
     handleInputChangeFor = propertyName => (event) => {
         this.setState({
-            newField: {
-                ...this.state.newField,
+            newWaterSource: {
+                ...this.state,
                 [propertyName]: event.target.value,
             },
         })
@@ -80,16 +80,16 @@ class Fields extends Component {
     }
 
     componentDidMount = () => {
-        this.props.dispatch({ type: 'GET_FIELD_SOURCE' });
+        this.props.dispatch({ type: 'GET_WATER_SOURCE' });
         console.log('length is', this.state.checked.length);
         
     }
 
     addCropSource = (event) => {
         event.preventDefault();
-        this.props.dispatch({ type: 'ADD_FIELD_SOURCE', payload: this.state.newField })
+        this.props.dispatch({ type: 'ADD_WATER_SOURCE', payload: this.state.newWaterSource })
         this.setState({
-            newField: {
+            newWaterSource: {
                 name: ''
             }
         })
@@ -97,16 +97,16 @@ class Fields extends Component {
 
     removeCropSource = () => {
         swal({
-            title: `Delete (${this.state.checked.length}) fields?`,
-            text: "These fields will be removed from your harvest year but will still appear in your records",
+            title: `Delete (${this.state.checked.length}) water sources?`,
+            text: "These sources will be removed from your harvest year but will still appear in your records",
             icon: "warning",
             buttons: true,
             dangerMode: true,
         })
         .then((willDelete) => {
             if (willDelete) {
-                this.props.dispatch({ type: 'DISABLE_FIELD_SOURCE', payload: this.state })
-                this.props.dispatch({ type: 'GET_FIELD_SOURCE' });
+                this.props.dispatch({ type: 'DISABLE_WATER_SOURCE', payload: this.state })
+                this.props.dispatch({ type: 'GET_WATER_SOURCE' });
                 this.setState({
                     disableDelete: true
                 })
@@ -117,11 +117,13 @@ class Fields extends Component {
     counter = () => {
         const count = this.state.checked.length;
         if(count > 0){
-            return `Disable Fields (${count})`;
+            return `Disable Water (${count})`;
         }else {
             return "nothing here"
 
         }
+        console.log('count is', count);
+        
     }
 
     handleCheck = value => () => {
@@ -132,6 +134,7 @@ class Fields extends Component {
                 ...this.state.checked.push(value)
                 /* checked: [...this.state.checked, value] */,
                 disableDelete: false
+
             })
             
         } else {
@@ -139,8 +142,8 @@ class Fields extends Component {
                 ...this.state.checked.splice(currentIndex, 1),
             
             })
+            console.log('in splice');
         }
-
         if(this.state.checked.length === 0) {
             this.setState({
                 disableDelete: true
@@ -158,10 +161,12 @@ class Fields extends Component {
         this.setState({
             ...this.state,
             dialogState: {
-                array: this.props.reduxState.cropSetup.fieldSetup[i],
+                array: this.props.reduxState.waterSetup.waterSource[i],
             },
             setOpen: true,
         })
+        console.log('sate is', this.dialogState);
+        
     }
 
     handleClose = (event) => {
@@ -171,8 +176,8 @@ class Fields extends Component {
 
             })
             swal("Changes Saved!", "", "success");
-            this.props.dispatch({ type: "EDIT_FIELD_SOURCE", payload: this.state.dialogState.array })
-            this.props.dispatch({ type: "GET_FIELD_SOURCE" })
+            this.props.dispatch({ type: "EDIT_WATER_SOURCE", payload: this.state.dialogState.array })
+            this.props.dispatch({ type: "GET_WATER_SOURCE" })
             console.log('id is', this.state.dialogState);
 
         } else {
@@ -188,21 +193,22 @@ class Fields extends Component {
             <React.Fragment>
                 
                 <Grid container spacing={24}
+                    container
                     direction="column"
                     justify="center"
                     alignItems="center"
-                    style={{marginTop: 30}}
+                    style={{marginTop: 20}}
                     >
                     <Grid item xs={12} sm={6}>
                         <Typography variant="h6" gutterBottom align="center" className={classes.titleColor} align="center">
-                            Add or Edit Fields 
+                            Add or Edit Water Sources You Want to Track
                         </Typography>
                     </Grid>
 
                     <Grid item xs={12} sm={6}>
-                        <TextField label="Fields to track" variant="outlined" color="primary"
+                        <TextField label="Water to track" variant="outlined" color="primary"
                             onChange={this.handleInputChangeFor('name')}
-                            value={this.state.newField.name}
+                            value={this.state.newWaterSource.name}
                             style={{ width: '80vw', maxWidth: 400, }}
                         >
                         </TextField>
@@ -214,7 +220,7 @@ class Fields extends Component {
                             disabled={this.state.disable}
                         >
                             <FontAwesomeIcon icon="plus" style={{ marginRight: 5, marginTop:-2, height: 10 }} className={classes.fabIconColor} />
-                            <Typography className={classes.fabColor}>Add Field</Typography>
+                            <Typography className={classes.fabColor}>Add Water Source</Typography>
                         </Button>
                     </Grid>
 
@@ -225,32 +231,31 @@ class Fields extends Component {
                                 aria-controls="panel1a-content"
                                 id="panel1a-header"    
                             >
-                                <Typography className={classes.heading}>My Fields</Typography>
+                                <Typography className={classes.heading}>My Water Sources</Typography>
                             </ExpansionPanelSummary>
                             <ExpansionPanelDetails >
 
                                 <Grid item xs={12} sm={6}>
                                     <List style={{ marginLeft: -25, width: '70vw', maxWidth: 300 }}>
-                                        {this.props.reduxState.cropSetup.fieldSetup.map((field, i) =>
-                                        <section key={field.farm_field_id}>
-                                            <ListItem key={field.farm_field_id} 
+                                        {this.props.reduxState.waterSetup.waterSource.map((water, i) =>
+                                        <section key={water.farm_water_source_id}>
+                                            <ListItem key={water.farm_water_source_id} 
                                                 style={{ display: "flex", direction: "column", width: '70vw', maxWidth: 270 }}
-                                                onClick={this.handleCheck(field.farm_field_id)}
+                                                onClick={this.handleCheck(water.farm_water_source_id)}
                                             >
                                                 <ListItemIcon>
                                                     <Checkbox
                                                         edge="start"
-                                                        checked={this.state.checked.indexOf(field.farm_field_id) !== -1}
-                                                        
+                                                        checked={this.state.checked.indexOf(water.farm_water_source_id) !== -1}
                                                         tabIndex={-1}
                                                         disableRipple
                                                     />
                                                 </ListItemIcon>
-                                                    <ListItemText primary={field.field_name} style={{ marginLeft: "-20px"}}/>
+                                                    <ListItemText primary={water.farm_water_source_name} style={{ marginLeft: "-20px"}}/>
                                                 <ListItemSecondaryAction>
                                                 <Button variant="outlined" color="primary" variant="contained"
                                                     onClick={event => this.handleClickOpen(i)} 
-                                                    value={field.field_name}
+                                                    value={water.farm_water_source_name}
                                                     style={{ width: '200', maxWidth: 270 }}
                                                 >
                                                     Edit
@@ -261,14 +266,14 @@ class Fields extends Component {
                                                 <Divider variant="middle" />
                                         </section>
                                     )}    
-                                        <Button size="large" color="secondary" variant="contained"
-                                            style={{ marginTop: 18, marginLeft: 10, height: 50, width: "70vw", maxWidth: 280 }}
-                                            onClick={this.removeCropSource}
-                                            disabled={this.state.disableDelete}
-                                        >
-                                            <FontAwesomeIcon icon="trash-alt" style={{ marginRight: 10, marginTop: -2  }} className={classes.fabIconColor} />
-                                            <Typography className={classes.fabColor}>Remove Fields</Typography>
-                                        </Button>    
+                                            <Button size="large" color="secondary" variant="contained"
+                                                style={{marginTop: 18, marginLeft: 10, height:50, width: "70vw", maxWidth: 280}}
+                                                onClick={this.removeCropSource}
+                                                disabled={this.state.disableDelete}
+                                            >
+                                                <FontAwesomeIcon icon="trash-alt" style={{ marginRight: 10, marginTop: -2  }} className={classes.fabIconColor} />
+                                                <Typography className={classes.fabColor}>Remove Water Sources</Typography>
+                                            </Button>
                                     </List>
                                 </Grid>   
 
@@ -283,9 +288,9 @@ class Fields extends Component {
                                     autoFocus
                                     margin="dense"
                                     id="name"
-                                    label={"Field Name"}
-                                    value={this.state.dialogState.array.field_name}
-                                    onChange={this.handleDialogChangeFor('field_name')}
+                                    label={"Water Label"}
+                                    value={this.state.dialogState.array.farm_water_source_name}
+                                    onChange={this.handleDialogChangeFor('farm_water_source_name')}
                                     fullWidth
                                 />
                             </DialogContent>
@@ -321,4 +326,4 @@ const mapReduxStateToProps = (reduxState) => ({
     reduxState,
 });
 
-export default connect(mapReduxStateToProps)(withStyles(styles)(Fields));
+export default connect(mapReduxStateToProps)(withStyles(styles)(Water));

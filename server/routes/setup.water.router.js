@@ -5,7 +5,7 @@ const router = express.Router();
 router.get('/source', (req, res) => {
     let harvestYear = req.user.current_harvest_year;
 
-    const queryText = `SELECT * FROM "farm_water_source" WHERE "harvest_year_id" = $1 AND farm_water_status = true`;
+    const queryText = `SELECT * FROM "farm_water_source" WHERE "harvest_year_id" = $1 AND farm_water_status = true ORDER BY "farm_water_source_id" DESC`;
     pool.query(queryText, [harvestYear])
         .then(result => {
             res.send(result.rows);
@@ -24,7 +24,7 @@ router.get('/label', (req, res) => {
     JOIN "farm_water" ON "farm_water"."farm_water_source_id" = "farm_water_source"."farm_water_source_id"
     JOIN "label_code" ON "label_code"."label_code_id" = 
     "farm_water"."label_code_id"
-    WHERE "farm_water"."harvest_year_id" = $1 AND "farm_water"."farm_water_status" = TRUE`;
+    WHERE "farm_water"."harvest_year_id" = $1 AND "farm_water"."farm_water_status" = TRUE ORDER BY "farm_water_id" DESC`;
     pool.query(queryText, [harvestYear])
         .then(result => {
             res.send(result.rows);
@@ -61,8 +61,8 @@ router.post('/label', (req, res) => {
     const queryText = `INSERT INTO "farm_water" ("farm_water_source_id", "label_code_id", "harvest_year_id")
                     VALUES ($1, $2, $3)`;
     const queryValues = [
-        newWaterLabel.farm_water_source_id,
-        newWaterLabel.label_code_id,
+        newWaterLabel.water_id,
+        newWaterLabel.label_code,
         req.user.current_harvest_year,
         
     ];
@@ -95,6 +95,65 @@ router.delete('/label/:id', (req, res) => {
             console.log('Error deleting crop query', err);
             res.sendStatus(500);
         });
+});
+
+router.put('/editSource', (req, res) => {
+
+    const id = req.body.farm_water_source_id
+    const name = req.body.farm_water_source_name
+
+    const queryText = 'UPDATE "farm_water_source" SET "farm_water_source_name"=$1 WHERE farm_water_source_id=$2';
+    pool.query(queryText, [name, id])
+        .then(() => { res.sendStatus(200); })
+        .catch((err) => {
+            console.log('Error eidting water source query', err);
+            res.sendStatus(500);
+        });
+});
+
+router.put('/editLabel', (req, res) => {
+
+    const water = req.body.farm_water_source_id
+    const label = req.body.label_code_id
+    const id = req.body.farm_water_id
+
+    const queryText = 'UPDATE "farm_water" SET "farm_water_source_id"=$1, "label_code_id"=$2 WHERE farm_water_id=$3';
+    pool.query(queryText, [water, label, id])
+        .then(() => { res.sendStatus(200); })
+        .catch((err) => {
+            console.log('Error eidting water source query', err);
+            res.sendStatus(500);
+        });
+});
+
+router.put('/disableSource', (req, res) => {
+
+    const id = req.body.checked
+    console.log('checked is', req.body);
+    for (let num of id) {
+        const queryText = 'UPDATE "farm_water_source" SET "farm_water_status"= FALSE WHERE farm_water_source_id=$1';
+        pool.query(queryText, [num])
+            .then(() => { res.sendStatus(200); })
+            .catch((err) => {
+                console.log('Error deleting water label query', err);
+                res.sendStatus(500);
+            });
+    }
+});
+
+router.put('/disableLabel', (req, res) => {
+
+    const id = req.body.checked
+    console.log('checked is', req.body);
+    for (let num of id) {
+        const queryText = 'UPDATE "farm_water" SET "farm_water_status"= FALSE WHERE farm_water_id=$1';
+        pool.query(queryText, [num])
+            .then(() => { res.sendStatus(200); })
+            .catch((err) => {
+                console.log('Error deleting water label query', err);
+                res.sendStatus(500);
+            });
+    }
 });
 
 

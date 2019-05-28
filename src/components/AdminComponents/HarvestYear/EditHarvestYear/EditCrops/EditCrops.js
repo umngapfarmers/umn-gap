@@ -22,20 +22,13 @@ class EditCrops extends Component {
     return (
       
       <React.Fragment>
+
         <Nav />
         <Crop />
         <Field />
         <LabelCode />
-            
-            <Grid container spacing={24}>
-               
-                <Grid item xs={12} sm={6}>
-                   
-                </Grid>
-
-            </Grid>
            
-        </React.Fragment>
+      </React.Fragment>
     );
   }
 }
