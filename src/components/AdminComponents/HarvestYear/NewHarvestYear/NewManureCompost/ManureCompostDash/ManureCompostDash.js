@@ -23,6 +23,19 @@ class ManureCompostDash extends Component {
         this.props.dispatch({type: 'SET_MENU_BOOLEAN', payload: 2})
     }
 
+    validateFilled =()=>{
+        if(this.props.reduxState.setupManure[0]&&this.props.reduxState.setupCompost[0]){
+            return (
+                <Button variant="contained" color="primary" onClick={this.navToNewFarmInfo} style={{width:'80vw', maxWidth:400}}>Continue</Button>
+            )
+        }
+        else{
+            return (
+                <Button disabled variant="contained" color="primary" onClick={this.navToNewFarmInfo} style={{width:'80vw', maxWidth:400}}>Input Manure and Compost</Button>
+            )
+        }
+    }
+
     render() {
         
         const {classes} = this.props;
@@ -48,7 +61,7 @@ class ManureCompostDash extends Component {
                 </Grid>
 
                 <Grid item xs={10} sm={6}>
-                    <Button variant="contained" color="primary" onClick={this.navToNewFarmInfo} style={{width:'80vw', maxWidth:400}}>Done</Button>
+                    {this.validateFilled()}
                 </Grid>
             
         </Grid>

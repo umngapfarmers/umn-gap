@@ -9,7 +9,6 @@ import Button from '@material-ui/core/Button';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import IconButton from '@material-ui/core/IconButton';
 
-
 const moment = require('moment');
 
 // Allows farmer to create a manure source.
@@ -19,7 +18,7 @@ class CreateCompost extends Component {
 
   state= {
     farm_compost_name: '',
-    farm_compost_date: '',
+    farm_compost_date: moment().format('YYYY-MM-DD'),
     farm_compost_description: '',
     harvest_year_id: this.props.reduxState.user.user_id,
     farm_compost_status:true
@@ -54,6 +53,19 @@ class CreateCompost extends Component {
   handleNext = () => {
     this.props.history.push('/fertilizerdash');
   }
+
+  validateFilled = () => {
+    console.log('validation')
+    if (this.state.farm_compost_name) {
+      console.log(`valdiated`)
+      return false
+    }
+    else {
+      console.log(`unvalidated`);
+      
+      return true
+    }
+  }
   
   render() {
     console.log(`state in creat compost form `, this.state);
@@ -84,6 +96,7 @@ class CreateCompost extends Component {
                     InputLabelProps={{
                       shrink: true,
                     }}
+                    style={{width:'80vw', maxWidth:400}}
                   >
                 </TextField>
             </FormControl>
@@ -97,6 +110,8 @@ class CreateCompost extends Component {
                     color="primary"
                     onChange={this.handleChangeFor('farm_compost_name')}
                     value={this.state.farm_compost_name}
+                    style={{width:'80vw', maxWidth:400}}
+                    helperText = 'required'
                   >
                 </TextField>
             </FormControl>
@@ -110,13 +125,14 @@ class CreateCompost extends Component {
                   color="primary"
                   onChange={this.handleChangeFor('farm_compost_description')}
                   value={this.state.farm_compost_description}
+                  style={{width:'80vw', maxWidth:400}}
                 >
                 </TextField>
             </FormControl>
         </Grid>
 
         <Grid item xs={10} sm={6} >
-          <Button size="large" color="primary" onClick={this.onSubmit}>Add New Compost</Button>
+          <Button disabled={this.validateFilled()} size="large" color="primary" variant="contained" onClick={this.onSubmit} style={{width:'80vw', maxWidth:400}}>Add New Compost</Button>
         </Grid>
  
         <Grid item xs={10} sm={6} >
@@ -130,7 +146,7 @@ class CreateCompost extends Component {
         </Grid>  
 
         <Grid item xs={10} sm={6} >
-          <Button size="small" color="primary" variant='contained' onClick={this.handleNext}>Continue</Button>
+          <Button size="large" color="primary" variant='contained' onClick={this.handleNext} style={{width:'80vw', maxWidth:400}}>Continue</Button>
 
         </Grid>  
 

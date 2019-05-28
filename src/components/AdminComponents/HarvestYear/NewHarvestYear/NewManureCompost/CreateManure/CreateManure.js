@@ -75,7 +75,7 @@ class CreateManure extends Component {
 
   validateFilled = () => {
     console.log('validation')
-    if (this.state.farm_manure_description && this.state.entry.compost_sig) {
+    if (this.state.farm_manure_description && this.state.label_code_id) {
       console.log(`valdiated`)
       return false
     }
@@ -161,6 +161,7 @@ class CreateManure extends Component {
                   value={this.state.label_code_id}
                   select
                   style={{width:'80vw', maxWidth:400}}
+                  helperText='required'
                 >
 
                   {this.props.reduxState.labelCode.map( code => (
@@ -180,6 +181,7 @@ class CreateManure extends Component {
               variant='contained' 
               onClick={this.onSubmitManure}
               style={{width:'80vw', maxWidth:400}}
+              disabled={this.validateFilled()}
             >
               Add Manure
             </Button>
