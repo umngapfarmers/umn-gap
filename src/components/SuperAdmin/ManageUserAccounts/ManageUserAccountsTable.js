@@ -19,7 +19,7 @@ class ManageUserAccountsTable extends Component {
     const {classes} = this.props;
     return (
 
-          <Table  size='small' padding='dense'>
+          <Table size='small' padding='dense'>
             <TableHead >
                 <TableRow>
                   <TableCell>Farm Name</TableCell>

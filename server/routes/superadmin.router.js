@@ -20,5 +20,21 @@ router.get('/', (req, res) => {
         })
 });
 
+router.put('/:id', (req,res) => {
+    console.log('in UPDATE USER');
+    const updateUser = req.body
+    const user_id = req.params.id;
+    console.log(user_id);
+    let sqlQuery =  `UPDATE "user" SET "user_status" = $1 WHERE "user_id" = $2;`;
+    pool.query(sqlQuery, [updateUser.user_status, user_id])
+    .then ((response) => {
+        res.sendStatus(201);
+    })
+    .catch ((error)=> {
+        console.log('ERROR IN USER UPDATE', error)
+        res.sendStatus(500)
+    })
+})
+
 
 module.exports = router;

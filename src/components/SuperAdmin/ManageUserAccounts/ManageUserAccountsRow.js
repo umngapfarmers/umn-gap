@@ -10,14 +10,6 @@ import Edit from '@material-ui/icons/Edit';
 import Add from '@material-ui/icons/Add'
 import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 
 var moment = require('moment');
 
@@ -61,37 +53,47 @@ handleEditSubmit = (event) => {
     this.setState({
         currentlyEditing: false,
     })
-    // this.props.dispatch({type: 'GET_ANSWERS', payload: this.props.classData });
+    this.props.dispatch({type: 'EDIT_USER', payload: this.state.userAccount});
+    this.props.dispatch({type: 'GET_ALL_USERS'})
 }
 
-//FUNCTION- handle change for input-- set state with input values
-handleChangeActive = propertyName => {
-    return(event) =>{
-    this.setState({
-        checkedActive: !this.state.checkedActive,
-        userAccount: {
-            ...this.state.userAccount,
-            [propertyName]: event.target.value,
+// //FUNCTION- handle change for input-- set state with input values
+// handleChangeActive = propertyName => {
+//     return(event) =>{
+//     this.setState({
+//         checkedActive: !this.state.checkedActive,
+//         userAccount: {
+//             ...this.state.userAccount,
+//             [propertyName]: event.target.value,
 
-        }
-    });
+//         }
+//     });
+//   }
+// }
+
+// handleChangeInactive = propertyName => {
+//     return(event) =>{
+//     console.log('Inactive value is:', event.target.value);
+//     this.setState({
+//         checkedInactive: !this.state.checkedInactive,
+//         userAccount: {
+//             ...this.state.userAccount,
+//             [propertyName]: event.target.value,
+
+//         }
+//     });
+//   }
+// }
+handleChange = (propertyName) => {
+  return (event) => {
+    this.setState({
+      userAccount:{
+        ...this.state.userAccount,
+        [propertyName]: event.target.value,
+      }
+    })
   }
 }
-
-handleChangeInactive = propertyName => {
-    return(event) =>{
-    console.log('Inactive value is:', event.target.value);
-    this.setState({
-        checkedInactive: !this.state.checkedInactive,
-        userAccount: {
-            ...this.state.userAccount,
-            [propertyName]: event.target.value,
-
-        }
-    });
-  }
-}
-
 
 
 
@@ -123,36 +125,46 @@ handleChangeInactive = propertyName => {
 
         <TableCell>
            {this.state.currentlyEditing === true ? 
-           <FormControl component="fieldset" className={classes.formControl}>
-          
-            <FormControlLabel
-                control={<Radio   value={true}
-                onClick={this.handleChangeActive('user_status')}
-                icon={<RadioButtonUncheckedIcon/>}
-                checkedIcon={<RadioButtonCheckedIcon/>}
-                checked={this.state.checkedActive}
-                />} label="Active" 
-               />
-            
-            <FormControlLabel
-                control={<Radio value={false}
-                onClick={this.handleChangeInactive('user_status')}
-                icon={<RadioButtonUncheckedIcon/>}
-                checkedIcon={<RadioButtonCheckedIcon/>}
-                checked={this.state.checkedInactive}
-                />} label="Inactive"
-                />
+              <TextField
+              select
+              label="Status"
+              value={this.state.userAccount.user_status}
+              onChange={this.handleChange('user_status')}
+              SelectProps={{
+                MenuProps: {
+                  className: classes.menu,
+                },
+              }}
+              margin="normal"
+              InputLabelProps={{
+                FormLabelClasses: {
+                  root: classes.labelRoot
+                }
+              }}
+              InputProps={{ classes: { root: classes.inputRoot } }}
+              className={classes.dropDown}
+            >
+                <MenuItem style={{fontSize: 12, height:12}} disable>
+                  Select User Status
+                </MenuItem>
 
-           </FormControl>
+                <MenuItem key={true} value={true} style={{fontSize: 12, height:12}}>
+                  Active
+                </MenuItem>
+
+                <MenuItem key={false} value={false} style={{fontSize: 12, height:12}}>
+                  Inactive
+                </MenuItem>
+            </TextField>
             :
             statusToDisplay}
         </TableCell>
 
-        <TableCell >
+        <TableCell>
             { this.state.currentlyEditing === true ? 
-                <IconButton aria-label="Add" onClick={this.handleEditSubmit}> <Add/> </IconButton> :
+                <IconButton aria-label="Add" onClick={this.handleEditSubmit}> <Add/><Typography className={classes.buttonFont}>Submit</Typography></IconButton> :
                 <IconButton aria-label="Edit" onClick={this.handleEdit} >
-              <Edit/>
+              <Edit/><Typography className={classes.buttonFont}>Edit</Typography>
            </IconButton>
             }
         </TableCell>
@@ -165,8 +177,15 @@ handleChangeInactive = propertyName => {
 }
 
 const styles = theme => ({
- 
-
+  labelRoot:{
+    fontSize: 12,
+  },
+  buttonFont:{
+    fontSize: 12
+  },
+  dropDown:{
+    margin: 0,
+  }
   })
 
 
@@ -177,3 +196,28 @@ const mapReduxStateToProps = (reduxState) => ({
 });
 
 export default connect( mapReduxStateToProps )(withStyles(styles)(ManageUserAccountsRow));
+
+ //  <FormControl component="fieldset" className={classes.formControl}>
+          //   <RadioGroup
+          //   value={this.state.userAccount.user_status}
+          //   // onChange={handleChange}
+          // ></RadioGroup>
+          //   <FormControlLabel
+          //       control={<Radio   value={true}
+          //       onClick={this.handleChangeActive('user_status')}
+          //       icon={<RadioButtonUncheckedIcon/>}
+          //       checkedIcon={<RadioButtonCheckedIcon/>}
+          //       checked={this.state.checkedActive}
+          //       />} label="Active" 
+          //      />
+            
+          //   <FormControlLabel
+          //       control={<Radio value={false}
+          //       onClick={this.handleChangeInactive('user_status')}
+          //       icon={<RadioButtonUncheckedIcon/>}
+          //       checkedIcon={<RadioButtonCheckedIcon/>}
+          //       checked={this.state.checkedInactive}
+          //       />} label="Inactive"
+          //       />
+
+          //  </FormControl>
