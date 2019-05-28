@@ -30,6 +30,8 @@ const record_harvestRouter = require('./routes/record.harvest.router')
 const record_waterTreatRouter = require('./routes/record.waterTreat.router');
 const record_manureRouter = require('./routes/record.manure.router');
 const record_compostPileRouter = require ('./routes/record.compostPile.router');
+const log_waterRouter = require('./routes/log.water.router');
+const superAdminRouter = require('./routes/superadmin.router')
 
 
 
@@ -69,6 +71,8 @@ app.use('/record/waterTreat', record_waterTreatRouter);
 app.use('/log/compost', logCompost);
 app.use('/record/manure', record_manureRouter);
 app.use('/record/compostPile', record_compostPileRouter);
+app.use('/log/water', log_waterRouter)
+app.use('/superadmin', superAdminRouter)
 
 // Serve static files
 app.use(express.static('build'));

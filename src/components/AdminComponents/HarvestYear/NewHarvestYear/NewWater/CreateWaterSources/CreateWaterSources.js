@@ -9,6 +9,8 @@ import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import { withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import IconButton from '@material-ui/core/IconButton';
 
 
 class CreateWaterSources extends Component {
@@ -94,17 +96,18 @@ class CreateWaterSources extends Component {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <ul> Water Sources:</ul>
+            <ul> 
             {this.props.reduxState.waterSetup.waterSource.map(source =>
                 <li key={source.farm_water_source_id}>{source.farm_water_source_name}
-                  <Button size="large" color="primary" variant="contained"
+                  <IconButton size="small" color="primary" variant="contained"
                     onClick={this.removeWaterSource}
                     name={source.farm_water_source_id}
                     >
-                    Remove
-                </Button>
+                      <FontAwesomeIcon icon='minus-circle'/>
+                </IconButton>
                 </li>
               )}
+            </ul>
           </Grid>
 
           <Grid item xs={12} sm={6}>
