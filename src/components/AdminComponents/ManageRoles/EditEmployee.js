@@ -51,6 +51,16 @@ class EditEmployee extends Component {
     //this.props.dispatch({ type: "GET_PERSON_TO_EDIT" });
   };
 
+  componentDidUpdate = (prevProps) => {
+    if(this.props.editPerson!==prevProps.editPerson){
+      console.log(`componentDidUpdate `, this.props.editPerson[0]);
+
+      this.setState({
+        ...this.props.editPerson[0]
+      });
+    }
+  }
+
   handleSelect = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -79,6 +89,7 @@ class EditEmployee extends Component {
     const { classes } = this.props;
     console.log("selected role", this.props.editPerson);
     console.log("fetch harvest year", this.props.harvestYear);
+    console.log('state ', this.state)
 
     return (
       <React.Fragment>
@@ -239,41 +250,32 @@ class EditEmployee extends Component {
                 />
               )}
             </Grid>
-                  
-                    {/* {this.props.reduxState.editPerson.map(row => ( */}
-                        <Grid  item xs={8} sm={6}>
-                        {this.props.editPerson.map(option => (            
+      
+        {/* {this.props.reduxState.editPerson.map(row => ( */}
+            <Grid  item xs={8} sm={6}>
               <TextField
                 required
-                                key={option.id}
                 id="firstName"
                 name="firstName"
                 label="First name"
                 //fullWidth
                 autoComplete="firstName"
-                                value={this.state.person_first}
-                                onChange={this.handleChange("person_first")}
-
-                
-                //value={this.props.editPerson.person_first}
+                value={this.state.person_first}
+                onChange={this.handleChange("person_first")}
               />
-                        ))}
             </Grid>
                            
             <Grid item xs={12} sm={6}>
-                        {this.props.editPerson.map(option => (   
               <TextField
                 required
-                key={option.id}
                 id="lastName"
                 name="lastName"
                 label="Last name"
                 fullWidth
                 autoComplete="lname"
                 onChange={this.handleChange("person_last")}
-                value={option.person_last}
+                value={this.state.person_last}
               />
-                        ))}
             </Grid>
             <Grid item xs={8} sm={6}>
               <FormControl>
