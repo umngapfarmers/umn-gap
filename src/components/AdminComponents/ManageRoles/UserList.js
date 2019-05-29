@@ -22,7 +22,6 @@ class UserList extends Component {
       editUser: true,
       selectedId: user_id
     });
-    //this.props.history.push(`/editemployee/?id=${person_id}`);
     this.props.dispatch({
       type: "GET_USER_TO_EDIT",
       payload: user_id
