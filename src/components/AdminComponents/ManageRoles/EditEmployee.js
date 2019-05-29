@@ -17,8 +17,6 @@ const styles = theme => ({
   },
   textField: {
     marginLeft: theme.spacing.unit
-    // marginRight: theme.spacing.unit,
-    //width: 200,
   },
   dense: {
     marginTop: 19
@@ -44,7 +42,6 @@ class EditEmployee extends Component {
     console.log("in component did mount edit employee", this.props.editPerson);
 
     this.props.dispatch({ type: "FETCH_HARVEST_YEAR" });
-
   };
 
   componentDidUpdate = prevProps => {
@@ -96,8 +93,6 @@ class EditEmployee extends Component {
 
         <FormControl
           ref="form"
-          //justify="center"
-          //alignItems="center"
           fullWidth
           className={classes.selectFormControl}
           onSubmit={this.handleSubmit}
@@ -179,7 +174,6 @@ class EditEmployee extends Component {
                     className: classes.menu
                   }
                 }}
-               
               >
                 {this.props.harvestYear.map(option => (
                   <MenuItem key={option.id} value={option.harvest_id}>

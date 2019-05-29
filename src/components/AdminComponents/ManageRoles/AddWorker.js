@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import NavBar from '../../Nav/Nav';
+import NavBar from "../../Nav/Nav";
 
 const styles = theme => ({
   container: {
@@ -62,20 +62,9 @@ class AddWorker extends Component {
   handleSubmit = event => {
     event.preventDefault();
     console.log("in handle submit", this.state);
-   
+
     this.props.dispatch({ type: "POST_WORKER", payload: this.state });
-   
-    // this.setState({
-    //     newWorker:{
-    //   registrationCode: "",
-    //   userName: "",
-    //   password: "",
-    //   firstName: "",
-    //   lastName: "",
-    //   roleSelect: "",
-    //   workerStatus: ""
-    //     }
-    // });
+
     this.props.history.push("/");
   };
 
@@ -92,8 +81,6 @@ class AddWorker extends Component {
         </Typography>
         <FormControl
           ref="form"
-          //justify="center"
-          //alignItems="center"
           fullWidth
           className={classes.selectFormControl}
           onSubmit={this.handleSubmit}
@@ -119,8 +106,7 @@ class AddWorker extends Component {
                   }}
                   value={this.state.roleSelect}
                   onChange={this.handleSelect}
-                  style={{ width: '60vw', maxWidth: 400 }}
-
+                  style={{ width: "60vw", maxWidth: 400 }}
                   inputProps={{
                     name: "roleSelect",
                     id: "role-select"
@@ -161,25 +147,21 @@ class AddWorker extends Component {
                 id="selectedYear"
                 name="selectedYear"
                 select
-                style={{width:'80vw',maxWidth:400}}
+                style={{ width: "80vw", maxWidth: 400 }}
                 label="* Select harvest Year"
                 className={classes.textField}
                 value={this.state.selectedYear}
                 onChange={this.handleChange("selectedYear")}
-                
                 SelectProps={{
                   MenuProps: {
                     className: classes.menu
                   }
                 }}
-                // validators={["required"]}
-                // errorMessages={["this field is required"]}
-                // margin="normal"
-                // variant="outlined"
               >
                 {this.props.harvestYear.map(option => (
                   <MenuItem key={option.id} value={option.harvest_id}>
-                  {option.harvest_year}</MenuItem>
+                    {option.harvest_year}
+                  </MenuItem>
                 ))}
               </TextField>
             </Grid>
