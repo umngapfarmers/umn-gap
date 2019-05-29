@@ -9,6 +9,11 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import NavBar from "../../Nav/Nav";
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import swal from 'sweetalert';
+
+
 
 const styles = theme => ({
   container: {
@@ -35,7 +40,9 @@ class EditUser extends Component {
       password: "",
       username: "",
       workerStatus: "",
-      selectedYear: ""
+      selectedYear: "",
+      checked: false,
+      changePassword: false,
     };
   }
 
@@ -69,23 +76,119 @@ class EditUser extends Component {
     console.log("in handle change", event.target.value);
   };
 
-  // handles form submit button, sends post dispatch to redux with payload of all selected form inputs + clears form
   handleSubmit = event => {
     event.preventDefault();
     console.log("in handle submit", this.state);
 
-    this.props.dispatch({ type: "EDIT_USER", payload: this.state });
-
-    this.props.history.push("/");
+    this.props.dispatch({type: "EDIT_USER_PASSWORDLESS", payload: this.state });
+  
+    // this.props.history.push("/manageuser");
   };
 
+  handleCheck = (event) => {
+    console.log(`in handleCheck`)
+    event.preventDefault();
+    this.setState({
+        ...this.state,
+        checked: event.target.checked
+    })
+    this.checkChangePassword()
+  }
+
+  checkChangePassword = (event) =>{
+    swal({
+      title: "Change Password",
+      text: "Are you sure you want to change user password?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willChange) => {
+      if (willChange) {
+        swal("Password is now ready to be changed", {
+          icon: "success",
+        })
+        this.setState({
+          ...this.state,
+          changePassword: true,
+
+        })
+      } else {
+        swal("Password has not been changed");
+        this.setState({
+          checked: false,
+        })
+      }
+    });
+  }
+
+  displayPassword = () =>{
+    if (this.state.changePassword === true){
+      return(
+        <TextField
+        required
+        id="password"
+        name="password"
+        label="Password"
+        style={{width:'80vw', maxWidth:400}}
+        autoComplete="Password"
+        onChange={this.handleChange("password")}
+        type="password"
+        value={this.state.password}
+        variant="outlined"
+        required
+      />
+      )
+    }
+    else{
+      return(
+        <Fragment></Fragment>
+      )
+    }
+  }
+
+  displayPasswordChange = () =>{
+    if(this.state.checked === false){
+      return (
+      <FormControlLabel
+      control={
+        <Checkbox 
+          onChange={this.handleCheck} 
+          value={this.state.checked}
+          checked={this.state.checked}
+        />
+      }
+      label="Change Password"
+    />
+      )
+    }
+    else{
+      return(
+        <Fragment></Fragment>
+      )
+    }
+  }
+
+  submitButton = () =>{
+    if(this.state.changePassword === true){
+      return(
+      <Button onClick={this.handleSubmit} style={{width:'80vw', maxWidth:400}}>Submit</Button>
+      )
+    }
+    else{
+      return(
+        <Button onClick={this.handleSubmitPasswordless} style={{width:'80vw', maxWidth:400}}>Submit</Button>
+      )
+    }
+  }
 
   render() {
     const { classes } = this.props;
     console.log("selected role", this.props.editUser);
     console.log("fetch harvest year", this.props.harvestYear);
     console.log("state edit user ", this.state);
-
+    console.log("checked is",this.state.checked)
+    console.log('changePassword is', this.state.changePassword);
     return (
       <React.Fragment>
         <NavBar />
@@ -197,22 +300,6 @@ class EditUser extends Component {
 
             <Grid item xs={12} sm={6}>
             <TextField
-                required
-                id="password"
-                name="password"
-                label="Password"
-                style={{ width: '80vw', maxWidth: 400 }}
-                autoComplete="Password"
-                onChange={this.handleChange("password")}
-                type="password"
-                value={this.state.password}
-                variant="outlined"
-             />
-            </Grid>
-
-
-            <Grid item xs={12} sm={6}>
-            <TextField
               name="statusSelect"
               select
               style={{ width: "80vw", maxWidth: 400 }}
@@ -227,6 +314,7 @@ class EditUser extends Component {
               }}
               variant="outlined"
               >
+                <MenuItem disabled>Select User Status</MenuItem>
                 <MenuItem
                   classes={{
                     root: classes.selectMenuItem,
@@ -247,6 +335,14 @@ class EditUser extends Component {
                 </MenuItem>
               </TextField>
             </Grid>
+
+            <Grid item xs={12}>
+           {this.displayPasswordChange()}
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
+            {this.displayPassword()}
+          </Grid>
 
             <Grid item xs={12} sm={6}>
                 <Button onClick={this.handleSubmit}>Submit</Button>

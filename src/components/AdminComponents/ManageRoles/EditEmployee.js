@@ -9,6 +9,8 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import NavBar from "../../Nav/Nav";
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const styles = theme => ({
   container: {
@@ -249,23 +251,24 @@ class EditEmployee extends Component {
                 style={{ width: "80vw", maxWidth: 400 }}
               />
             </Grid>
-            {this.state.person_status === true ? (
-              <Select
-                MenuProps={{
-                  // className: classes.selectMenu
-                  className: classes.selectMenuItemSelected
-                }}
-                classes={{
-                  select: classes.select
-                }}
-                value={this.state.person_status}
-                onChange={this.handleSelect("person_status")}
-                style={{ width: "60vw", maxWidth: 400 }}
-                inputProps={{
-                  name: "statusSelect",
-                  id: "status-select"
-                }}
+        
+            <Grid item xs={12} sm={6}>
+            <TextField
+              name="statusSelect"
+              select
+              style={{ width: "80vw", maxWidth: 400 }}
+              label="Select User Status"
+              className={classes.textField}
+              value={this.state.user_status}
+              onChange={this.handleSelect("user_status")}
+              SelectProps={{
+                MenuProps: {
+                  className: classes.menu
+                }
+              }}
+              variant="outlined"
               >
+                <MenuItem disabled>Select User Status</MenuItem>
                 <MenuItem
                   classes={{
                     root: classes.selectMenuItem,
@@ -280,56 +283,20 @@ class EditEmployee extends Component {
                     root: classes.selectMenuItem,
                     selected: classes.selectMenuItemSelected
                   }}
-                  value={false}
-                >
+                  value={false}>
                   Inactive
-                </MenuItem>
-              </Select>
-            ) : (
-              <Select
-                MenuProps={{
-                  // className: classes.selectMenu
-                  className: classes.selectMenuItemSelected
-                }}
-                classes={{
-                  select: classes.select
-                }}
-                value="Inactive"
-                onChange={this.handleSelect("person_status")}
-                style={{ width: "60vw", maxWidth: 400 }}
-                inputProps={{
-                  name: "statusSelect",
-                  id: "status-select"
-                }}
-              >
-                <MenuItem
-                  classes={{
-                    root: classes.selectMenuItem,
-                    selected: classes.selectMenuItemSelected
-                  }}
-                  value="Active"
-                >
-                  Active
-                </MenuItem>
-                <MenuItem
-                  classes={{
-                    root: classes.selectMenuItem,
-                    selected: classes.selectMenuItemSelected
-                  }}
-                  value="Inactive"
-                >
-                  Inactive
-                </MenuItem>
-              </Select>
-            )}
+                  </MenuItem>
+                </TextField>
+            </Grid>
 
-            <Grid item xs={12} sm={6}>
+
+            {/* <Grid item xs={12} sm={6}>
              {this.displayUsername()}
             </Grid>
 
             <Grid item xs={12} sm={6}>
              {this.displayPassword()}
-            </Grid>
+            </Grid> */}
             <Grid item xs={8} sm={6}>
               <FormControl>
                 <Button onClick={this.handleSubmit}>Submit</Button>
