@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -16,6 +16,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EmployeeList from "./EmployeeList";
 import UserList from "./UserList";
 import NavBar from '../../Nav/Nav';
+import TextField from '@material-ui/core/TextField';
 
 
 class EditWorker extends Component {
@@ -26,16 +27,43 @@ class EditWorker extends Component {
         this.setState({ [event.target.name]: event.target.value });
        
     };
+
+   displayList = () => {
+    if(this.state.roleSelect == 'employee'){
+      return(
+     <EmployeeList/>
+      )
+    }
+
+    else if(this.state.roleSelect =='user'){
+      console.log('in user')
+      return (
+      <UserList/>
+      )
+    }
+
+    else if(this.state.roleSelect =='admin'){
+      // userToShow =  <UserList/>
+    }
+
+    else {
+      return(
+      <Fragment></Fragment>
+      )
+    }
+    
+   }
   render() {
     const { classes } = this.props;
-      console.log('role selected is', this.state.roleSelect)
+    console.log('role selected is', this.state.roleSelect)
+
     return (
       <React.Fragment>
         
         <NavBar/>
 
         <Typography variant="h6" gutterBottom align="center">
-          Choose a User Type to Edit
+          Select User Role
         </Typography>
         <Grid
           container
@@ -45,9 +73,9 @@ class EditWorker extends Component {
           alignItems="center"
         >
                 <Grid item xs={12} sm={6}>
-              <label>Select Role</label>
                 <FormControl fullWidth className={classes.selectFormControl}>
-                    <Select
+                    <TextField
+                        select
                         MenuProps={{
                             className: classes.selectMenu
                         }}
@@ -62,42 +90,28 @@ class EditWorker extends Component {
                             name: "roleSelect",
                             id: "role-select"
                         }}
+                        variant="outlined"
                     >
+                      <MenuItem disabled>Select User Role</MenuItem>
                         <MenuItem
-                            classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                            }}
-                            value="Admin"
+                        value="admin"
                         >
                             Admin
                   </MenuItem>
                         <MenuItem
-                            classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                            }}
-                            value="Workers"
+                            value="user"
                         >
-                            Workers
+                            User
                   </MenuItem>
                         <MenuItem
-                            classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                            }}
-                            value="Employees"
+                            value="employee"
                         >
-                            Employees
+                            Employee
                   </MenuItem>
-                    </Select>
+                    </TextField>
                 </FormControl>
             </Grid>
-                {this.state.roleSelect == "Employees" ?(
-                    <EmployeeList/>
-                ):(
-                    <UserList/>
-                )}
+               {this.displayList()}
         </Grid>
       </React.Fragment>
     );

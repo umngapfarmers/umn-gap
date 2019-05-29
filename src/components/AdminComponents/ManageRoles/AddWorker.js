@@ -75,7 +75,7 @@ class AddWorker extends Component {
 
     this.props.dispatch({ type: "POST_WORKER", payload: this.state });
 
-    this.props.history.push("/");
+    this.props.history.push("/manageuser");
   };
 
   render() {
@@ -119,17 +119,17 @@ class AddWorker extends Component {
                     >
                     <MenuItem disabled>Select User Role</MenuItem>
                     <MenuItem
-                        value="Admin"
+                        value="admin"
                       >
                         Admin
                       </MenuItem>
                       <MenuItem
-                        value="Worker"
+                        value="user"
                       >
-                        Worker
+                        User
                       </MenuItem>
                       <MenuItem
-                        value="Employee"
+                        value="employee"
                       >
                         Employee
                       </MenuItem>
