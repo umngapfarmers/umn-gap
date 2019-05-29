@@ -75,7 +75,7 @@ function* editPersonSaga(action) {
 }
 function* editPickUserSaga(action) {
     try {
-        const selectedUser=yield axios.get(`/manage/user/edit/?person_id=${action.payload}`);
+        const selectedUser=yield axios.get(`/manage/user/edit/?user_id=${action.payload}`);
         console.log("this is fetch user for one user", selectedUser.data);
         yield put({ type: "SET_EDIT_USER", payload: selectedUser.data });
 

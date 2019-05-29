@@ -37,7 +37,7 @@ class HarvestRecordTable extends Component {
               <TableCell align="left" scope="row" className={classes.tableFontAndBorder}>{moment(row.crop_harvest_date).format('MM-DD-YYYY')}</TableCell>
               <TableCell align="left"  className={classes.tableFontAndBorder}>{row.crop_harvest_amount}</TableCell>
               <TableCell align="left"  className={classes.tableFontAndBorder}>{row.label_code_text}</TableCell>
-              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.crop_harvest_sig}</TableCell>
+              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.person_first} {row.person_last}</TableCell>
             </TableRow>
           ))}
         </TableBody>

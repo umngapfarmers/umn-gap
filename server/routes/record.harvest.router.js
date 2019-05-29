@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
     console.log('IN GET RECORD HARVEST')
     const harvest_year_id = req.query.harvest_year_id;
     console.log(harvest_year_id);
-    let sqlQuery = `SELECT "crop_harvest"."crop_harvest_id", "crop_harvest"."crop_harvest_date", "crop_harvest"."crop_harvest_amount", "crop_harvest"."crop_harvest_sig", "label_code"."label_code_text" FROM "crop_harvest" JOIN "label_code" ON "crop_harvest"."label_code_id" = "label_code"."label_code_id" WHERE "crop_harvest"."harvest_year_id" = $1 ORDER BY "crop_harvest"."crop_harvest_date" ASC `
+    let sqlQuery = `SELECT "crop_harvest"."crop_harvest_id", "crop_harvest"."crop_harvest_date", "crop_harvest"."crop_harvest_amount", "person"."person_first", "person"."person_last", "label_code"."label_code_text" FROM "crop_harvest" JOIN "label_code" ON "crop_harvest"."label_code_id" = "label_code"."label_code_id" JOIN "person" ON "person"."person_id" = "crop_harvest"."crop_harvest_sig" WHERE "crop_harvest"."harvest_year_id" = $1 ORDER BY "crop_harvest"."crop_harvest_date" ASC `
     pool.query(sqlQuery, [harvest_year_id])
         .then((response) => {
             console.log(`RECORD HARVEST Response`, response.rows);
