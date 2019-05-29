@@ -23,14 +23,17 @@ import MenuItem from '@material-ui/core/MenuItem';
 import swal from 'sweetalert';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+import { isMoment } from 'moment';
 
+const moment = require('moment');
 
-class WaterLabels extends Component {
+class Compost extends Component {
 
     state = {
         newLabel: {
-            water_id: '',
-            label_code: '',
+            name: '',
+            date: moment().format('YYYY-MM-DD'),
+            description: '',
         },
         dialogState: {
             array: '',
@@ -83,41 +86,37 @@ class WaterLabels extends Component {
     }
 
     componentDidMount = () => {
-        this.props.dispatch({ type: 'GET_WATER_SOURCE' });
-        this.props.dispatch({ type: 'GET_WATER_LABEL' });
-        this.props.dispatch({ type: 'GET_LABEL_CODE' });
-        console.log('length is', this.state.checked.length);
-        
+        this.props.dispatch({ type: 'GET_COMPOST_SOURCE' });
+
     }
 
     addCropSource = (event) => {
         event.preventDefault();
-        this.props.dispatch({ type: 'ADD_WATER_LABEL', payload: this.state.newLabel })
+        this.props.dispatch({ type: 'ADD_COMPOST_EDIT', payload: this.state.newLabel })
         this.setState({
             newLabel: {
-                water_id: '',
-                label_code: '',
+                name: '',
+                date: moment().format('YYYY-MM-DD'),
+                description: '',
             },
         })
     }
 
     removeCropSource = () => {
         swal({
-            title: `Delete (${this.state.checked.length}) labels?`,
-            text: "These labels will be removed from your harvest year but will still appear in your records",
+            title: `Delete (${this.state.checked.length}) manure?`,
+            text: "These sources will be removed from your harvest year but will still appear in your records",
             icon: "warning",
             buttons: true,
             dangerMode: true,
         })
         .then((willDelete) => {
             if (willDelete) {
-                this.props.dispatch({ type: 'DISABLE_WATER_LABEL', payload: this.state })
-                this.props.dispatch({ type: 'GET_WATER_LABEL' });
+                this.props.dispatch({ type: 'DISABLE_COMPOST_SOURCE', payload: this.state })
+                this.props.dispatch({ type: 'GET_COMPOST_SOURCE' });
                 this.setState({
                     disableDelete: true
                 })
-                console.log('state is', this.state);
-                
             }
         });
     }
@@ -125,13 +124,11 @@ class WaterLabels extends Component {
     counter = () => {
         const count = this.state.checked.length;
         if(count > 0){
-            return `Disable WaterLabels (${count})`;
+            return `Disable Compost (${count})`;
         }else {
             return "nothing here"
 
         }
-        console.log('count is', count);
-        
     }
 
     handleCheck = value => () => {
@@ -142,7 +139,6 @@ class WaterLabels extends Component {
                 ...this.state.checked.push(value)
                 /* checked: [...this.state.checked, value] */,
                 disableDelete: false
-
             })
             
         } else {
@@ -169,12 +165,12 @@ class WaterLabels extends Component {
         this.setState({
             ...this.state,
             dialogState: {
-                array: this.props.reduxState.waterSetup.waterLabel[i],
+                array: this.props.reduxState.setupCompost[i],
             },
             setOpen: true,
+            
         })
-        console.log('sate is', this.dialogState);
-        
+        console.log('sate is', this.state.dialogState);
     }
 
     handleClose = (event) => {
@@ -184,8 +180,8 @@ class WaterLabels extends Component {
 
             })
             swal("Changes Saved!", "", "success");
-            this.props.dispatch({ type: "EDIT_WATER_LABEL", payload: this.state.dialogState.array })
-            this.props.dispatch({ type: "GET_WATER_LABEL" });
+            this.props.dispatch({ type: "EDIT_COMPOST_SOURCE", payload: this.state.dialogState.array })
+            this.props.dispatch({ type: "GET_LABEL_CODE" })
             console.log('id is', this.state.dialogState);
 
         } else {
@@ -209,46 +205,52 @@ class WaterLabels extends Component {
                     >
                     <Grid item xs={12} sm={6}>
                         <Typography variant="h6" gutterBottom align="center" className={classes.titleColor} align="center">
-                            Add or Edit WaterLabels
+                            Add or Edit Compost
                         </Typography>
                     </Grid>
 
-                    <Grid item xs={12} sm={6} >
+                    <Grid item xs={12}>
                         <FormControl>
                             <TextField
-                                label="Water Source Name"
+                                label="Start Date"
                                 variant="outlined"
                                 color="primary"
-                                onChange={this.handleInputChangeFor('water_id')}
-                                value={this.state.newLabel.water_id}
+                                onChange={this.handleInputChangeFor('date')}
+                                type="date"
+                                value={this.state.newLabel.date}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
                                 style={{ width: '80vw', maxWidth: 400 }}
-                                select
                             >
-                                {this.props.reduxState.waterSetup.waterSource.map(water=> (
-                                    <MenuItem key={water.farm_water_source_id} value={water.farm_water_source_id}>
-                                        {water.farm_water_source_name}
-                                    </MenuItem>
-                                ))}
                             </TextField>
                         </FormControl>
                     </Grid>
 
-                    <Grid item xs={12} sm={6} >
+                    <Grid item xs={12} sm={6}>
+                        <TextField
+                            label="Name Compost"
+                            variant="outlined"
+                            color="primary"
+                            onChange={this.handleInputChangeFor('name')}
+                            value={this.state.newLabel.name}
+                            style={{ width: '80vw', maxWidth: 400, }}
+                        >
+                        </TextField>
+                    </Grid>
+
+                    <Grid item xs={12}>
                         <FormControl>
                             <TextField
-                                label="Crop Label Water is Applied To"
+                                label="Describe Compost"
                                 variant="outlined"
                                 color="primary"
-                                onChange={this.handleInputChangeFor('label_code')}
-                                value={this.state.newLabel.label_code}
+                                onChange={this.handleInputChangeFor('description')}
+                                value={this.state.newLabel.description}
+                                multiline
+                                helperText='required'
                                 style={{ width: '80vw', maxWidth: 400 }}
-                                select
                             >
-                                {this.props.reduxState.labelCode.map(code => (
-                                    <MenuItem key={code.label_code_id} value={code.label_code_id}>
-                                        {code.label_code_text}
-                                    </MenuItem>
-                                ))}
                             </TextField>
                         </FormControl>
                     </Grid>
@@ -259,7 +261,7 @@ class WaterLabels extends Component {
                             disabled={this.state.disable}
                         >
                             <FontAwesomeIcon icon="plus" style={{ marginRight: 5, marginTop:-2, height: 10 }} className={classes.fabIconColor} />
-                            <Typography className={classes.fabColor}>Add Water Label</Typography>
+                            <Typography className={classes.fabColor}>Add Compost</Typography>
                         </Button>
                     </Grid>
 
@@ -270,37 +272,37 @@ class WaterLabels extends Component {
                                 aria-controls="panel1a-content"
                                 id="panel1a-header"    
                             >
-                                <Typography className={classes.heading}>My Water Labels</Typography>
+                                <Typography className={classes.heading}>My Compost</Typography>
                             </ExpansionPanelSummary>
                             <ExpansionPanelDetails >
 
                                 <Grid item xs={12} sm={6}>
                                     <List style={{ marginLeft: -25, width: '70vw', maxWidth: 300 }}>
-                                        {this.props.reduxState.waterSetup.waterLabel.map((label, i) =>
-                                        <section key={label.farm_water_id}>
-                                                <ListItem key={label.farm_water_id} 
-                                                style={{ display: "flex", direction: "column", width: '80vw', maxWidth: 300 }}
-                                                onClick={this.handleCheck(label.farm_water_id)}
+                                        {this.props.reduxState.setupCompost.map((compost, i) =>
+                                        <section key={compost.farm_compost_id}>
+                                                <ListItem key={compost.farm_compost_id} 
+                                                style={{ display: "flex", direction: "column", width: '70vw', maxWidth: 270 }}
+                                                    onClick={this.handleCheck(compost.farm_compost_id)}
                                             >
                                                 <ListItemIcon>
                                                     <Checkbox
                                                         edge="start"
-                                                        checked={this.state.checked.indexOf(label.farm_water_id) !== -1}
+                                                        checked={this.state.checked.indexOf(compost.farm_compost_id) !== -1}
                                                         tabIndex={-1}
                                                         disableRipple
                                                     />
                                                 </ListItemIcon>
-                                                    <ListItemText primary={label.farm_water_source_name+ ': '+label.label_code_text} style={{ marginLeft: "-20px"}}/>  
+                                                <ListItemText primary={compost.farm_compost_description+': '+ moment(compost.farm_compost_date).format('MM-DD')}
+                                                    style={{ marginLeft: "-20px"}}/>
                                                 <ListItemSecondaryAction>
                                                 <Button variant="outlined" color="primary" variant="contained"
                                                     onClick={event => this.handleClickOpen(i)} 
-                                                    value={label.label_code_text}
+                                                    value={compost.farm_compost_name}
                                                     style={{ width: '200', maxWidth: 270 }}
                                                 >
                                                     Edit
                                                 </Button>
                                                 </ListItemSecondaryAction>
-                        
                                             </ListItem>
                                             <Divider variant="middle" />
                                         </section>
@@ -311,11 +313,10 @@ class WaterLabels extends Component {
                                             disabled={this.state.disableDelete}
                                         >
                                             <FontAwesomeIcon icon="trash-alt" style={{ marginRight: 10, marginTop: -2  }} className={classes.fabIconColor} />
-                                            <Typography className={classes.fabColor}>Remove Manure</Typography>
+                                            <Typography className={classes.fabColor}>Remove Compost</Typography>
                                         </Button>
                                     </List>
-                                </Grid>   
-
+                                </Grid>
                             </ExpansionPanelDetails>
                         </ExpansionPanel>
                     </Grid>
@@ -323,42 +324,55 @@ class WaterLabels extends Component {
                     <Grid item xs={12} sm={6}>
                         <Dialog open={this.state.setOpen} aria-labelledby="form-dialog-title">
                             <DialogContent style={{ width: '80vw', maxWidth: 200 }}>
+                                <FormControl>
+                                    <TextField
+                                        label="Application Date"
+                                        variant="outlined"
+                                        color="primary"
+                                        onChange={this.handleDialogChangeFor('farm_compost_date')}
+                                        type="date"
+                                        value={moment(this.state.dialogState.array.farm_compost_date).format('YYYY-MM-DD')}
+                                        style={{ marginRight: 10, marginBottom: 30, width: 180, }}
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }} 
+                                    >
+                                    </TextField>
+                                </FormControl>
                                 <TextField
-                                    label="Water Source Name"
+                                    label="Name Compost"
                                     variant="outlined"
                                     color="primary"
-                                    onChange={this.handleDialogChangeFor('farm_water_source_id')}
-                                    value={this.state.dialogState.array.farm_water_source_id}
-                                    style={{ width: '80vw', maxWidth: 400 }}
-                                    select
+                                    onChange={this.handleDialogChangeFor('farm_compost_name')}
+                                    value={this.state.dialogState.array.farm_compost_name}
+                                    style={{ marginRight: 10, marginBottom: 30, width: 180, }}
                                 >
-                                    {this.props.reduxState.waterSetup.waterSource.map(water => (
-                                        <MenuItem key={water.farm_water_source_id} value={water.farm_water_source_id}>
-                                            {water.farm_water_source_name}
-                                        </MenuItem>
-                                    ))}
                                 </TextField>
                                 <TextField
-                                    label="Field Name"
+                                    label="Describe Compost"
                                     variant="outlined"
                                     color="primary"
-                                    value={this.state.dialogState.array.label_code_id}
-                                    onChange={this.handleDialogChangeFor('label_code_id')}
-                                    style={{ marginRight: 10, marginBottom: 30, width: 180, }}
-                                    select
+                                    onChange={this.handleDialogChangeFor('farm_compost_description')}
+                                    value={this.state.dialogState.array.farm_compost_description}
+                                    style={{ marginRight: 10, marginBottom: 20, width: 180, }}
+                                    multiline
+                                    helperText='required'  
                                 >
-                                    {this.props.reduxState.labelCode.map(code => (
-                                        <MenuItem key={code.label_code_id} value={code.label_code_id}>
-                                            {code.label_code_text}
-                                        </MenuItem>
-                                    ))}
                                 </TextField>
                             </DialogContent>
                             <DialogActions>
-                                <Button onClick={this.handleClose} value={1} color="primary" variant="contained">
+                                <Button 
+                                    onClick={this.handleClose} 
+                                    value={1} 
+                                    color="primary" 
+                                    variant="contained">
                                     Cancel
                                 </Button>
-                                <Button onClick={this.handleClose} value={"update"} color="primary" variant="contained">
+                                <Button 
+                                    onClick={this.handleClose} 
+                                    value={"update"} 
+                                    color="primary" 
+                                    variant="contained">
                                     Update
                                 </Button>
                             </DialogActions>
@@ -386,4 +400,4 @@ const mapReduxStateToProps = (reduxState) => ({
     reduxState,
 });
 
-export default connect(mapReduxStateToProps)(withStyles(styles)(WaterLabels));
+export default connect(mapReduxStateToProps)(withStyles(styles)(Compost));
