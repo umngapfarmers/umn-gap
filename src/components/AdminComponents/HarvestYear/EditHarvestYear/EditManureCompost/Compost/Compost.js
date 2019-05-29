@@ -25,7 +25,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
 
-class Manure extends Component {
+class Compost extends Component {
 
     state = {
         newLabel: {
@@ -125,7 +125,7 @@ class Manure extends Component {
     counter = () => {
         const count = this.state.checked.length;
         if(count > 0){
-            return `Disable Manure (${count})`;
+            return `Disable Compost (${count})`;
         }else {
             return "nothing here"
 
@@ -206,7 +206,7 @@ class Manure extends Component {
                     >
                     <Grid item xs={12} sm={6}>
                         <Typography variant="h6" gutterBottom align="center" className={classes.titleColor} align="center">
-                            Add or Edit Manure
+                            Add or Edit Compost
                         </Typography>
                     </Grid>
 
@@ -231,7 +231,7 @@ class Manure extends Component {
                     <Grid item xs={12}>
                         <FormControl>
                             <TextField
-                                label="Describe Manure"
+                                label="Describe Compost"
                                 variant="outlined"
                                 color="primary"
                                 onChange={this.handleInputChangeFor('description')}
@@ -259,7 +259,7 @@ class Manure extends Component {
                     <Grid item xs={12} sm={6} >
                         <FormControl>
                             <TextField
-                                label="Crop Label Manure is Applied To"
+                                label="Crop Label Compost is Applied To"
                                 variant="outlined"
                                 color="primary"
                                 onChange={this.handleInputChangeFor('label_code')}
@@ -282,7 +282,7 @@ class Manure extends Component {
                             disabled={this.state.disable}
                         >
                             <FontAwesomeIcon icon="plus" style={{ marginRight: 5, marginTop:-2, height: 10 }} className={classes.fabIconColor} />
-                            <Typography className={classes.fabColor}>Add Manure</Typography>
+                            <Typography className={classes.fabColor}>Add Compost</Typography>
                         </Button>
                     </Grid>
 
@@ -293,7 +293,7 @@ class Manure extends Component {
                                 aria-controls="panel1a-content"
                                 id="panel1a-header"    
                             >
-                                <Typography className={classes.heading}>My Manure</Typography>
+                                <Typography className={classes.heading}>My Compost</Typography>
                             </ExpansionPanelSummary>
                             <ExpansionPanelDetails >
 
@@ -334,7 +334,7 @@ class Manure extends Component {
                                             disabled={this.state.disableDelete}
                                         >
                                             <FontAwesomeIcon icon="trash-alt" style={{ marginRight: 10, marginTop: -2  }} className={classes.fabIconColor} />
-                                            <Typography className={classes.fabColor}>Remove Manure</Typography>
+                                            <Typography className={classes.fabColor}>Remove Compost</Typography>
                                         </Button>
                                     </List>
                                 </Grid>
@@ -361,7 +361,7 @@ class Manure extends Component {
                                     </TextField>
                                 </FormControl>
                                 <TextField
-                                    label="Describe Manure"
+                                    label="Describe Compost"
                                     variant="outlined"
                                     color="primary"
                                     onChange={this.handleDialogChangeFor('farm_manure_description')}
@@ -382,7 +382,7 @@ class Manure extends Component {
                                 </TextField>
                                 <FormControl>
                                     <TextField
-                                        label="Crop Label Manure is Applied To"
+                                        label="Crop Label Compost is Applied To"
                                         variant="outlined"
                                         color="primary"
                                         onChange={this.handleDialogChangeFor('label_code_id')}
@@ -430,4 +430,4 @@ const mapReduxStateToProps = (reduxState) => ({
     reduxState,
 });
 
-export default connect(mapReduxStateToProps)(withStyles(styles)(Manure));
+export default connect(mapReduxStateToProps)(withStyles(styles)(Compost));

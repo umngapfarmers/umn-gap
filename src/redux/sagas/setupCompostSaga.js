@@ -43,10 +43,42 @@ function* deleteCompostSource(action) {
     }
 }
 
+function* disableCompostSource(action) {
+    console.log('Hit the disableCompostSource', action);
+
+    try {
+        yield axios.put(`/setup/compost/disable`, action.payload);
+        console.log('saga id is', action.payload);
+
+        yield put({ type: 'GET_COMPOST_SOURCE' });
+    }
+    catch (error) {
+        console.log(`Couldn't disable compost source`, error);
+        alert(`Sorry, couldn't disable your compost source. Try again later`);
+    }
+}
+
+function* editCompostSource(action) {
+    console.log('Hit the editCompostSource', action);
+
+    try {
+        yield axios.put(`/setup/compost/edit`, action.payload);
+        console.log('saga id is', action.payload);
+
+        yield put({ type: 'GET_COMPOST_SOURCE' });
+    }
+    catch (error) {
+        console.log(`Couldn't change compost source`, error);
+        alert(`Sorry, couldn't change your compost source. Try again later`);
+    }
+}
+
 function* setupManureSaga() {
   yield takeLatest('ADD_COMPOST_SOURCE', addCompostSource);
   yield takeLatest('GET_COMPOST_SOURCE', getCompostSource);
   yield takeLatest('DELETE_COMPOST_SOURCE', deleteCompostSource);
+  yield takeLatest('DISABLE_COMPOST_SOURCE', disableCompostSource);
+  yield takeLatest('EDIT_COMPOST_SOURCE', editCompostSource);
 }
 
 export default setupManureSaga;
