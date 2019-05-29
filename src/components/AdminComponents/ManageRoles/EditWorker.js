@@ -62,7 +62,7 @@ class EditWorker extends Component {
         
         <NavBar/>
 
-        <Typography variant="h6" gutterBottom align="center">
+        <Typography variant="h6" gutterBottom align="center" className={classes.title}>
           Select User Role
         </Typography>
         <Grid
@@ -73,19 +73,14 @@ class EditWorker extends Component {
           alignItems="center"
         >
                 <Grid item xs={12} sm={6}>
-                <FormControl fullWidth className={classes.selectFormControl}>
                     <TextField
                         select
-                        MenuProps={{
-                            className: classes.selectMenu
-                        }}
                         classes={{
                             select: classes.select
                         }}
                         value={this.state.roleSelect}
                         onChange={this.handleSelect}
-                        style={{ width: '60vw', maxWidth: 400 }}
-
+                        style={{ width: '80vw', maxWidth: 400 }}
                         inputProps={{
                             name: "roleSelect",
                             id: "role-select"
@@ -109,7 +104,6 @@ class EditWorker extends Component {
                             Employee
                   </MenuItem>
                     </TextField>
-                </FormControl>
             </Grid>
                {this.displayList()}
         </Grid>
@@ -122,6 +116,9 @@ const styles = theme => ({
   container: {
     display: "flex",
     flexWrap: "wrap"
+  },
+  title:{
+    marginTop: 25,
   }
 });
 

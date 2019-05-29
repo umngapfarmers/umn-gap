@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import FormControl from "@material-ui/core/FormControl";
@@ -78,17 +78,66 @@ class EditEmployee extends Component {
     this.props.history.push("/");
   };
 
+  displayPassword = () =>{
+    if (this.state.roleSelect === 'admin' || this.state.roleSelect === 'user'){
+      return(
+        <TextField
+        required
+        id="password"
+        name="password"
+        label="Password"
+        style={{width:'80vw', maxWidth:400}}
+        autoComplete="Password"
+        onChange={this.handleChange("password")}
+        type="password"
+        value={this.state.password}
+        variant="outlined"
+      />
+      )
+    }
+    else{
+      return(
+        <Fragment></Fragment>
+      )
+    }
+  }
+
+  displayUsername = () =>{
+    if (this.state.roleSelect === 'admin' || this.state.roleSelect === 'user'){
+      return(
+        <TextField
+        required
+        id="userName"
+        name="userName"
+        label="User Name"
+        style={{width:'80vw', maxWidth:400}}
+        autoComplete="User Name"
+        onChange={this.handleChange("userName")}
+        value={this.state.userName}
+        variant="outlined"
+      />
+      )
+    }
+    else{
+      return(
+        <Fragment></Fragment>
+      )
+    }
+  }
+
+
   render() {
     const { classes } = this.props;
     console.log("selected role", this.props.editPerson);
     console.log("fetch harvest year", this.props.harvestYear);
     console.log("state ", this.state);
+    console.log('selectedRole', this.state.roleSelect);
 
     return (
       <React.Fragment>
         <NavBar />
-        <Typography variant="h6" gutterBottom>
-          Registration
+        <Typography variant="h6" gutterBottom align="center">
+          Edit Employee
         </Typography>
 
         <FormControl
@@ -110,62 +159,50 @@ class EditEmployee extends Component {
             alignItems="center"
           >
             <Grid item xs={12} sm={6}>
-              <label>Select Role</label>
-              <FormControl fullWidth className={classes.selectFormControl}>
-                <Select
-                  MenuProps={{
-                    // className: classes.selectMenu
-                    className: classes.selectMenuItemSelected
-                  }}
-                  classes={{
-                    select: classes.select
-                  }}
-                  value="Employee"
-                  disabled
-                  onChange={this.handleSelect("roleSelect")}
-                  style={{ width: "60vw", maxWidth: 400 }}
-                  inputProps={{
-                    name: "roleSelect",
-                    id: "role-select"
-                  }}
-                >
-                  <MenuItem
-                    classes={{
-                      root: classes.selectMenuItem,
-                      selected: classes.selectMenuItemSelected
-                    }}
-                    value="Admin"
-                  >
-                    Admin
-                  </MenuItem>
-                  <MenuItem
-                    classes={{
-                      root: classes.selectMenuItem,
-                      selected: classes.selectMenuItemSelected
-                    }}
-                    value="Worker"
-                  >
-                    Worker
-                  </MenuItem>
-                  <MenuItem
-                    classes={{
-                      root: classes.selectMenuItem,
-                      selected: classes.selectMenuItemSelected
-                    }}
-                    value="Employee"
-                  >
-                    Employee
-                  </MenuItem>
-                </Select>
-              </FormControl>
+            <TextField
+                      select
+                      label="Select User Role"
+                      className={classes.textField}
+                      value={this.state.roleSelect}
+                      onChange={this.handleSelect("roleSelect")}
+                      style={{width:'80vw', maxWidth:400}}
+                      SelectProps={{
+                        MenuProps: {
+                          className: classes.menu,
+                        },
+                      }}
+                      margin="normal"
+                      variant="outlined"
+                      inputProps={{
+                        name: "roleSelect",
+                        id: "role-select"
+                      }}
+                    >
+                    <MenuItem disabled>Select User Role</MenuItem>
+                    <MenuItem
+                        value="admin"
+                      >
+                        Admin
+                      </MenuItem>
+                      <MenuItem
+                        value="user"
+                      >
+                        User
+                      </MenuItem>
+                      <MenuItem
+                        value="employee"
+                      >
+                        Employee
+                      </MenuItem>
+                </TextField>
             </Grid>
             <Grid item xs={12} sm={12}>
-              <TextField
+            <TextField
                 id="selectedYear"
                 name="selectedYear"
                 select
                 style={{ width: "80vw", maxWidth: 400 }}
-                label="* Select harvest Year"
+                label="Select Harvest Year"
                 className={classes.textField}
                 value={this.state.selectedYear}
                 onChange={this.handleChange("selectedYear")}
@@ -174,6 +211,7 @@ class EditEmployee extends Component {
                     className: classes.menu
                   }
                 }}
+                variant="outlined"
               >
                 {this.props.harvestYear.map(option => (
                   <MenuItem key={option.id} value={option.harvest_id}>
@@ -182,72 +220,18 @@ class EditEmployee extends Component {
                 ))}
               </TextField>
             </Grid>
-            <Grid item xs={12} sm={6}>
-              {this.state.roleSelect !== "Employee" ? (
-                <TextField
-                  required
-                  id="userName"
-                  name="userName"
-                  label="User Name"
-                  disabled
-                  fullWidth
-                  autoComplete="User Name"
-                  onChange={this.handleChange("userName")}
-                  value={this.state.userName}
-                />
-              ) : (
-                <TextField
-                  required
-                  id="userName"
-                  name="userName"
-                  label="User Name"
-                  disabled
-                  fullWidth
-                  autoComplete="User Name"
-                  value=""
-                />
-              )}
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-              {this.state.roleSelect !== "Employee" ? (
-                <TextField
-                  required
-                  id="password"
-                  name="password"
-                  label="Password"
-                  disabled
-                  fullWidth
-                  autoComplete="Password"
-                  onChange={this.handleChange("password")}
-                  type="password"
-                  value={this.state.password}
-                />
-              ) : (
-                <TextField
-                  required
-                  id="password"
-                  name="password"
-                  label="Password"
-                  disabled
-                  fullWidth
-                  autoComplete="Password"
-                  value=""
-                />
-              )}
-            </Grid>
-
             {/* {this.props.reduxState.editPerson.map(row => ( */}
-            <Grid item xs={8} sm={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 required
                 id="firstName"
                 name="firstName"
                 label="First name"
-                //fullWidth
                 autoComplete="firstName"
                 value={this.state.person_first}
                 onChange={this.handleChange("person_first")}
+                variant="outlined"
+                style={{ width: "80vw", maxWidth: 400 }}
               />
             </Grid>
 
@@ -261,6 +245,8 @@ class EditEmployee extends Component {
                 autoComplete="lname"
                 onChange={this.handleChange("person_last")}
                 value={this.state.person_last}
+                variant="outlined"
+                style={{ width: "80vw", maxWidth: 400 }}
               />
             </Grid>
             {this.state.person_status === true ? (
@@ -336,6 +322,14 @@ class EditEmployee extends Component {
                 </MenuItem>
               </Select>
             )}
+
+            <Grid item xs={12} sm={6}>
+             {this.displayUsername()}
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+             {this.displayPassword()}
+            </Grid>
             <Grid item xs={8} sm={6}>
               <FormControl>
                 <Button onClick={this.handleSubmit}>Submit</Button>

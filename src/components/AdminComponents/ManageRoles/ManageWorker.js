@@ -28,7 +28,7 @@ class ManageWorker extends Component {
 
                 <Typography variant="h6" gutterBottom align="center" className={classes.title}>
                     Manage Workers
-            </Typography>
+                 </Typography>
                     <div className={classes.manageworkdiv}>
                         < Grid container spacing={24}
                             direction="column"
