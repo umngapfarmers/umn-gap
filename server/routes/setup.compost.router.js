@@ -20,7 +20,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
         })
 });
 
-
 router.post('/', rejectUnauthenticated, (req, res) => {
     console.log(`in post compost `, req.user);
     
@@ -42,6 +41,32 @@ router.post('/', rejectUnauthenticated, (req, res) => {
             res.sendStatus(201);
         })
         .catch((error)=>{
+            console.log(`error in farm_compost post `, error);
+            res.sendStatus(500);
+        })
+});
+
+router.post('/edit', rejectUnauthenticated, (req, res) => {
+    console.log(`in post compost `, req.user);
+
+    let sqlText = `INSERT INTO "farm_compost"
+        ("farm_compost_name", "farm_compost_date", "farm_compost_description", "harvest_year_id")
+        VALUES ($1, $2, $3, $4);`;
+    let values = [
+        req.body.name,
+        req.body.date,
+        req.body.description,
+        req.user.current_harvest_year,
+        
+    ];
+
+    pool.query(sqlText, values)
+        .then((result) => {
+            console.log(`sent compost`);
+
+            res.sendStatus(201);
+        })
+        .catch((error) => {
             console.log(`error in farm_compost post `, error);
             res.sendStatus(500);
         })

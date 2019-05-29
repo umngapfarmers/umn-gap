@@ -17,6 +17,21 @@ function* addCompostSource(action){
     }
 }
 
+function* addCompostEdit(action) {
+    console.log('in addCompostEdit', action.payload)
+    try {
+        yield axios.post('/setup/compost/edit', action.payload);
+        let result = yield axios.get(`/setup/compost`);
+        console.log(`result get after add manure`, result.data);
+        yield put({ type: 'SET_COMPOST_SETUP', payload: result.data })
+
+    }
+    catch (error) {
+        console.log('ERROR IN addManureSource POST', error);
+        alert(`Sorry! Was unable to setup the farm's manure! Try again later.`)
+    }
+}
+
 function* getCompostSource(action){
     // console.log('in getCompostSource', action.payload)
     try{
@@ -75,6 +90,7 @@ function* editCompostSource(action) {
 
 function* setupManureSaga() {
   yield takeLatest('ADD_COMPOST_SOURCE', addCompostSource);
+    yield takeLatest('ADD_COMPOST_EDIT', addCompostEdit);
   yield takeLatest('GET_COMPOST_SOURCE', getCompostSource);
   yield takeLatest('DELETE_COMPOST_SOURCE', deleteCompostSource);
   yield takeLatest('DISABLE_COMPOST_SOURCE', disableCompostSource);

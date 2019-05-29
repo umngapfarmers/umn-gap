@@ -24,12 +24,13 @@ import swal from 'sweetalert';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
+const moment = require('moment');
 
 class Manure extends Component {
 
     state = {
         newLabel: {
-            date: '',
+            date: moment().format('YYYY-MM-DD'),
             description: '',
             label_code: '',
             rate: '',
@@ -352,7 +353,7 @@ class Manure extends Component {
                                         color="primary"
                                         onChange={this.handleDialogChangeFor('farm_manure_date')}
                                         type="date"
-                                        value={this.state.dialogState.array.farm_manure_date}
+                                        value={moment(this.state.dialogState.array.farm_manure_date).format('YYYY-MM-DD')}
                                         style={{ marginRight: 10, marginBottom: 30, width: 180, }}
                                         InputLabelProps={{
                                             shrink: true,
