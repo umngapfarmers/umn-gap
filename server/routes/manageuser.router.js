@@ -26,6 +26,7 @@ router.get("/person", (req, res) => {
 router.get("/user", (req, res) => {
   console.log("IN GET USER");
   const current_harvest_id = req.user.current_harvest_year;
+  console.log('Current harvest year is:', current_harvest_id)
   //let sqlQuery = `SELECT * FROM "user" WHERE "current_harvest_year" = $1;`
   let sqlQuery = `SELECT "user".username,"user".user_id,"user".user_role,
     "user".user_status,person.person_first,person.person_last FROM "user" JOIN 
@@ -127,36 +128,5 @@ router.put("/user", (req, res) => {
       res.sendStatus(500);
     });
 });
-
-router.put('/user/passwordless', async (req, res) => {
-  const client = await pool.connect();
-    console.log('in userpasswordless');
-    console.log('in passwordless', req.body);
-
-        try {
-        
-        console.log(registrationCode);
-      
-        const usernameQuery = `UPDATE "user" (user_role, user_status, current_harvest_year) VALUES ($1, $2, $3) `;
-        const personQuery = `UPDATE "person" ("person_first", "person_last", "person_status", "current_harvest_year_id) VALUES ($1, $2, $3, $4)`;
-        await client.query('BEGIN')
-        
-          
-          const userInsertResults = await client.query(usernameQuery, [username, user_role, current_harvest_year]);
-          console.log(user_id);
-
-          const personInsertResults =  await client.query(personQuery, [person_first, person_last, person_status, current_harvest_year_id]);
-          await client.query('COMMIT')
-          res.sendStatus(201);
-      } catch (error) {
-          await client.query('ROLLBACK')
-          console.log('Error Registering', error);
-          res.sendStatus(500);
-      } finally {
-          client.release()
-    }
-});
-
-
 
 module.exports = router;

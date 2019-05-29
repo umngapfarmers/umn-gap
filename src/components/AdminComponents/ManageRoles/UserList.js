@@ -53,8 +53,8 @@ class UserList extends Component {
         >
           <Grid item xs={12} sm={6}>
             <List component="nav" style={{ width: '80vw', maxWidth: 400 }}>
-              {this.props.reduxState.user[0] &&
-                this.props.reduxState.user.map((User, i) => (
+              {this.props.reduxState.editUser[0] &&
+                this.props.reduxState.editUser.map((User, i) => (
                   <ListItem button
                     key={i}
                     selected={this.state.selectedIndex === 0}

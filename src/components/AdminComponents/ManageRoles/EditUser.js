@@ -85,6 +85,15 @@ class EditUser extends Component {
     // this.props.history.push("/manageuser");
   };
 
+  handleSubmitPasswordless = event => {
+    event.preventDefault();
+    console.log("in handlesubmitpasswordless", this.state);
+
+    this.props.dispatch({type: "EDIT_USER_PASSWORDLESS", payload: this.state });
+  
+    // this.props.history.push("/manageuser");
+  };
+
   handleCheck = (event) => {
     console.log(`in handleCheck`)
     event.preventDefault();
@@ -172,12 +181,12 @@ class EditUser extends Component {
   submitButton = () =>{
     if(this.state.changePassword === true){
       return(
-      <Button onClick={this.handleSubmit} style={{width:'80vw', maxWidth:400}}>Submit</Button>
+      <Button variant='contained' color="primary" onClick={this.handleSubmit} style={{width:'80vw', maxWidth:400}}>Submit</Button>
       )
     }
     else{
       return(
-        <Button onClick={this.handleSubmitPasswordless} style={{width:'80vw', maxWidth:400}}>Submit</Button>
+        <Button variant='contained' color="primary" onClick={this.handleSubmitPasswordless} style={{width:'80vw', maxWidth:400}}>Submit</Button>
       )
     }
   }
@@ -345,7 +354,7 @@ class EditUser extends Component {
           </Grid>
 
             <Grid item xs={12} sm={6}>
-                <Button onClick={this.handleSubmit}>Submit</Button>
+                {this.submitButton()}
             </Grid>
           </Grid>
       </React.Fragment>
