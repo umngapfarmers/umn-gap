@@ -6,6 +6,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import NavBar from '../../Nav/Nav';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import './ManageWorker.css'
 
 class ManageWorker extends Component {
 
@@ -24,45 +26,47 @@ class ManageWorker extends Component {
             <React.Fragment>
                 <NavBar />
 
-                <Typography variant="h6" gutterBottom>
+                <Typography variant="h6" gutterBottom align="center" className={classes.title}>
                     Manage Workers
             </Typography>
-                < Grid container spacing={24}
-                    container
-                    direction="column"
-                    justify="center"
-                    alignItems="center"
-                >
-
-                    <Grid item xs={10} sm={6}>
-                        <Fab
-                            variant="extended"
-                            size="large"
-                           onClick={()=>this.props.history.push(`/addworker`)}
-                            color="primary"
-                            aria-label="Add"
-                            className={classes.margin}
+                    <div className={classes.manageworkdiv}>
+                        < Grid container spacing={24}
+                            direction="column"
+                            justify="center"
+                            alignItems="center"
                         >
-                            <NavigationIcon className={classes.extendedIcon} />
-                            Add Worker
-        </Fab>
-                    </Grid>
-                    <Grid item xs={10} sm={6}>
-                        <Fab
-                            variant="extended"
-                            size="large"
-                            color="primary"
-                            onClick={() => this.props.history.push(`/editworker`)}
 
-                            aria-label="Add"
-                            className={classes.margin}
-                        >
-                            <NavigationIcon className={classes.extendedIcon} />
-                            Edit Workers
-        </Fab>
-                    </Grid>
+                            <Grid item xs={10} sm={6}>
+                                <Fab
+                                    variant="extended"
+                                    size="large"
+                                onClick={()=>this.props.history.push(`/addworker`)}
+                                    color="primary"
+                                    aria-label="Add"
+                                    className={classes.margin}
+                                >
+                                    Add Worker
+                                    <FontAwesomeIcon icon="user-plus" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+                                </Fab>
+                            </Grid>
+                            <Grid item xs={10} sm={6}>
+                                <Fab
+                                    variant="extended"
+                                    size="large"
+                                    color="primary"
+                                    onClick={() => this.props.history.push(`/editworker`)}
 
-                </Grid>
+                                    aria-label="Add"
+                                    className={classes.margin}
+                                >
+                                    
+                                    Edit Workers
+                                    <FontAwesomeIcon icon="user-edit" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+                                </Fab>
+                            </Grid>
+
+                        </Grid>
+                    </div>
 
             </React.Fragment>
         );
@@ -74,8 +78,19 @@ const styles = theme => ({
         display: 'flex',
         flexWrap: 'wrap',
     },
-});
-
+    fabIconColor:{
+      color: '#E6CD30',
+    },
+    fabColor:{
+      color: 'white',
+    },
+    title:{
+        marginTop: 25,
+    },
+    manageworkdiv:{
+        marginTop: 25
+    }
+  });
 
 
 

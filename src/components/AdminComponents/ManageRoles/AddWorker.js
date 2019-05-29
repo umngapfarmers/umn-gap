@@ -10,22 +10,18 @@ import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import NavBar from "../../Nav/Nav";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const styles = theme => ({
   container: {
     display: "flex",
     flexWrap: "wrap"
   },
-  textField: {
-    marginLeft: theme.spacing.unit
-    // marginRight: theme.spacing.unit,
-    //width: 200,
-  },
-  dense: {
-    marginTop: 19
-  },
   menu: {
     width: 200
+  },
+  title:{
+    marginTop: 25,
   }
 });
 class AddWorker extends Component {
@@ -43,6 +39,20 @@ class AddWorker extends Component {
   componentDidMount = () => {
     this.props.dispatch({ type: "FETCH_HARVEST_YEAR" });
   };
+
+  handleError = () => {
+    if (this.state.userName !== '' && this.state.password !== '' && 
+    this.state.firstName !== '' && this.state.lastName !== '' && this.state.roleSelect !== '' && this.state.selectedYear !== '') {
+    return (
+      <Button variant="contained" color="primary" style={{width:'80vw', maxWidth:400}} onClick={this.handleSubmit}>Submit</Button>
+    ) 
+  }
+  else {
+    return(
+      <Button variant="contained" color="primary" style={{width:'80vw', maxWidth:400}} disabled>Submit</Button>
+    )
+  }
+  }
 
   handleSelect = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -76,71 +86,54 @@ class AddWorker extends Component {
     return (
       <React.Fragment>
         <NavBar />
-        <Typography variant="h6" gutterBottom>
-          Registration
+        <Typography variant="h6" gutterBottom align="center" className={classes.title}>
+          Add Worker
         </Typography>
-        <FormControl
-          ref="form"
-          fullWidth
-          className={classes.selectFormControl}
-          onSubmit={this.handleSubmit}
-          onError={errors => console.log(errors)}
-        >
           <Grid
             container
-            spacing={24}
+            spacing={16}
             container
             direction="column"
             justify="center"
             alignItems="center"
           >
             <Grid item xs={12} sm={6}>
-              <label>Select Role</label>
-              <FormControl fullWidth className={classes.selectFormControl}>
-                <Select
-                  MenuProps={{
-                    className: classes.selectMenu
-                  }}
-                  classes={{
-                    select: classes.select
-                  }}
-                  value={this.state.roleSelect}
-                  onChange={this.handleSelect}
-                  style={{ width: "60vw", maxWidth: 400 }}
-                  inputProps={{
-                    name: "roleSelect",
-                    id: "role-select"
-                  }}
-                >
-                  <MenuItem
-                    classes={{
-                      root: classes.selectMenuItem,
-                      selected: classes.selectMenuItemSelected
-                    }}
-                    value="Admin"
-                  >
-                    Admin
-                  </MenuItem>
-                  <MenuItem
-                    classes={{
-                      root: classes.selectMenuItem,
-                      selected: classes.selectMenuItemSelected
-                    }}
-                    value="Worker"
-                  >
-                    Worker
-                  </MenuItem>
-                  <MenuItem
-                    classes={{
-                      root: classes.selectMenuItem,
-                      selected: classes.selectMenuItemSelected
-                    }}
-                    value="Employee"
-                  >
-                    Employee
-                  </MenuItem>
-                </Select>
-              </FormControl>
+                  <TextField
+                      select
+                      label="Select User Role"
+                      className={classes.textField}
+                      value={this.state.roleSelect}
+                      onChange={this.handleSelect}
+                      style={{width:'80vw', maxWidth:400}}
+                      SelectProps={{
+                        MenuProps: {
+                          className: classes.menu,
+                        },
+                      }}
+                      margin="normal"
+                      variant="outlined"
+                      inputProps={{
+                        name: "roleSelect",
+                        id: "role-select"
+                      }}
+                    >
+                    <MenuItem disabled>Select User Role</MenuItem>
+                    <MenuItem
+                        value="Admin"
+                      >
+                        Admin
+                      </MenuItem>
+                      <MenuItem
+                        value="Worker"
+                      >
+                        Worker
+                      </MenuItem>
+                      <MenuItem
+                        value="Employee"
+                      >
+                        Employee
+                      </MenuItem>
+                  </TextField>
             </Grid>
             <Grid item xs={12} sm={12}>
               <TextField
@@ -148,7 +141,7 @@ class AddWorker extends Component {
                 name="selectedYear"
                 select
                 style={{ width: "80vw", maxWidth: 400 }}
-                label="* Select harvest Year"
+                label="Select Harvest Year"
                 className={classes.textField}
                 value={this.state.selectedYear}
                 onChange={this.handleChange("selectedYear")}
@@ -157,6 +150,7 @@ class AddWorker extends Component {
                     className: classes.menu
                   }
                 }}
+                variant="outlined"
               >
                 {this.props.harvestYear.map(option => (
                   <MenuItem key={option.id} value={option.harvest_id}>
@@ -173,10 +167,11 @@ class AddWorker extends Component {
                   name="userName"
                   label="User Name"
                   disabled={false}
-                  fullWidth
                   autoComplete="User Name"
                   onChange={this.handleChange("userName")}
                   value={this.state.userName}
+                  variant="outlined"
+                  style={{width:'80vw', maxWidth:400}}
                 />
               ) : (
                 <TextField
@@ -199,11 +194,12 @@ class AddWorker extends Component {
                   name="password"
                   label="Password"
                   disabled={false}
-                  fullWidth
+                  style={{width:'80vw', maxWidth:400}}
                   autoComplete="Password"
                   onChange={this.handleChange("password")}
                   type="password"
                   value={this.state.password}
+                  variant="outlined"
                 />
               ) : (
                 <TextField
@@ -212,22 +208,24 @@ class AddWorker extends Component {
                   name="password"
                   label="Password"
                   disabled
-                  fullWidth
+                  style={{width:'80vw', maxWidth:400}}
                   autoComplete="Password"
                   value=""
+                  variant="outlined"
                 />
               )}
             </Grid>
-            <Grid item xs={8} sm={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 required
                 id="firstName"
                 name="firstName"
                 label="First name"
-                //fullWidth
+                style={{width:'80vw', maxWidth:400}}
                 autoComplete="firstName"
                 onChange={this.handleChange("firstName")}
                 value={this.state.firstName}
+                variant="outlined"
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -236,19 +234,18 @@ class AddWorker extends Component {
                 id="lastName"
                 name="lastName"
                 label="Last name"
-                fullWidth
+                style={{width:'80vw', maxWidth:400}}
                 autoComplete="lname"
                 onChange={this.handleChange("lastName")}
                 value={this.state.lastName}
+                variant="outlined"
               />
             </Grid>
-            <Grid item xs={8} sm={6}>
-              <FormControl>
-                <Button onClick={this.handleSubmit}>Submit</Button>
-              </FormControl>
+            <Grid item xs={12} sm={6}>
+                {this.handleError()}
+           
             </Grid>
           </Grid>
-        </FormControl>
       </React.Fragment>
     );
   }
