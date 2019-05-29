@@ -17,8 +17,6 @@ const styles = theme => ({
   },
   textField: {
     marginLeft: theme.spacing.unit
-    // marginRight: theme.spacing.unit,
-    //width: 200,
   },
   dense: {
     marginTop: 19
@@ -31,11 +29,11 @@ class EditUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      person_first:"",
+      person_first: "",
       person_last: "",
       roleSelect: "",
-      password:"",
-      username:"",
+      password: "",
+      username: "",
       workerStatus: "",
       selectedYear: ""
     };
@@ -96,8 +94,6 @@ class EditUser extends Component {
 
         <FormControl
           ref="form"
-          //justify="center"
-          //alignItems="center"
           fullWidth
           className={classes.selectFormControl}
           onSubmit={this.handleSubmit}
@@ -208,7 +204,7 @@ class EditUser extends Component {
                   disabled
                   fullWidth
                   autoComplete="User Name"
-                    value={this.state.username}
+                  value={this.state.username}
                 />
               )}
             </Grid>
@@ -236,10 +232,9 @@ class EditUser extends Component {
                   disabled={false}
                   fullWidth
                   autoComplete="Password"
-                    type="password"
-                    onChange={this.handleChange("password")}
-
-                    value={this.state.password}
+                  type="password"
+                  onChange={this.handleChange("password")}
+                  value={this.state.password}
                 />
               )}
             </Grid>
