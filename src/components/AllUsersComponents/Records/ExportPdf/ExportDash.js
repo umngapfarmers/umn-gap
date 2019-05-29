@@ -7,9 +7,19 @@ import Nav from '../../../Nav/Nav';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
+// import pdfMake from "pdfmake/build/pdfmake";
+// import pdfFonts from "pdfmake/build/vfs_fonts";
+// pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
-var pdfMake = require('pdfmake/build/pdfmake.js');
-const docDef = require('./exportPdf');
+
+
+var docDef = {
+    content: [
+        'First paragraph',
+        'Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines'
+    ]
+
+}
 
 
 
@@ -34,8 +44,8 @@ class ExportDash extends Component {
     }
 
     handleSubmit = () => {
-    //   this.props.dispatch({type:'GET_RECORD_HARVEST', payload: this.state.selectHarvestYear})
-    pdfMake.createPdf(docDef).print();
+        this.props.dispatch({type:'GET_EXPORT_PDF', payload: this.state.selectHarvestYear})
+        
 
     }
 
@@ -43,13 +53,13 @@ class ExportDash extends Component {
       if(this.state.selectHarvestYear !== ''){
         return (
           <Button onClick={this.handleSubmit} variant="contained" color="primary"
-          style={{width:'80vw', maxWidth:400}}>Get Record</Button>
+          style={{width:'80vw', maxWidth:400}}>Download</Button>
         )
       }
       else{
         return(
           <Button disabled variant="contained" color="primary"
-          style={{width:'80vw', maxWidth:400}}>Get Record</Button>
+          style={{width:'80vw', maxWidth:400}}>Download</Button>
         )
       }
     }
