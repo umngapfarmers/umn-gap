@@ -52,7 +52,6 @@ router.get("/person/edit/", (req, res) => {
       selectedPerson = response.rows;
       console.log("in router selected", selectedPerson);
 
-      //console.log(`response person`, response.rows);
       res.send(selectedPerson);
     })
     .catch(error => {
@@ -72,7 +71,6 @@ router.get("/user/edit/", (req, res) => {
       selectedUser = response.rows;
       console.log("in router selected User", selectedUser);
 
-      //console.log(`response person`, response.rows);
       res.send(selectedUser);
     })
     .catch(error => {
@@ -111,7 +109,7 @@ router.put("/user", (req, res) => {
       selectedUser = response.rows;
       console.log("in router selected", selectedUser);
 
-      //console.log(`response person`, response.rows);
+      
       res.send(selectedUser);
     })
     .catch(error => {
