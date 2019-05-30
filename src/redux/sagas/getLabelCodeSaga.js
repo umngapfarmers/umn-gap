@@ -44,11 +44,43 @@ function* deleteLabelCode(action) {
     }
 }
 
+function* disableLabelCode(action) {
+    console.log('Hit the disableLabelCode', action);
+
+    try {
+        yield axios.put(`/setup/label_code/disable`, action.payload);
+        console.log('saga id is', action.payload);
+
+        yield put({ type: 'GET_LABEL_CODE' });
+    }
+    catch (error) {
+        console.log(`Couldn't disable lable`, error);
+        alert(`Sorry, couldn't disable your lable. Try again later`);
+    }
+}
+
+function* editLabelCode(action) {
+    console.log('Hit the editLabelSource', action);
+
+    try {
+        yield axios.put(`/setup/label_code/edit`, action.payload);
+        console.log('saga id is', action.payload);
+
+        yield put({ type: 'GET_LABEL_CODE' });
+    }
+    catch (error) {
+        console.log(`Couldn't change label`, error);
+        alert(`Sorry, couldn't change your label. Try again later`);
+    }
+}
+
 function* getLabelCodeSaga() {
     //   yield takeLatest('ADD_FARM', addFarmSaga);
     yield takeLatest('GET_LABEL_CODE', getLabelCode);
     yield takeLatest('ADD_LABEL_CODE', addLabelCode);
     yield takeLatest('DELETE_LABEL_CODE', deleteLabelCode);
+    yield takeLatest('EDIT_LABEL_CODE', editLabelCode);
+    yield takeLatest('DISABLE_LABEL_CODE', disableLabelCode);
 }
 
 export default getLabelCodeSaga;

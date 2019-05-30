@@ -17,12 +17,11 @@ class UserList extends Component {
   };
 
   handleEdit = user_id => () => {
-    console.log("edit click for id", user_id);
+    console.log("edit click for id in edit user", user_id);
     this.setState({
       editUser: true,
       selectedId: user_id
     });
-    //this.props.history.push(`/editemployee/?id=${person_id}`);
     this.props.dispatch({
       type: "GET_USER_TO_EDIT",
       payload: user_id

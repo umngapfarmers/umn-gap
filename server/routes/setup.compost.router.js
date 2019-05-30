@@ -5,7 +5,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-    let sqlText = `SELECT * FROM "farm_compost" WHERE "farm_compost"."harvest_year_id" = $1 AND "farm_compost"."farm_compost_status";`
+    let sqlText = `SELECT * FROM "farm_compost" WHERE "farm_compost"."harvest_year_id" = $1 AND "farm_compost"."farm_compost_status"=true;`
     let harvest_id = req.user.current_harvest_year;
     console.log(`harvest id off user GET`, harvest_id);
     // let harvest_id = 2
@@ -19,7 +19,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
             res.sendStatus(500);
         })
 });
-
 
 router.post('/', rejectUnauthenticated, (req, res) => {
     console.log(`in post compost `, req.user);
@@ -47,6 +46,32 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         })
 });
 
+router.post('/edit', rejectUnauthenticated, (req, res) => {
+    console.log(`in post compost `, req.user);
+
+    let sqlText = `INSERT INTO "farm_compost"
+        ("farm_compost_name", "farm_compost_date", "farm_compost_description", "harvest_year_id")
+        VALUES ($1, $2, $3, $4);`;
+    let values = [
+        req.body.name,
+        req.body.date,
+        req.body.description,
+        req.user.current_harvest_year,
+        
+    ];
+
+    pool.query(sqlText, values)
+        .then((result) => {
+            console.log(`sent compost`);
+
+            res.sendStatus(201);
+        })
+        .catch((error) => {
+            console.log(`error in farm_compost post `, error);
+            res.sendStatus(500);
+        })
+});
+
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
     let sqlText =  `DELETE FROM "farm_compost" WHERE "farm_compost_id" = $1`;
     let compost_id = req.params.id;
@@ -61,5 +86,36 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
         })
 
 })
+
+router.put('/edit', (req, res) => {
+
+    const date = req.body.farm_compost_date
+    const description = req.body.farm_compost_description
+    const name = req.body.farm_compost_name
+    const id = req.body.farm_compost_id
+
+    const queryText = 'UPDATE "farm_compost" SET "farm_compost_name"=$1, "farm_manure_date"=$2, "farm_compost_description"=$3, WHERE farm_compost_id=$4';
+    pool.query(queryText, [name, date, description, id])
+        .then(() => { res.sendStatus(200); })
+        .catch((err) => {
+            console.log('Error deleting compost query', err);
+            res.sendStatus(500);
+        });
+});
+
+router.put('/disable', (req, res) => {
+
+    const id = req.body.checked
+    console.log('checked is', req.body);
+    for (let num of id) {
+        const queryText = 'UPDATE "farm_compost" SET "farm_compost_status"= FALSE WHERE farm_compost_id=$1';
+        pool.query(queryText, [num])
+            .then(() => { res.sendStatus(200); })
+            .catch((err) => {
+                console.log('Error deleting compost query', err);
+                res.sendStatus(500);
+            });
+    }
+});
 
 module.exports = router;

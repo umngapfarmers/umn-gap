@@ -21,8 +21,8 @@ class CreateWaterSourcesLabelCodes extends Component {
 
   state= {
     newLabel: {
-      farm_water_source_id: '',
-      label_code_id: '',
+      water_id: '',
+      label_code: '',
     },
     disable: true,
     disableNext: true
@@ -50,8 +50,8 @@ class CreateWaterSourcesLabelCodes extends Component {
     this.props.dispatch({ type: 'ADD_WATER_LABEL', payload: this.state.newLabel })
     this.setState({
       newLabel: {
-        farm_water_source_id: '',
-        label_code_id: '',
+        water_id: '',
+        label_code: '',
       },
       disableNext: false
     })
@@ -88,8 +88,8 @@ class CreateWaterSourcesLabelCodes extends Component {
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="type-simple">Water Source</InputLabel>
             <Select
-              value={this.state.newLabel.farm_water_source_id}
-              onChange={this.handleChangeFor('farm_water_source_id')}
+              value={this.state.newLabel.water_id}
+              onChange={this.handleChangeFor('water_id')}
               style={{ width: '80vw', maxWidth: 400 }}
             >
               <MenuItem value="">
@@ -110,8 +110,8 @@ class CreateWaterSourcesLabelCodes extends Component {
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="type-simple">Label Code</InputLabel>
             <Select
-              value={this.state.newLabel.label_code_id}
-              onChange={this.handleChangeFor('label_code_id')}
+              value={this.state.newLabel.label_code}
+              onChange={this.handleChangeFor('label_code')}
               style={{ width: '80vw', maxWidth: 400 }}
             >
               <MenuItem value="">

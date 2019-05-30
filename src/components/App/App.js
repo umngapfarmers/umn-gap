@@ -40,8 +40,10 @@ import WaterLogDashboard from '../AllUsersComponents/LogForms/SelectWaterLog/Sel
 // import CompostLog from '../AllUsersComponents/LogForms/CompostManagementLog/CompostManagementLog';
 import EmployeeLog from '../AllUsersComponents/LogForms/EmployeeTrainingLog/EmployeeTrainingLog';
 import EditCrops from '../AdminComponents/HarvestYear/EditHarvestYear/EditCrops/EditCrops';
-import EditWorker from '../AdminComponents/ManageRoles/EditWorker';
 import EditEmployee from '../AdminComponents/ManageRoles/EditEmployee';
+import EditManure from '../AdminComponents/HarvestYear/EditHarvestYear/EditManureCompost/EditManureCompost';
+import EditWater from '../AdminComponents/HarvestYear/EditHarvestYear/EditWater/EditWater';
+import EditWorker from '../AdminComponents/ManageRoles/EditWorker';
 
 import CompostLog from '../AllUsersComponents/LogForms/CompostPileLog/CompostPileLog';
 
@@ -145,6 +147,16 @@ class App extends Component {
               exact
               path="/editcrops"
               component={EditCrops}
+            />
+            <Route
+              exact
+              path="/editmanure"
+              component={EditManure}
+            />
+            <Route
+              exact
+              path="/editwater"
+              component={EditWater}
             />
             <Route
               exact

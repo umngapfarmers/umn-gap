@@ -11,6 +11,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import List from '@material-ui/core/List';
@@ -18,16 +19,21 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
+import MenuItem from '@material-ui/core/MenuItem';
 import swal from 'sweetalert';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+import { isMoment } from 'moment';
 
+const moment = require('moment');
 
-class Fields extends Component {
+class Compost extends Component {
 
     state = {
-        newField: {
+        newLabel: {
             name: '',
+            date: moment().format('YYYY-MM-DD'),
+            description: '',
         },
         dialogState: {
             array: '',
@@ -41,8 +47,8 @@ class Fields extends Component {
 
     handleInputChangeFor = propertyName => (event) => {
         this.setState({
-            newField: {
-                ...this.state.newField,
+            newLabel: {
+                ...this.state.newLabel,
                 [propertyName]: event.target.value,
             },
         })
@@ -80,33 +86,34 @@ class Fields extends Component {
     }
 
     componentDidMount = () => {
-        this.props.dispatch({ type: 'GET_FIELD_SOURCE' });
-        console.log('length is', this.state.checked.length);
-        
+        this.props.dispatch({ type: 'GET_COMPOST_SOURCE' });
+
     }
 
     addCropSource = (event) => {
         event.preventDefault();
-        this.props.dispatch({ type: 'ADD_FIELD_SOURCE', payload: this.state.newField })
+        this.props.dispatch({ type: 'ADD_COMPOST_EDIT', payload: this.state.newLabel })
         this.setState({
-            newField: {
-                name: ''
-            }
+            newLabel: {
+                name: '',
+                date: moment().format('YYYY-MM-DD'),
+                description: '',
+            },
         })
     }
 
     removeCropSource = () => {
         swal({
-            title: `Delete (${this.state.checked.length}) fields?`,
-            text: "These fields will be removed from your harvest year but will still appear in your records",
+            title: `Delete (${this.state.checked.length}) manure?`,
+            text: "These sources will be removed from your harvest year but will still appear in your records",
             icon: "warning",
             buttons: true,
             dangerMode: true,
         })
         .then((willDelete) => {
             if (willDelete) {
-                this.props.dispatch({ type: 'DISABLE_FIELD_SOURCE', payload: this.state })
-                this.props.dispatch({ type: 'GET_FIELD_SOURCE' });
+                this.props.dispatch({ type: 'DISABLE_COMPOST_SOURCE', payload: this.state })
+                this.props.dispatch({ type: 'GET_COMPOST_SOURCE' });
                 this.setState({
                     disableDelete: true
                 })
@@ -117,7 +124,7 @@ class Fields extends Component {
     counter = () => {
         const count = this.state.checked.length;
         if(count > 0){
-            return `Disable Fields (${count})`;
+            return `Disable Compost (${count})`;
         }else {
             return "nothing here"
 
@@ -139,8 +146,8 @@ class Fields extends Component {
                 ...this.state.checked.splice(currentIndex, 1),
             
             })
+            console.log('in splice');
         }
-
         if(this.state.checked.length === 0) {
             this.setState({
                 disableDelete: true
@@ -158,10 +165,12 @@ class Fields extends Component {
         this.setState({
             ...this.state,
             dialogState: {
-                array: this.props.reduxState.cropSetup.fieldSetup[i],
+                array: this.props.reduxState.setupCompost[i],
             },
             setOpen: true,
+            
         })
+        console.log('sate is', this.state.dialogState);
     }
 
     handleClose = (event) => {
@@ -171,8 +180,8 @@ class Fields extends Component {
 
             })
             swal("Changes Saved!", "", "success");
-            this.props.dispatch({ type: "EDIT_FIELD_SOURCE", payload: this.state.dialogState.array })
-            this.props.dispatch({ type: "GET_FIELD_SOURCE" })
+            this.props.dispatch({ type: "EDIT_COMPOST_SOURCE", payload: this.state.dialogState.array })
+            this.props.dispatch({ type: "GET_LABEL_CODE" })
             console.log('id is', this.state.dialogState);
 
         } else {
@@ -188,6 +197,7 @@ class Fields extends Component {
             <React.Fragment>
                 
                 <Grid container spacing={24}
+                    container
                     direction="column"
                     justify="center"
                     alignItems="center"
@@ -195,17 +205,54 @@ class Fields extends Component {
                     >
                     <Grid item xs={12} sm={6}>
                         <Typography variant="h6" gutterBottom align="center" className={classes.titleColor} align="center">
-                            Add or Edit Fields 
+                            Add or Edit Compost
                         </Typography>
                     </Grid>
 
+                    <Grid item xs={12}>
+                        <FormControl>
+                            <TextField
+                                label="Start Date"
+                                variant="outlined"
+                                color="primary"
+                                onChange={this.handleInputChangeFor('date')}
+                                type="date"
+                                value={this.state.newLabel.date}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                style={{ width: '80vw', maxWidth: 400 }}
+                            >
+                            </TextField>
+                        </FormControl>
+                    </Grid>
+
                     <Grid item xs={12} sm={6}>
-                        <TextField label="Fields to track" variant="outlined" color="primary"
+                        <TextField
+                            label="Name Compost"
+                            variant="outlined"
+                            color="primary"
                             onChange={this.handleInputChangeFor('name')}
-                            value={this.state.newField.name}
+                            value={this.state.newLabel.name}
                             style={{ width: '80vw', maxWidth: 400, }}
                         >
                         </TextField>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <FormControl>
+                            <TextField
+                                label="Describe Compost"
+                                variant="outlined"
+                                color="primary"
+                                onChange={this.handleInputChangeFor('description')}
+                                value={this.state.newLabel.description}
+                                multiline
+                                helperText='required'
+                                style={{ width: '80vw', maxWidth: 400 }}
+                            >
+                            </TextField>
+                        </FormControl>
                     </Grid>
 
                     <Grid item xs={12} sm={6}>
@@ -214,7 +261,7 @@ class Fields extends Component {
                             disabled={this.state.disable}
                         >
                             <FontAwesomeIcon icon="plus" style={{ marginRight: 5, marginTop:-2, height: 10 }} className={classes.fabIconColor} />
-                            <Typography className={classes.fabColor}>Add Field</Typography>
+                            <Typography className={classes.fabColor}>Add Compost</Typography>
                         </Button>
                     </Grid>
 
@@ -225,53 +272,51 @@ class Fields extends Component {
                                 aria-controls="panel1a-content"
                                 id="panel1a-header"    
                             >
-                                <Typography className={classes.heading}>My Fields</Typography>
+                                <Typography className={classes.heading}>My Compost</Typography>
                             </ExpansionPanelSummary>
                             <ExpansionPanelDetails >
 
                                 <Grid item xs={12} sm={6}>
                                     <List style={{ marginLeft: -25, width: '70vw', maxWidth: 300 }}>
-                                        {this.props.reduxState.cropSetup.fieldSetup.map((field, i) =>
-                                        <section key={field.farm_field_id}>
-                                            <ListItem key={field.farm_field_id} 
+                                        {this.props.reduxState.setupCompost.map((compost, i) =>
+                                        <section key={compost.farm_compost_id}>
+                                                <ListItem key={compost.farm_compost_id} 
                                                 style={{ display: "flex", direction: "column", width: '70vw', maxWidth: 270 }}
-                                                onClick={this.handleCheck(field.farm_field_id)}
+                                                    onClick={this.handleCheck(compost.farm_compost_id)}
                                             >
                                                 <ListItemIcon>
                                                     <Checkbox
                                                         edge="start"
-                                                        checked={this.state.checked.indexOf(field.farm_field_id) !== -1}
-                                                        
+                                                        checked={this.state.checked.indexOf(compost.farm_compost_id) !== -1}
                                                         tabIndex={-1}
                                                         disableRipple
                                                     />
                                                 </ListItemIcon>
-                                                    <ListItemText primary={field.field_name} style={{ marginLeft: "-20px"}}/>
+                                                <ListItemText primary={compost.farm_compost_description+': '+ moment(compost.farm_compost_date).format('MM-DD')}
+                                                    style={{ marginLeft: "-20px"}}/>
                                                 <ListItemSecondaryAction>
                                                 <Button variant="outlined" color="primary" variant="contained"
                                                     onClick={event => this.handleClickOpen(i)} 
-                                                    value={field.field_name}
+                                                    value={compost.farm_compost_name}
                                                     style={{ width: '200', maxWidth: 270 }}
                                                 >
                                                     Edit
                                                 </Button>
                                                 </ListItemSecondaryAction>
-                        
                                             </ListItem>
-                                                <Divider variant="middle" />
+                                            <Divider variant="middle" />
                                         </section>
                                     )}    
                                         <Button size="large" color="secondary" variant="contained"
-                                            style={{ marginTop: 18, marginLeft: 10, height: 50, width: "70vw", maxWidth: 280 }}
+                                            style={{marginTop: 18, marginLeft: 10, height:50, width: "70vw", maxWidth: 280}}
                                             onClick={this.removeCropSource}
                                             disabled={this.state.disableDelete}
                                         >
                                             <FontAwesomeIcon icon="trash-alt" style={{ marginRight: 10, marginTop: -2  }} className={classes.fabIconColor} />
-                                            <Typography className={classes.fabColor}>Remove Fields</Typography>
-                                        </Button>    
+                                            <Typography className={classes.fabColor}>Remove Compost</Typography>
+                                        </Button>
                                     </List>
-                                </Grid>   
-
+                                </Grid>
                             </ExpansionPanelDetails>
                         </ExpansionPanel>
                     </Grid>
@@ -279,21 +324,55 @@ class Fields extends Component {
                     <Grid item xs={12} sm={6}>
                         <Dialog open={this.state.setOpen} aria-labelledby="form-dialog-title">
                             <DialogContent style={{ width: '80vw', maxWidth: 200 }}>
+                                <FormControl>
+                                    <TextField
+                                        label="Application Date"
+                                        variant="outlined"
+                                        color="primary"
+                                        onChange={this.handleDialogChangeFor('farm_compost_date')}
+                                        type="date"
+                                        value={moment(this.state.dialogState.array.farm_compost_date).format('YYYY-MM-DD')}
+                                        style={{ marginRight: 10, marginBottom: 30, width: 180, }}
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }} 
+                                    >
+                                    </TextField>
+                                </FormControl>
                                 <TextField
-                                    autoFocus
-                                    margin="dense"
-                                    id="name"
-                                    label={"Field Name"}
-                                    value={this.state.dialogState.array.field_name}
-                                    onChange={this.handleDialogChangeFor('field_name')}
-                                    fullWidth
-                                />
+                                    label="Name Compost"
+                                    variant="outlined"
+                                    color="primary"
+                                    onChange={this.handleDialogChangeFor('farm_compost_name')}
+                                    value={this.state.dialogState.array.farm_compost_name}
+                                    style={{ marginRight: 10, marginBottom: 30, width: 180, }}
+                                >
+                                </TextField>
+                                <TextField
+                                    label="Describe Compost"
+                                    variant="outlined"
+                                    color="primary"
+                                    onChange={this.handleDialogChangeFor('farm_compost_description')}
+                                    value={this.state.dialogState.array.farm_compost_description}
+                                    style={{ marginRight: 10, marginBottom: 20, width: 180, }}
+                                    multiline
+                                    helperText='required'  
+                                >
+                                </TextField>
                             </DialogContent>
                             <DialogActions>
-                                <Button onClick={this.handleClose} value={1} color="primary" variant="contained">
+                                <Button 
+                                    onClick={this.handleClose} 
+                                    value={1} 
+                                    color="primary" 
+                                    variant="contained">
                                     Cancel
                                 </Button>
-                                <Button onClick={this.handleClose} value={"update"} color="primary" variant="contained">
+                                <Button 
+                                    onClick={this.handleClose} 
+                                    value={"update"} 
+                                    color="primary" 
+                                    variant="contained">
                                     Update
                                 </Button>
                             </DialogActions>
@@ -321,4 +400,4 @@ const mapReduxStateToProps = (reduxState) => ({
     reduxState,
 });
 
-export default connect(mapReduxStateToProps)(withStyles(styles)(Fields));
+export default connect(mapReduxStateToProps)(withStyles(styles)(Compost));
