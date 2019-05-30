@@ -61,7 +61,7 @@ class EditFarmInformationHierarchyMenu extends Component {
               color="primary"
               aria-label="Add"
               className={classes.margin}
-              onClick={() => { this.props.history.push('/create_manure') }}
+              onClick={() => { this.props.history.push('/editmanure') }}
               style={{ width: '80vw', maxWidth: 400 }}
             >
               <Typography className={classes.fabColor}>Manure and Compost</Typography>
