@@ -74,7 +74,7 @@ class AddWorker extends Component {
 
     this.props.dispatch({ type: "POST_WORKER", payload: this.state });
 
-    // this.props.history.push("/manageuser");
+    this.props.history.push("/manageuser");
   };
 
   render() {

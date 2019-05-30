@@ -212,6 +212,22 @@ router.put('/person/edit', async (req, res) => {
     }
 });
 
+router.get("/employee", (req, res) => {
+  console.log("IN GET EMPLOYEE");
+  const current_harvest_id = req.user.current_harvest_year;
+  let sqlQuery = `SELECT * FROM "person" WHERE "user_id" is null`;
+  pool
+    .query(sqlQuery)
+    .then(response => {
+      console.log(`response person`, response.rows);
+      res.send(response.rows);
+    })
+    .catch(error => {
+      console.log(`ERROR in GET PERSON`, error);
+      res.sendStatus(500);
+    });
+});
+
 
 
 

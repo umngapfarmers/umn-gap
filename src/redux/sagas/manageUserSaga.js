@@ -120,6 +120,22 @@ function* editPersonNewUserSaga(action) {
     }
 }
 
+
+function* getEmployeeSaga(action) {
+    console.log('in getEmployeeSaga')
+    try {
+        let result = yield axios.get(`/manage/employee`)
+        console.log(`result label codes `, result.data);
+        yield put({ type: "SET_PERSON", payload: result.data })    
+    }
+    catch (error) {
+        console.log('ERROR IN getEmployeeSaga GET', error);
+        alert(`Sorry! Was unable to get employees! Try again later.`)
+    }
+}
+
+
+
 function* manageUSerSaga() {
     //   yield takeLatest('ADD_FARM', addFarmSaga);
     yield takeLatest('GET_PERSON', getPersonSaga);
@@ -130,7 +146,8 @@ function* manageUSerSaga() {
     yield takeLatest('GET_USER_TO_EDIT', editPickUserSaga);
     yield takeLatest('EDIT_USER_PASSWORDLESS', editUserPasswordlessSaga);
     yield takeLatest('EDIT_USER_PASSWORD', editUserPasswordSaga);
-    yield takeLatest('EDIT_PERSON_NEW_USER', editPersonNewUserSaga)
+    yield takeLatest('EDIT_PERSON_NEW_USER', editPersonNewUserSaga);
+    yield takeLatest('GET_EMPLOYEE', getEmployeeSaga)
 
 }
 
