@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import FormControl from "@material-ui/core/FormControl";
@@ -9,6 +9,8 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import NavBar from "../../Nav/Nav";
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const styles = theme => ({
   container: {
@@ -33,8 +35,11 @@ class EditEmployee extends Component {
         this.props.editPerson[0] && this.props.editPerson[0].person_first,
       person_last: "",
       roleSelect: "",
-      workerStatus: "",
-      selectedYear: ""
+      person_status: '',
+      selectedYear: "",
+      userName: '',
+      password: '',
+      current_harvest_id: '',
     };
   }
 
@@ -75,29 +80,127 @@ class EditEmployee extends Component {
 
     this.props.dispatch({ type: "EDIT_PERSON", payload: this.state });
 
-    this.props.history.push("/");
+    this.props.history.push("/manageuser");
   };
+
+handleSubmitNewUser = event => {
+  event.preventDefault();
+  console.log("in handle handleSubmitNewUser", this.state);
+
+  this.props.dispatch({ type: "EDIT_PERSON_NEW_USER", payload: this.state });
+
+  this.props.history.push("/manageuser");
+};
+
+
+  // displayPassword = () =>{
+  //   if (this.state.roleSelect === 'admin' || this.state.roleSelect === 'user'){
+  //     return(
+  //       <TextField
+  //       required
+  //       id="password"
+  //       name="password"
+  //       label="Password"
+  //       style={{width:'80vw', maxWidth:400}}
+  //       autoComplete="Password"
+  //       onChange={this.handleChange("password")}
+  //       type="password"
+  //       value={this.state.password}
+  //       variant="outlined"
+  //     />
+  //     )
+  //   }
+  //   else{
+  //     return(
+  //       <Fragment></Fragment>
+  //     )
+  //   }
+  // }
+
+  // displayUsername = () =>{
+  //   if (this.state.roleSelect === 'admin' || this.state.roleSelect === 'user'){
+  //     return(
+  //       <TextField
+  //       required
+  //       id="userName"
+  //       name="userName"
+  //       label="User Name"
+  //       style={{width:'80vw', maxWidth:400}}
+  //       autoComplete="User Name"
+  //       onChange={this.handleChange("userName")}
+  //       value={this.state.userName}
+  //       variant="outlined"
+  //     />
+  //     )
+  //   }
+  //   else{
+  //     return(
+  //       <Fragment></Fragment>
+  //     )
+  //   }
+  // }
+
+  displayUsernameAndPassword = () => {
+    if(this.state.roleSelect === 'admin' ||this.state.roleSelect ==='user'){
+      return(
+        <Fragment>
+        <Grid item xs={12} sm={8}>
+        <TextField
+        required
+        id="username"
+        name="username"
+        label="Username"
+        style={{ width: "80vw", maxWidth: 400 }}
+        value={this.state.username}
+        variant="outlined"
+        onChange={this.handleChange("userName")}
+      />
+      </Grid>
+        <Grid item xs={12} sm={8}>
+        <TextField
+        required
+        id="password"
+        name="password"
+        label="Password"
+        type="password"
+        style={{ width: "80vw", maxWidth: 400 }}
+        value={this.state.password}
+        variant="outlined"
+        onChange={this.handleChange("password")}
+      />
+      </Grid>
+      </Fragment>
+      )
+    }
+  }
+
+  submitButton = () =>{
+    if(this.state.roleSelect === 'admin' ||this.state.roleSelect ==='user'){
+      return(
+      <Button variant='contained' color="primary" onClick={this.handleSubmitNewUser} style={{width:'80vw', maxWidth:400}}>Submit</Button>
+      )
+    }
+    else{
+      return(
+        <Button variant='contained' color="primary" onClick={this.handleSubmit} style={{width:'80vw', maxWidth:400}}>Submit</Button>
+      )
+    }
+  }
+
 
   render() {
     const { classes } = this.props;
     console.log("selected role", this.props.editPerson);
     console.log("fetch harvest year", this.props.harvestYear);
     console.log("state ", this.state);
+    console.log('selectedRole', this.state.roleSelect);
 
     return (
       <React.Fragment>
         <NavBar />
-        <Typography variant="h6" gutterBottom>
-          Registration
+        <Typography variant="h6" gutterBottom align="center">
+          Edit Employee
         </Typography>
-
-        <FormControl
-          ref="form"
-          fullWidth
-          className={classes.selectFormControl}
-          onSubmit={this.handleSubmit}
-          onError={errors => console.log(errors)}
-        >
           {/* {JSON.stringify(this.props.editPerson)}
           {JSON.stringify(this.state.editPerson)}
           {JSON.stringify(this.props.reduxState)} */}
@@ -110,71 +213,61 @@ class EditEmployee extends Component {
             alignItems="center"
           >
             <Grid item xs={12} sm={6}>
-              <label>Select Role</label>
-              <FormControl fullWidth className={classes.selectFormControl}>
-                <Select
-                  MenuProps={{
-                    // className: classes.selectMenu
-                    className: classes.selectMenuItemSelected
-                  }}
-                  classes={{
-                    select: classes.select
-                  }}
-                  value="Employee"
-                  disabled
-                  onChange={this.handleSelect("roleSelect")}
-                  style={{ width: "60vw", maxWidth: 400 }}
-                  inputProps={{
-                    name: "roleSelect",
-                    id: "role-select"
-                  }}
-                >
-                  <MenuItem
-                    classes={{
-                      root: classes.selectMenuItem,
-                      selected: classes.selectMenuItemSelected
-                    }}
-                    value="Admin"
-                  >
-                    Admin
-                  </MenuItem>
-                  <MenuItem
-                    classes={{
-                      root: classes.selectMenuItem,
-                      selected: classes.selectMenuItemSelected
-                    }}
-                    value="Worker"
-                  >
-                    Worker
-                  </MenuItem>
-                  <MenuItem
-                    classes={{
-                      root: classes.selectMenuItem,
-                      selected: classes.selectMenuItemSelected
-                    }}
-                    value="Employee"
-                  >
-                    Employee
-                  </MenuItem>
-                </Select>
-              </FormControl>
+            <TextField
+                      select
+                      label="Select User Role"
+                      className={classes.textField}
+                      value={this.state.roleSelect}
+                      onChange={this.handleSelect("roleSelect")}
+                      style={{width:'80vw', maxWidth:400}}
+                      SelectProps={{
+                        MenuProps: {
+                          className: classes.menu,
+                        },
+                      }}
+                      margin="normal"
+                      variant="outlined"
+                      inputProps={{
+                        name: "roleSelect",
+                        id: "roleSelect"
+                      }}
+                    >
+                    <MenuItem disabled>Select User Role</MenuItem>
+                    <MenuItem
+                        value="admin"
+                      >
+                        Admin
+                      </MenuItem>
+                      <MenuItem
+                        value="user"
+                      >
+                        User
+                      </MenuItem>
+                      <MenuItem
+                        value="employee"
+                      >
+                        Employee
+                      </MenuItem>
+                </TextField>
             </Grid>
             <Grid item xs={12} sm={12}>
-              <TextField
+            <TextField
                 id="selectedYear"
-                name="selectedYear"
+                name="current_harvest_id"
                 select
                 style={{ width: "80vw", maxWidth: 400 }}
-                label="* Select harvest Year"
+                label="Select Harvest Year"
                 className={classes.textField}
-                value={this.state.selectedYear}
-                onChange={this.handleChange("selectedYear")}
+                value={this.state.current_harvest_id}
+                onChange={this.handleChange("current_harvest_id")}
                 SelectProps={{
                   MenuProps: {
                     className: classes.menu
                   }
                 }}
+                variant="outlined"
               >
+                 <MenuItem disabled>Select Harvest Year</MenuItem>
                 {this.props.harvestYear.map(option => (
                   <MenuItem key={option.id} value={option.harvest_id}>
                     {option.harvest_year}
@@ -182,72 +275,18 @@ class EditEmployee extends Component {
                 ))}
               </TextField>
             </Grid>
-            <Grid item xs={12} sm={6}>
-              {this.state.roleSelect !== "Employee" ? (
-                <TextField
-                  required
-                  id="userName"
-                  name="userName"
-                  label="User Name"
-                  disabled
-                  fullWidth
-                  autoComplete="User Name"
-                  onChange={this.handleChange("userName")}
-                  value={this.state.userName}
-                />
-              ) : (
-                <TextField
-                  required
-                  id="userName"
-                  name="userName"
-                  label="User Name"
-                  disabled
-                  fullWidth
-                  autoComplete="User Name"
-                  value=""
-                />
-              )}
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-              {this.state.roleSelect !== "Employee" ? (
-                <TextField
-                  required
-                  id="password"
-                  name="password"
-                  label="Password"
-                  disabled
-                  fullWidth
-                  autoComplete="Password"
-                  onChange={this.handleChange("password")}
-                  type="password"
-                  value={this.state.password}
-                />
-              ) : (
-                <TextField
-                  required
-                  id="password"
-                  name="password"
-                  label="Password"
-                  disabled
-                  fullWidth
-                  autoComplete="Password"
-                  value=""
-                />
-              )}
-            </Grid>
-
             {/* {this.props.reduxState.editPerson.map(row => ( */}
-            <Grid item xs={8} sm={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 required
                 id="firstName"
                 name="firstName"
                 label="First name"
-                //fullWidth
                 autoComplete="firstName"
                 value={this.state.person_first}
                 onChange={this.handleChange("person_first")}
+                variant="outlined"
+                style={{ width: "80vw", maxWidth: 400 }}
               />
             </Grid>
 
@@ -261,25 +300,28 @@ class EditEmployee extends Component {
                 autoComplete="lname"
                 onChange={this.handleChange("person_last")}
                 value={this.state.person_last}
+                variant="outlined"
+                style={{ width: "80vw", maxWidth: 400 }}
               />
             </Grid>
-            {this.state.person_status === true ? (
-              <Select
-                MenuProps={{
-                  // className: classes.selectMenu
-                  className: classes.selectMenuItemSelected
-                }}
-                classes={{
-                  select: classes.select
-                }}
-                value={this.state.person_status}
-                onChange={this.handleSelect("person_status")}
-                style={{ width: "60vw", maxWidth: 400 }}
-                inputProps={{
-                  name: "statusSelect",
-                  id: "status-select"
-                }}
+        
+            <Grid item xs={12} sm={6}>
+            <TextField
+              name="statusSelect"
+              select
+              style={{ width: "80vw", maxWidth: 400 }}
+              label="Select User Status"
+              className={classes.textField}
+              value={this.state.person_status}
+              onChange={this.handleSelect("person_status")}
+              SelectProps={{
+                MenuProps: {
+                  className: classes.menu
+                }
+              }}
+              variant="outlined"
               >
+                <MenuItem disabled>Select User Status</MenuItem>
                 <MenuItem
                   classes={{
                     root: classes.selectMenuItem,
@@ -294,55 +336,26 @@ class EditEmployee extends Component {
                     root: classes.selectMenuItem,
                     selected: classes.selectMenuItemSelected
                   }}
-                  value={false}
-                >
+                  value={false}>
                   Inactive
-                </MenuItem>
-              </Select>
-            ) : (
-              <Select
-                MenuProps={{
-                  // className: classes.selectMenu
-                  className: classes.selectMenuItemSelected
-                }}
-                classes={{
-                  select: classes.select
-                }}
-                value="Inactive"
-                onChange={this.handleSelect("person_status")}
-                style={{ width: "60vw", maxWidth: 400 }}
-                inputProps={{
-                  name: "statusSelect",
-                  id: "status-select"
-                }}
-              >
-                <MenuItem
-                  classes={{
-                    root: classes.selectMenuItem,
-                    selected: classes.selectMenuItemSelected
-                  }}
-                  value="Active"
-                >
-                  Active
-                </MenuItem>
-                <MenuItem
-                  classes={{
-                    root: classes.selectMenuItem,
-                    selected: classes.selectMenuItemSelected
-                  }}
-                  value="Inactive"
-                >
-                  Inactive
-                </MenuItem>
-              </Select>
-            )}
-            <Grid item xs={8} sm={6}>
-              <FormControl>
-                <Button onClick={this.handleSubmit}>Submit</Button>
-              </FormControl>
+                  </MenuItem>
+                </TextField>
+            </Grid>
+
+            {this.displayUsernameAndPassword()}
+
+
+            {/* <Grid item xs={12} sm={6}>
+             {this.displayUsername()}
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+             {this.displayPassword()}
+            </Grid> */}
+            <Grid item xs={12} sm={8}>
+                {this.submitButton()}
             </Grid>
           </Grid>
-        </FormControl>
       </React.Fragment>
     );
   }
