@@ -226,3 +226,11 @@ SELECT "farm_water_source"."farm_water_source_name" as "source name",
   "farm_water_source"."farm_water_status" as "active", 
   FROM "farm_water_source"
   WHERE "farm_water_source"."harvest_year_id" = 1;
+
+SELECT "farm_water_source"."farm_water_source_name" as "source name",
+  "label_code"."label_code_text" as "label code",
+  "farm_water"."farm_water_status" as "is active" FROM "farm_water"
+  JOIN "farm_water_source" ON "farm_water_source"."farm_water_source_id" = "farm_water"."farm_water_source_id"
+  JOIN "label_code" on "label_code"."label_code_id" = "farm_water"."label_code_id"
+  WHERE "farm_water"."harvest_year_id" = $1;
+
