@@ -33,6 +33,7 @@ const record_compostPileRouter = require ('./routes/record.compostPile.router');
 const log_waterRouter = require('./routes/log.water.router');
 const superAdminRouter = require('./routes/superadmin.router')
 const record_compostTurnRouter = require('./routes/record.compostTurn.router');
+const exportRouter = require('./routes/record.export.router');
 
 
 
@@ -72,9 +73,10 @@ app.use('/record/waterTreat', record_waterTreatRouter);
 app.use('/log/compost', logCompost);
 app.use('/record/manure', record_manureRouter);
 app.use('/record/compostPile', record_compostPileRouter);
-app.use('/log/water', log_waterRouter)
-app.use('/superadmin', superAdminRouter)
-app.use('/record/compostturn', record_compostTurnRouter)
+app.use('/log/water', log_waterRouter);
+app.use('/superadmin', superAdminRouter);
+app.use('/record/compostturn', record_compostTurnRouter);
+app.use('/record/export', exportRouter)
 
 // Serve static files
 app.use(express.static('build'));
