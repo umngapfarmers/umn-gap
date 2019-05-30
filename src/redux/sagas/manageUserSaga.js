@@ -8,7 +8,7 @@ function* getPersonSaga(action) {
         let result = yield axios.get(`/manage/person`)
         console.log(`result label codes `, result.data);
 
-        yield put({ type: "SET_PERSON", payload: result.data })
+        yield put({ type: "SET_EDIT_PERSON", payload: result.data })
 
     }
     catch (error) {
@@ -18,12 +18,12 @@ function* getPersonSaga(action) {
 }
 
 function* editemployeeSaga(action) {
-    console.log('in getPersonSaga')
+    console.log('in editemployeeSaga', action.payload)
     try {
-        let result = yield axios.put(`/manage/person`, action.payload)
+        let result = yield axios.put(`/manage/person/edit`, action.payload)
         console.log(`result label codes `, result.data);
 
-        yield put({ type: "SET_PERSON", payload: result.data })
+        yield put({ type: "SET_EDIT_PERSON", payload: result.data })
 
     }
     catch (error) {
@@ -32,20 +32,21 @@ function* editemployeeSaga(action) {
     }
 }
 
-function* editUserSaga(action) {
-    console.log('in getuserSaga')
-    try {
-        let result = yield axios.put(`/manage/user`, action.payload)
-        console.log(`result user `, result.data);
 
-        yield put({ type: "SET_USER", payload: result.data })
+// function* editUserSaga(action) {
+//     console.log('in getuserSaga')
+//     try {
+//         let result = yield axios.put(`/manage/user`, action.payload)
+//         console.log(`result user `, result.data);
 
-    }
-    catch (error) {
-        console.log('ERROR IN getuserSaga GET', error);
-        alert(`Sorry! Was unable to get user for edit! Try again later.`)
-    }
-}
+//         yield put({ type: "SET_EDIT_USER", payload: result.data })
+
+//     }
+//     catch (error) {
+//         console.log('ERROR IN getuserSaga GET', error);
+//         alert(`Sorry! Was unable to get user for edit! Try again later.`)
+//     }
+// }
 
 function* getUserSaga(action) {
     console.log('in getPersonSaga')
@@ -53,7 +54,7 @@ function* getUserSaga(action) {
         let result = yield axios.get(`/manage/user`)
         console.log(`result label codes `, result.data);
 
-        yield put({ type: "SET_USER", payload: result.data })
+        yield put({ type: "SET_EDIT_USER", payload: result.data })
 
     }
     catch (error) {
@@ -85,15 +86,68 @@ function* editPickUserSaga(action) {
     }
 }
 
+function* editUserPasswordlessSaga(action) {
+    try{
+      yield axios.put(`/manage/user/passwordless`, action.payload)
+
+    }
+    catch (error) {
+        console.log('ERROR IN editUserPasswordlessSaga PUT', error);
+        alert(`Sorry! Was unable to edit user! Try again later.`)
+    }
+}
+
+function* editUserPasswordSaga(action) {
+    try{
+      yield axios.put(`/manage/user/password`, action.payload)
+
+    }
+    catch (error) {
+        console.log('ERROR IN editUserPasswordSaga PUT', error);
+        alert(`Sorry! Was unable to edit user! Try again later.`)
+    }
+}
+
+
+function* editPersonNewUserSaga(action) {
+    try{
+      yield axios.put(`/manage/person/editNewUser`, action.payload)
+
+    }
+    catch (error) {
+        console.log('ERROR IN editUserPasswordSaga PUT', error);
+        alert(`Sorry! Was unable to edit user! Try again later.`)
+    }
+}
+
+
+function* getEmployeeSaga(action) {
+    console.log('in getEmployeeSaga')
+    try {
+        let result = yield axios.get(`/manage/employee`)
+        console.log(`result label codes `, result.data);
+        yield put({ type: "SET_PERSON", payload: result.data })    
+    }
+    catch (error) {
+        console.log('ERROR IN getEmployeeSaga GET', error);
+        alert(`Sorry! Was unable to get employees! Try again later.`)
+    }
+}
+
+
+
 function* manageUSerSaga() {
     //   yield takeLatest('ADD_FARM', addFarmSaga);
     yield takeLatest('GET_PERSON', getPersonSaga);
     yield takeLatest('EDIT_PERSON', editemployeeSaga);
-    yield takeLatest('EDIT_USER', editUserSaga);
-
+    // yield takeLatest('EDIT_USER', editUserSaga);
     yield takeLatest('GET_USER', getUserSaga);
-    yield takeLatest('GET_PERSON_TO_EDIT', editPersonSaga)
-    yield takeLatest('GET_USER_TO_EDIT', editPickUserSaga)
+    yield takeLatest('GET_PERSON_TO_EDIT', editPersonSaga);
+    yield takeLatest('GET_USER_TO_EDIT', editPickUserSaga);
+    yield takeLatest('EDIT_USER_PASSWORDLESS', editUserPasswordlessSaga);
+    yield takeLatest('EDIT_USER_PASSWORD', editUserPasswordSaga);
+    yield takeLatest('EDIT_PERSON_NEW_USER', editPersonNewUserSaga);
+    yield takeLatest('GET_EMPLOYEE', getEmployeeSaga)
 
 }
 

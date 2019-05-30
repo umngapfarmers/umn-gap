@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -16,6 +16,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EmployeeList from "./EmployeeList";
 import UserList from "./UserList";
 import NavBar from '../../Nav/Nav';
+import TextField from '@material-ui/core/TextField';
 
 
 class EditWorker extends Component {
@@ -26,16 +27,43 @@ class EditWorker extends Component {
         this.setState({ [event.target.name]: event.target.value });
        
     };
+
+   displayList = () => {
+    if(this.state.roleSelect == 'employee'){
+      return(
+     <EmployeeList/>
+      )
+    }
+
+    else if(this.state.roleSelect =='user'){
+      console.log('in user')
+      return (
+      <UserList/>
+      )
+    }
+
+    else if(this.state.roleSelect =='admin'){
+      // userToShow =  <UserList/>
+    }
+
+    else {
+      return(
+      <Fragment></Fragment>
+      )
+    }
+    
+   }
   render() {
     const { classes } = this.props;
-      console.log('role selected is', this.state.roleSelect)
+    console.log('role selected is', this.state.roleSelect)
+
     return (
       <React.Fragment>
         
         <NavBar/>
 
-        <Typography variant="h6" gutterBottom align="center">
-          Choose a User Type to Edit
+        <Typography variant="h6" gutterBottom align="center" className={classes.title}>
+          Select User Role
         </Typography>
         <Grid
           container
@@ -45,59 +73,34 @@ class EditWorker extends Component {
           alignItems="center"
         >
                 <Grid item xs={12} sm={6}>
-              <label>Select Role</label>
-                <FormControl fullWidth className={classes.selectFormControl}>
-                    <Select
-                        MenuProps={{
-                            className: classes.selectMenu
-                        }}
+                    <TextField
+                        select
                         classes={{
                             select: classes.select
                         }}
                         value={this.state.roleSelect}
                         onChange={this.handleSelect}
-                        style={{ width: '60vw', maxWidth: 400 }}
-
+                        style={{ width: '80vw', maxWidth: 400 }}
                         inputProps={{
                             name: "roleSelect",
                             id: "role-select"
                         }}
+                        variant="outlined"
                     >
+                      <MenuItem disabled>Select User Role</MenuItem>
                         <MenuItem
-                            classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                            }}
-                            value="Admin"
+                            value="user"
                         >
-                            Admin
+                            User
                   </MenuItem>
                         <MenuItem
-                            classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                            }}
-                            value="Workers"
+                            value="employee"
                         >
-                            Workers
+                            Employee
                   </MenuItem>
-                        <MenuItem
-                            classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected
-                            }}
-                            value="Employees"
-                        >
-                            Employees
-                  </MenuItem>
-                    </Select>
-                </FormControl>
+                    </TextField>
             </Grid>
-                {this.state.roleSelect == "Employees" ?(
-                    <EmployeeList/>
-                ):(
-                    <UserList/>
-                )}
+               {this.displayList()}
         </Grid>
       </React.Fragment>
     );
@@ -108,6 +111,9 @@ const styles = theme => ({
   container: {
     display: "flex",
     flexWrap: "wrap"
+  },
+  title:{
+    marginTop: 25,
   }
 });
 
