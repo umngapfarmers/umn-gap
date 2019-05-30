@@ -18,7 +18,7 @@ function* getPersonSaga(action) {
 }
 
 function* editemployeeSaga(action) {
-    console.log('in getPersonSaga')
+    console.log('in editemployeeSaga', action.payload)
     try {
         let result = yield axios.put(`/manage/person/edit`, action.payload)
         console.log(`result label codes `, result.data);

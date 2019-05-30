@@ -35,10 +35,11 @@ class EditEmployee extends Component {
         this.props.editPerson[0] && this.props.editPerson[0].person_first,
       person_last: "",
       roleSelect: "",
-      workerStatus: "",
+      person_status: '',
       selectedYear: "",
-      username: '',
-      password: ''
+      userName: '',
+      password: '',
+      current_harvest_id: '',
     };
   }
 
@@ -77,7 +78,7 @@ class EditEmployee extends Component {
     event.preventDefault();
     console.log("in handle submit", this.state);
 
-    // this.props.dispatch({ type: "EDIT_PERSON", payload: this.state });
+    this.props.dispatch({ type: "EDIT_PERSON", payload: this.state });
 
     // this.props.history.push("/manageuser");
   };
@@ -86,58 +87,58 @@ handleSubmitNewUser = event => {
   event.preventDefault();
   console.log("in handle handleSubmitNewUser", this.state);
 
-  // this.props.dispatch({ type: "EDIT_PERSON_NEW_USER", payload: this.state });
+  this.props.dispatch({ type: "EDIT_PERSON_NEW_USER", payload: this.state });
 
-  // this.props.history.push("/manageuser");
+  this.props.history.push("/manageuser");
 };
 
 
-  displayPassword = () =>{
-    if (this.state.roleSelect === 'admin' || this.state.roleSelect === 'user'){
-      return(
-        <TextField
-        required
-        id="password"
-        name="password"
-        label="Password"
-        style={{width:'80vw', maxWidth:400}}
-        autoComplete="Password"
-        onChange={this.handleChange("password")}
-        type="password"
-        value={this.state.password}
-        variant="outlined"
-      />
-      )
-    }
-    else{
-      return(
-        <Fragment></Fragment>
-      )
-    }
-  }
+  // displayPassword = () =>{
+  //   if (this.state.roleSelect === 'admin' || this.state.roleSelect === 'user'){
+  //     return(
+  //       <TextField
+  //       required
+  //       id="password"
+  //       name="password"
+  //       label="Password"
+  //       style={{width:'80vw', maxWidth:400}}
+  //       autoComplete="Password"
+  //       onChange={this.handleChange("password")}
+  //       type="password"
+  //       value={this.state.password}
+  //       variant="outlined"
+  //     />
+  //     )
+  //   }
+  //   else{
+  //     return(
+  //       <Fragment></Fragment>
+  //     )
+  //   }
+  // }
 
-  displayUsername = () =>{
-    if (this.state.roleSelect === 'admin' || this.state.roleSelect === 'user'){
-      return(
-        <TextField
-        required
-        id="userName"
-        name="userName"
-        label="User Name"
-        style={{width:'80vw', maxWidth:400}}
-        autoComplete="User Name"
-        onChange={this.handleChange("userName")}
-        value={this.state.userName}
-        variant="outlined"
-      />
-      )
-    }
-    else{
-      return(
-        <Fragment></Fragment>
-      )
-    }
-  }
+  // displayUsername = () =>{
+  //   if (this.state.roleSelect === 'admin' || this.state.roleSelect === 'user'){
+  //     return(
+  //       <TextField
+  //       required
+  //       id="userName"
+  //       name="userName"
+  //       label="User Name"
+  //       style={{width:'80vw', maxWidth:400}}
+  //       autoComplete="User Name"
+  //       onChange={this.handleChange("userName")}
+  //       value={this.state.userName}
+  //       variant="outlined"
+  //     />
+  //     )
+  //   }
+  //   else{
+  //     return(
+  //       <Fragment></Fragment>
+  //     )
+  //   }
+  // }
 
   displayUsernameAndPassword = () => {
     if(this.state.roleSelect === 'admin' ||this.state.roleSelect ==='user'){
@@ -152,6 +153,7 @@ handleSubmitNewUser = event => {
         style={{ width: "80vw", maxWidth: 400 }}
         value={this.state.username}
         variant="outlined"
+        onChange={this.handleChange("userName")}
       />
       </Grid>
         <Grid item xs={12} sm={8}>
@@ -164,6 +166,7 @@ handleSubmitNewUser = event => {
         style={{ width: "80vw", maxWidth: 400 }}
         value={this.state.password}
         variant="outlined"
+        onChange={this.handleChange("password")}
       />
       </Grid>
       </Fragment>
@@ -226,7 +229,7 @@ handleSubmitNewUser = event => {
                       variant="outlined"
                       inputProps={{
                         name: "roleSelect",
-                        id: "role-select"
+                        id: "roleSelect"
                       }}
                     >
                     <MenuItem disabled>Select User Role</MenuItem>
@@ -250,13 +253,13 @@ handleSubmitNewUser = event => {
             <Grid item xs={12} sm={12}>
             <TextField
                 id="selectedYear"
-                name="selectedYear"
+                name="current_harvest_id"
                 select
                 style={{ width: "80vw", maxWidth: 400 }}
                 label="Select Harvest Year"
                 className={classes.textField}
-                value={this.state.selectedYear}
-                onChange={this.handleChange("selectedYear")}
+                value={this.state.current_harvest_id}
+                onChange={this.handleChange("current_harvest_id")}
                 SelectProps={{
                   MenuProps: {
                     className: classes.menu
@@ -309,8 +312,8 @@ handleSubmitNewUser = event => {
               style={{ width: "80vw", maxWidth: 400 }}
               label="Select User Status"
               className={classes.textField}
-              value={this.state.user_status}
-              onChange={this.handleSelect("user_status")}
+              value={this.state.person_status}
+              onChange={this.handleSelect("person_status")}
               SelectProps={{
                 MenuProps: {
                   className: classes.menu

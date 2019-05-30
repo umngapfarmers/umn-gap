@@ -65,7 +65,7 @@ class EmployeeList extends Component {
                   </ListItemIcon>
                   {Person.person_first + " " + Person.person_last}
                   <ListItemSecondaryAction>
-                      <IconButton size="small" onClick={this.handleEdit(Person.user_id)}><FontAwesomeIcon  edge="end" icon="user-edit" className={classes.fabIconColor}  style={{marginLeft: 100}}/></IconButton>
+                      <IconButton size="small" onClick={this.handleEdit(Person.person_id)}><FontAwesomeIcon  edge="end" icon="user-edit" className={classes.fabIconColor}  style={{marginLeft: 100}}/></IconButton>
                 </ListItemSecondaryAction>
                 </ListItem>
               ))}

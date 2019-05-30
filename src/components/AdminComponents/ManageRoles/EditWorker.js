@@ -89,11 +89,6 @@ class EditWorker extends Component {
                     >
                       <MenuItem disabled>Select User Role</MenuItem>
                         <MenuItem
-                        value="admin"
-                        >
-                            Admin
-                  </MenuItem>
-                        <MenuItem
                             value="user"
                         >
                             User
