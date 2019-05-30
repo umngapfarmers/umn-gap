@@ -108,7 +108,7 @@ router.get('/:id', async (req, res) => {
         // returns array in form [ 'tableName', table]
         let widths= [];
         for (column in values[0]){
-            widths.push('*')
+            widths.push('100')
         }
         console.log(`widths `, widths);
         
@@ -116,11 +116,9 @@ router.get('/:id', async (req, res) => {
             widths, 
             table:{
                 body:values,
-            },
-            pageBreak: 'after'
-
+            }
         };
-        return [tableName, tableObj]
+        return [{text: tableName, style: 'header'}, tableObj, ' ']
     }
 
     typeCheck = (value) => {
@@ -222,7 +220,13 @@ router.get('/:id', async (req, res) => {
         
         docDef = {
             pageOrientation: 'landscape',
-            content: [].concat(labelCodeDef, harvestDef, farmManureDef, farmCompostDef, compostLogDef, farmWaterDef, farmWaterAppDef)
+            content: [].concat(labelCodeDef, harvestDef, farmManureDef, farmCompostDef, compostLogDef, farmWaterDef, farmWaterAppDef),
+            styles: {
+                header: {
+                    fontSize: 18,
+                    bold: true
+                }
+            }
         }
         console.log(`docDef `, docDef.content);
         
