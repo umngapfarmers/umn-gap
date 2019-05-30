@@ -10,7 +10,8 @@ import { withStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import IconButton from '@material-ui/core/IconButton';
 
 
 class EmployeeList extends Component {
@@ -20,7 +21,7 @@ class EmployeeList extends Component {
   };
 
   componentDidMount = () => {
-    this.props.dispatch({ type: "GET_PERSON" });
+    this.props.dispatch({ type: "GET_EMPLOYEE" });
   };
     handleEdit = person_id => () => {
         console.log("edit click for id", person_id);
@@ -51,21 +52,24 @@ class EmployeeList extends Component {
           alignItems="center"
         >
           <Grid item xs={12} sm={6}>
-            <List component="nav">
+            <List component="nav" style={{ width: '80vw', maxWidth: 400 }}>
               {this.props.reduxState.person[0] &&
-                this.props.reduxState.person.map(Person => (
-                  <ListItem
-                    key={Person.person_id}
-                    button
-                    //selected={this.state.selectedIndex === 0}
-                    onClick={this.handleEdit(Person.person_id)}
-                  >
-                    {Person.person_first + " " + Person.person_last}
-                    
-                  </ListItem>
-                ))}
-              
-            </List>
+                this.props.reduxState.person.map((Person, i) => (
+                  <ListItem button
+                  key={i}
+                  selected={this.state.selectedIndex === 0}
+                  onClick={this.handleEdit(Person.user_id)}
+                  divider={true}
+                >  <ListItemIcon>
+                      <Typography>{i+1}</Typography>
+                  </ListItemIcon>
+                  {Person.person_first + " " + Person.person_last}
+                  <ListItemSecondaryAction>
+                      <IconButton size="small" onClick={this.handleEdit(Person.person_id)}><FontAwesomeIcon  edge="end" icon="user-edit" className={classes.fabIconColor}  style={{marginLeft: 100}}/></IconButton>
+                </ListItemSecondaryAction>
+                </ListItem>
+              ))}
+          </List>
           </Grid>
         </Grid>
       </React.Fragment>
@@ -79,7 +83,10 @@ const styles = theme => ({
   container: {
     display: "flex",
     flexWrap: "wrap"
-  }
+  },
+  fabIconColor:{
+    color: '#7690B8',
+  },
 });
 
 const mapReduxStateToProps = reduxState => ({

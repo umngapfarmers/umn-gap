@@ -91,7 +91,6 @@ class CompostPileLog extends Component {
   render() {
 
     console.log(`state in compost pile log `, this.state);
-    
 
     return (
       <React.Fragment>

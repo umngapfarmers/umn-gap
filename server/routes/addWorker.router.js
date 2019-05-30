@@ -21,9 +21,6 @@ router.post("/", async (req, res) => {
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
   const user_role = req.body.roleSelect;
-  let registrationCode = req.body.registrationCode;
-  console.log(registrationCode);
-  if (registrationCode == 122090) {
     try {
       console.log(req.body);
       const username = req.body.userName;
@@ -34,10 +31,7 @@ router.post("/", async (req, res) => {
       const person_status = req.body.workerStatus;
       const farm_id = req.user.farm_registry_id;
       const harvest_id = req.user.current_harvest_year;
-
-      let registrationCode = req.body.registrationCode;
-      console.log(registrationCode);
-      if (req.body.roleSelect!== "Employee"){
+      if (req.body.roleSelect!== "employee"){
       const usernameQuery = `INSERT INTO "user" (username, password, user_role, farm_registry_id,current_harvest_year) VALUES ($1, $2, $3,$4,$5) RETURNING user_id`;
       const personQuery = `INSERT INTO "person" ("person_first", "person_last", "person_status", "user_id","current_harvest_id","farm_id") VALUES ($1, $2, $3, $4,$5,$6)`;
      
@@ -90,9 +84,6 @@ router.post("/", async (req, res) => {
     } finally {
       client.release();
     }
-  } else {
-    res.sendStatus(500);
-  }
 });
 
 module.exports = router;
