@@ -80,7 +80,7 @@ class EditEmployee extends Component {
 
     this.props.dispatch({ type: "EDIT_PERSON", payload: this.state });
 
-    // this.props.history.push("/manageuser");
+    this.props.history.push("/manageuser");
   };
 
 handleSubmitNewUser = event => {
