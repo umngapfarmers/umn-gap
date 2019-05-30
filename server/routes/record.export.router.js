@@ -108,7 +108,7 @@ router.get('/:id', async (req, res) => {
         // returns array in form [ 'tableName', table]
         let widths= [];
         for (column in values[0]){
-            widths.push('*')
+            widths.push('100')
         }
         console.log(`widths `, widths);
         
@@ -116,11 +116,9 @@ router.get('/:id', async (req, res) => {
             widths, 
             table:{
                 body:values,
-            },
-            pageBreak: 'after'
-
+            }
         };
-        return [tableName, tableObj]
+        return [{text: tableName, style: 'header'}, tableObj, ' ']
     }
 
     typeCheck = (value) => {
@@ -174,41 +172,45 @@ router.get('/:id', async (req, res) => {
         return result
     }
 
-    try{
-        await client.query('BEGIN')
-        let harvestRes = await client.query(harvestQuery, [current_harvest]);
-        let harvestData = await processArray(harvestRes.rows);
-        let harvestDef =  await createTableDef(harvestData, 'Harvest');
-
-        let compostLogRes = await client.query(compostTreatmentQuery, [current_harvest]);
-        let compostLogData = [];
-        let compostLogDef = [];
-        if(compostLogRes.rows[0]){ // if the table exists than process and create table def
-            compostLogData = await processArray(compostLogRes.rows);
-            compostLogDef = await createTableDef(compostLogData, 'Compost Treatment');
+    getTable = (getResponse, tableName) => {
+        let processedData = [];
+        let tableDef = [];
+        if (getResponse.rows[0]) {
+            processedData = processArray(getResponse.rows);
+            tableDef = createTableDef(processedData, tableName)
         }
+        return tableDef
+    }
 
 
+
+
+    try{
+
+
+        await client.query('BEGIN')
+
+
+        let harvestRes = await client.query(harvestQuery, [current_harvest]);
+        let harvestDef = getTable(harvestRes, 'Harvest');
+        
+        let compostLogRes = await client.query(compostTreatmentQuery, [current_harvest]);
+        let compostLogDef =  getTable(compostLogRes, 'Compost Treatment');
 
         let farmCompostRes = await client.query(farmCompostQuery, [current_harvest]);
-        let farmCompostData = await processArray(farmCompostRes.rows);
-        let farmCompostDef = await createTableDef(farmCompostData, 'Compost Piles');
+        let farmCompostDef =  getTable(farmCompostRes, 'Compost Piles');
 
         let labelCodeRes = await client.query(labelCodeQuery, [current_harvest]);
-        let labelCodeData = await processArray(labelCodeRes.rows);
-        let labelCodeDef = await createTableDef(labelCodeData, 'Label Codes');
+        let labelCodeDef = getTable(labelCodeRes, 'Label Codes')
 
         let farmManureRes = await client.query(farmManureQuery, [current_harvest]);
-        let farmManureData = await processArray(farmManureRes.rows);
-        let farmManureDef = await createTableDef(farmManureData, 'Farm Manure');
+        let farmManureDef = getTable(farmManureRes, 'Farm Manure');
 
         let farmWaterRes = await client.query(farmWaterSourceQuery, [current_harvest]);
-        let farmWaterData = await processArray(farmWaterRes.rows);
-        let farmWaterDef = await createTableDef(farmWaterData, 'Water Sources');
+        let farmWaterDef = getTable(farmWaterRes, 'Water Sources');
 
         let farmWaterAppRes = await client.query(farmWaterQuery, [current_harvest]);
-        let farmWaterAppData = await processArray(farmWaterAppRes.rows);
-        let farmWaterAppDef = await createTableDef(farmWaterAppData, 'Water Application');
+        let farmWaterAppDef = getTable(farmWaterAppRes, 'Water Application');
 
         
 
@@ -218,7 +220,13 @@ router.get('/:id', async (req, res) => {
         
         docDef = {
             pageOrientation: 'landscape',
-            content: [].concat(labelCodeDef, harvestDef, farmManureDef, farmCompostDef, compostLogDef, farmWaterDef, farmWaterAppDef)
+            content: [].concat(labelCodeDef, harvestDef, farmManureDef, farmCompostDef, compostLogDef, farmWaterDef, farmWaterAppDef),
+            styles: {
+                header: {
+                    fontSize: 18,
+                    bold: true
+                }
+            }
         }
         console.log(`docDef `, docDef.content);
         
