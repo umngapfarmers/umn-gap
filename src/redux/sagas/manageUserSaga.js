@@ -20,7 +20,7 @@ function* getPersonSaga(action) {
 function* editemployeeSaga(action) {
     console.log('in getPersonSaga')
     try {
-        let result = yield axios.put(`/manage/person`, action.payload)
+        let result = yield axios.put(`/manage/person/edit`, action.payload)
         console.log(`result label codes `, result.data);
 
         yield put({ type: "SET_EDIT_PERSON", payload: result.data })
@@ -32,20 +32,21 @@ function* editemployeeSaga(action) {
     }
 }
 
-function* editUserSaga(action) {
-    console.log('in getuserSaga')
-    try {
-        let result = yield axios.put(`/manage/user`, action.payload)
-        console.log(`result user `, result.data);
 
-        yield put({ type: "SET_EDIT_USER", payload: result.data })
+// function* editUserSaga(action) {
+//     console.log('in getuserSaga')
+//     try {
+//         let result = yield axios.put(`/manage/user`, action.payload)
+//         console.log(`result user `, result.data);
 
-    }
-    catch (error) {
-        console.log('ERROR IN getuserSaga GET', error);
-        alert(`Sorry! Was unable to get user for edit! Try again later.`)
-    }
-}
+//         yield put({ type: "SET_EDIT_USER", payload: result.data })
+
+//     }
+//     catch (error) {
+//         console.log('ERROR IN getuserSaga GET', error);
+//         alert(`Sorry! Was unable to get user for edit! Try again later.`)
+//     }
+// }
 
 function* getUserSaga(action) {
     console.log('in getPersonSaga')
@@ -94,6 +95,28 @@ function* editUserPasswordlessSaga(action) {
         console.log('ERROR IN editUserPasswordlessSaga PUT', error);
         alert(`Sorry! Was unable to edit user! Try again later.`)
     }
+}
+
+function* editUserPasswordSaga(action) {
+    try{
+      yield axios.put(`/manage/user/password`, action.payload)
+
+    }
+    catch (error) {
+        console.log('ERROR IN editUserPasswordSaga PUT', error);
+        alert(`Sorry! Was unable to edit user! Try again later.`)
+    }
+}
+
+
+function* editPersonNewUserSaga(action) {
+    try{
+      yield axios.put(`/manage/person/editNewUser`, action.payload)
+
+    }
+    catch (error) {
+        console.log('ERROR IN editUserPasswordSaga PUT', error);
+        alert(`Sorry! Was unable to edit user! Try again later.`)
     }
 }
 
@@ -101,11 +124,13 @@ function* manageUSerSaga() {
     //   yield takeLatest('ADD_FARM', addFarmSaga);
     yield takeLatest('GET_PERSON', getPersonSaga);
     yield takeLatest('EDIT_PERSON', editemployeeSaga);
-    yield takeLatest('EDIT_USER', editUserSaga);
+    // yield takeLatest('EDIT_USER', editUserSaga);
     yield takeLatest('GET_USER', getUserSaga);
     yield takeLatest('GET_PERSON_TO_EDIT', editPersonSaga);
     yield takeLatest('GET_USER_TO_EDIT', editPickUserSaga);
-    yield takeLatest('EDIT_USER_PASSWORDLESS', editUserPasswordlessSaga)
+    yield takeLatest('EDIT_USER_PASSWORDLESS', editUserPasswordlessSaga);
+    yield takeLatest('EDIT_USER_PASSWORD', editUserPasswordSaga);
+    yield takeLatest('EDIT_PERSON_NEW_USER', editPersonNewUserSaga)
 
 }
 

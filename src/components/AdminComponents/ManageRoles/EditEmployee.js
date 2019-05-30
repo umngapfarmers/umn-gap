@@ -36,7 +36,9 @@ class EditEmployee extends Component {
       person_last: "",
       roleSelect: "",
       workerStatus: "",
-      selectedYear: ""
+      selectedYear: "",
+      username: '',
+      password: ''
     };
   }
 
@@ -75,10 +77,20 @@ class EditEmployee extends Component {
     event.preventDefault();
     console.log("in handle submit", this.state);
 
-    this.props.dispatch({ type: "EDIT_PERSON", payload: this.state });
+    // this.props.dispatch({ type: "EDIT_PERSON", payload: this.state });
 
-    this.props.history.push("/");
+    // this.props.history.push("/manageuser");
   };
+
+handleSubmitNewUser = event => {
+  event.preventDefault();
+  console.log("in handle handleSubmitNewUser", this.state);
+
+  // this.props.dispatch({ type: "EDIT_PERSON_NEW_USER", payload: this.state });
+
+  // this.props.history.push("/manageuser");
+};
+
 
   displayPassword = () =>{
     if (this.state.roleSelect === 'admin' || this.state.roleSelect === 'user'){
@@ -127,6 +139,51 @@ class EditEmployee extends Component {
     }
   }
 
+  displayUsernameAndPassword = () => {
+    if(this.state.roleSelect === 'admin' ||this.state.roleSelect ==='user'){
+      return(
+        <Fragment>
+        <Grid item xs={12} sm={8}>
+        <TextField
+        required
+        id="username"
+        name="username"
+        label="Username"
+        style={{ width: "80vw", maxWidth: 400 }}
+        value={this.state.username}
+        variant="outlined"
+      />
+      </Grid>
+        <Grid item xs={12} sm={8}>
+        <TextField
+        required
+        id="password"
+        name="password"
+        label="Password"
+        type="password"
+        style={{ width: "80vw", maxWidth: 400 }}
+        value={this.state.password}
+        variant="outlined"
+      />
+      </Grid>
+      </Fragment>
+      )
+    }
+  }
+
+  submitButton = () =>{
+    if(this.state.roleSelect === 'admin' ||this.state.roleSelect ==='user'){
+      return(
+      <Button variant='contained' color="primary" onClick={this.handleSubmitNewUser} style={{width:'80vw', maxWidth:400}}>Submit</Button>
+      )
+    }
+    else{
+      return(
+        <Button variant='contained' color="primary" onClick={this.handleSubmit} style={{width:'80vw', maxWidth:400}}>Submit</Button>
+      )
+    }
+  }
+
 
   render() {
     const { classes } = this.props;
@@ -141,14 +198,6 @@ class EditEmployee extends Component {
         <Typography variant="h6" gutterBottom align="center">
           Edit Employee
         </Typography>
-
-        <FormControl
-          ref="form"
-          fullWidth
-          className={classes.selectFormControl}
-          onSubmit={this.handleSubmit}
-          onError={errors => console.log(errors)}
-        >
           {/* {JSON.stringify(this.props.editPerson)}
           {JSON.stringify(this.state.editPerson)}
           {JSON.stringify(this.props.reduxState)} */}
@@ -215,6 +264,7 @@ class EditEmployee extends Component {
                 }}
                 variant="outlined"
               >
+                 <MenuItem disabled>Select Harvest Year</MenuItem>
                 {this.props.harvestYear.map(option => (
                   <MenuItem key={option.id} value={option.harvest_id}>
                     {option.harvest_year}
@@ -289,6 +339,8 @@ class EditEmployee extends Component {
                 </TextField>
             </Grid>
 
+            {this.displayUsernameAndPassword()}
+
 
             {/* <Grid item xs={12} sm={6}>
              {this.displayUsername()}
@@ -297,13 +349,10 @@ class EditEmployee extends Component {
             <Grid item xs={12} sm={6}>
              {this.displayPassword()}
             </Grid> */}
-            <Grid item xs={8} sm={6}>
-              <FormControl>
-                <Button onClick={this.handleSubmit}>Submit</Button>
-              </FormControl>
+            <Grid item xs={12} sm={8}>
+                {this.submitButton()}
             </Grid>
           </Grid>
-        </FormControl>
       </React.Fragment>
     );
   }

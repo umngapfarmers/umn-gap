@@ -36,11 +36,11 @@ class EditUser extends Component {
     this.state = {
       person_first: "",
       person_last: "",
-      roleSelect: "",
+      user_role: "",
       password: "",
       username: "",
       workerStatus: "",
-      selectedYear: "",
+      current_harvest_year: "",
       checked: false,
       changePassword: false,
     };
@@ -80,9 +80,9 @@ class EditUser extends Component {
     event.preventDefault();
     console.log("in handle submit", this.state);
 
-    this.props.dispatch({type: "EDIT_USER_PASSWORDLESS", payload: this.state });
+    this.props.dispatch({type: "EDIT_USER_PASSWORD", payload: this.state });
   
-    // this.props.history.push("/manageuser");
+    this.props.history.push("/manageuser");
   };
 
   handleSubmitPasswordless = event => {
@@ -91,7 +91,7 @@ class EditUser extends Component {
 
     this.props.dispatch({type: "EDIT_USER_PASSWORDLESS", payload: this.state });
   
-    // this.props.history.push("/manageuser");
+    this.props.history.push("/manageuser");
   };
 
   handleCheck = (event) => {
@@ -221,8 +221,8 @@ class EditUser extends Component {
                       select
                       label="Select User Role"
                       className={classes.textField}
-                      value={this.state.roleSelect}
-                      onChange={this.handleSelect("roleSelect")}
+                      value={this.state.user_role}
+                      onChange={this.handleSelect("user_role")}
                       style={{width:'80vw', maxWidth:400}}
                       SelectProps={{
                         MenuProps: {
@@ -232,7 +232,7 @@ class EditUser extends Component {
                       margin="normal"
                       variant="outlined"
                       inputProps={{
-                        name: "roleSelect",
+                        name: "user_role",
                         id: "role-select"
                       }}
                     >
@@ -262,8 +262,8 @@ class EditUser extends Component {
                 style={{ width: "80vw", maxWidth: 400 }}
                 label="Select Harvest Year"
                 className={classes.textField}
-                value={this.state.selectedYear}
-                onChange={this.handleChange("selectedYear")}
+                value={this.state.current_harvest_year}
+                onChange={this.handleChange("current_harvest_year")}
                 SelectProps={{
                   MenuProps: {
                     className: classes.menu
@@ -271,6 +271,7 @@ class EditUser extends Component {
                 }}
                 variant="outlined"
               >
+                <MenuItem disabled>Select Harvest Year</MenuItem>
                 {this.props.harvestYear.map(option => (
                   <MenuItem key={option.id} value={option.harvest_id}>
                     {option.harvest_year}

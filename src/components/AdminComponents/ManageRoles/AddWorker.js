@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import FormControl from "@material-ui/core/FormControl";
@@ -41,8 +41,7 @@ class AddWorker extends Component {
   };
 
   handleError = () => {
-    if (this.state.userName !== '' && this.state.password !== '' && 
-    this.state.firstName !== '' && this.state.lastName !== '' && this.state.roleSelect !== '' && this.state.selectedYear !== '') {
+    if (this.state.firstName !== '' && this.state.lastName !== '' && this.state.roleSelect !== '' && this.state.selectedYear !== '') {
     return (
       <Button variant="contained" color="primary" style={{width:'80vw', maxWidth:400}} onClick={this.handleSubmit}>Submit</Button>
     ) 
@@ -75,13 +74,14 @@ class AddWorker extends Component {
 
     this.props.dispatch({ type: "POST_WORKER", payload: this.state });
 
-    this.props.history.push("/manageuser");
+    // this.props.history.push("/manageuser");
   };
 
   render() {
     const { classes } = this.props;
     console.log("selected role", this.state.roleSelect);
     console.log("fetch harvest year", this.props.harvestYear);
+    console.log('State is', this.state)
 
     return (
       <React.Fragment>
@@ -159,62 +159,7 @@ class AddWorker extends Component {
                 ))}
               </TextField>
             </Grid>
-            <Grid item xs={12} sm={6}>
-              {this.state.roleSelect !== "Employee" ? (
-                <TextField
-                  required
-                  id="userName"
-                  name="userName"
-                  label="User Name"
-                  disabled={false}
-                  autoComplete="User Name"
-                  onChange={this.handleChange("userName")}
-                  value={this.state.userName}
-                  variant="outlined"
-                  style={{width:'80vw', maxWidth:400}}
-                />
-              ) : (
-                <TextField
-                  required
-                  id="userName"
-                  name="userName"
-                  label="User Name"
-                  disabled
-                  fullWidth
-                  autoComplete="User Name"
-                  value=""
-                />
-              )}
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              {this.state.roleSelect !== "Employee" ? (
-                <TextField
-                  required
-                  id="password"
-                  name="password"
-                  label="Password"
-                  disabled={false}
-                  style={{width:'80vw', maxWidth:400}}
-                  autoComplete="Password"
-                  onChange={this.handleChange("password")}
-                  type="password"
-                  value={this.state.password}
-                  variant="outlined"
-                />
-              ) : (
-                <TextField
-                  required
-                  id="password"
-                  name="password"
-                  label="Password"
-                  disabled
-                  style={{width:'80vw', maxWidth:400}}
-                  autoComplete="Password"
-                  value=""
-                  variant="outlined"
-                />
-              )}
-            </Grid>
+           
             <Grid item xs={12} sm={6}>
               <TextField
                 required
@@ -241,6 +186,45 @@ class AddWorker extends Component {
                 variant="outlined"
               />
             </Grid>
+
+            <Grid item xs={12} sm={6}>
+            {this.state.roleSelect == "admin" || this.state.roleSelect == "user" ? (
+                <TextField
+                required
+                id="userName"
+                name="userName"
+                label="Username"
+                autoComplete="User Name"
+                value={this.state.userName}
+                style={{ width: "80vw", maxWidth: 400 }}
+                variant="outlined"
+                onChange={this.handleChange('userName')}
+                
+              />
+              ) : (
+                <Fragment></Fragment>
+              )}
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              {this.state.roleSelect == "admin" || this.state.roleSelect == "user" ? (
+                    <TextField
+                    required
+                    id="password"
+                    name="password"
+                    label="Password"
+                    style={{width:'80vw', maxWidth:400}}
+                    autoComplete="Password"
+                    value={this.state.password}
+                    variant="outlined"
+                    onChange={this.handleChange('password')}
+                    type="password"
+                  />
+              ) : (
+                <Fragment></Fragment>
+              )}
+            </Grid>
+
+
             <Grid item xs={12} sm={6}>
                 {this.handleError()}
            
