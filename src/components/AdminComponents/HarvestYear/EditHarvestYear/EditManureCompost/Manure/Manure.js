@@ -52,14 +52,14 @@ class Manure extends Component {
                 [propertyName]: event.target.value,
             },
         })
-        if (event.target.value === '') {
+        if (this.state.newLabel.description && this.state.newLabel.labelCode) {
             this.setState({
-                disable: true
+                disable: false
             })
 
         } else {
             this.setState({
-                disable: false
+                disable: true
             })
         }
     }

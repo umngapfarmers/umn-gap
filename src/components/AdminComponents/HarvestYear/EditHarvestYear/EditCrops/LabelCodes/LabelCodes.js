@@ -50,14 +50,14 @@ class LabelCodes extends Component {
                 [propertyName]: event.target.value,
             },
         })
-        if (event.target.value === '') {
+        if (this.state.newLabel.crop_id && this.state.newLabel.field_id && this.state.newLabel.label_code) {
             this.setState({
-                disable: true
+                disable: false
             })
 
         } else {
             this.setState({
-                disable: false
+                disable: true
             })
         }
     }

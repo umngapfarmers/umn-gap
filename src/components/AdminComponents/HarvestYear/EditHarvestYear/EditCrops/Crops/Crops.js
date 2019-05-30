@@ -122,8 +122,6 @@ class Crops extends Component {
             return "nothing here"
 
         }
-        console.log('count is', count);
-        
     }
 
     handleCheck = value => () => {

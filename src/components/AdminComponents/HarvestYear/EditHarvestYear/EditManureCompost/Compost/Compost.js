@@ -19,7 +19,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
-import MenuItem from '@material-ui/core/MenuItem';
 import swal from 'sweetalert';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -52,14 +51,14 @@ class Compost extends Component {
                 [propertyName]: event.target.value,
             },
         })
-        if (event.target.value === '') {
+        if (this.state.newLabel.name && this.state.newLabel.description) {
             this.setState({
-                disable: true
+                disable: false
             })
 
         } else {
             this.setState({
-                disable: false
+                disable: true
             })
         }
     }

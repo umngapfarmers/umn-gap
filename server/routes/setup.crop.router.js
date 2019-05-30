@@ -122,6 +122,7 @@ router.put('/disablecrop', (req, res) => {
     console.log('checked is', req.body);
     for(let num of id){ 
         const queryText = 'UPDATE "farm_crop" SET "farm_crop_status"= FALSE WHERE farm_crop_id=$1';
+        const queryText = 'UPDATE "label_code" SET "label_code_status"= FALSE WHERE farm_crop_id=$1';
         pool.query(queryText, [num])
             .then(() => { res.sendStatus(200); })
             .catch((err) => {
