@@ -9,6 +9,8 @@ import Button from '@material-ui/core/Button';
 import Nav from '../../../Nav/Nav';
 import './HarvestLog.css'
 
+const moment = require('moment')
+
 
 
 class HarvestLog extends Component {
@@ -16,7 +18,7 @@ class HarvestLog extends Component {
 
   state= {
     newHarvestLog: {
-      crop_harvest_date: '',
+      crop_harvest_date: moment().format('YYYY-MM-DD'),
       crop_harvest_amount: '',
       crop_harvest_sig: '',
       label_code_id: '',
@@ -86,10 +88,13 @@ class HarvestLog extends Component {
               variant="outlined"
               InputLabelProps={{
                 shrink: true,
-            }}
-            helperText="Required"
-            style={{width:'80vw', maxWidth:400}}
-            onChange={this.handleChange('crop_harvest_date')}
+              }}
+              helperText="Required"
+              style={{width:'80vw', maxWidth:400}}
+              onChange={this.handleChange('crop_harvest_date')}
+              value = {
+                this.state.newHarvestLog.crop_harvest_date
+              }
             />
           </Grid>
 
