@@ -71,7 +71,7 @@ class LabelCodes extends Component {
                 }
             },
         })
-        if (event.target.value === '') {
+       /*  if (event.target.value === '') {
             this.setState({
                 disable: true
             })
@@ -80,7 +80,7 @@ class LabelCodes extends Component {
             this.setState({
                 disable: false
             })
-        }
+        } */
     }
 
     componentDidMount = () => {
