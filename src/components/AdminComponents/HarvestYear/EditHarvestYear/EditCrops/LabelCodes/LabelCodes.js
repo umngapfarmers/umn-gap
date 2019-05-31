@@ -369,7 +369,7 @@ class LabelCodes extends Component {
                                     id="name"
                                     label={"Label Name"}
                                     value={this.state.dialogState.array.label_code_text}
-                                    onChange={this.handleInputDialogFor('label_code_text')}
+                                    onChange={this.handleDialogChangeFor('label_code_text')}
                                     fullWidth
                                 />
                             </DialogContent>
