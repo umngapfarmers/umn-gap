@@ -10,8 +10,9 @@ const moment = require('moment');
 
 
 router.get('/:id', async (req, res) => {
-    console.log(`in export `, req.params.id);
-    let current_harvest = req.params.id
+    console.log(`in export `, req.user);
+    let farmId = req.user.farm_registry_id;
+    let current_harvest = req.params.id;
     const client = await pool.connect();
     const harvestQuery = 
         `SELECT "crop_harvest"."crop_harvest_date" as "harvest date", 
@@ -41,24 +42,6 @@ router.get('/:id', async (req, res) => {
             JOIN "person" on "compost"."compost_sig" = "person"."person_id" 
             WHERE "compost"."harvest_year_id" = $1 
             ORDER BY "compost"."compost_date" ASC;`
-
-
-        // `SELECT "farm_compost"."farm_compost_name" as "pile name", 
-        //     "compost"."compost_turned" as "turned", 
-        //     "compost"."compost_date" as "log date", 
-        //     "compost"."test_area_1_temp" as "area 1 temp", 
-        //     "compost"."test_area_2_temp"as "area 2 temp", 
-        //     "compost"."test_area_3_temp" as "area 3 temp", 
-        //     "compost"."test_area_4_temp" as "area 4 temp", 
-        //     "person"."person_first"as "sig first", 
-        //     "person"."person_last" as "sig last", 
-        //     "label_code"."label_code_text" 
-        //     FROM "compost" 
-        //     JOIN "farm_compost" on "farm_compost"."farm_compost_id" = "compost"."farm_compost_id"
-        //     JOIN "label_code" ON "compost"."label_code_id" = "label_code"."label_code_id" 
-        //     JOIN "person" on "compost"."compost_sig" = "person"."person_id" 
-        //     WHERE "compost"."harvest_year_id" = $1 
-        //     ORDER BY "compost"."compost_date" ASC;`
     
     const farmCompostQuery = 
         `SELECT "farm_compost"."farm_compost_name" as "compost name", 
@@ -103,6 +86,9 @@ router.get('/:id', async (req, res) => {
         JOIN "label_code" on "label_code"."label_code_id" = "farm_water"."label_code_id"
         WHERE "farm_water"."harvest_year_id" = $1;`
 
+    const farmQuery = `SELECT * FROM "farm_registry" WHERE "farm_id" = $1;`
+
+
     createTableDef = (values, tableName) => {
         // takes value and table name params, puts values into table object
         // returns array in form [ 'tableName', table]
@@ -127,10 +113,10 @@ router.get('/:id', async (req, res) => {
         // otherwise returns original value
         if (!Number.isNaN(value) || moment(value, 'YYYY-MM-DD').isValid()) {
             if (moment(value, 'YYYY-MM-DD', true).isValid()) {
-                console.log('is date', value);
+                // console.log('is date', value);
                 return moment(value).format('YYYY-MM-DD')
             } else if ((typeof (value)) === 'boolean') {
-                console.log(`is bool`, value);
+                // console.log(`is bool`, value);
                 if(value===true){
                     return 'X'
                 }
@@ -138,12 +124,12 @@ router.get('/:id', async (req, res) => {
                     return ' '
                 }
             } else {
-                console.log(`is date or bool `, value);
+                // console.log(`is date or bool `, value);
                 return value
             }
         }
         else{
-            console.log('is a number', value)
+            // console.log('is a number', value)
             return value
         }
     }
@@ -152,13 +138,13 @@ router.get('/:id', async (req, res) => {
         // will loop through the query result and reformat for display
         // type check for bool and date formats and convert to strings
         // flattens object into array of values for pdfmaker
-        console.log(`in processArray `, data)
+        // console.log(`in processArray `, data)
 
         let result = [];
         let columnNames = Object.keys(data[0]);
         result.push(columnNames);
         for (row of data){
-            console.log(`row `, row);
+            // console.log(`row `, row);
             let rowValues = Object.values(row);
 
             for (let i=0; i<rowValues.length;i++){
@@ -210,19 +196,34 @@ router.get('/:id', async (req, res) => {
         let farmWaterAppRes = await client.query(farmWaterQuery, [current_harvest]);
         let farmWaterAppDef = getTable(farmWaterAppRes, 'Water Application');
 
+        let farmInfo = await client.query(farmQuery, [farmId])
+        console.log(`farmInfo `, farmInfo.data);
+        farmInfo=farmInfo.data
         
-
 
 
         // console.log(`harvest response `, harvestRes);
         
         docDef = {
             pageOrientation: 'landscape',
-            content: [].concat(labelCodeDef, harvestDef, farmManureDef, farmCompostDef, compostLogDef, farmWaterDef, farmWaterAppDef),
+            content: [
+                {
+                    text: `${farmInfo.farm_name}`,
+                    style: 'header2'
+                }
+            ].concat(labelCodeDef, harvestDef, farmManureDef, farmCompostDef, compostLogDef, farmWaterDef, farmWaterAppDef),
             styles: {
                 header: {
                     fontSize: 18,
-                    bold: true
+                    bold: true,
+                },
+                header2: {
+                    fontSize: 24,
+                    bold: true,
+                    alignment: 'center'
+                },
+                subheader:{
+                    alignment: 'center'
                 }
             }
         }
