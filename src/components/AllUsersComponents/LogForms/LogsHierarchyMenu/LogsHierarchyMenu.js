@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -78,7 +78,7 @@ class LogsHierarchyMenu extends Component {
               <FontAwesomeIcon icon="tint" style={{marginLeft: 5}} className={classes.fabIconColor}/>
         </Fab>
           </Grid>
-          <Grid item xs={10} sm={6}>
+          {this.props.reduxState.user.user_role === 'admin' ? <Grid item xs={10} sm={6}>
             <Fab
               variant="extended"
               size="large"
@@ -91,7 +91,9 @@ class LogsHierarchyMenu extends Component {
                <Typography className={classes.fabColor}>Employee Training</Typography>
               <FontAwesomeIcon icon="id-card" style={{marginLeft: 5}} className={classes.fabIconColor} />
         </Fab>
-          </Grid>
+          </Grid> :
+          <Fragment></Fragment>
+    }
         
       </Grid>
      
