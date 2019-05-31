@@ -329,7 +329,7 @@ class WaterLabels extends Component {
                                     color="primary"
                                     onChange={this.handleDialogChangeFor('farm_water_source_id')}
                                     value={this.state.dialogState.array.farm_water_source_id}
-                                    style={{ width: '80vw', maxWidth: 400 }}
+                                    style={{ marginRight: 10, marginBottom: 30, width: 180, maxWidth: 400 }}
                                     select
                                 >
                                     {this.props.reduxState.waterSetup.waterSource.map(water => (

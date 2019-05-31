@@ -73,7 +73,7 @@ class Manure extends Component {
                 }
             },
         })
-        if (event.target.value === '') {
+        /* if (event.target.value === '') {
             this.setState({
                 disable: true
             })
@@ -82,7 +82,7 @@ class Manure extends Component {
             this.setState({
                 disable: false
             })
-        }
+        } */
     }
 
     componentDidMount = () => {
@@ -376,8 +376,8 @@ class Manure extends Component {
                                     label="Application Rate" 
                                     variant="outlined" 
                                     color="primary"
-                                    onChange={this.handleDialogChangeFor('farm_manure_rate')}
                                     value={this.state.dialogState.array.farm_manure_rate}
+                                    onChange={this.handleDialogChangeFor('farm_manure_rate')}
                                     style={{ marginRight: 10, marginBottom: 30, width: 180, }}
                                 >
                                 </TextField>
@@ -386,8 +386,8 @@ class Manure extends Component {
                                         label="Crop Label Manure is Applied To"
                                         variant="outlined"
                                         color="primary"
-                                        onChange={this.handleDialogChangeFor('label_code_id')}
                                         value={this.state.dialogState.array.label_code_id}
+                                        onChange={this.handleDialogChangeFor('label_code_id')}
                                         style={{ marginRight: 10, marginBottom: 30, width: 180, }}
                                         select
                                     >
