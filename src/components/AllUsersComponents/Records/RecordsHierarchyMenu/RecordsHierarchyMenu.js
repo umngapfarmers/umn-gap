@@ -90,6 +90,20 @@ class RecordsHierarchyMenu extends Component {
           </Grid>
       
   
+      <Grid item xs={10} sm={6}>
+
+              <Fab 
+                variant="extended"
+                size="large"
+                color="primary"
+                aria-label="Add"
+                className={classes.margin}
+                onClick={() => {this.props.history.push('/exportdash')}}
+                style={{width:'80vw', maxWidth:400}}>
+                    <Typography className={classes.fabColor}>Export as PDF </Typography> 
+                    <FontAwesomeIcon icon="file-export" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+              </Fab>
+          </Grid>
 
       </Grid>
      

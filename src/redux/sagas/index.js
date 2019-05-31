@@ -30,6 +30,7 @@ import logWaterSaga from './logWaterSaga';
 import allUsersSaga from './allUsersSaga';
 import recordCropSaga from './recordCropSaga';
 import recordCompostTurnSaga from './recordCompostTurnSaga';
+import exportPdfSaga from './exportPdfSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -68,6 +69,7 @@ export default function* rootSaga() {
     logWaterSaga(),
     allUsersSaga(),
     recordCropSaga(),
-    recordCompostTurnSaga()
+    recordCompostTurnSaga(),
+    exportPdfSaga()
   ]);
 }
