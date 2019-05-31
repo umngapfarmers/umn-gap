@@ -73,7 +73,7 @@ class Manure extends Component {
                 }
             },
         })
-        if (event.target.value === '') {
+       /*  if (event.target.value === '') {
             this.setState({
                 disable: true
             })
@@ -82,7 +82,7 @@ class Manure extends Component {
             this.setState({
                 disable: false
             })
-        }
+        } */
     }
 
     componentDidMount = () => {
