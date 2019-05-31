@@ -117,6 +117,7 @@ class LabelCodes extends Component {
                 this.props.dispatch({ type: 'GET_LABEL_CODE' });
                 this.setState({
                     disableDelete: true
+                    
                 })
             }
         });
