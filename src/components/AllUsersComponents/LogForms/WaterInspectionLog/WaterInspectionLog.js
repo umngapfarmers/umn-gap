@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Nav from '../../../Nav/Nav';
 import './WaterInspectionLog.css'
 
+const moment = require('moment');
 
 
 class WaterInspectionLog extends Component {
@@ -16,7 +17,7 @@ class WaterInspectionLog extends Component {
 
   state= {
     newWaterInspectLog: {
-      inspection_date: '',
+      inspection_date: moment().format('YYYY-MM-DD'),
       inspection_water_source: '',
       distribution: '',
       observation: '',
@@ -89,10 +90,13 @@ class WaterInspectionLog extends Component {
               variant="outlined"
               InputLabelProps={{
                 shrink: true,
-            }}
-            helperText="Required"
-            style={{width:'80vw', maxWidth:400}}
-            onChange={this.handleChange('inspection_date')}
+              }}
+              helperText="Required"
+              style={{width:'80vw', maxWidth:400}}
+              onChange={this.handleChange('inspection_date')}
+              value = {
+                this.state.newWaterInspectLog.inspection_date
+              }
             />
           </Grid>
 
