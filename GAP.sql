@@ -12,7 +12,6 @@ CREATE TABLE "harvest_year"
 (
   "harvest_id" SERIAL PRIMARY KEY,
   "harvest_year" INT,
-  -------should this be a true date or just an int?
   "farm_id" INT REFERENCES "farm_registry"
 );
 
@@ -185,4 +184,5 @@ CREATE TABLE "water_treatment"
   "harvest_year_id" int references "harvest_year"
 );
 
+-- presentation data
 
