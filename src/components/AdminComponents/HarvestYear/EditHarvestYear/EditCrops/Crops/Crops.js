@@ -33,6 +33,7 @@ class Crops extends Component {
             array: '',
         },
         disable: true,
+        disableDialog:true,
         disableDelete: true,
         checked: [],
         setOpen: false,
@@ -69,12 +70,12 @@ class Crops extends Component {
         })
         if (event.target.value === '') {
             this.setState({
-                disable: true
+                disableDialog: true
             })
 
         } else {
             this.setState({
-                disable: false
+                disableDialog: false
             })
         }
     }
@@ -122,8 +123,6 @@ class Crops extends Component {
             return "nothing here"
 
         }
-        console.log('count is', count);
-        
     }
 
     handleCheck = value => () => {
@@ -144,7 +143,7 @@ class Crops extends Component {
             })
             console.log('in splice');
         }
-        if(this.state.checked.length === 0) {
+        /* if(this.state.checked.length === 0) {
             this.setState({
                 disableDelete: true
             })
@@ -152,7 +151,7 @@ class Crops extends Component {
             this.setState({
                 disableDelete: false
             })
-        }
+        } */
         console.log('state is', this.state.checked);
     }
 
@@ -267,8 +266,6 @@ class Crops extends Component {
                                                 <Divider variant="middle" />
                                         </section>
                                     )}    
-                                        
-                                        
                                             <Button size="large" color="secondary" variant="contained"
                                                 style={{marginTop: 18, marginLeft: 10, height:50, width: "70vw", maxWidth: 280}}
                                                 onClick={this.removeCropSource}
@@ -277,11 +274,8 @@ class Crops extends Component {
                                                 <FontAwesomeIcon icon="trash-alt" style={{ marginRight: 10, marginTop: -2  }} className={classes.fabIconColor} />
                                                 <Typography className={classes.fabColor}>Remove Crops</Typography>
                                             </Button>
-                                         
-
                                     </List>
                                 </Grid>   
-
                             </ExpansionPanelDetails>
                         </ExpansionPanel>
                     </Grid>

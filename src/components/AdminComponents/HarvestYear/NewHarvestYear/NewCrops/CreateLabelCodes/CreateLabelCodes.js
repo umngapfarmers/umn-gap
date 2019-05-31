@@ -42,8 +42,17 @@ class CreateLabelCodes extends Component {
           ...this.state.newLabel,
           [propertyName]: event.target.value,
         },
-        disable: false
       })
+      if (this.state.newLabel.crop_id && this.state.newLabel.label_code) {
+        this.setState({
+          disable: false
+        })
+
+      } else {
+        this.setState({
+          disable: true
+        })
+      }
     }
   }
 

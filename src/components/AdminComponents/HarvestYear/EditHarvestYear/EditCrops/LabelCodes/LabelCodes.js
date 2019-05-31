@@ -50,14 +50,14 @@ class LabelCodes extends Component {
                 [propertyName]: event.target.value,
             },
         })
-        if (event.target.value === '') {
+        if (this.state.newLabel.crop_id && this.state.newLabel.field_id && this.state.newLabel.label_code) {
             this.setState({
-                disable: true
+                disable: false
             })
 
         } else {
             this.setState({
-                disable: false
+                disable: true
             })
         }
     }
@@ -71,7 +71,7 @@ class LabelCodes extends Component {
                 }
             },
         })
-        if (event.target.value === '') {
+       /*  if (event.target.value === '') {
             this.setState({
                 disable: true
             })
@@ -80,7 +80,7 @@ class LabelCodes extends Component {
             this.setState({
                 disable: false
             })
-        }
+        } */
     }
 
     componentDidMount = () => {
@@ -117,6 +117,7 @@ class LabelCodes extends Component {
                 this.props.dispatch({ type: 'GET_LABEL_CODE' });
                 this.setState({
                     disableDelete: true
+                    
                 })
             }
         });
@@ -369,7 +370,7 @@ class LabelCodes extends Component {
                                     id="name"
                                     label={"Label Name"}
                                     value={this.state.dialogState.array.label_code_text}
-                                    onChange={this.handleInputChangeFor('label_code_text')}
+                                    onChange={this.handleDialogChangeFor('label_code_text')}
                                     fullWidth
                                 />
                             </DialogContent>
