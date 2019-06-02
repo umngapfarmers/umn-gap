@@ -70,7 +70,7 @@ class EmployeeTrainingLog extends Component {
       <Typography variant="h6" gutterBottom align="center">
          Employee Training Log
       </Typography>
-      <Grid spacing={24}
+      <Grid spacing={8}
       container
       direction="column"
       justify="center"
@@ -86,6 +86,7 @@ class EmployeeTrainingLog extends Component {
               margin="normal"
               variant="outlined"
               style={{width:'80vw', maxWidth:400}}
+              helperText="Required"
             />
           </Grid>
           
@@ -104,6 +105,7 @@ class EmployeeTrainingLog extends Component {
               margin="normal"
               variant="outlined"
               style={{width:'80vw', maxWidth:400}}
+              helperText="Required"
             >
               <MenuItem disabled>Select the employee trained</MenuItem>
               {this.props.reduxState.person.map(option => (
@@ -123,6 +125,7 @@ class EmployeeTrainingLog extends Component {
                 margin="normal"
                 variant="outlined"
                 style={{width:'80vw', maxWidth:400}}
+                helperText="Required"
               />
           </Grid>
 
@@ -137,7 +140,9 @@ class EmployeeTrainingLog extends Component {
               }}
               onChange={this.handleChange('date_trained')}
               style={{width:'80vw', maxWidth:400}}
+              helperText="Required"
               />
+              
           </Grid>
 
           <Grid item xs={12} sm={6}>
