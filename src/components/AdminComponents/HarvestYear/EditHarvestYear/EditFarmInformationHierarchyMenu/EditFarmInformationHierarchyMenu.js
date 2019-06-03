@@ -25,7 +25,6 @@ class EditFarmInformationHierarchyMenu extends Component {
     const {classes} = this.props;
     return (
       <React.Fragment>
-        <Typography align="right"><LogoutButton /></Typography>
         <Nav />
         < Grid container spacing={24}
           container
