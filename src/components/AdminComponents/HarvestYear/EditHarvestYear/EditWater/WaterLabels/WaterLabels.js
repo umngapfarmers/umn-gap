@@ -49,7 +49,7 @@ class WaterLabels extends Component {
                 [propertyName]: event.target.value,
             },
         })
-        if (this.state.newLabel.water_id && this.state.newLabel.label_code) {
+        if (this.state.newLabel.water_id) {
             this.setState({
                 disable: false
             })
@@ -59,6 +59,8 @@ class WaterLabels extends Component {
                 disable: true
             })
         }
+        console.log('newLabel is', this.state.newLabel);
+        
     }
 
     handleDialogChangeFor = propertyName => (event) => {
@@ -219,8 +221,8 @@ class WaterLabels extends Component {
                                 label="Water Source Name"
                                 variant="outlined"
                                 color="primary"
-                                onChange={this.handleInputChangeFor('water_id')}
                                 value={this.state.newLabel.water_id}
+                                onChange={this.handleInputChangeFor('water_id')}
                                 style={{ width: '80vw', maxWidth: 400 }}
                                 select
                             >
@@ -239,8 +241,8 @@ class WaterLabels extends Component {
                                 label="Crop Label Water is Applied To"
                                 variant="outlined"
                                 color="primary"
-                                onChange={this.handleInputChangeFor('label_code')}
                                 value={this.state.newLabel.label_code}
+                                onChange={this.handleInputChangeFor('label_code')}
                                 style={{ width: '80vw', maxWidth: 400 }}
                                 select
                             >
@@ -311,7 +313,7 @@ class WaterLabels extends Component {
                                             disabled={this.state.disableDelete}
                                         >
                                             <FontAwesomeIcon icon="trash-alt" style={{ marginRight: 10, marginTop: -2  }} className={classes.fabIconColor} />
-                                            <Typography className={classes.fabColor}>Remove Manure</Typography>
+                                            <Typography className={classes.fabColor}>Remove Water Label</Typography>
                                         </Button>
                                     </List>
                                 </Grid>   
