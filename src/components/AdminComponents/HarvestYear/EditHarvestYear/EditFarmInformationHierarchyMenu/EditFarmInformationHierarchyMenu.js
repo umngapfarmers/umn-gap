@@ -10,7 +10,6 @@ import LogoutButton from '../../../../LogOutButton/LogOutButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Nav from '../../../../Nav/Nav';
 
-
 class EditFarmInformationHierarchyMenu extends Component {
 
 
@@ -25,6 +24,7 @@ class EditFarmInformationHierarchyMenu extends Component {
     const {classes} = this.props;
     return (
       <React.Fragment>
+        
         <Nav />
         < Grid container spacing={24}
           container
