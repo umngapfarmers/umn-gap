@@ -49,7 +49,7 @@ class WaterLabels extends Component {
                 [propertyName]: event.target.value,
             },
         })
-        if (this.state.newLabel.water_id && this.state.newLabel.label_code) {
+        if (this.state.newLabel.water_id) {
             this.setState({
                 disable: false
             })
