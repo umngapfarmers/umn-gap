@@ -2,14 +2,14 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 const moment = require('moment');
-
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 /**
  * GET route template
  */
 
 
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', rejectUnauthenticated, async (req, res) => {
     console.log(`in export `, req.params.id);
     let current_harvest = req.params.id
     const client = await pool.connect();

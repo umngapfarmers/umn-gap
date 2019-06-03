@@ -1,12 +1,12 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
-
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 /**
  * GET route template
  */
 
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('IN GET RECORD WATER INSPECT')
     const harvest_year = req.query.harvest_year;
     console.log(harvest_year);

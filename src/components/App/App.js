@@ -64,7 +64,9 @@ import ManageUserAccounts from '../SuperAdmin/ManageUserAccounts/ManageUserAccou
 import RecordHarvestDashboard from '../AllUsersComponents/Records/SelectHarvestRecord/SelectHarvestRecord';
 import RecordCropsFieldsLabelCode from '../AllUsersComponents/Records/CropsFieldsLabelCodeRecord/CropsFieldsLabelCodeRecord';
 import ExportDash from '../AllUsersComponents/Records/ExportPdf/ExportDash.js';
+import Typography from '@material-ui/core/Typography';
 library.add(faHome,faCarrot, faRecycle, faPen, faPlus, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters, faTrashAlt, faMinusCircle, faUserEdit, faUserPlus, faFileExport);
+
 
 class App extends Component {
   componentDidMount () {
@@ -93,13 +95,13 @@ class App extends Component {
               {/* This works the same as the other protected route, except that if the user is logged in,
               they will see the info page instead. */}
               
-              <ProtectedRoute
+              <AdminProtectedRoute
                 exact
                 path="/newharvestyear"
                 component={NewHarvestYearDate}
               />
 
-              <Route
+              <AdminProtectedRoute
                 exact
                 path="/newfarminfo"
                 component={EnterFarmInformationHierarchyMenu}
@@ -107,92 +109,92 @@ class App extends Component {
 
               
           
-            <Route
+            <AdminProtectedRoute
               exact
               path="/water"
               component={WaterSource}
             />
-            <Route
+            <AdminProtectedRoute
               exact
               path="/waterlabel"
               component={WaterLabel}
             />
-            <Route
+            <AdminProtectedRoute
               exact
               path="/crops"
               component={CropTypes}
             />
-            <Route
+            <AdminProtectedRoute
               exact
               path="/field"
               component={FieldTypes}
             />
-            <Route
+            <AdminProtectedRoute
               exact
               path="/labelcode"
               component={LabelCode}
             />
-            <Route
+            <AdminProtectedRoute
               exact
               path="/admin"
               component={AdminDashboard}
             />
-            <Route
+            <AdminProtectedRoute
               exact
               path="/edithierarchy"
               component={EditHierarchy}
             />
-            <Route
+            <AdminProtectedRoute
               exact
               path="/editcrops"
               component={EditCrops}
             />
-            <Route
+            <AdminProtectedRoute
               exact
               path="/editmanure"
               component={EditManure}
             />
-            <Route
+            <AdminProtectedRoute
               exact
               path="/editwater"
               component={EditWater}
             />
-            <Route
+            <AdminProtectedRoute
               exact
               path="/harvestdashboard"
               component={HarvestDashboard}
             />
-              <Route
+              <AdminProtectedRoute
                 exact
                 path="/newharvestyeardashboard"
                 component={NewHarvestYearDashboard}
               />
-            <Route
+            <ProtectedRoute
               exact
               path="/worker"
               component={WorkerDashboard}
             />
-            <Route
+            <AdminProtectedRoute
               exact
               path="/manageuser"
               component={ManageWorker}
             />
-            <Route
+            <AdminProtectedRoute
               exact
               path="/addworker"
               component={AddWorker}
             />
-              <Route
+              <AdminProtectedRoute
                 exact
                 path="/editworker"
                 component={EditWorker}
               />
-              <Route
+              <AdminProtectedRoute
                 exact
                 path="/editemployee"
                 component={EditEmployee}
               />
-              <Route
+              <AdminProtectedRoute
                 exact
                 path="/edituser"
                 component={EditUser}
@@ -205,37 +207,37 @@ class App extends Component {
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
             
-            <ProtectedRoute
+            <AdminProtectedRoute
               exact
               path="/fertilizerdash"
               component={ManureCompostDash}
             />
             
-            <ProtectedRoute
+            <AdminProtectedRoute
               exact
               path="/createmanure"
               component={CreateManure}
             />
 
-            <ProtectedRoute
+            <AdminProtectedRoute
               exact
               path="/createcompost"
               component={CreateCompost}
             />
 
-            <Route
+            <ProtectedRoute
               exact
               path='/logdashboard'
               component={LogDashboard}
             />
 
-            <Route
+            <ProtectedRoute
               exact
               path='/harvestlog'
               component={HarvestLog}
             />
 
-            <Route
+            <ProtectedRoute
               exact
               path='/waterlogdashboard'
               component={WaterLogDashboard}
@@ -247,103 +249,103 @@ class App extends Component {
               component={CompostLog}
             /> 
 
-            <Route
+            <AdminProtectedRoute
               exact
               path='/employeelog'
               component={EmployeeLog}
             />
 
-            <Route
+            <ProtectedRoute
               exact
               path="/watertreatlog"
               component={WaterTreatLog}
             />
 
-            <Route
+            <ProtectedRoute
               exact
               path="/waterinspectlog"
               component={WaterInspectLog}
             />
 
-            <Route
+            <ProtectedRoute
             exact
             path="/recorddashboard"
             component={RecordDashboard}
             />
 
-            <Route
+            <ProtectedRoute
             exact
             path='/recordharvest'
             component={RecordHarvest}
             />
 
-            <Route
+            <ProtectedRoute
             exact
             path='/recordemployeetraining'
             component={RecordEmployeeTraining}
             />
 
-            <Route
+            <ProtectedRoute
             exact
             path='/recordwaterdashboard'
             component={RecordWaterDashboard}
             />
 
-            <Route
+            <ProtectedRoute
             exact
             path='/recordmanuredashboard'
             component={RecordManureDashboard}
             />
 
-            <Route
+            <ProtectedRoute
             exact
             path='/recordwaterinspect'
             component={RecordWaterInspect}
             />
 
-            <Route
+            <ProtectedRoute
             exact
             path='/recordwatertreat'
             component={RecordWaterTreat}
             />
 
-          <Route
+          <ProtectedRoute
             exact
             path='/recordmanure'
             component={RecordManure}
             />  
 
-          <Route
+          <ProtectedRoute
             exact
             path='/recordcompostpile'
             component={RecordCompostPile}
             />  
 
-          <Route
+          <ProtectedRoute
             exact
             path='/recordcompostturn'
             component={RecordCompostTurn}
             />  
           
-          <Route
+          <AdminProtectedRoute
             exact
             path='/manageuseraccounts'
             component={ManageUserAccounts}
             />
 
-          <Route
+          <ProtectedRoute
             exact
             path='/recordharvestdashboard'
             component={RecordHarvestDashboard}
             />
 
-          <Route
+          <ProtectedRoute
             exact
             path='/recordcropsfields'
             component={RecordCropsFieldsLabelCode}
             />
 
-          <Route
+          <ProtectedRoute
             exact
             path='/exportdash'
             component={ExportDash}
@@ -352,7 +354,7 @@ class App extends Component {
           
 
               {/* If none of the other routes matched, we will show a 404. */}
-              <Route render={() => <h1>404</h1>} />
+              <Route render={() => <Typography variant='h6' align="center">Page Could Not Be Found!</Typography>} />
             </Switch>
           </div>
         </Router>
