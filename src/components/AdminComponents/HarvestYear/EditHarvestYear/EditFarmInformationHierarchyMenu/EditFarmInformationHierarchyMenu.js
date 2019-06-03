@@ -8,7 +8,7 @@ import Fab from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import LogoutButton from '../../../../LogOutButton/LogOutButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import Nav from '../../../../Nav/Nav';
 
 class EditFarmInformationHierarchyMenu extends Component {
 
@@ -25,7 +25,7 @@ class EditFarmInformationHierarchyMenu extends Component {
     return (
       <React.Fragment>
         <Typography align="right"><LogoutButton /></Typography>
-        
+        <Nav />
         < Grid container spacing={24}
           container
           direction="column"
