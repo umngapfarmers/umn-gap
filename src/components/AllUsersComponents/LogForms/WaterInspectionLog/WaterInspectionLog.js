@@ -114,6 +114,7 @@ class WaterInspectionLog extends Component {
               }}
               margin="normal"
               variant="outlined"
+              helperText='Required'
               style={{width:'80vw', maxWidth:400}}
             >
               <MenuItem disabled>Select Water Source</MenuItem>

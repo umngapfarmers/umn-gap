@@ -1,12 +1,12 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
-
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 /**
  * GET route template
  */
 
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('IN GET ALL USERS')
     let sqlQuery = `SELECT "user"."user_id", "user"."username", "user"."user_status", "farm_registry"."farm_name" FROM "user" JOIN "farm_registry" ON "user"."farm_registry_id" = "farm_registry"."farm_id"`
     pool.query(sqlQuery)
@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
         })
 });
 
-router.put('/:id', (req,res) => {
+router.put('/:id', rejectUnauthenticated, (req,res) => {
     console.log('in UPDATE USER');
     const updateUser = req.body
     const user_id = req.params.id;

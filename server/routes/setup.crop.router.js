@@ -1,8 +1,9 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
-router.get('/crop', (req, res) => {
+router.get('/crop', rejectUnauthenticated, (req, res) => {
     let harvestYear = req.user.current_harvest_year;
 
     let sqlQuery = `SELECT * FROM "farm_crop" WHERE "harvest_year_id" = $1 AND "farm_crop_status" = TRUE ORDER BY "farm_crop_id" DESC`;
@@ -17,7 +18,7 @@ router.get('/crop', (req, res) => {
 
 });
 
-router.get('/field', (req, res) => {
+router.get('/field', rejectUnauthenticated, (req, res) => {
     let harvestYear = req.user.current_harvest_year;
 
     let sqlQuery = `SELECT * FROM "farm_field" WHERE "harvest_year_id" = $1 AND "farm_field_status" = TRUE ORDER BY "farm_field_id" DESC`;
@@ -32,7 +33,7 @@ router.get('/field', (req, res) => {
 
 });
 
-router.post('/crop', (req, res) => {
+router.post('/crop', rejectUnauthenticated, (req, res) => {
     console.log('in post router');
 
     const newCrop = req.body;
@@ -50,7 +51,7 @@ router.post('/crop', (req, res) => {
         });
 });
 
-router.post('/field', (req, res) => {
+router.post('/field', rejectUnauthenticated, (req, res) => {
     console.log('in post router');
 
     const newField = req.body;
@@ -68,7 +69,7 @@ router.post('/field', (req, res) => {
         });
 });
 
-router.delete('/crop/:id', (req, res) => {
+router.delete('/crop/:id', rejectUnauthenticated, (req, res) => {
     const queryText = 'DELETE FROM "farm_crop" WHERE farm_crop_id=$1';
     pool.query(queryText, [req.params.id])
         .then(() => { res.sendStatus(200); })
@@ -78,7 +79,7 @@ router.delete('/crop/:id', (req, res) => {
         });
 });
 
-router.delete('/field/:id', (req, res) => {
+router.delete('/field/:id', rejectUnauthenticated, (req, res) => {
     const queryText = 'DELETE FROM "farm_field" WHERE farm_field_id=$1';
     pool.query(queryText, [req.params.id])
         .then(() => { res.sendStatus(200); })
@@ -88,7 +89,7 @@ router.delete('/field/:id', (req, res) => {
         });
 });
 
-router.put('/editcrop', (req, res) => {
+router.put('/editcrop', rejectUnauthenticated, (req, res) => {
 
     const id = req.body.farm_crop_id
     const type = req.body.farm_crop_type
@@ -102,7 +103,7 @@ router.put('/editcrop', (req, res) => {
         });
 });
 
-router.put('/editfield', (req, res) => {
+router.put('/editfield', rejectUnauthenticated, (req, res) => {
 
     const id = req.body.farm_field_id
     const type = req.body.field_name
@@ -116,7 +117,7 @@ router.put('/editfield', (req, res) => {
         });
 });
 
-router.put('/disablecrop', (req, res) => {
+router.put('/disablecrop', rejectUnauthenticated, (req, res) => {
 
     const id = req.body.checked
     console.log('checked is', req.body);
@@ -131,7 +132,7 @@ router.put('/disablecrop', (req, res) => {
     }
 });
 
-router.put('/disablefield', (req, res) => {
+router.put('/disablefield', rejectUnauthenticated, (req, res) => {
 
     const id = req.body.checked
     console.log('checked is', req.body);
