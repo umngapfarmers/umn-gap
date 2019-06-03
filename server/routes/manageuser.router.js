@@ -2,12 +2,12 @@ const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
 const encryptLib = require("../modules/encryption");
-
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 /**
  * GET route template
  */
 
-router.get("/person", (req, res) => {
+router.get("/person", rejectUnauthenticated, (req, res) => {
   console.log("IN GETTY PERSON");
   const current_harvest_id = req.user.current_harvest_year;
   let sqlQuery = `SELECT * FROM "person" WHERE "current_harvest_id" = $1;`;
@@ -23,7 +23,7 @@ router.get("/person", (req, res) => {
     });
 });
 
-router.get("/user", (req, res) => {
+router.get("/user", rejectUnauthenticated, (req, res) => {
   console.log("IN GET USER");
   const current_harvest_id = req.user.current_harvest_year;
   console.log('Current harvest year is:', current_harvest_id)
@@ -44,7 +44,7 @@ router.get("/user", (req, res) => {
     });
 });
 
-router.get("/person/edit/", (req, res) => {
+router.get("/person/edit/", rejectUnauthenticated, (req, res) => {
   console.log("IN EDIT PERSON ", req.query.person_id);
   pool
     .query(`select * from "person"  WHERE "person_id" = $1;`, [
@@ -62,7 +62,7 @@ router.get("/person/edit/", (req, res) => {
     });
 });
 
-router.get("/user/edit/", (req, res) => {
+router.get("/user/edit/", rejectUnauthenticated, (req, res) => {
   console.log("IN pick for EDIT USER ", req.query.user_id);
   pool
     .query(
@@ -131,7 +131,7 @@ router.get("/user/edit/", (req, res) => {
 
 
 
-router.put('/user/passwordless', async (req, res) => {
+router.put('/user/passwordless', rejectUnauthenticated, async (req, res) => {
   const client = await pool.connect();
         const editUser = req.body;
         console.log('EditUser is:', editUser)
@@ -158,7 +158,7 @@ router.put('/user/passwordless', async (req, res) => {
 });
 
 
-router.put('/user/password', async (req, res) => {
+router.put('/user/password', rejectUnauthenticated, async (req, res) => {
   const client = await pool.connect();
         const editUser = req.body;
         const password = encryptLib.encryptPassword(req.body.password);
@@ -187,7 +187,7 @@ router.put('/user/password', async (req, res) => {
 
 
 
-router.put('/person/edit', (req, res) => {
+router.put('/person/edit', rejectUnauthenticated, (req, res) => {
   console.log("IN EDIT User ", req.body);
     pool.query(
         `UPDATE "person" SET "person_first"=$1, "person_last"=$2, "person_status"=$3, "current_harvest_id"=$4 WHERE "person_id" = $5;`,
@@ -205,7 +205,7 @@ router.put('/person/edit', (req, res) => {
       });
 });
 
-router.get("/employee", (req, res) => {
+router.get("/employee", rejectUnauthenticated, (req, res) => {
   console.log("IN GET EMPLOYEE");
   const current_harvest_id = req.user.current_harvest_year;
   let sqlQuery = `SELECT * FROM "person" WHERE "user_id" is null`;
@@ -221,7 +221,7 @@ router.get("/employee", (req, res) => {
     });
 });
 
-router.put('/person/editNewUser', async (req, res) => {
+router.put('/person/editNewUser', rejectUnauthenticated, async (req, res) => {
   const client = await pool.connect();
         const editUser = req.body;
         const password = encryptLib.encryptPassword(req.body.password);

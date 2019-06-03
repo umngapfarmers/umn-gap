@@ -1,4 +1,4 @@
-# UMN_GAP: Farm To Tables
+# GAP FARMERS
 
 UMN GAP: Farm to Tables is a streamlined and centralized way for small produce farmers to keep records helping them to comply with GAP audits. The application is designed to help prevent the spread of foodborne illness by allowing farmers to trace their harvests to potential sources of contamination like water, fertilizer, harvest implements, storage containers, and processing facilities. 
 

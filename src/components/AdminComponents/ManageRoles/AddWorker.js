@@ -116,6 +116,7 @@ class AddWorker extends Component {
                         name: "roleSelect",
                         id: "role-select"
                       }}
+                      helperText="Required"
                     >
                     <MenuItem disabled>Select User Role</MenuItem>
                     <MenuItem
@@ -145,6 +146,7 @@ class AddWorker extends Component {
                 className={classes.textField}
                 value={this.state.selectedYear}
                 onChange={this.handleChange("selectedYear")}
+                helperText="Required"
                 SelectProps={{
                   MenuProps: {
                     className: classes.menu
@@ -165,12 +167,13 @@ class AddWorker extends Component {
                 required
                 id="firstName"
                 name="firstName"
-                label="First name"
+                label="First Name"
                 style={{width:'80vw', maxWidth:400}}
                 autoComplete="firstName"
                 onChange={this.handleChange("firstName")}
                 value={this.state.firstName}
                 variant="outlined"
+                helperText="Required"
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -178,12 +181,13 @@ class AddWorker extends Component {
                 required
                 id="lastName"
                 name="lastName"
-                label="Last name"
+                label="Last Name"
                 style={{width:'80vw', maxWidth:400}}
                 autoComplete="lname"
                 onChange={this.handleChange("lastName")}
                 value={this.state.lastName}
                 variant="outlined"
+                helperText="Required"
               />
             </Grid>
 
@@ -199,6 +203,7 @@ class AddWorker extends Component {
                 style={{ width: "80vw", maxWidth: 400 }}
                 variant="outlined"
                 onChange={this.handleChange('userName')}
+                helperText="Required"
                 
               />
               ) : (
@@ -218,6 +223,7 @@ class AddWorker extends Component {
                     variant="outlined"
                     onChange={this.handleChange('password')}
                     type="password"
+                    helperText="Required"
                   />
               ) : (
                 <Fragment></Fragment>

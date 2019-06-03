@@ -96,7 +96,7 @@ class CompostPileLog extends Component {
     return (
       <React.Fragment>
         <Nav/>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h6" gutterBottom align="center">
          Compost Treatment and Application
       </Typography>
       < Grid 
@@ -120,6 +120,7 @@ class CompostPileLog extends Component {
                     select
                     width={'100%'}
                     style={{width:'80vw', maxWidth:400}}
+                    helperText="Required"
                   >
                     {this.props.reduxState.setupCompost[0] && this.props.reduxState.setupCompost.map(
                       compost => 
@@ -145,6 +146,7 @@ class CompostPileLog extends Component {
                       shrink: true,
                     }}
                     style={{width:'80vw', maxWidth:400}}
+                    helperText="Required"
                   >
                 </TextField>
             </FormControl>
@@ -291,6 +293,7 @@ class CompostPileLog extends Component {
                     value={this.state.entry.compost_sig}
                     select
                     style={{width:'80vw', maxWidth:400}}
+                    helperText="Required"
                   >
                     {this.props.reduxState.person[0] && this.props.reduxState.person.map(
                       person => 

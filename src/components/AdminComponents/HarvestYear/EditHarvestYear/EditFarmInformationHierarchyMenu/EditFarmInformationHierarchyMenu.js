@@ -83,19 +83,6 @@ class EditFarmInformationHierarchyMenu extends Component {
               <FontAwesomeIcon icon="clipboard" style={{ marginLeft: 5 }} className={classes.fabIconColor} />
             </Fab>
           </Grid>
-          <Grid item xs={10} sm={6}>
-            <Fab
-              variant="extended"
-              size="large"
-              color="primary"
-              aria-label="Add"
-              className={classes.margin}
-              style={{ width: '80vw', maxWidth: 400 }}
-            >
-              <Typography className={classes.fabColor}>Manage Roles</Typography>
-              <FontAwesomeIcon icon="users" style={{ marginLeft: 5 }} className={classes.fabIconColor} />
-            </Fab>
-          </Grid>
           
         </Grid>
 

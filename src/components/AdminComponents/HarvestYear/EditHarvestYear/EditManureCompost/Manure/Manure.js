@@ -238,7 +238,7 @@ class Manure extends Component {
                                 onChange={this.handleInputChangeFor('description')}
                                 value={this.state.newLabel.description}
                                 multiline
-                                helperText='required'
+                                helperText='Required'
                                 style={{ width: '80vw', maxWidth: 400 }}
                             >
                             </TextField>
@@ -369,7 +369,7 @@ class Manure extends Component {
                                     value={this.state.dialogState.array.farm_manure_description}
                                     style={{ marginRight: 10, marginBottom: 20, width: 180, }}
                                     multiline
-                                    helperText='required'  
+                                    helperText='Required'  
                                 >
                                 </TextField>
                                 <TextField 
