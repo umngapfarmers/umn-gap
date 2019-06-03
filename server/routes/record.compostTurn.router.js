@@ -1,12 +1,12 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
-
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 /**
  * GET route template
  */
 
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('IN GET RECORD COMPOST TURN')
     console.log('Req query is:', req.query)
     const harvest_year = req.query.harvest_year_id;

@@ -1,12 +1,12 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
-
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 /**
  * GET route template
  */
 
-router.get('/person', (req, res) => {
+router.get('/person', rejectUnauthenticated, (req, res) => {
     console.log('IN GET PERSON')
     let sqlQuery = `SELECT * FROM "person" WHERE "person_status" = TRUE;`
     pool.query(sqlQuery)
@@ -20,7 +20,7 @@ router.get('/person', (req, res) => {
         })
 });
 
-router.post('/', (req,res) =>{
+router.post('/', rejectUnauthenticated, (req,res) =>{
     console.log('IN ADD HARVEST LOG');
     const newHarvestLog = req.body;
     const harvest_year_id = req.user.current_harvest_year;

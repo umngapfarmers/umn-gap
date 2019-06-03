@@ -1,12 +1,12 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
-
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 /**
  * GET route template
  */
 
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     let harvestYear = req.user.current_harvest_year;
     
     let sqlQuery = `SELECT * FROM "label_code" WHERE "harvest_year_id" = $1 AND "label_code_status" = TRUE ORDER BY "label_code_id" DESC`;
@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const queryText = 'DELETE FROM "label_code" WHERE label_code_id=$1';
     pool.query(queryText, [req.params.id])
         .then(() => { res.sendStatus(200); })
@@ -37,7 +37,7 @@ router.delete('/:id', (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     const newLabel = req.body;
     const queryText = `INSERT INTO "label_code" ("farm_crop_id","farm_field_id","label_code_text", "harvest_year_id")
                     VALUES ($1, $2, $3, $4)`;
@@ -57,7 +57,7 @@ router.post('/', (req, res) => {
 
 });
 
-router.put('/edit', (req, res) => {
+router.put('/edit', rejectUnauthenticated, (req, res) => {
 
     const farmId = req.body.farm_field_id
     const cropId = req.body.farm_crop_id
@@ -73,7 +73,7 @@ router.put('/edit', (req, res) => {
         });
 });
 
-router.put('/disable', (req, res) => {
+router.put('/disable', rejectUnauthenticated, (req, res) => {
 
     const id = req.body.checked
     console.log('checked is', req.body);

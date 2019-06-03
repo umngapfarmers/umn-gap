@@ -40,15 +40,28 @@ class LoginPage extends Component {
       const {classes} = this.props;
       return (
         <React.Fragment>
-        <Typography variant="h6" gutterBottom align="center">
-        Login
-        </Typography>
+    
         <Grid container spacing={24}
          container
          direction="column"
          justify="center"
          alignItems="center"
        >
+          <Grid item xs={12} sm={6}>
+          {/* <Typography variant="h4" gutterBottom align="center">
+        Good
+        </Typography>
+        <Typography variant="h4" gutterBottom align="center">
+        Agricultural
+        </Typography>
+        <Typography variant="h4" gutterBottom align="center">
+        Practice 
+        </Typography>
+        <Typography variant="h4" gutterBottom align="center">
+        Farmers
+        </Typography> */}
+        <img src='/images/gap_logo.png' height='100%' width='100%'></img>
+          </Grid>
           
                   <Grid item xs={8} sm={6} >
                       <FormControl>
