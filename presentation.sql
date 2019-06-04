@@ -1,7 +1,16 @@
+INSERT INTO "public"."harvest_year"("harvest_id","harvest_year","farm_id")
+VALUES
+(1,2019,1);
+
+INSERT INTO "public"."person"("person_id","person_first","person_last","person_status","user_id","current_harvest_id","farm_id")
+VALUES
+(1,E'Walter',E'Benson',TRUE,1,1,1),
+(2,E'Chris',E'Borgen',TRUE,NULL,1,1),
+(3,E'Kashif',E'Siddiqui',TRUE,NULL,1,1);
+
 INSERT INTO "public"."farm_crop"("farm_crop_id","farm_crop_type","harvest_year_id","farm_crop_status")
 VALUES
 (1,E'potato',1,TRUE),
-(2,E'arugula',1,TRUE),
 (3,E'parsnip',1,TRUE),
 (4,E'broccoli',1,TRUE),
 (5,E'celery',1,TRUE),
@@ -19,7 +28,6 @@ VALUES
 (2,4,3,1,E'broc_NF',TRUE),
 (3,5,2,1,E'cel_WF',TRUE),
 (4,3,1,1,E'pars_SF',TRUE),
-(5,2,2,1,E'arug_WF',TRUE),
 (6,6,2,1,E'beet_WF',TRUE),
 (7,1,3,1,E'pot_NF',TRUE),
 (8,1,1,1,E'pot_SF',TRUE);
@@ -72,3 +80,4 @@ VALUES
 (1,E'2019-04-01 00:00:00',4,E'overhead drip',E'looks clear',E'collected sample for lab',1,1),
 (2,E'2019-04-01 00:00:00',3,E'driip',E'animal signs around pond, some feaces',E'set out decoys, and fencing',3,1),
 (3,E'2019-04-01 00:00:00',1,E'drip',E'looks fine',E'took sample and sent to lab',3,1);
+
