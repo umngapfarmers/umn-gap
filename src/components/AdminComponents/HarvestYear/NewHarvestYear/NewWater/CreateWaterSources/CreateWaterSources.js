@@ -12,7 +12,8 @@ import {connect} from 'react-redux';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import IconButton from '@material-ui/core/IconButton';
 
-
+// Allows farmer to create a water source.
+// Accessed as part of intial farm set up workflow and through harvest year edit
 class CreateWaterSources extends Component {
 
 
