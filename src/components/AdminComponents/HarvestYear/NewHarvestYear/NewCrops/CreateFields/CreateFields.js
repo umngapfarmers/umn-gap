@@ -23,6 +23,8 @@ class CreateFields extends Component {
     disableNext: true,
   }
 
+  //takes textfield input as the new value for properties within the newLabel state
+  //if textfields are filled, submit button is enabled
   handleInputChangeFor = propertyName => (event) => {
     this.setState({
       newField: {
@@ -33,6 +35,7 @@ class CreateFields extends Component {
     });
   }
 
+  //adds textfield inputs to database by calling the cropSetup saga
   addFieldSource = (event) => {
     event.preventDefault();
     this.props.dispatch({ type: 'ADD_FIELD_SOURCE', payload: this.state.newField })
@@ -44,11 +47,12 @@ class CreateFields extends Component {
     })
   }
 
+  //deletes selected field via cropSetup saga
   removeFieldSource = (event) => {
     this.props.dispatch({ type: 'DELETE_FIELD_SOURCE', payload: event.currentTarget.name })
 
   }
-
+//navigates to the create label codes page for farm creation
   nextPage = () => {
     this.props.history.push('/labelcode')
   }
