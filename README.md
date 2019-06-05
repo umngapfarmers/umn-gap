@@ -31,8 +31,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 - [Node.js](https://nodejs.org/en/)
 - [Postico](https://eggerapps.at/postico/)
-- [Postman] (https://www.getpostman.com/)
-- [IDE - Virtual Studio Code Recommended] (https://code.visualstudio.com/)
+- [Postman](https://www.getpostman.com/)
+- [IDE - Virtual Studio Code Recommended](https://code.visualstudio.com/)
 - [Heroku - Create Account](https://www.heroku.com/)
 
 
