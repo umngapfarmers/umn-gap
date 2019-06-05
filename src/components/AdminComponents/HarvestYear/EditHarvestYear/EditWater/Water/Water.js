@@ -114,18 +114,6 @@ class Water extends Component {
         });
     }
 
-    counter = () => {
-        const count = this.state.checked.length;
-        if(count > 0){
-            return `Disable Water (${count})`;
-        }else {
-            return "nothing here"
-
-        }
-        console.log('count is', count);
-        
-    }
-
     handleCheck = value => () => {
         const currentIndex = this.state.checked.indexOf(value)
 

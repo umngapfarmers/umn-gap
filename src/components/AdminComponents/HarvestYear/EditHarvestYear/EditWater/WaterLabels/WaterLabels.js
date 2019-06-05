@@ -42,6 +42,7 @@ class WaterLabels extends Component {
 
     }
 
+//takes textfield input as the new value for properties within the newLabel state
     handleInputChangeFor = propertyName => (event) => {
         this.setState({
             newLabel: {
@@ -49,6 +50,7 @@ class WaterLabels extends Component {
                 [propertyName]: event.target.value,
             },
         })
+        //if textfields are filled, submit button is enabled
         if (this.state.newLabel.water_id) {
             this.setState({
                 disable: false
@@ -59,10 +61,9 @@ class WaterLabels extends Component {
                 disable: true
             })
         }
-        console.log('newLabel is', this.state.newLabel);
-        
     }
 
+//takes textfield input in the edit screen as the new value for properties within the dialogState state
     handleDialogChangeFor = propertyName => (event) => {
         this.setState({
             dialogState: {
@@ -72,6 +73,7 @@ class WaterLabels extends Component {
                 }
             },
         })
+        //disables the submit button if any of the textfields on the edit screen are left blank
         if (event.target.value === '') {
             this.setState({
                 disable: true
@@ -83,13 +85,11 @@ class WaterLabels extends Component {
             })
         }
     }
-
+//renders data from database on page load
     componentDidMount = () => {
         this.props.dispatch({ type: 'GET_WATER_SOURCE' });
         this.props.dispatch({ type: 'GET_WATER_LABEL' });
-        this.props.dispatch({ type: 'GET_LABEL_CODE' });
-        console.log('length is', this.state.checked.length);
-        
+        this.props.dispatch({ type: 'GET_LABEL_CODE' });  
     }
 
     addCropSource = (event) => {
@@ -118,22 +118,8 @@ class WaterLabels extends Component {
                 this.setState({
                     disableDelete: true
                 })
-                console.log('state is', this.state);
-                
             }
         });
-    }
-
-    counter = () => {
-        const count = this.state.checked.length;
-        if(count > 0){
-            return `Disable WaterLabels (${count})`;
-        }else {
-            return "nothing here"
-
-        }
-        console.log('count is', count);
-        
     }
 
     handleCheck = value => () => {
