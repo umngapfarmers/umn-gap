@@ -95,6 +95,7 @@ class WaterTreatmentLog extends Component {
             helperText="Required"
             style={{width:'80vw', maxWidth:400}}
             onChange={this.handleChange('treatment_date')}
+            value={this.state.newWaterTreatmentLog.treatment_date}
             />
           </Grid>
 

@@ -8,7 +8,7 @@ import Fab from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import LogoutButton from '../../../../LogOutButton/LogOutButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import Nav from '../../../../Nav/Nav';
 
 class EditFarmInformationHierarchyMenu extends Component {
 
@@ -24,8 +24,8 @@ class EditFarmInformationHierarchyMenu extends Component {
     const {classes} = this.props;
     return (
       <React.Fragment>
-        <Typography align="right"><LogoutButton /></Typography>
         
+        <Nav />
         < Grid container spacing={24}
           container
           direction="column"
@@ -80,19 +80,6 @@ class EditFarmInformationHierarchyMenu extends Component {
             >
               <Typography className={classes.fabColor}>Water Sources</Typography>
               <FontAwesomeIcon icon="clipboard" style={{ marginLeft: 5 }} className={classes.fabIconColor} />
-            </Fab>
-          </Grid>
-          <Grid item xs={10} sm={6}>
-            <Fab
-              variant="extended"
-              size="large"
-              color="primary"
-              aria-label="Add"
-              className={classes.margin}
-              style={{ width: '80vw', maxWidth: 400 }}
-            >
-              <Typography className={classes.fabColor}>Manage Roles</Typography>
-              <FontAwesomeIcon icon="users" style={{ marginLeft: 5 }} className={classes.fabIconColor} />
             </Fab>
           </Grid>
           

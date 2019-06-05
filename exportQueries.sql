@@ -46,3 +46,42 @@ SELECT "farm_water_source"."farm_water_source_name" as "source name",
   JOIN "label_code" on "label_code"."label_code_id" = "farm_water"."label_code_id"
   WHERE "farm_water"."harvest_year_id" = $1;
 
+SELECT "employee_training"."topic",
+  "person"."person_first" as "first name",
+  "person"."person_last" as "last name",
+  "employee_training"."trainer_name" as "trainer",
+  "employee_training"."date_trained" as "date trained"
+    FROM "employee_training"
+  JOIN "person" on "employee_training"."person_id" = "person"."person_id"
+  WHERE "employee_training"."harvest_year_id"=1;
+
+
+SELECT "water_inspection"."inspection_date" as "date",
+  "farm_water_source"."farm_water_source_name" as "source",
+  "water_inspection"."distribution" as "distribution",
+  "water_inspection"."observation" as "observation",
+  "water_inspection"."inspection_corrective_action" as "corrective action",
+  "person"."person_first" as "sig first",
+  "person"."person_last" as "sig last"
+  FROM "water_inspection"
+  JOIN "farm_water_source" on "farm_water_source"."farm_water_source_id" = 	"water_inspection"."inspection_water_source"
+  JOIN "person" on "person"."person_id" = "water_inspection"."inspection_signature"
+  WHERE "water_inspection"."harvest_year_id" = 1;
+
+
+SELECT "water_treatment"."treatment_date" as "date",
+            "farm_water_source"."farm_water_source_name" as "source",
+            "water_treatment"."water_ph" as "pH",
+            "water_treatment"."water_temp" as "temp",
+            "water_treatment"."turbidity" as "turbidity",
+            "water_treatment"."sanitizer" as "sanitizer",
+            "water_treatment"."corrective_action" as "corrective action",
+            concat("person"."person_first", ' ' , "person"."person_last") as "signature"
+            FROM "water_treatment"
+            JOIN "farm_water_source" on "farm_water_source"."farm_water_source_id" =  "water_treatment"."farm_water_source_id"
+            JOIN "person" on "person"."person_id" = "water_treatment"."treatment_sig"
+            WHERE "water_treatment"."harvest_year_id" = $1;
+
+
+
+

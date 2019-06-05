@@ -49,7 +49,7 @@ class WaterLabels extends Component {
                 [propertyName]: event.target.value,
             },
         })
-        if (this.state.newLabel.water_id && this.state.newLabel.label_code) {
+        if (this.state.newLabel.water_id) {
             this.setState({
                 disable: false
             })
@@ -114,7 +114,8 @@ class WaterLabels extends Component {
                 this.props.dispatch({ type: 'DISABLE_WATER_LABEL', payload: this.state })
                 this.props.dispatch({ type: 'GET_WATER_LABEL' });
                 this.setState({
-                    disableDelete: true
+                    disableDelete: true,
+                    checked: []
                 })
                 console.log('state is', this.state);
                 

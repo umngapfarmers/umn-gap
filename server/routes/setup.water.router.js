@@ -1,8 +1,9 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
-router.get('/source', (req, res) => {
+router.get('/source', rejectUnauthenticated, (req, res) => {
     let harvestYear = req.user.current_harvest_year;
 
     const queryText = `SELECT * FROM "farm_water_source" WHERE "harvest_year_id" = $1 AND farm_water_status = true ORDER BY "farm_water_source_id" DESC`;
@@ -17,7 +18,7 @@ router.get('/source', (req, res) => {
 
 });
 
-router.get('/label', (req, res) => {
+router.get('/label', rejectUnauthenticated, (req, res) => {
     let harvestYear = req.user.current_harvest_year;
 
     const queryText = ` SELECT * FROM "farm_water_source" 
@@ -36,7 +37,7 @@ router.get('/label', (req, res) => {
 
 });
 
-router.post('/source', (req, res) => {
+router.post('/source', rejectUnauthenticated, (req, res) => {
 
     const newWaterSource = req.body;
     const queryText = `INSERT INTO "farm_water_source" (farm_water_source_name,harvest_year_id)
@@ -55,7 +56,7 @@ router.post('/source', (req, res) => {
 
 });
 
-router.post('/label', (req, res) => {
+router.post('/label', rejectUnauthenticated, (req, res) => {
     
     const newWaterLabel = req.body;
     const queryText = `INSERT INTO "farm_water" ("farm_water_source_id", "label_code_id", "harvest_year_id")
@@ -77,7 +78,7 @@ router.post('/label', (req, res) => {
 
 });
 
-router.delete('/source/:id', (req, res) => {
+router.delete('/source/:id', rejectUnauthenticated, (req, res) => {
     const queryText = 'DELETE FROM "farm_water_source" WHERE farm_water_source_id = $1 ';
     pool.query(queryText, [req.params.id])
         .then(() => { res.sendStatus(200); })
@@ -87,7 +88,7 @@ router.delete('/source/:id', (req, res) => {
         });
 });
 
-router.delete('/label/:id', (req, res) => {
+router.delete('/label/:id', rejectUnauthenticated, (req, res) => {
     const queryText = 'DELETE FROM "farm_water" WHERE farm_water_id = $1';
     pool.query(queryText, [req.params.id])
         .then(() => { res.sendStatus(200); })
@@ -97,7 +98,7 @@ router.delete('/label/:id', (req, res) => {
         });
 });
 
-router.put('/editSource', (req, res) => {
+router.put('/editSource', rejectUnauthenticated, (req, res) => {
 
     const id = req.body.farm_water_source_id
     const name = req.body.farm_water_source_name
@@ -111,7 +112,7 @@ router.put('/editSource', (req, res) => {
         });
 });
 
-router.put('/editLabel', (req, res) => {
+router.put('/editLabel', rejectUnauthenticated, (req, res) => {
 
     const water = req.body.farm_water_source_id
     const label = req.body.label_code_id
@@ -126,7 +127,7 @@ router.put('/editLabel', (req, res) => {
         });
 });
 
-router.put('/disableSource', (req, res) => {
+router.put('/disableSource', rejectUnauthenticated, (req, res) => {
 
     const id = req.body.checked
     console.log('checked is', req.body);
@@ -141,7 +142,7 @@ router.put('/disableSource', (req, res) => {
     }
 });
 
-router.put('/disableLabel', (req, res) => {
+router.put('/disableLabel', rejectUnauthenticated, (req, res) => {
 
     const id = req.body.checked
     console.log('checked is', req.body);

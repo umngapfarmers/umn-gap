@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const pool = require("../modules/pool");
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
-router.get("/", (req, res) => {
+router.get("/", rejectUnauthenticated, (req, res) => {
     console.log('in get harvest year');
     
     pool

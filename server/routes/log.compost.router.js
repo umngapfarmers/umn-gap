@@ -26,7 +26,7 @@ const {
 // });
 
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     console.log(`req.user `, req.user);
     
     let sqlText = `INSERT INTO "compost"

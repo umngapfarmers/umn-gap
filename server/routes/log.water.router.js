@@ -1,9 +1,9 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
-
-router.post('/inspect', (req,res) =>{
+router.post('/inspect', rejectUnauthenticated, (req,res) =>{
     console.log('IN ADD WATER INSPECT LOG');
     const newWaterInspectLog = req.body;
     const harvest_year_id = req.user.current_harvest_year;
@@ -20,7 +20,7 @@ router.post('/inspect', (req,res) =>{
 })
 
 
-router.post('/treat', (req,res) =>{
+router.post('/treat', rejectUnauthenticated, (req,res) =>{
     console.log('IN ADD WATER TREAT LOG');
     const newWaterTreatLog = req.body;
     const harvest_year_id = req.user.current_harvest_year;

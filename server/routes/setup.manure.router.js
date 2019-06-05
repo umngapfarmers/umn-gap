@@ -92,7 +92,7 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 
 })
 
-router.put('/edit', (req, res) => {
+router.put('/edit', rejectUnauthenticated, (req, res) => {
 
     const date = req.body.farm_manure_date
     const name = req.body.farm_manure_description
@@ -109,7 +109,7 @@ router.put('/edit', (req, res) => {
         });
 });
 
-router.put('/disable', (req, res) => {
+router.put('/disable', rejectUnauthenticated, (req, res) => {
 
     const id = req.body.checked
     console.log('checked is', req.body);

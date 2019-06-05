@@ -36,6 +36,8 @@ if (process.env.DATABASE_URL) {
   };
 }
 
+
+
 // this creates the pool that will be shared by all other modules
 const pool = new pg.Pool(config);
 
