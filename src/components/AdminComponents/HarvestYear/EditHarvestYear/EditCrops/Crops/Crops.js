@@ -109,7 +109,8 @@ class Crops extends Component {
                 this.props.dispatch({ type: 'DISABLE_CROP_SOURCE', payload: this.state })
                 this.props.dispatch({ type: 'GET_CROP_SOURCE' });
                 this.setState({
-                    disableDelete: true
+                    disableDelete: true,
+                    checked: []
                 })
             }
         });
