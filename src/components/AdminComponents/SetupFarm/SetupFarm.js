@@ -44,7 +44,6 @@ class SetupFarm extends Component {
 
   render() {
     const {classes} = this.props;
-    console.log(this.state.newFarm)
     return (
 
       <React.Fragment>
