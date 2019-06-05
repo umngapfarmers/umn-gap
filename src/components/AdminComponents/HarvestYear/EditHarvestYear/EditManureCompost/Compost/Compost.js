@@ -44,6 +44,7 @@ class Compost extends Component {
 
     }
 
+    //takes textfield input as the new value for properties within the newLabel state
     handleInputChangeFor = propertyName => (event) => {
         this.setState({
             newLabel: {
@@ -51,6 +52,7 @@ class Compost extends Component {
                 [propertyName]: event.target.value,
             },
         })
+        //if textfields are filled, submit button is enabled
         if (this.state.newLabel.name && this.state.newLabel.description) {
             this.setState({
                 disable: false
@@ -63,6 +65,7 @@ class Compost extends Component {
         }
     }
 
+    //registers textfield input in the edit screen as the new value for properties within the dialogState state
     handleDialogChangeFor = propertyName => (event) => {
         this.setState({
             dialogState: {
@@ -72,6 +75,7 @@ class Compost extends Component {
                 }
             },
         })
+        //disables the submit button if any of the textfields on the edit screen are left blank
         if (event.target.value === '') {
             this.setState({
                 disable: true
@@ -84,11 +88,12 @@ class Compost extends Component {
         }
     }
 
+    //renders data from database on page load via setupCompostSaga
     componentDidMount = () => {
         this.props.dispatch({ type: 'GET_COMPOST_SOURCE' });
-
     }
 
+    //adds textfield inputs to database by calling the setupCompostSaga
     addCropSource = (event) => {
         event.preventDefault();
         this.props.dispatch({ type: 'ADD_COMPOST_EDIT', payload: this.state.newLabel })
@@ -101,6 +106,8 @@ class Compost extends Component {
         })
     }
 
+    //removes seleted water labels by calling the waterSetup saga and then re-rendering the label list
+    // if delete is carried out, delete button is then disabled
     removeCropSource = () => {
         swal({
             title: `Delete (${this.state.checked.length}) manure?`,
@@ -120,23 +127,16 @@ class Compost extends Component {
         });
     }
 
-    counter = () => {
-        const count = this.state.checked.length;
-        if(count > 0){
-            return `Disable Compost (${count})`;
-        }else {
-            return "nothing here"
-
-        }
-    }
-
+    //handles wheter item is checked or not by passing through the farm_compost_id of the item being clicked
+    //checks state.checked for the index of the id being passed thorugh
+    //if id is not already in the array, it gets added. If it is already in the array it gets spliced
+    //delete button is enabled/diabled based on id's presence in array
     handleCheck = value => () => {
         const currentIndex = this.state.checked.indexOf(value)
 
         if (currentIndex === -1) {
             this.setState({
-                ...this.state.checked.push(value)
-                /* checked: [...this.state.checked, value] */,
+                ...this.state.checked.push(value),
                 disableDelete: false
             })
             
@@ -145,8 +145,8 @@ class Compost extends Component {
                 ...this.state.checked.splice(currentIndex, 1),
             
             })
-            console.log('in splice');
         }
+        //diasables delete button is state.checked is empty, enabled otherwise
         if(this.state.checked.length === 0) {
             this.setState({
                 disableDelete: true
@@ -156,9 +156,10 @@ class Compost extends Component {
                 disableDelete: false
             })
         }
-        console.log('state is', this.state.checked);
     }
 
+    //opens the edit window by changing state.setOpen to true
+    //passes through id of item being clicked on, the newLabel state of that id is copied to dialogState so it can be edited
     handleClickOpen = (i) => {
         
         this.setState({
@@ -169,9 +170,10 @@ class Compost extends Component {
             setOpen: true,
             
         })
-        console.log('sate is', this.state.dialogState);
     }
 
+    //closes the dialog (edit) window by clicking the close button, changing state.setOpen to false 
+    //on clicking the update button, any changes made are sent to database by calling the setupCompostSaga and window closes
     handleClose = (event) => {
         if(event.currentTarget.value === "update"){
             this.setState({
@@ -286,15 +288,18 @@ class Compost extends Component {
                                                 <ListItemIcon>
                                                     <Checkbox
                                                         edge="start"
+                                                        //checks for the id in state.checked array of item bing clicked on
+                                                        //if it is present in state.checked, box appears as checked
                                                         checked={this.state.checked.indexOf(compost.farm_compost_id) !== -1}
                                                         tabIndex={-1}
                                                         disableRipple
                                                     />
                                                 </ListItemIcon>
-                                                <ListItemText primary={compost.farm_compost_description+': '+ moment(compost.farm_compost_date).format('MM-DD')}
+                                                <ListItemText primary={compost.farm_compost_name+': '+ moment(compost.farm_compost_date).format('MM-DD')}
                                                     style={{ marginLeft: "-20px"}}/>
                                                 <ListItemSecondaryAction>
                                                 <Button variant="outlined" color="primary" variant="contained"
+                                                    //onClick, the index of the item is passed through
                                                     onClick={event => this.handleClickOpen(i)} 
                                                     value={compost.farm_compost_name}
                                                     style={{ width: '200', maxWidth: 270 }}
