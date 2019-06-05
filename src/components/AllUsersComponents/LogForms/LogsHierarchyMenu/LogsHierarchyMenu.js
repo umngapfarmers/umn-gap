@@ -13,7 +13,7 @@ class LogsHierarchyMenu extends Component {
 
 
 
-
+  // Hierarchy menu for logs-- navigates users to logs that they can complete
   render() {
     const {classes} = this.props;
     return (
