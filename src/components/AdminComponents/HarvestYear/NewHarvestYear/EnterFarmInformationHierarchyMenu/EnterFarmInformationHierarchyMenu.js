@@ -137,7 +137,7 @@ class EnterFarmInformationHierarchyMenu extends Component {
     return (
       <React.Fragment>
       
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h6" gutterBottom align="centerfarminfo">
       Enter Farm Information Hierarchy Menu
       </Typography>
       <Grid container spacing={24}>
