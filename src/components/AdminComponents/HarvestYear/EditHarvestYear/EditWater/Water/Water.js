@@ -114,7 +114,8 @@ class Water extends Component {
                 this.props.dispatch({ type: 'DISABLE_WATER_SOURCE', payload: this.state })
                 this.props.dispatch({ type: 'GET_WATER_SOURCE' });
                 this.setState({
-                    disableDelete: true
+                    disableDelete: true,
+                    checked: []
                 })
             }
         });

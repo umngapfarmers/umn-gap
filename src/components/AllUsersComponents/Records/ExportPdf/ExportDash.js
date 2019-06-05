@@ -89,7 +89,7 @@ class ExportDash extends Component {
                   >
                     <MenuItem disabled>Select Record Harvest Year</MenuItem>
                     {this.props.reduxState.recordyear.map( year =>
-                          <MenuItem value={year.harvest_id} key={year.harvest_id} >{year.harvest_year}</MenuItem>
+                          <MenuItem value={year} key={year.harvest_id} >{year.harvest_year}</MenuItem>
                           )}
                         
                   </TextField> 

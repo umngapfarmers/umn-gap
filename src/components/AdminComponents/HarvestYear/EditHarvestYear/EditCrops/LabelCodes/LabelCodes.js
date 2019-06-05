@@ -122,7 +122,8 @@ class LabelCodes extends Component {
                 this.props.dispatch({ type: 'DISABLE_LABEL_CODE', payload: this.state })
                 this.props.dispatch({ type: 'GET_LABEL_CODE' });
                 this.setState({
-                    disableDelete: true
+                    disableDelete: true,
+                    checked: []
                     
                 })
             }

@@ -184,5 +184,4 @@ CREATE TABLE "water_treatment"
   "harvest_year_id" int references "harvest_year"
 );
 
--- presentation data
 

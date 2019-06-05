@@ -121,7 +121,8 @@ class Compost extends Component {
                 this.props.dispatch({ type: 'DISABLE_COMPOST_SOURCE', payload: this.state })
                 this.props.dispatch({ type: 'GET_COMPOST_SOURCE' });
                 this.setState({
-                    disableDelete: true
+                    disableDelete: true,
+                    checked:[]
                 })
             }
         });
