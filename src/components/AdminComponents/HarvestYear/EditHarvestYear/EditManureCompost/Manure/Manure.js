@@ -117,7 +117,8 @@ class Manure extends Component {
                 this.props.dispatch({ type: 'DISABLE_MANURE_SOURCE', payload: this.state })
                 this.props.dispatch({ type: 'GET_MANURE_SOURCE' });
                 this.setState({
-                    disableDelete: true
+                    disableDelete: true,
+                    checked: []
                 })
             }
         });
