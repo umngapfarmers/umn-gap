@@ -32,16 +32,35 @@ These instructions will get you a copy of the project up and running on your loc
 - [Node.js](https://nodejs.org/en/)
 - [Postico](https://eggerapps.at/postico/)
 - [Postman] (https://www.getpostman.com/)
+- [IDE - Virtual Studio Code Recommended] (https://code.visualstudio.com/)
+- [Heroku - Create Account](https://www.heroku.com/)
+
 
 
 ### Installing
 
 
-1. Download this project.
+1. Download this project
 2. `npm init -y`
-3. `npm install (see above list of technologies built with)`
-4. Have Postico database running via Postgres
+3. `npm install`
+4. Create database in Postico with database name of 'UMN_GAP'
+5. Insert sql-text from gap.sql file located in project root into database sql-query in Postico
+6. Execute sql queries to create tables
+7. In terminal, start postgres server (this will start UMN_GAP database)
+8. In terminal, create development server by typing `npm run client` and `npm run server` (this will run application locally)
 
+### Deploying
+1. Install Heroku CLI by typing brew install heroku in Terminal
+2. Authenticate by typing heroku login in Terminal
+3. In terminal, navigate to your project folder and type heroku create
+4. Type git remote -v to ensure it added successfully
+5. In terminal, type git push heroku master
+6. In terminal, type heroku addons:create heroku-postgresql:hobby-dev to set up Postgresql on your Heroku project
+7. In terminal, type heroku pg:push UMN_GAP DATABASE_URL to copy your database contents up to Heroku. 
+8. If changes are made within the IDE and you want them reflected on Heroku following the following prompts:
+  - git add .
+  - git commit -m "MESSAGE"
+  - git push heroku master
 
 ## Screen Shot
 
