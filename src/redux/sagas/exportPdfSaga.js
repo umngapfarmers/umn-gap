@@ -7,9 +7,9 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 function* getDocDef(action) {
     try {
-        let id = action.payload
-        console.log(`id for record `, id)
-        let result = yield axios.get(`/record/export/${action.payload}`);
+        console.log(`dispatch payload`, action.payload)
+
+        let result = yield axios.post(`/record/export/`, action.payload);
         console.log('result ', result.data)
 
         pdfMake.createPdf(result.data).download();

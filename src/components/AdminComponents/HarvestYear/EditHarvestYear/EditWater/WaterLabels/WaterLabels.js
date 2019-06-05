@@ -116,7 +116,8 @@ class WaterLabels extends Component {
                 this.props.dispatch({ type: 'DISABLE_WATER_LABEL', payload: this.state })
                 this.props.dispatch({ type: 'GET_WATER_LABEL' });
                 this.setState({
-                    disableDelete: true
+                    disableDelete: true,
+                    checked: []
                 })
                 console.log('state is', this.state);
                 

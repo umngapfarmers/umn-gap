@@ -1,9 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
-import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
-import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
@@ -14,6 +12,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import swal from 'sweetalert';
 
 
+// Setting up the Material UI theme
 
 const styles = theme => ({
   container: {
@@ -31,6 +30,9 @@ const styles = theme => ({
   }
 });
 class EditUser extends Component {
+
+    // Setting up the state
+
   constructor(props) {
     super(props);
     this.state = {
@@ -47,20 +49,19 @@ class EditUser extends Component {
   }
 
   componentDidMount = () => {
-    console.log("in component did mount edit user", this.props.editUser);
 
     this.props.dispatch({ type: "FETCH_HARVEST_YEAR" });
   };
 
   componentDidUpdate = prevProps => {
     if (this.props.editUser !== prevProps.editUser) {
-      console.log(`in componentDidUpdate `, this.props.editUser[0]);
 
       this.setState({
         ...this.props.editUser[0]
       });
     }
   };
+  // selected entry from dropdown
 
   handleSelect = property => event => {
     this.setState({ [property]: event.target.value });
@@ -70,24 +71,22 @@ class EditUser extends Component {
     this.setState({
       ...this.state,
       [property]: event.target.value,
-      //workerStatus: true,
       registrationCode: 122090
     });
-    console.log("in handle change", event.target.value);
   };
+  // handles form submit button, sends post dispatch to redux with payload of all selected form inputs + clears form
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log("in handle submit", this.state);
 
     this.props.dispatch({type: "EDIT_USER_PASSWORD", payload: this.state });
   
     this.props.history.push("/manageuser");
   };
+  // handles on submit a new user, sends passwordless action
 
   handleSubmitPasswordless = event => {
     event.preventDefault();
-    console.log("in handlesubmitpasswordless", this.state);
 
     this.props.dispatch({type: "EDIT_USER_PASSWORDLESS", payload: this.state });
   
@@ -95,7 +94,6 @@ class EditUser extends Component {
   };
 
   handleCheck = (event) => {
-    console.log(`in handleCheck`)
     event.preventDefault();
     this.setState({
         ...this.state,
@@ -103,7 +101,7 @@ class EditUser extends Component {
     })
     this.checkChangePassword()
   }
-
+// checking the change of password
   checkChangePassword = (event) =>{
     swal({
       title: "Change Password",
@@ -130,7 +128,7 @@ class EditUser extends Component {
       }
     });
   }
-
+// Function to display Password
   displayPassword = () =>{
     if (this.state.changePassword === true){
       return(
@@ -177,6 +175,7 @@ class EditUser extends Component {
       )
     }
   }
+  // handles form submit button, sends post dispatch to redux with payload of all selected form inputs + clears form
 
   submitButton = () =>{
     if(this.state.changePassword === true){
@@ -193,11 +192,7 @@ class EditUser extends Component {
 
   render() {
     const { classes } = this.props;
-    console.log("selected role", this.props.editUser);
-    console.log("fetch harvest year", this.props.harvestYear);
-    console.log("state edit user ", this.state);
-    console.log("checked is",this.state.checked)
-    console.log('changePassword is', this.state.changePassword);
+    
     return (
       <React.Fragment>
         <NavBar />
@@ -205,9 +200,7 @@ class EditUser extends Component {
           Edit User
         </Typography>
 
-          {/* {JSON.stringify(this.props.editPerson)}
-          {JSON.stringify(this.state.editPerson)}
-          {JSON.stringify(this.props.reduxState)} */}
+          
           <Grid
             container
             spacing={24}

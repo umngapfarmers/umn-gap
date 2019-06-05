@@ -72,7 +72,7 @@ class ManageWorker extends Component {
         );
     }
 }
-
+// Setting up MUI theme
 const styles = theme => ({
     container: {
         display: 'flex',
