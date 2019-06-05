@@ -9,7 +9,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 
 
-router.post('/', async (req, res) => {
+router.post('/', rejectUnauthenticated, async (req, res) => {
 
     const harvestQuery = 
         `SELECT "crop_harvest"."crop_harvest_date" as "harvest date", 
