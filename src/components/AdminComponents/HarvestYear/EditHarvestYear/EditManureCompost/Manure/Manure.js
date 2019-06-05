@@ -45,6 +45,7 @@ class Manure extends Component {
 
     }
 
+    //takes textfield input as the new value for properties within the newLabel state
     handleInputChangeFor = propertyName => (event) => {
         this.setState({
             newLabel: {
@@ -52,7 +53,8 @@ class Manure extends Component {
                 [propertyName]: event.target.value,
             },
         })
-        if (this.state.newLabel.description && this.state.newLabel.label_code) {
+        //if textfields are filled, submit button is enabled
+        if (this.state.newLabel.description && this.state.newLabel.labelCode) {
             this.setState({
                 disable: false
             })
@@ -64,6 +66,7 @@ class Manure extends Component {
         }
     }
 
+    //registers textfield input in the edit screen as the new value for properties within the dialogState state
     handleDialogChangeFor = propertyName => (event) => {
         this.setState({
             dialogState: {
@@ -73,7 +76,8 @@ class Manure extends Component {
                 }
             },
         })
-       /*  if (event.target.value === '') {
+        //disables the submit button if any of the textfields on the edit screen are left blank
+        if (event.target.value === '') {
             this.setState({
                 disable: true
             })
@@ -82,15 +86,16 @@ class Manure extends Component {
             this.setState({
                 disable: false
             })
-        } */
+        }
     }
 
+    //renders data from database on page load via setupManureSaga
     componentDidMount = () => {
         this.props.dispatch({ type: 'GET_LABEL_CODE' });
         this.props.dispatch({ type: 'GET_MANURE_SOURCE' });
-        console.log('length is', this.state.checked.length);
     }
 
+    //adds textfield inputs to database by calling the setupManureSaga
     addCropSource = (event) => {
         event.preventDefault();
         this.props.dispatch({ type: 'ADD_MANURE_EDIT', payload: this.state.newLabel })
@@ -104,6 +109,8 @@ class Manure extends Component {
         })
     }
 
+    //removes seleted water labels by calling the setupManureSaga and then re-rendering the manure list
+    // if delete is carried out, delete button is then disabled
     removeCropSource = () => {
         swal({
             title: `Delete (${this.state.checked.length}) manure?`,
@@ -124,16 +131,10 @@ class Manure extends Component {
         });
     }
 
-    counter = () => {
-        const count = this.state.checked.length;
-        if(count > 0){
-            return `Disable Manure (${count})`;
-        }else {
-            return "nothing here"
-
-        }
-    }
-
+    //handles wheter item is checked or not by passing through the farm_water_id of the item being clicked
+    //checks state.checked for the index of the id being passed thorugh
+    //if id is not already in the array, it gets added. If it is already in the array it gets spliced
+    //delete button is enabled/diabled based on id's presence in array
     handleCheck = value => () => {
         const currentIndex = this.state.checked.indexOf(value)
 
@@ -149,8 +150,8 @@ class Manure extends Component {
                 ...this.state.checked.splice(currentIndex, 1),
             
             })
-            console.log('in splice');
         }
+        //diasables delete button is state.checked is empty, enabled otherwise
         if(this.state.checked.length === 0) {
             this.setState({
                 disableDelete: true
@@ -160,9 +161,10 @@ class Manure extends Component {
                 disableDelete: false
             })
         }
-        console.log('state is', this.state.checked);
     }
 
+    //opens the edit window by changing state.setOpen to true
+    //passes through id of item being clicked on, the newLabel state of that id is copied to dialogState so it can be edited
     handleClickOpen = (i) => {
         
         this.setState({
@@ -176,6 +178,8 @@ class Manure extends Component {
         console.log('sate is', this.state.dialogState);
     }
 
+    //closes the dialog (edit) window by clicking the close button, changing state.setOpen to false 
+    //on clicking the update button, any changes made are sent to database by calling the setupCompostSaga and window closes
     handleClose = (event) => {
         if(event.currentTarget.value === "update"){
             this.setState({
@@ -310,6 +314,8 @@ class Manure extends Component {
                                                 <ListItemIcon>
                                                     <Checkbox
                                                         edge="start"
+                                                        //checks for the id in state.checked array of item bing clicked on
+                                                        //if it is present in state.checked, box appears as checked
                                                         checked={this.state.checked.indexOf(manure.farm_manure_id) !== -1}
                                                         tabIndex={-1}
                                                         disableRipple
@@ -319,6 +325,7 @@ class Manure extends Component {
                                                     style={{ marginLeft: "-20px"}}/>
                                                 <ListItemSecondaryAction>
                                                 <Button variant="outlined" color="primary" variant="contained"
+                                                    //onClick, the index of the item is passed through 
                                                     onClick={event => this.handleClickOpen(i)} 
                                                     value={manure.label_code_text}
                                                     style={{ width: '200', maxWidth: 270 }}
@@ -377,8 +384,8 @@ class Manure extends Component {
                                     label="Application Rate" 
                                     variant="outlined" 
                                     color="primary"
-                                    onChange={this.handleDialogChangeFor('farm_manure_rate')}
                                     value={this.state.dialogState.array.farm_manure_rate}
+                                    onChange={this.handleDialogChangeFor('farm_manure_rate')}
                                     style={{ marginRight: 10, marginBottom: 30, width: 180, }}
                                 >
                                 </TextField>
@@ -387,8 +394,8 @@ class Manure extends Component {
                                         label="Crop Label Manure is Applied To"
                                         variant="outlined"
                                         color="primary"
-                                        onChange={this.handleDialogChangeFor('label_code_id')}
                                         value={this.state.dialogState.array.label_code_id}
+                                        onChange={this.handleDialogChangeFor('label_code_id')}
                                         style={{ marginRight: 10, marginBottom: 30, width: 180, }}
                                         select
                                     >
