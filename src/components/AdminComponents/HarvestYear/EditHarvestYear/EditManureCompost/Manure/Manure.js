@@ -52,7 +52,7 @@ class Manure extends Component {
                 [propertyName]: event.target.value,
             },
         })
-        if (this.state.newLabel.description && this.state.newLabel.labelCode) {
+        if (this.state.newLabel.description && this.state.newLabel.label_code) {
             this.setState({
                 disable: false
             })
@@ -229,34 +229,6 @@ class Manure extends Component {
                         </FormControl>
                     </Grid>
 
-                    <Grid item xs={12}>
-                        <FormControl>
-                            <TextField
-                                label="Describe Manure"
-                                variant="outlined"
-                                color="primary"
-                                onChange={this.handleInputChangeFor('description')}
-                                value={this.state.newLabel.description}
-                                multiline
-                                helperText='Required'
-                                style={{ width: '80vw', maxWidth: 400 }}
-                            >
-                            </TextField>
-                        </FormControl>
-                    </Grid>
-
-                    <Grid item xs={12} sm={6}>
-                        <TextField 
-                            label="Application Rate" 
-                            variant="outlined" 
-                            color="primary"
-                            onChange={this.handleInputChangeFor('rate')}
-                            value={this.state.newLabel.rate}
-                            style={{ width: '80vw', maxWidth: 400, }}
-                        >
-                        </TextField>
-                    </Grid>
-
                     <Grid item xs={12} sm={6} >
                         <FormControl>
                             <TextField
@@ -275,6 +247,34 @@ class Manure extends Component {
                                 ))}
                             </TextField>
                         </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <FormControl>
+                            <TextField
+                                label="Describe Manure"
+                                variant="outlined"
+                                color="primary"
+                                onChange={this.handleInputChangeFor('description')}
+                                value={this.state.newLabel.description}
+                                multiline
+                                helperText='Required'
+                                style={{ width: '80vw', maxWidth: 400 }}
+                            >
+                            </TextField>
+                        </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                        <TextField
+                            label="Application Rate"
+                            variant="outlined"
+                            color="primary"
+                            onChange={this.handleInputChangeFor('rate')}
+                            value={this.state.newLabel.rate}
+                            style={{ width: '80vw', maxWidth: 400, }}
+                        >
+                        </TextField>
                     </Grid>
 
                     <Grid item xs={12} sm={6}>

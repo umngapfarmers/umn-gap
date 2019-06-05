@@ -108,7 +108,8 @@ class Fields extends Component {
                 this.props.dispatch({ type: 'DISABLE_FIELD_SOURCE', payload: this.state })
                 this.props.dispatch({ type: 'GET_FIELD_SOURCE' });
                 this.setState({
-                    disableDelete: true
+                    disableDelete: true,
+                    checked: []
                 })
             }
         });
