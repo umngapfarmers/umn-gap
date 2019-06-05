@@ -18,7 +18,6 @@ class ManageUserAccounts extends Component {
   state= {
     
   }
-
   componentDidMount(){
       this.props.dispatch({type: 'GET_ALL_USERS'})
   }
