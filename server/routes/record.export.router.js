@@ -3,19 +3,17 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const moment = require('moment');
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
-/**
- * GET route template
- */
 
 
-
+// recieves selectedHarvest object containing the pkey, harvest year, and farm id
+// returns a document definition for pdf make
 router.post('/', rejectUnauthenticated, async (req, res) => {
 
+    // queries for all get requests
     const harvestQuery = 
         `SELECT "crop_harvest"."crop_harvest_date" as "harvest date", 
             "crop_harvest"."crop_harvest_amount" as "harvest amount", 
-            "person"."person_first" as "sig first", 
-            "person"."person_last" as "sig last", 
+            concat("person"."person_first", ' ' , "person"."person_last") as "signature",
             "label_code"."label_code_text" as "label code"
             FROM "crop_harvest" 
             JOIN "label_code" ON "crop_harvest"."label_code_id" = "label_code"."label_code_id" 
@@ -30,12 +28,9 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
             "compost"."test_area_2_temp"as "area 2 temp", 
             "compost"."test_area_3_temp" as "area 3 temp", 
             "compost"."test_area_4_temp" as "area 4 temp", 
-            "person"."person_first"as "sig first", 
-            "person"."person_last" as "sig last" 
- 
+            concat("person"."person_first", ' ' , "person"."person_last") as "signature"
             FROM "compost" 
             JOIN "farm_compost" on "farm_compost"."farm_compost_id" = "compost"."farm_compost_id"
- 
             JOIN "person" on "compost"."compost_sig" = "person"."person_id" 
             WHERE "compost"."harvest_year_id" = $1 
             ORDER BY "compost"."compost_date" ASC;`
@@ -83,46 +78,80 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
             JOIN "label_code" on "label_code"."label_code_id" = "farm_water"."label_code_id"
             WHERE "farm_water"."harvest_year_id" = $1;`
 
+    const trainingQuery = 
+        `SELECT "employee_training"."topic",
+            concat("person"."person_first", ' ' , "person"."person_last") as "name",
+
+            "employee_training"."trainer_name" as "trainer",
+            "employee_training"."date_trained" as "date trained"
+            FROM "employee_training"
+            JOIN "person" on "employee_training"."person_id" = "person"."person_id"
+            WHERE "employee_training"."harvest_year_id"=$1;`
+
+    const waterInspectionQuery = 
+        `SELECT "water_inspection"."inspection_date" as "date",
+            "farm_water_source"."farm_water_source_name" as "source",
+            "water_inspection"."distribution" as "distribution",
+            "water_inspection"."observation" as "observation",
+            "water_inspection"."inspection_corrective_action" as "corrective action",
+            concat("person"."person_first", ' ' , "person"."person_last") as "signature"
+            FROM "water_inspection"
+            JOIN "farm_water_source" on "farm_water_source"."farm_water_source_id" = "water_inspection"."inspection_water_source"
+            JOIN "person" on "person"."person_id" = "water_inspection"."inspection_signature"
+            WHERE "water_inspection"."harvest_year_id" = $1;`
+
+    const waterTreatmentQuery = 
+        `SELECT "water_treatment"."treatment_date" as "date",
+            "farm_water_source"."farm_water_source_name" as "source",
+            "water_treatment"."water_ph" as "pH",
+            "water_treatment"."water_temp" as "temp",
+            "water_treatment"."turbidity" as "turbidity",
+            "water_treatment"."sanitizer" as "sanitizer",
+            "water_treatment"."corrective_action" as "corrective action",
+            concat("person"."person_first", ' ' , "person"."person_last") as "signature" 
+            FROM "water_treatment" 
+            JOIN "farm_water_source" on "farm_water_source"."farm_water_source_id" = "water_treatment"."farm_water_source_id" 
+            JOIN "person" on "person"."person_id" = "water_treatment"."treatment_sig" 
+            WHERE "water_treatment"."harvest_year_id" = $1;`
+
+    
+
+    // farm information for pdf header
     const farmQuery = `SELECT * FROM "farm_registry" WHERE "farm_id" = $1;`
     
 
-
+    // will loop through the query result and reformat for pdfmake display
+    // calls typeCheck to parse bool and date formats
+    // flattens object into array of values for pdfmaker
+    // returns array of values
     processArray = (data) => {
-        // will loop through the query result and reformat for pdfmake display
-        // calls typeCheck to parse bool and date formats
-        // flattens object into array of values for pdfmaker
-        // returns array of values
-        // console.log(`in processArray `, data)
+
 
         let result = [];
         let columnNames = Object.keys(data[0]);
         result.push(columnNames);
         for (row of data) {
-            // console.log(`row `, row);
             let rowValues = Object.values(row);
 
             for (let i = 0; i < rowValues.length; i++) {
                 rowValues[i] = typeCheck(rowValues[i])
-                // console.log('after typeCheck values ', rowValues[i])
             }
             result.push(rowValues);
         }
-        //console.log(`processArray result `, result)
 
         return result
     }
 
+    // called on each table cell in processArray
+    // takes in value and checks for date or bool type
+    // if date or bool converts to readable format and returns
+    // otherwise returns original value
     typeCheck = (value) => {
-        // called on each table cell in processArray
-        // takes in value and checks for date or bool type
-        // if date or bool converts to readable format and returns
-        // otherwise returns original value
+
         if (!Number.isNaN(value) || moment(value, 'YYYY-MM-DD').isValid()) {
             if (moment(value, 'YYYY-MM-DD', true).isValid()) {
-                // console.log('is date', value);
                 return moment(value).format('YYYY-MM-DD')
             } else if ((typeof (value)) === 'boolean') {
-                // console.log(`is bool`, value);
                 if(value===true){
                     return 'X'
                 }
@@ -130,20 +159,19 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
                     return ' '
                 }
             } else {
-                // console.log(`is date or bool `, value);
                 return value
             }
         }
         else{
-            // console.log('is a number', value)
             return value
         }
     }
 
+    // checks if data table is empty
+    // takes in data table and the table title
+    // if first position in .rows is truthy then call processArray and createTableDef
+    // returns tableDef which is called in docDef and is ultimatley rendereded by pdfMake
     getTable = (getResponse, tableName) => {
-        // checks if data table is empty, if this doesn't exist transaction will fail on empty rows
-        // if first position in .rows is truthy then call processArray and createTableDef
-        // returns tableDef which is to be called in docDef which is ultimatley rendereded by pdfMake
         let processedData = [];
         let tableDef = [];
         if (getResponse.rows[0]) {
@@ -153,15 +181,15 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
         return tableDef
     }
 
+
+    // creates array which is readable by pdfmake
+    // creates a widths object, currently all widths have to be the same
+    // returns array with a style object, a table content object, and an empty line for spacing 
     createTableDef = (values, tableName) => {
-        // creates array which is readable by pdfmake
-        // creates a widths object, currently all widths have to be the same
-        // returns array with a style object, a table content object, and an empty line for spacing 
         let widths= [];
         for (column in values[0]){
             widths.push('*')
         }
-        // console.log(`widths `, widths);
         
         let tableObj= {
             widths, 
@@ -169,7 +197,7 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
                 body:values,
             }
         };
-
+        console.log('tableDef ', tableName)
         return [
                     {
                         text: tableName, 
@@ -180,18 +208,22 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
                 ]
     }
 
-    console.log(`in export `, req.user);
     const client = await pool.connect();
 
     let selectedHarvest = req.body
-    console.log(`selected harvest `, selectedHarvest)
     let harvestId = selectedHarvest.harvest_id;
     let harvestYear = selectedHarvest.harvest_year
     let farmId = req.user.farm_registry_id;
 
     try{
+        console.log(`in record export`);
+        
 
         await client.query('BEGIN')
+
+
+        let waterTreatmentRes = await client.query(waterTreatmentQuery, [harvestId]);
+        let waterTreatmentDef = getTable(waterTreatmentRes, 'Water Treatment');
 
         let harvestRes = await client.query(harvestQuery, [harvestId]);
         let harvestDef = getTable(harvestRes, 'Harvest');
@@ -206,7 +238,7 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
         let labelCodeDef = getTable(labelCodeRes, 'Label Codes')
 
         let farmManureRes = await client.query(farmManureQuery, [harvestId]);
-        let farmManureDef = getTable(farmManureRes, 'Farm Manure');
+        let farmManureDef = getTable(farmManureRes, 'Manure');
 
         let farmWaterRes = await client.query(farmWaterSourceQuery, [harvestId]);
         let farmWaterDef = getTable(farmWaterRes, 'Water Sources');
@@ -214,15 +246,18 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
         let farmWaterAppRes = await client.query(farmWaterQuery, [harvestId]);
         let farmWaterAppDef = getTable(farmWaterAppRes, 'Water Application');
 
+        let trainingRes = await client.query(trainingQuery, [harvestId]);
+        let trainingDef = getTable(trainingRes, 'Employee Training');
+
+
+
+        let waterInspectionRes = await client.query(waterInspectionQuery, [harvestId]);
+        let waterInspectionDef = getTable(waterInspectionRes, 'Water Inspection');
+
         let farmInfo = await client.query(farmQuery, [farmId])
         farmInfo=farmInfo.rows[0]
-        console.log(`farmInfo `, farmInfo, farmId);
-
         
-
-
-        // console.log(`harvest response `, harvestRes);
-        
+        // the document definition, read by pdfMake to render pdf
         docDef = {
             pageOrientation: 'landscape',
             content: [
@@ -243,7 +278,18 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
                     text: `${farmInfo.city}, ${farmInfo.state} ${farmInfo.zip_code}`,
                     style: 'subheader'
                 }
-            ].concat(labelCodeDef, harvestDef, farmManureDef, farmCompostDef, compostLogDef, farmWaterDef, farmWaterAppDef),
+            ].concat(
+                labelCodeDef, 
+                harvestDef, 
+                farmManureDef, 
+                farmCompostDef, 
+                compostLogDef, 
+                farmWaterDef, 
+                farmWaterAppDef,
+                waterInspectionDef,
+                waterTreatmentDef,
+                trainingDef
+                ),
             styles: {
                 header: {
                     fontSize: 18,
@@ -259,12 +305,10 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
                 }
             }
         }
-        console.log(`docDef `, docDef.content);
         
         res.send(docDef);
     } catch (error) {
         await client.query('ROLLBACK')
-        console.log('Error harvest year export', error);
         res.sendStatus(500);
     } finally {
         client.release()
