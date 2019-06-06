@@ -1,14 +1,12 @@
 import React , { Component } from 'react';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { withRouter } from 'react-router-dom';
 
 class LogoutButton extends Component {
 
+  //FUNCTION- dispatches logout which logouts user and navigates user to login page
   handleLogout = () => {
-    console.log('in handleLogout');
-   
    this.props.dispatch({ type: 'LOGOUT' });
    this.props.history.push('/');
   }
