@@ -21,6 +21,7 @@ class  CompostPileRecord extends Component {
     this.props.dispatch({type:'GET_HARVEST_YEAR'});
   }
 
+   //FUNCTION- handles change of text fields-- sets state to user inputed values 
   handleChange = propertyName => {
     return event => {
       this.setState({
@@ -30,10 +31,14 @@ class  CompostPileRecord extends Component {
       }
     }
 
+
+    //FUNCTION - on click of submit button- prevents refresh of page-- dispatches payload of state to database to get data based on selected harvest year
     handleSubmit = () => {
       this.props.dispatch({type:'GET_RECORD_COMPOST_PILE', payload: this.state.selectHarvestYear})
     }
 
+    //FUNCTION- validation- conditionally renders submit button based on status of state-- if state contains values then submit button is enabled,
+    // if state does not contain values then submit button is disabled (user cannot submit)
     handleError = () => {
       if(this.state.selectHarvestYear !== ''){
         return (
@@ -48,12 +53,6 @@ class  CompostPileRecord extends Component {
         )
       }
     }
-
-
-
-  
-
-
 
   render() {
     const {classes} = this.props;
