@@ -40,14 +40,12 @@ class SelectNewHarvestYearDate extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log('in handleSubmit');
     this.props.dispatch({type:'ADD_HARVEST_YEAR', payload: this.state.newHarvestYear});
     this.props.dispatch({type:'SET_TO_LOGIN_MODE'});
     this.props.history.push('/newfarminfo')
   }
 
 handleError = () => {
-  console.log('in handleError');
   if(this.state.newHarvestYear.harvest_year !== ''){
   return ( 
     <Button size="large" color="primary" onClick={this.handleSubmit} >Submit</Button>
@@ -64,7 +62,6 @@ else{
 
   render() {
     const {classes} = this.props;
-    console.log(this.state.newHarvestYear);
     return (
         <React.Fragment>
         <Typography variant="h6" gutterBottom align="center" className={classes.title}>

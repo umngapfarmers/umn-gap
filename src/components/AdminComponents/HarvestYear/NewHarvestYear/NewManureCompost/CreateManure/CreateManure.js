@@ -74,23 +74,18 @@ class CreateManure extends Component {
   }
 
   validateFilled = () => {
-    console.log('validation')
     if (this.state.farm_manure_description && this.state.label_code_id) {
-      console.log(`valdiated`)
       return false
     }
     else {
-      console.log(`unvalidated`);
       
       return true
     }
   }
   
   render() {
-    // console.log(`state in createManure form `, this.state);
     
     const {classes} = this.props;
-    console.log(this.props.reduxState.user);
     return (
       <React.Fragment>
       <Typography variant="h6" gutterBottom align="center">

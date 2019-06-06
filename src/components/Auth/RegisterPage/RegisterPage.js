@@ -30,7 +30,6 @@ class RegisterPage extends Component {
   };
   registerUser = (event) => {
     event.preventDefault();
-    console.log('in registerUser');
     if (this.state.newUser.username && this.state.newUser.password) {
       this.props.dispatch({
         type: 'REGISTER',
@@ -79,7 +78,6 @@ class RegisterPage extends Component {
 
   render() {
     const {classes} = this.props;
-    console.log(this.state.newUser)
     return (
 
       <React.Fragment>
