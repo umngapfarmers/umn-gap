@@ -26,6 +26,7 @@ class CreateManure extends Component {
     farm_manure_status: true
   }
 
+  // sets state when form is changed
   handleChangeFor = property => event => {
     this.setState({
         ...this.state,
@@ -33,11 +34,14 @@ class CreateManure extends Component {
     })
   }
 
+  // on component mount get label codes, sets lable code reducer
+  // gets manure sources, sest manure source reducer
   componentDidMount(){
     this.props.dispatch({type: 'GET_LABEL_CODE', payload:{harvest_year_id: this.props.reduxState.user.current_harvest_year}})
     this.props.dispatch({type:'GET_MANURE_SOURCE'}) 
   }
 
+  // when form is submitted, dispatches state to saga and posts form data
   onSubmitManure = () => {
     this.props.dispatch({type: 'ADD_MANURE_SOURCE', payload:{...this.state}});
     this.setState({
@@ -58,6 +62,7 @@ class CreateManure extends Component {
     this.props.history.push('/fertilizerdash');
   }
 
+  // renders the list of manure sources if the reduxstate is filled
   toRenderList = (list) => {
     let listEl = null
     if (list.length>0){
@@ -73,6 +78,7 @@ class CreateManure extends Component {
     return listEl
   }
 
+  // if the state is filled then the add manure button enables
   validateFilled = () => {
     if (this.state.farm_manure_description && this.state.label_code_id) {
       return false
