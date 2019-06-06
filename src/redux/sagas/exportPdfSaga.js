@@ -7,15 +7,12 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 function* getDocDef(action) {
     try {
-        console.log(`dispatch payload`, action.payload)
 
         let result = yield axios.post(`/record/export/`, action.payload);
-        console.log('result ', result.data)
 
         pdfMake.createPdf(result.data).download();
 
     } catch (error) {
-        console.log('ERROR exporting records', error);
         alert(`Sorry! Was unable to export records! Try again later.`)
     }
 }

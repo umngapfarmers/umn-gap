@@ -5,7 +5,6 @@ function* importHarvest(action) {
     try {
         yield axios.post('/import', action.payload)
     } catch (err) {
-        console.log(`couldn't import previous harvest Year`, err);
     }
 }
 

@@ -57,7 +57,6 @@ class HarvestLog extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log('in handleSubmit');
     this.props.dispatch({type:'ADD_HARVEST_LOG', payload: this.state.newHarvestLog});
     this.props.history.push('/logdashboard')
   }
@@ -67,7 +66,6 @@ class HarvestLog extends Component {
 
   render() {
     const {classes} = this.props;
-    console.log(this.state.newHarvestLog);
     return (
       <React.Fragment>
         <Nav/>

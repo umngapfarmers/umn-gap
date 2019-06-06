@@ -10,7 +10,6 @@ function* addCompostLog(action) {
         yield axios.post('/log/compost', action.payload);
 
     } catch (error) {
-        console.log('ERROR IN addCompostLog POST', error);
         alert(`Sorry! Was unable to add compost log! Try again later.`)
     }
 }

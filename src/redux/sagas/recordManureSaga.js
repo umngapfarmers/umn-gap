@@ -3,21 +3,18 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 
 function* getManureRecordSaga(action){
-    console.log('in getManureRecordSaga')
     try{
         let result = yield axios.get(`/record/manure/?harvest_year=${action.payload}`);
         yield put({type: 'SET_RECORD_MANURE', payload: result.data})
 
     }
     catch (error){
-        console.log('ERROR IN GET RECORD MANURE ', error);
         alert(`Sorry! Was unable to get manure record! Try again later.`)
     }
 }
 
 
 function* recordManureSaga() {
-//   yield takeLatest('ADD_FARM', addFarmSaga);
   yield takeLatest('GET_RECORD_MANURE', getManureRecordSaga);
 }
 

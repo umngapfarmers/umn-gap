@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 class LogoutButton extends Component {
 
   handleLogout = () => {
-    console.log('in handleLogout');
+    // console.log('in handleLogout');
    
    this.props.dispatch({ type: 'LOGOUT' });
    this.props.history.push('/');
