@@ -11,14 +11,7 @@ import Nav from '../Nav/Nav';
 
 class WorkerDashboard extends Component {
 
-
-  state= {
-    
-  }
-
-
-
-
+  //renders workerdashboard
   render() {
     const {classes} = this.props;
     return (

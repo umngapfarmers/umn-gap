@@ -38,7 +38,6 @@ class CreateWaterSources extends Component {
 
   addWaterSource = (event) => {
     event.preventDefault();
-    console.log('New water');
     this.props.dispatch({type:'ADD_WATER_SOURCE', payload: this.state.newWaterSource})
     this.setState({
       newWaterSource: {
@@ -51,7 +50,6 @@ class CreateWaterSources extends Component {
   
   removeWaterSource = (event) => {
     event.preventDefault();
-    console.log('Remove water');
     this.props.dispatch({ type: 'DELETE_WATER_SOURCE', payload: event.currentTarget.name })
   }
 

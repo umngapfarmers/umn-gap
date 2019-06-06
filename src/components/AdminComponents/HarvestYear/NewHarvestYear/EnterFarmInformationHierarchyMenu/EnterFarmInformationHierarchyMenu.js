@@ -133,11 +133,10 @@ class EnterFarmInformationHierarchyMenu extends Component {
     }
 
 
-    console.log(this.props.reduxState.user);
     return (
       <React.Fragment>
       
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h6" gutterBottom align="centerfarminfo">
       Enter Farm Information Hierarchy Menu
       </Typography>
       <Grid container spacing={24}>

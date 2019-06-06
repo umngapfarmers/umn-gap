@@ -26,6 +26,8 @@ class WaterInspectionLog extends Component {
     }
   }
 
+    //FUNCTION- validation- conditionally renders submit button based on status of state-- if state contains values then submit button is enabled,
+  // if state does not contain values then submit button is disabled (user cannot submit)
   handleError = () => {
     if (this.state.newWaterInspectLog.inspection_date !== '' && this.state.newWaterInspectLog.inspection_water_source !== '' && 
     this.state.newWaterInspectLog.inspection_signature !== '') {
@@ -37,15 +39,20 @@ class WaterInspectionLog extends Component {
     return(
       <Button variant="contained" color="primary" style={{width:'80vw', maxWidth:400}} disabled>Submit</Button>
     )
-  }
+    }
   }
 
+  //FUNCTION-- on initialization of page-- dispatch GET_PERSON to get employees from DB , store them in reducer, populate drop down menu
+  // GET_LABEL_CODE to get label codes from DB, store them in reducer, populate drop down menu
+  //GET_WATER_SOURCE to get water sources from DB, store them in reducer, populate drop down menu for water sources
   componentDidMount(){
     this.props.dispatch({type: 'GET_LABEL_CODE'});
     this.props.dispatch({type: 'GET_PERSON'});
     this.props.dispatch({type: 'GET_WATER_SOURCE'})
   }
 
+
+    //FUNCTION- handles change of text fields-- sets state to user inputed values 
   handleChange = (propertyName) => {
     return (event) => {
       this.setState({
@@ -57,9 +64,10 @@ class WaterInspectionLog extends Component {
     }
   }
 
+      //FUNCTION - on click of submit button- prevents refresh of page-- dispatches payload of state to database to create new water inspection log,
+  // navigates user to logs dashboard
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log('in handleSubmit');
     this.props.dispatch({type: 'ADD_RECORD_WATER_INSPECT', payload: this.state.newWaterInspectLog})
     this.props.history.push('/logdashboard');
   }
@@ -69,7 +77,6 @@ class WaterInspectionLog extends Component {
 
   render() {
     const {classes} = this.props;
-    console.log(this.state.newWaterInspectLog);
     return (
       <React.Fragment>
         <Nav/>

@@ -21,7 +21,7 @@ class SetupFarm extends Component {
     },
   };
 
-
+  //FUNCTION- handles change of text fields-- sets state to user inputed values 
   handleInputChangeFor = propertyName => (event) => {
     this.setState({
       newFarm: {
@@ -31,9 +31,10 @@ class SetupFarm extends Component {
     });
   }
 
+  //FUNCTION - on click of submit button- prevents refresh of page-- dispatches payload of state to database to create new farm, sets user to login mode
+  // navigates user to admin dashboard
   handleSubmit = event => {
     event.preventDefault();
-    console.log('in handleSubmit');
     this.props.dispatch({type: 'ADD_FARM', payload: this.state.newFarm});
     this.props.dispatch({type: 'SET_TO_LOGIN_MODE'});
     this.props.history.push('/');
@@ -43,7 +44,6 @@ class SetupFarm extends Component {
 
   render() {
     const {classes} = this.props;
-    console.log(this.state.newFarm)
     return (
 
       <React.Fragment>

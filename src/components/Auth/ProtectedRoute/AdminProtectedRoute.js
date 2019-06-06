@@ -25,7 +25,6 @@ const AdminProtectedRoute = (props) => {
   } = props;
 
   let ComponentToShow;
-  console.log('otherProps is:', otherProps);
 
     //CONDITIONAL-- checks user permisisons and determines route paths based on permission
   if(user.user_id && user.user_role ==='admin') {

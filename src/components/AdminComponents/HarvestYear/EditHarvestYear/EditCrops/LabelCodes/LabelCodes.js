@@ -186,7 +186,6 @@ class LabelCodes extends Component {
             swal("Changes Saved!", "", "success");
             this.props.dispatch({ type: "EDIT_LABEL_CODE", payload: this.state.dialogState.array })
             this.props.dispatch({ type: "GET_LABEL_CODE" })
-            console.log('id is', this.state.dialogState);
 
         } else {
             this.setState({

@@ -14,10 +14,9 @@ const moment = require('moment');
 
 class CompostTurningRecordTable extends Component {
 
-
+    //FUNCTION- toggles the check of the checkbox
     displayCompostTurn = (compost_turned) => {
         if (compost_turned == true){
-            console.log('in if true statement')
             return (
             <Typography>Yes</Typography>
             )
@@ -28,15 +27,11 @@ class CompostTurningRecordTable extends Component {
                 <Typography>No</Typography>
                 )
         }
-        else{
-            (console.log('IM IN THE ELSE', this.props.reduxState));
-        }
     }
 
-
+  //maps through reducer to create table that displays selected harvest year data based on selected record
   render() {
     const { classes} = this.props;
-
     return (
         <div style={{overflow : 'auto',fontSize: '14px'}}>
         <Table className={classes.table}

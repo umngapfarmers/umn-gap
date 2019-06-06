@@ -175,7 +175,6 @@ class Manure extends Component {
             setOpen: true,
             
         })
-        console.log('sate is', this.state.dialogState);
     }
 
     //closes the dialog (edit) window by clicking the close button, changing state.setOpen to false 
@@ -189,7 +188,6 @@ class Manure extends Component {
             swal("Changes Saved!", "", "success");
             this.props.dispatch({ type: "EDIT_MANURE_SOURCE", payload: this.state.dialogState.array })
             this.props.dispatch({ type: "GET_LABEL_CODE" })
-            console.log('id is', this.state.dialogState);
 
         } else {
             this.setState({

@@ -12,13 +12,7 @@ import Nav from '../../../Nav/Nav';
 class SelectWaterLog extends Component {
 
 
-  state= {
-    
-  }
-
-
-
-
+  //SelectWaterLog allows user to navigate to which water log they would like to complete
   render() {
     const {classes} = this.props;
     return (

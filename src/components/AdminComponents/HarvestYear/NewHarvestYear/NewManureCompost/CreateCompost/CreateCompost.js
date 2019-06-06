@@ -55,23 +55,18 @@ class CreateCompost extends Component {
   }
 
   validateFilled = () => {
-    console.log('validation')
     if (this.state.farm_compost_name) {
-      console.log(`valdiated`)
       return false
     }
     else {
-      console.log(`unvalidated`);
       
       return true
     }
   }
   
   render() {
-    console.log(`state in creat compost form `, this.state);
     
     const {classes} = this.props;
-    console.log(this.props.reduxState.user);
     return (
       <React.Fragment>
       <Typography variant="h6" gutterBottom align="center">
