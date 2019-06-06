@@ -13,6 +13,7 @@ class LoginPage extends Component {
     password: '',
   };
 
+  //FUNCTION - prevents page from refreshing-- if username and password are true- dispatches login with payload of username and password otherwise throw error
   login = (event) => {
     event.preventDefault();
 
@@ -29,6 +30,7 @@ class LoginPage extends Component {
     }
   } // end login
 
+   //FUNCTION- handles change of text fields-- sets state to user inputed values 
   handleInputChangeFor = propertyName => (event) => {
     this.setState({
       [propertyName]: event.target.value,
