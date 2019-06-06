@@ -97,7 +97,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 
 ## Authors
-Walter Benson
-Chris Borgen
-Lili Bourgeois
-Kashif Siddiqui
+- [Walter Benson](https://github.com/wabens)
+- [Chris Borgen](https://github.com/borgen_12)
+- [Lili Bourgeois](https://github.com/lbourgeois90)
+- [Kashif Siddiqui](https://github.com/kashsid)
