@@ -68,7 +68,7 @@ class EditEmployee extends Component {
       ...this.state,
       [property]: event.target.value,
       workerStatus: true,
-      registrationCode: 122090
+      registrationCode: 1086420
     });
     console.log("in handle change", event.target.value);
   };
