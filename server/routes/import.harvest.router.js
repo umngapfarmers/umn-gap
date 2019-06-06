@@ -7,7 +7,6 @@ const router = express.Router();
 
 router.post('/', rejectUnauthenticated, async (req, res) => {
     const client = await pool.connect();
-    console.log('in import harvest');
     const harvest_year_id = 1;   // CHANGE ME -----------
 
     const newHarvest = req.body;
@@ -50,13 +49,10 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
     // after item is mutated it is posted to the db
     // params are list to mutate, the property holding id for specfic table, insertQuery for specific table, and property keys for list item values
     const changeAndPost = (list, idKey, insertQuery, keys, newHarvestId) => {
-        console.log(`tochange `, list);
         for (item of list) {
-
             // change harvest years
             item.harvest_year_id = newHarvestId;
             let values = keys.map(key => item[key])
-            console.log(`new values `, values);
             client.query(insertQuery, values)
         }
     }
@@ -95,7 +91,7 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
         res.sendStatus(200);
     } catch (error) {
         await client.query('ROLLBACK')
-        console.log('Error harvest year import', error);
+        console.log('Error harvest year import');
         alert("That didn't work, please try again")
         res.sendStatus(500);
     } finally {

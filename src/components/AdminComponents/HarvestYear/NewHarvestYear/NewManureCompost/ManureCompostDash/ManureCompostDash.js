@@ -20,6 +20,7 @@ class ManureCompostDash extends Component {
 
     navToNewFarmInfo = () => {
         this.props.history.push('/newfarminfo');
+        // unlocks next menu in farm setup
         this.props.dispatch({type: 'SET_MENU_BOOLEAN', payload: 2})
     }
 
