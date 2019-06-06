@@ -28,13 +28,15 @@ class CreateLabelCodes extends Component {
     disableNext:true
     
   }
-
+  //renders crop and field information on page load for drop down selects
   componentDidMount = () => {
     this.props.dispatch({ type: 'GET_CROP_SOURCE' });
     this.props.dispatch({ type: 'GET_FIELD_SOURCE' });
     this.props.dispatch({ type: 'GET_LABEL_CODE' });
   }
 
+  //takes textfield input as the new value for properties within the newLabel state
+  //if textfields are filled, submit button is enabled
   handleChangeFor = propertyName => {
     return (event) => {
       this.setState({
@@ -56,6 +58,7 @@ class CreateLabelCodes extends Component {
     }
   }
 
+  //adds textfield inputs to database by calling the getLabelCodesSaga
   addNewLabel = (event) => {
     event.preventDefault();
     this.props.dispatch({ type: 'ADD_LABEL_CODE', payload: this.state.newLabel })
@@ -69,11 +72,14 @@ class CreateLabelCodes extends Component {
     })
   }
 
+  //deletes selected crop via cropSetup saga
   removeLabelCode = (event) => {
     this.props.dispatch({ type: 'DELETE_LABEL_CODE', payload: event.currentTarget.name })
 
   }
 
+  //navigates to the create farm hierarchy page for farm information,
+  //sends 1 to enable user to access to water creation pages
   nextPage = () => {
     this.props.history.push('/newfarminfo')
     this.props.dispatch({ type:'SET_MENU_BOOLEAN', payload: 1})

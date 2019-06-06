@@ -39,6 +39,7 @@ class Water extends Component {
 
     }
 
+    //takes textfield input as the new value for properties within the newLabel state
     handleInputChangeFor = propertyName => (event) => {
         this.setState({
             newWaterSource: {
@@ -46,6 +47,7 @@ class Water extends Component {
                 [propertyName]: event.target.value,
             },
         })
+        //if textfields are filled, submit button is enabled
         if (event.target.value === '') {
             this.setState({
                 disable: true
@@ -58,6 +60,7 @@ class Water extends Component {
         }
     }
 
+    //registers textfield input in the edit screen as the new value for properties within the dialogState state
     handleDialogChangeFor = propertyName => (event) => {
         this.setState({
             dialogState: {
@@ -67,6 +70,7 @@ class Water extends Component {
                 }
             },
         })
+    //disables the submit button if any of the textfields on the edit screen are left blank
         if (event.target.value === '') {
             this.setState({
                 disable: true
@@ -79,12 +83,12 @@ class Water extends Component {
         }
     }
 
+    //renders data from database on page load via waterSetup saga
     componentDidMount = () => {
-        this.props.dispatch({ type: 'GET_WATER_SOURCE' });
-        console.log('length is', this.state.checked.length);
-        
+        this.props.dispatch({ type: 'GET_WATER_SOURCE' });  
     }
 
+    //adds textfield inputs to database by calling the waterSetup saga
     addCropSource = (event) => {
         event.preventDefault();
         this.props.dispatch({ type: 'ADD_WATER_SOURCE', payload: this.state.newWaterSource })
@@ -95,6 +99,8 @@ class Water extends Component {
         })
     }
 
+    //removes seleted water labels by calling the waterSetup saga and then re-rendering the label list
+    // if delete is carried out, delete button is then disabled
     removeCropSource = () => {
         swal({
             title: `Delete (${this.state.checked.length}) water sources?`,
@@ -108,42 +114,32 @@ class Water extends Component {
                 this.props.dispatch({ type: 'DISABLE_WATER_SOURCE', payload: this.state })
                 this.props.dispatch({ type: 'GET_WATER_SOURCE' });
                 this.setState({
-                    disableDelete: true
+                    disableDelete: true,
+                    checked: []
                 })
             }
         });
     }
 
-    counter = () => {
-        const count = this.state.checked.length;
-        if(count > 0){
-            return `Disable Water (${count})`;
-        }else {
-            return "nothing here"
-
-        }
-        console.log('count is', count);
-        
-    }
-
+    //handles wheter item is checked or not by passing through the farm_water_id of the item being clicked
+    //checks state.checked for the index of the id being passed thorugh
+    //if id is not already in the array, it gets added. If it is already in the array it gets spliced
+    //delete button is enabled/diabled based on id's presence in array
     handleCheck = value => () => {
         const currentIndex = this.state.checked.indexOf(value)
 
         if (currentIndex === -1) {
             this.setState({
-                ...this.state.checked.push(value)
-                /* checked: [...this.state.checked, value] */,
+                ...this.state.checked.push(value),
                 disableDelete: false
-
             })
             
         } else {
             this.setState({
                 ...this.state.checked.splice(currentIndex, 1),
-            
             })
-            console.log('in splice');
         }
+        //diasables delete button is state.checked is empty, enabled otherwise
         if(this.state.checked.length === 0) {
             this.setState({
                 disableDelete: true
@@ -153,9 +149,10 @@ class Water extends Component {
                 disableDelete: false
             })
         }
-        console.log('state is', this.state.checked);
     }
 
+    //opens the edit window by changing state.setOpen to true
+    //passes through id of item being clicked on, the newLabel state of that id is copied to dialogState so it can be edited
     handleClickOpen = (i) => {
         
         this.setState({
@@ -165,10 +162,10 @@ class Water extends Component {
             },
             setOpen: true,
         })
-        console.log('sate is', this.dialogState);
-        
     }
 
+    //closes the dialog (edit) window by clicking the close button, changing state.setOpen to false 
+    //on clicking the update button, any changes made are sent to database by calling the waterSetup saga and window closes
     handleClose = (event) => {
         if(event.currentTarget.value === "update"){
             this.setState({
@@ -178,7 +175,6 @@ class Water extends Component {
             swal("Changes Saved!", "", "success");
             this.props.dispatch({ type: "EDIT_WATER_SOURCE", payload: this.state.dialogState.array })
             this.props.dispatch({ type: "GET_WATER_SOURCE" })
-            console.log('id is', this.state.dialogState);
 
         } else {
             this.setState({
@@ -246,6 +242,8 @@ class Water extends Component {
                                                 <ListItemIcon>
                                                     <Checkbox
                                                         edge="start"
+                                                        //checks for the id in state.checked array of item bing clicked on
+                                                        //if it is present in state.checked, box appears as checked
                                                         checked={this.state.checked.indexOf(water.farm_water_source_id) !== -1}
                                                         tabIndex={-1}
                                                         disableRipple
@@ -254,6 +252,7 @@ class Water extends Component {
                                                     <ListItemText primary={water.farm_water_source_name} style={{ marginLeft: "-20px"}}/>
                                                 <ListItemSecondaryAction>
                                                 <Button variant="outlined" color="primary" variant="contained"
+                                                    //onClick, the index of the item is passed through
                                                     onClick={event => this.handleClickOpen(i)} 
                                                     value={water.farm_water_source_name}
                                                     style={{ width: '200', maxWidth: 270 }}

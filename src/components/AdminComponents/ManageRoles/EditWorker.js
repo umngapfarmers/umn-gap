@@ -3,16 +3,9 @@ import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
-import FormControl from "@material-ui/core/FormControl";
-import Button from "@material-ui/core/Button";
-import Select from "@material-ui/core/Select";
+
 import MenuItem from "@material-ui/core/MenuItem";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import LocalFloristIcon from "@material-ui/icons/LocalFlorist";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import EmployeeList from "./EmployeeList";
 import UserList from "./UserList";
 import NavBar from '../../Nav/Nav';
@@ -23,11 +16,12 @@ class EditWorker extends Component {
   state = {
       roleSelect:""
   };
+  // shows selected option from dropdown
     handleSelect = event => {
         this.setState({ [event.target.name]: event.target.value });
        
     };
-
+// function to display the list
    displayList = () => {
     if(this.state.roleSelect == 'employee'){
       return(
@@ -36,7 +30,6 @@ class EditWorker extends Component {
     }
 
     else if(this.state.roleSelect =='user'){
-      console.log('in user')
       return (
       <UserList/>
       )
@@ -55,7 +48,6 @@ class EditWorker extends Component {
    }
   render() {
     const { classes } = this.props;
-    console.log('role selected is', this.state.roleSelect)
 
     return (
       <React.Fragment>

@@ -23,7 +23,8 @@ class CreateCrops extends Component {
     disableNext: true
     
   }
-
+  //takes textfield input as the new value for properties within the newLabel state
+  //if textfields are filled, submit button is enabled
   handleInputChangeFor = propertyName => (event) => {
     this.setState({
       newCrop: {
@@ -34,9 +35,10 @@ class CreateCrops extends Component {
     });
   }
 
+  //adds textfield inputs to database by calling the cropSetup saga
   addCropSource = (event) => {
     event.preventDefault();
-    this.props.dispatch({type:'ADD_CROP_SOURCE', payload: this.state.newCrop})
+    this.props.dispatch({type:'ADD_CROP_SOURCE', payload: this.state.newCrop});
     this.setState({
       newCrop: {
         type:'',
@@ -45,14 +47,14 @@ class CreateCrops extends Component {
     })
   }
 
+  //deletes selected crop via cropSetup saga
   removeCropSource = (event) => {
-    this.props.dispatch({ type: 'DELETE_CROP_SOURCE', payload: event.currentTarget.name })
-    console.log('id is', event.currentTarget.name);
+    this.props.dispatch({ type: 'DELETE_CROP_SOURCE', payload: event.currentTarget.name });
   }
 
+  //navigates to the add field page for farm creation
   nextPage = () => {
     this.props.history.push('/field');
-
   }
 
 
@@ -105,7 +107,6 @@ class CreateCrops extends Component {
                 </li> 
               )}
           </ul>
-
           </Grid>
 
           <Grid item xs={12} sm={6}>
@@ -117,7 +118,6 @@ class CreateCrops extends Component {
             </Button>
 
           </Grid>
-
         </Grid>
            
       </React.Fragment>

@@ -13,6 +13,7 @@ import ManageUserAccountsTable from './ManageUserAccountsTable';
 
 class ManageUserAccounts extends Component {
 
+
   //FUNCTION- on initilization gets all user from database based on farm id
   componentDidMount(){
       this.props.dispatch({type: 'GET_ALL_USERS'})

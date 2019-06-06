@@ -94,7 +94,7 @@ router.put('/edit', rejectUnauthenticated, (req, res) => {
     const name = req.body.farm_compost_name
     const id = req.body.farm_compost_id
 
-    const queryText = 'UPDATE "farm_compost" SET "farm_compost_name"=$1, "farm_manure_date"=$2, "farm_compost_description"=$3, WHERE farm_compost_id=$4';
+    const queryText = 'UPDATE "farm_compost" SET "farm_compost_name"=$1, "farm_compost_date"=$2, "farm_compost_description"=$3 WHERE farm_compost_id=$4';
     pool.query(queryText, [name, date, description, id])
         .then(() => { res.sendStatus(200); })
         .catch((err) => {

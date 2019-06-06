@@ -19,17 +19,17 @@ class EmployeeList extends Component {
       person_id:"",
       editPerson:false
   };
-
+// Getting employee list 
   componentDidMount = () => {
     this.props.dispatch({ type: "GET_EMPLOYEE" });
   };
+
+  // Getting the employee to edit 
     handleEdit = person_id => () => {
-        console.log("edit click for id", person_id);
         this.setState({
             editPerson: true,
             selectedId: person_id
         });
-       // this.props.history.push(`/editemployee/?id=${person_id}`);
         this.props.dispatch({
             type: "GET_PERSON_TO_EDIT",
             payload: person_id

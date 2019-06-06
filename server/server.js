@@ -53,29 +53,28 @@ app.use('/api/user', userRouter);
 app.use('/addworker',addWorkerRouter);
 //app.use('/editworker', addWorkerRouter);
 
-app.use('/hyear',harvestYearRouter);
-app.use('/setupWater', setupWaterRouter);
-app.use('/setupCrop', setupCropRouter);
-app.use('/setup/label_code', labelCodeRouter)
-app.use('/setup', setupRouter);
-app.use('/setup/label_code', labelCodeRouter);
-app.use('/setup/manure', setupManureRouter);
-app.use('/setup/compost', setupCompostRouter)
-app.use('/log/harvest/', log_harvestRouter)
-app.use('/log/employee', log_employeeRouter);
-app.use('/import', importHarvestRouter);
-app.use('/manage', manageUserRouter);
-app.use('/record/harvestYear', record_harvestYearRouter);
-app.use ('/record/waterinspect', record_waterInpectRouter)
-app.use('/record/employee', record_employeeRouter);
-app.use('/record/harvest', record_harvestRouter);
-app.use('/record/waterTreat', record_waterTreatRouter);
-app.use('/log/compost', logCompost);
-app.use('/record/manure', record_manureRouter);
-app.use('/record/compostPile', record_compostPileRouter);
-app.use('/log/water', log_waterRouter);
-app.use('/superadmin', superAdminRouter);
-app.use('/record/compostturn', record_compostTurnRouter);
+app.use('/hyear',harvestYearRouter); //gets the harvest_year_id
+app.use('/setupWater', setupWaterRouter); //gets, adds, edits, removes, and disables any water sources or water labels
+app.use('/setupCrop', setupCropRouter); //gets, adds, edits, removes, and disables any crop or field sources
+app.use('/setup', setupRouter); //creates a new harvest year in database
+app.use('/setup/label_code', labelCodeRouter);//gets, adds, edits, removes, and disables any labelcodes
+app.use('/setup/manure', setupManureRouter); //gets, adds, edits, removes, and disables any manure sources
+app.use('/setup/compost', setupCompostRouter) //gets, adds, edits, removes, and disables any compost sources
+app.use('/log/harvest/', log_harvestRouter); //gets person data and adds harvest logs
+app.use('/log/employee', log_employeeRouter); //gets, adds, edits, removes, and disables employee data
+app.use('/import', importHarvestRouter); //gets data from past year and copies it into a new harvest year
+app.use('/manage', manageUserRouter);//gets, adds, edits, removes, and disables employee data
+app.use('/record/harvestYear', record_harvestYearRouter); //gets harvest year according to farm_id
+app.use ('/record/waterinspect', record_waterInpectRouter); //gets records for water inspection logs
+app.use('/record/employee', record_employeeRouter); //gets records for employee training logs
+app.use('/record/harvest', record_harvestRouter); //gets records for past harvests
+app.use('/record/waterTreat', record_waterTreatRouter); //gets records for water treatment logs
+app.use('/log/compost', logCompost); //adds logs for compost management
+app.use('/record/manure', record_manureRouter); //gets records for manure application
+app.use('/record/compostPile', record_compostPileRouter); //gets records for compost piles
+app.use('/log/water', log_waterRouter); //adds logs for water treatment and inspection
+app.use('/superadmin', superAdminRouter); //gets and changes id to superadmin if user has permissions
+app.use('/record/compostturn', record_compostTurnRouter); //gets records for compost management logs
 app.use('/record/export', exportRouter)
 
 // Serve static files
