@@ -17,6 +17,8 @@ class  CompostPileRecord extends Component {
     selectHarvestYear: '',
   }
 
+
+  //FUNCTION-- on initialization of page-- dispatch GET_HARVEST_YEAR to get harvest years from DB , store them in reducer, populate drop down menu
   componentDidMount() {
     this.props.dispatch({type:'GET_HARVEST_YEAR'});
   }
