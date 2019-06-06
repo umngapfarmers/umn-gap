@@ -13,14 +13,7 @@ import Nav from '../../../Nav/Nav';
 import Fab from '@material-ui/core/Fab';
 class RecordsHierarchyMenu extends Component {
 
-
-  state= {
-    
-  }
-
-
-
-
+  //renders hierarchy menu to choose records
   render() {
     const {classes} = this.props;
     return (
