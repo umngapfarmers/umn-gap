@@ -64,7 +64,7 @@ class WaterInspectionLog extends Component {
     }
   }
 
-      //FUNCTION - on click of submit button- prevents refresh of page-- dispatches payload of state to database to create new harvest log,
+      //FUNCTION - on click of submit button- prevents refresh of page-- dispatches payload of state to database to create new water inspection log,
   // navigates user to logs dashboard
   handleSubmit = (event) => {
     event.preventDefault();
