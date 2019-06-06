@@ -13,10 +13,7 @@ import Nav from '../Nav/Nav';
 class AdminDashboard extends Component {
 
 
-  state= {
-    
-  }
-
+  // admin dashboard is landing page for admin-- navigates users 
   render() {
     const {classes} = this.props;
     return (

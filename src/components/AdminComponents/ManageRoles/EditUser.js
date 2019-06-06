@@ -71,7 +71,8 @@ class EditUser extends Component {
     this.setState({
       ...this.state,
       [property]: event.target.value,
-      registrationCode: 122090
+      //workerStatus: true,
+      registrationCode: 1086420
     });
   };
   // handles form submit button, sends post dispatch to redux with payload of all selected form inputs + clears form

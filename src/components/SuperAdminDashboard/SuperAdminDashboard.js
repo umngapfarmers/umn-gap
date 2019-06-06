@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import LogoutButton from '../LogOutButton/LogOutButton';
@@ -13,11 +12,7 @@ import HomeIcon from '@material-ui/icons/Home';
 
 class SuperAdminDashboard extends Component {
 
-
-  state= {
-    
-  }
-
+  //renders superadmindashboard
   render() {
     const {classes} = this.props;
     return (

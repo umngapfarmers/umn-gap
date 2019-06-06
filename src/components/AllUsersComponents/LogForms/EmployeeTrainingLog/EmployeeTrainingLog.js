@@ -22,11 +22,13 @@ class EmployeeTrainingLog extends Component {
       employee_training_sig: '',
     }
   }
+
+  //FUNCTION-- on initialization of page-- dispatch GET_PERSON to get employees from DB , store them in reducer, populate drop down menu
   componentDidMount(){
     this.props.dispatch({type: 'GET_PERSON'});
   }
 
- 
+  //FUNCTION- handles change of text fields-- sets state to user inputed values 
   handleChange = (propertyName) => {
     return (event) => {
       this.setState({
@@ -38,13 +40,16 @@ class EmployeeTrainingLog extends Component {
     }
   }
 
+  //FUNCTION - on click of submit button- prevents refresh of page-- dispatches payload of state to database to create new employee log,
+  // navigates user to logs dashboard
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log('in handleSubmit');
     this.props.dispatch({type: 'ADD_EMPLOYEE_LOG', payload: this.state.newTraining});
     this.props.history.push('/logdashboard');
   }
 
+  //FUNCTION- validation- conditionally renders submit button based on status of state-- if state contains values then submit button is enabled,
+  // if state does not contain values then submit button is disabled (user cannot submit)
   handleError = () => {
     if (this.state.newTraining.topic !== '' && this.state.newTraining.person_id !== '' && 
     this.state.newTraining.trainer_name !== '' && this.state.newTraining.date_trained !== '' &&
@@ -63,7 +68,6 @@ class EmployeeTrainingLog extends Component {
 
   render() {
     const {classes} = this.props;
-    console.log(this.state.newTraining);
     return (
       <React.Fragment>
         <Nav/>

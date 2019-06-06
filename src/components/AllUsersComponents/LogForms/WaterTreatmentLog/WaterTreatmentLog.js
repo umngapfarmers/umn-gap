@@ -27,6 +27,8 @@ class WaterTreatmentLog extends Component {
     }
   }
 
+  //FUNCTION- validation- conditionally renders submit button based on status of state-- if state contains values then submit button is enabled,
+  // if state does not contain values then submit button is disabled (user cannot submit)
   handleError = () => {
     if (this.state.newWaterTreatmentLog.treatment_date !== '' && this.state.newWaterTreatmentLog.farm_water_source_id !== '' && 
     this.state.newWaterTreatmentLog.treatment_sig !== '') {
@@ -41,12 +43,16 @@ class WaterTreatmentLog extends Component {
   }
   }
 
+    //FUNCTION-- on initialization of page-- dispatch GET_PERSON to get employees from DB , store them in reducer, populate drop down menu
+  // GET_LABEL_CODE to get label codes from DB, store them in reducer, populate drop down menu
+  //GET_WATER_SOURCE to get water sources from DB, store them in reducer, populate drop down menu for water sources
   componentDidMount(){
     this.props.dispatch({type: 'GET_LABEL_CODE'});
     this.props.dispatch({type: 'GET_PERSON'});
     this.props.dispatch({type: 'GET_WATER_SOURCE'})
   }
 
+     //FUNCTION- handles change of text fields-- sets state to user inputed values 
   handleChange = (propertyName) => {
     return (event) => {
       this.setState({
@@ -58,9 +64,10 @@ class WaterTreatmentLog extends Component {
     }
   }
 
+        //FUNCTION - on click of submit button- prevents refresh of page-- dispatches payload of state to database to create new water treatment log,
+  // navigates user to logs dashboard
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log('in handleSubmit');
     this.props.dispatch({type: 'ADD_RECORD_WATER_TREAT', payload: this.state.newWaterTreatmentLog})
     this.props.history.push('/logdashboard');
   }
@@ -70,7 +77,6 @@ class WaterTreatmentLog extends Component {
 
   render() {
     const {classes} = this.props;
-    console.log(this.state.newWaterTreatmentLog);
     return (
       <React.Fragment>
         <Nav/>

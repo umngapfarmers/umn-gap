@@ -5,7 +5,6 @@ import IconButton from '@material-ui/core/IconButton'
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import TextField from '@material-ui/core/TextField';
-import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import Edit from '@material-ui/icons/Edit';
 import Add from '@material-ui/icons/Add'
 import MenuItem from '@material-ui/core/MenuItem';
@@ -26,17 +25,17 @@ class ManageUserAccountsRow extends Component {
     checkedInactive: false,
         
 
-    }
+  }
+
+  //FUNCTION- handles delete of user 
 handleDelete = (event) => {
   event.preventDefault();
-  console.log('in handleDelete');
 
 }
 
 //FUNCTION- on click of edit set currentlyEditing state to true to enable toggled conditional rendering--
 //score table cell becomes input field
 handleEdit = (event) => {
-  console.log('in handleEdit');
   let user_id = event.currentTarget.value;
   this.setState({
     currentlyEditing: true,
@@ -45,7 +44,6 @@ handleEdit = (event) => {
       user_status: this.props.user.user_status,
     }
   })
-  console.log(this.state.currentlyEditing);
 
 
 }
@@ -53,7 +51,6 @@ handleEdit = (event) => {
 //FUNCTION- on click of add set currentlyEditing state to false to disable edit conditional rendering
 //dispatch updatedStudent to saga to server to db to update student score
 handleEditSubmit = (event) => {
-    console.log('in handleEditSubmit');
     this.setState({
         currentlyEditing: false,
     })
@@ -61,33 +58,7 @@ handleEditSubmit = (event) => {
     this.props.dispatch({type: 'GET_ALL_USERS'})
 }
 
-// //FUNCTION- handle change for input-- set state with input values
-// handleChangeActive = propertyName => {
-//     return(event) =>{
-//     this.setState({
-//         checkedActive: !this.state.checkedActive,
-//         userAccount: {
-//             ...this.state.userAccount,
-//             [propertyName]: event.target.value,
 
-//         }
-//     });
-//   }
-// }
-
-// handleChangeInactive = propertyName => {
-//     return(event) =>{
-//     console.log('Inactive value is:', event.target.value);
-//     this.setState({
-//         checkedInactive: !this.state.checkedInactive,
-//         userAccount: {
-//             ...this.state.userAccount,
-//             [propertyName]: event.target.value,
-
-//         }
-//     });
-//   }
-// }
 handleChange = (propertyName) => {
   return (event) => {
     this.setState({
@@ -105,7 +76,6 @@ handleChange = (propertyName) => {
 
   render() {
     const {classes} = this.props;
-    console.log(this.state.userAccount);
     let statusToDisplay = null;
 
     if(this.props.user.user_status === true){
@@ -200,28 +170,3 @@ const mapReduxStateToProps = (reduxState) => ({
 });
 
 export default connect( mapReduxStateToProps )(withStyles(styles)(ManageUserAccountsRow));
-
- //  <FormControl component="fieldset" className={classes.formControl}>
-          //   <RadioGroup
-          //   value={this.state.userAccount.user_status}
-          //   // onChange={handleChange}
-          // ></RadioGroup>
-          //   <FormControlLabel
-          //       control={<Radio   value={true}
-          //       onClick={this.handleChangeActive('user_status')}
-          //       icon={<RadioButtonUncheckedIcon/>}
-          //       checkedIcon={<RadioButtonCheckedIcon/>}
-          //       checked={this.state.checkedActive}
-          //       />} label="Active" 
-          //      />
-            
-          //   <FormControlLabel
-          //       control={<Radio value={false}
-          //       onClick={this.handleChangeInactive('user_status')}
-          //       icon={<RadioButtonUncheckedIcon/>}
-          //       checkedIcon={<RadioButtonCheckedIcon/>}
-          //       checked={this.state.checkedInactive}
-          //       />} label="Inactive"
-          //       />
-
-          //  </FormControl>

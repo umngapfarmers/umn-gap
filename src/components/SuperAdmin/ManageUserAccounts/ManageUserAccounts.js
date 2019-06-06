@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import Fab from '@material-ui/core/Fab';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -15,13 +14,12 @@ import ManageUserAccountsTable from './ManageUserAccountsTable';
 class ManageUserAccounts extends Component {
 
 
-  state= {
-    
-  }
+  //FUNCTION- on initilization gets all user from database based on farm id
   componentDidMount(){
       this.props.dispatch({type: 'GET_ALL_USERS'})
   }
 
+  //renders nav for superadmin page
   render() {
     const {classes} = this.props;
     return (

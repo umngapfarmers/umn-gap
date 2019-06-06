@@ -25,6 +25,9 @@ class HarvestLog extends Component {
     }
   }
 
+
+  //FUNCTION- validation- conditionally renders submit button based on status of state-- if state contains values then submit button is enabled,
+  // if state does not contain values then submit button is disabled (user cannot submit)
   handleError = () => {
     if (this.state.newHarvestLog.crop_harvest_date !== '' && this.state.newHarvestLog.crop_harvest_amount !== '' && 
     this.state.newHarvestLog.crop_harvest_sig !== '' && this.state.newHarvestLog.label_code_id !== '') {
@@ -39,11 +42,14 @@ class HarvestLog extends Component {
   }
   }
 
+    //FUNCTION-- on initialization of page-- dispatch GET_PERSON to get employees from DB , store them in reducer, populate drop down menu
+    // GET_LABEL_CODE to get label codes from DB, store them in reducer, populate drop down menu
   componentDidMount(){
     this.props.dispatch({type: 'GET_LABEL_CODE'});
     this.props.dispatch({type: 'GET_PERSON'});
   }
 
+    //FUNCTION- handles change of text fields-- sets state to user inputed values 
   handleChange = (propertyName) => {
     return (event) => {
       this.setState({
@@ -55,9 +61,10 @@ class HarvestLog extends Component {
     }
   }
 
+    //FUNCTION - on click of submit button- prevents refresh of page-- dispatches payload of state to database to create new harvest log,
+  // navigates user to logs dashboard
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log('in handleSubmit');
     this.props.dispatch({type:'ADD_HARVEST_LOG', payload: this.state.newHarvestLog});
     this.props.history.push('/logdashboard')
   }
@@ -67,7 +74,6 @@ class HarvestLog extends Component {
 
   render() {
     const {classes} = this.props;
-    console.log(this.state.newHarvestLog);
     return (
       <React.Fragment>
         <Nav/>
