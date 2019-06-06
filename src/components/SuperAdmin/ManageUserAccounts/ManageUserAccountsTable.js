@@ -14,7 +14,7 @@ var moment = require('moment');
 
 class ManageUserAccountsTable extends Component {
 
-
+  //Renders table body
   render() {
     const {classes} = this.props;
     return (
