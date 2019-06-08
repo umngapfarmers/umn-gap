@@ -21,6 +21,7 @@ Farmers are able to enter their farm information, add workers and manage worker 
 - React/Redux/Saga
 - Material-UI
 - Moment.js
+- PdfMake
 
 
 ## Getting Started
