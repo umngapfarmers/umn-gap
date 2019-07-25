@@ -97,7 +97,7 @@ class LoginPage extends Component {
                   </Grid>
 
                   <Grid item xs={8} sm={6}>
-                    <Button size="large" color="primary" onClick={() => {this.props.history.push('/forgotpassword')}}>Forgot Password?</Button>
+                    <Button size="large" color="primary" onClick={() => {this.props.dispatch({type: 'FORGOT_PASSWORD'})}}>Forgot Password?</Button>
                   </Grid>
                  
               </Grid>

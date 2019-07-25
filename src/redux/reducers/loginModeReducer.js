@@ -6,6 +6,8 @@ const loginMode = (state = 'login', action) => {
         return 'register';
       case 'SET_TO_REGISTER_FARM':
         return 'registerFarm';
+      case 'FORGOT_PASSWORD':
+        return 'passwordRecovery';
       default:
         return state;
     }
