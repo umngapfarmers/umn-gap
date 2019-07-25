@@ -20,6 +20,7 @@ CREATE TABLE "user"
   "user_id" SERIAL PRIMARY KEY,
   "username" varchar(50) UNIQUE,
   "password" VARCHAR(255) NOT NULL,
+  "email" VARCHAR(255) NOT NULL,
   "user_role" VARCHAR (255) NOT NULL,
   "farm_registry_id" INT REFERENCES "farm_registry",
   "current_harvest_year" INT REFERENCES "harvest_year",
