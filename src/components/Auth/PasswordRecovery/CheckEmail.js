@@ -30,7 +30,7 @@ class CheckEmail extends Component {
 
 
             <Grid item xs={8} sm={6}>
-                <Typography variant='h6'>An email has been sent to the email address provided.</Typography>
+                <Typography variant='h6' align='center'>An email has been sent to the email address provided.</Typography>
            </Grid>
                 
                   <Grid item xs={8} sm={6}>

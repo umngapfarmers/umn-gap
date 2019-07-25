@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -43,8 +43,21 @@ class ChangePassword extends Component {
       this.handleSubmit();
     }
     else{
-      console.log('is after');
-      alert(`Sorry it has been to long since you requested to change your password. Please request to change your password again.`)
+      this.props.dispatch({type: 'EXPIRATION_ERROR'})
+    }
+  }
+
+
+  passwordError = () => {
+    if(this.state.password1 === this.state.password2) {
+      return (
+        <Fragment></Fragment>
+      )
+    }
+    else {
+      return(
+      <Typography> Passwords do not match!</Typography>
+      )
     }
   }
 
@@ -53,10 +66,11 @@ class ChangePassword extends Component {
       if(this.state.password1 === this.state.password2){
       this.props.dispatch({type: 'UPDATE_PASSWORD', payload: this.state});
       this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})
+      this.props.dispatch({type: 'CLEAR_LOGIN_ERROR'});
       this.props.history.push('/');
       }
       else{
-          alert(`Passwords did not match. Try again!`)
+        this.passwordError();
       }
   }
 
@@ -69,6 +83,12 @@ class ChangePassword extends Component {
     });
   }
 
+  requestPassword = () => {
+    this.props.dispatch({type:'FORGOT_PASSWORD'});
+    this.props.dispatch({type:'CLEAR_LOGIN_ERROR'});
+    this.props.history.push('/')
+  }
+
 
   render() {
       const {classes} = this.props;
@@ -76,38 +96,55 @@ class ChangePassword extends Component {
       return (
         <React.Fragment>
     
-        <Grid container spacing={24}
+        <Grid container spacing={8}
          container
          direction="column"
          justify="center"
          alignItems="center"
          className={classes.gridMargin}
        >
+                  <Grid item xs={8} sm={6}>
+                    <Typography variant='h6' className={classes.textField}>Reset Password</Typography>
+                  </Grid>
         
-                  <Grid item xs={8} sm={6} >
-                      <FormControl>
-                          <TextField label="New Password" variant="outlined" color="primary"
-                            onChange={this.handleInputChangeFor('password1')}
-                            type="password"
-                            value={this.state.password1}
-                            >
-                          </TextField>
-                      </FormControl>
+                  <Grid item xs={12}>
+                     
+                    <TextField label="New Password" variant="outlined" color="primary"
+                      onChange={this.handleInputChangeFor('password1')}
+                      type="password"
+                      value={this.state.password1}
+                      style={{width:'80vw', maxWidth:400}}
+                      className={classes.textField}
+                      >
+                    </TextField>
+            
                   </Grid>
 
-                  <Grid item xs={8} sm={6} >
-                      <FormControl>
-                          <TextField label="Enter New Password Again" variant="outlined" color="primary"
-                            onChange={this.handleInputChangeFor('password2')}
-                            type="password"
-                            value={this.state.password2}
-                            >
-                          </TextField>
-                      </FormControl>
+                  <Grid item xs={12}>
+                      <TextField label="Enter New Password Again" variant="outlined" color="primary"
+                        onChange={this.handleInputChangeFor('password2')}
+                        type="password"
+                        value={this.state.password2}
+                        style={{width:'80vw', maxWidth:400}}
+                        className={classes.textField}
+                        >
+                      </TextField>
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    {this.passwordError()}
+                  </Grid>
+
+                  <Grid item xs={8} sm={6}>
+                    <Typography>{this.props.errors.loginMessage}</Typography>
                   </Grid>
                 
-                  <Grid item xs={8} sm={6}>
+                  <Grid item xs={12}>
                     <Button size="large" color="primary" onClick={this.checkTimeToken}>Reset Password</Button>
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <Button size="large" color="primary" onClick={this.requestPassword}>Request Reset Again</Button>
                   </Grid>
                  
               </Grid>
@@ -124,9 +161,7 @@ const styles = theme => ({
       flexWrap: 'wrap',
   },
   textField: {
-      marginLeft: theme.spacing.unit,
-     // marginRight: theme.spacing.unit,
-      //width: 200,
+     marginBottom: 50,
   },
   dense: {
       marginTop: 19,
@@ -135,7 +170,8 @@ const styles = theme => ({
       width: 200,
   },
   gridMargin: {
-    marginTop: 25,
+    marginTop: 50,
+    margin: '0 auto',
   }
 });
 

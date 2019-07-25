@@ -71,6 +71,7 @@ class LoginPage extends Component {
                             onChange={this.handleInputChangeFor('username')}
                             type="text"
                             value={this.state.username}
+                            
                             >
                           </TextField>
                       </FormControl>
@@ -81,6 +82,7 @@ class LoginPage extends Component {
                         onChange={this.handleInputChangeFor('password')}
                         type="password"
                         value={this.state.password}
+                        
                         ></TextField>
                   </Grid>
                  

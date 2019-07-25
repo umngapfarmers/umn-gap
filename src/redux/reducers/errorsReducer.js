@@ -13,7 +13,9 @@ const loginMessage = (state = '', action) => {
     case 'LOGIN_FAILED_NO_CODE':
       return 'Oops! Something went wrong! Is the server running?';
     case 'CHECK_EMAIL_ERROR':
-        return 'Email address was not found! Please enter email address again.'
+      return 'Email address was not found! Please enter email address again.'
+    case 'EXPIRATION_ERROR':
+      return 'Password recovery link has expired. Please request to reset your password again.'
     default:
     return state;
   }

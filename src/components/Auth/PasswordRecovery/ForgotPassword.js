@@ -47,30 +47,35 @@ class ForgotPassword extends Component {
                 className={classes.gridMargin}
             >
 
+                  <Grid item xs={8} sm={6}>
+                    <Typography variant='h6' className={classes.title}>Forgot Password</Typography>
+                  </Grid>
+
+                <Grid item xs={8} sm={6}>
+                    <Typography>Please enter the email associated with your account. 
+                    <br/>Once submitted you will receive an email with instructions to reset your password.</Typography>
+                </Grid>
+
             
-                <Grid item xs={8} sm={6} >
+                <Grid item xs={12} >
                     <FormControl>
                         <TextField label="Email Address" variant="outlined" color="primary"
                         onChange={this.handleInputChangeFor('email')}
                         type="text"
                         value={this.state.email}
+                        style={{width:'80vw', maxWidth:400}}
                         >
                         </TextField>
                     </FormControl>
                 </Grid>
 
                     
-                <Grid item xs={8} sm={6}>
+                <Grid item xs={12}>
                     <Button size="large" color="primary" onClick={this.handleSubmit}>Submit</Button>
                 </Grid>
 
                 <Grid item xs={8} sm={6}>
                     <Typography>{this.props.errors.loginMessage}</Typography>
-                  </Grid>
-
-                <Grid item xs={8} sm={6}>
-                    <Typography variant="h6">Please enter the email associated with your account. 
-                    <br/>Once submitted you will receive an email with instructions to reset your password.</Typography>
                 </Grid>
                  
               </Grid>
@@ -99,6 +104,9 @@ const styles = theme => ({
   },
   gridMargin: {
     marginTop: 25,
+  },
+  title: {
+    marginBottom: 10,
   }
 });
 
