@@ -2,7 +2,7 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 
-function* checkEmailPost(action) {
+function* checkEmailSaga(action) {
     try {
         yield axios.get(`/checkEmail/?email=${action.payload}`);
     }

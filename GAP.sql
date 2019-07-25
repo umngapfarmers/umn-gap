@@ -24,8 +24,10 @@ CREATE TABLE "user"
   "user_role" VARCHAR (255) NOT NULL,
   "farm_registry_id" INT REFERENCES "farm_registry",
   "current_harvest_year" INT REFERENCES "harvest_year",
-  "user_status" boolean DEFAULT TRUE
-);
+  "user_status" boolean DEFAULT TRUE,
+  "password_recovery_token" VARCHAR (1000),
+  "password_recovery_time" VARCHAR (1000)
+)
 
 
 ------------------------ person and employee training ----------------------

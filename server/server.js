@@ -34,6 +34,7 @@ const log_waterRouter = require('./routes/log.water.router');
 const superAdminRouter = require('./routes/superadmin.router')
 const record_compostTurnRouter = require('./routes/record.compostTurn.router');
 const exportRouter = require('./routes/record.export.router');
+const passwordRecoveryRouter = require ('./routes/passwordRecovery.router');
 
 
 
@@ -76,6 +77,7 @@ app.use('/log/water', log_waterRouter); //adds logs for water treatment and insp
 app.use('/superadmin', superAdminRouter); //gets and changes id to superadmin if user has permissions
 app.use('/record/compostturn', record_compostTurnRouter); //gets records for compost management logs
 app.use('/record/export', exportRouter)
+app.use('/checkEmail', passwordRecoveryRouter);
 
 // Serve static files
 app.use(express.static('build'));
