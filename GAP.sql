@@ -27,7 +27,7 @@ CREATE TABLE "user"
   "user_status" boolean DEFAULT TRUE,
   "password_recovery_token" VARCHAR (1000),
   "password_recovery_time" VARCHAR (1000)
-)
+);
 
 
 ------------------------ person and employee training ----------------------
@@ -187,4 +187,170 @@ CREATE TABLE "water_treatment"
   "harvest_year_id" int references "harvest_year"
 );
 
+CREATE TABLE "farm_packing" (
+  "farm_packing_id" serial primary key,
+  "farm_packing_name" varchar(50)
+);
 
+CREATE TABLE "packing" (
+  "packing_id" serial primary key ,
+  "farm_packing_id" int references  "farm_packing",
+  "packing_date" timestamptz NOT NULL,
+  "packing_cleaned" boolean,
+  "packing_sanitized" boolean,
+  "packing_area" varchar(50) ,
+  "packing_comment" varchar(100),
+  "user_id" int references "user",
+  "packing_sig" varchar(200),
+  "harvest_year_id" int references "harvest_year"
+);
+
+CREATE TABLE "farm_tool" (
+  "farm_tool_id" serial primary key,
+  "farm_tool_name" varchar(50) NOT NULL
+);
+
+CREATE TABLE "tool" (
+  "tool_id" serial primary key,
+  "farm_tool_id" int references "farm_tool",
+  "tool_date" TIMESTAMPTZ NOT NULL,
+  "tool_sanitized" boolean,
+  "tool_cleaned" boolean,
+  "tool_comment" varchar(200),
+  "user_id" int references "user",
+  "tool_sig" varchar(200),
+  "harverst_year_id" int references "harvest_year"
+);
+
+CREATE TABLE "farm_cooler" (
+  "farm_cooler_id" serial primary key,
+  "farm_cooler_name" varchar(50)
+);
+
+CREATE TABLE "cooler" (
+  "cooler_id" serial primary key ,
+  "farm_cooler_id" int references  "farm_cooler",
+  "cooler_date" timestamptz NOT NULL,
+  "cooler_temperature" varchar(50),
+  "cooler_cleaned" boolean,
+  "cooler_sanitized" boolean,
+  "cooler_area" varchar(50) ,
+  "cooler_comment" varchar(100),
+  "user_id" int references "user",
+  "cooler_sig" varchar(200),
+  "harvest_year_id" int references "harvest_year"
+);
+
+CREATE TABLE "farm_bathroom" (
+  "farm_bathroom_id" serial primary key,
+  "farm_bathroom_name" varchar(50)
+);
+
+CREATE TABLE "bathroom" (
+  "bathroom_id" serial primary key ,
+  "farm_bathroom_id" int references  "farm_packing",
+  "bathroom_date" timestamptz NOT NULL,
+  "bathroom_cleaned" boolean,
+  "bathroom_sanitized" boolean,
+  "bathroom_area" varchar(50) ,
+  "bathroom_comment" varchar(100),
+  "user_id" int references "user",
+  "bathroom_sig" varchar(200),
+  "harvest_year_id" int references "harvest_year"
+);
+
+CREATE TABLE "farm_facility_other" (
+  "farm_facility_other_id" serial primary key,
+  "farm_facility_other_name" varchar(50)
+);
+
+CREATE TABLE "facilty_other" (
+  "facilty_other_id" serial primary key ,
+  "facilty_other_name" varchar(50) NOT NULL,
+  "facilty_other_date" timestamptz NOT NULL,
+  "bfacilty_other_cleaned" boolean,
+  "facilty_other_sanitized" boolean,
+  "facilty_other_area" varchar(50) ,
+  "facilty_other_comment" varchar(100),
+  "user_id" int references "user",
+  "facilty_other_sig" varchar(200),
+  "harvest_year_id" int references "harvest_year"
+);
+
+CREATE TABLE "farm_equipment_other" (
+  "farm_equipment_other_id" serial primary key,
+  "farm_equipment_other_name" varchar(50)
+);
+
+CREATE TABLE "equipment_other" (
+  "equipment_other_id" serial primary key,
+  "farm_equipment_other_id" int references "farm_equipment_other",
+  "equipment_other_comments" varchar(200),
+  "equipment_other_date" TIMESTAMPTZ,
+  "user_id" int references "user",
+  "harverst_year_id" int references "harvest_year"
+);
+
+CREATE TABLE "farm_vehicle" (
+  "farm_vehicle_id" serial primary key,
+  "farm_vehicle_name" varchar(50) NOT NULL
+);
+
+CREATE TABLE "vehicle" (
+  "vehicle_id" serial primary key,
+  "farm_vehicle_id" int references "farm_vehicle",
+  "vehicle_date" TIMESTAMPTZ NOT NULL,
+  "vehicle_cleaned" boolean,
+  "vehicle_comment" varchar(200),
+  "user_id" int references "user",
+  "vehicle_sig" varchar(200) ,
+  "harvest_year_id" int references "harvest_year"
+);
+
+CREATE TABLE "farm_firstaid" (
+  "farm_firstaid_id" serial primary key,
+  "farm_firstaid_location" varchar(50) NOT NULL
+);
+
+CREATE TABLE "firstaid" (
+  "firstaid_id" serial primary key,
+  "farm_firstaid_id" int references "farm_firstaid",
+  "firstaid_date" TIMESTAMPTZ,
+  "firstaid_stocked" boolean,
+  "firstaid_comment" varchar(200),
+  "user_id" int references "user",
+  "firstaid_sig" varchar(200),
+  "harvest_year_id" int references "harvest_year"
+);
+
+CREATE TABLE "farm_pest" (
+  "farm_pest_id" serial primary key,
+  "farm_pest_type" varchar(50) NOT NULL,
+  "farm_pest_location" varchar(50) NOT NULL
+);
+
+CREATE TABLE "pest" (
+  "pest_id" serial primary key,
+  "pest_administrator" varchar(200),
+  "farm_pest_id" int references "farm_pest",
+  "pest_date" TIMESTAMPTZ,
+  "pest_comment" varchar(200),
+  "user_id" int references "user",
+  "harvest_year_id" int references "harvest_year"
+);
+
+CREATE TABLE "farm_thermometer" (
+  "farm_thermometer_id" serial primary key,
+  "farm_thermometer_location" varchar(50) NOT NULL
+);
+
+CREATE TABLE "thermometer" (
+  "thermometer_id" serial primary key,
+  "farm_thermometer_id" int references "farm_thermometer",
+  "thermometer_date" TIMESTAMPTZ,
+  "thermometer_calibrate" boolean,
+  "thermometer_comment" varchar(200),
+  "user_id" int references "user",
+  "thermometer_sig" varchar(200),
+  "harvest_year_id" int references "harvest_year"
+);
