@@ -8,6 +8,8 @@ import AdminDashboard from '../../AdminDashboard/AdminDashboard';
 import SetupFarm from '../../AdminComponents/SetupFarm/SetupFarm';
 import SuperAdminDashboard from '../../SuperAdminDashboard/SuperAdminDashboard';
 import CreateHarvestYear from '../../AdminComponents/HarvestYear/NewHarvestYear/SelectNewHarvestYearDate/SelectNewHarvestYearDate';
+import ForgotPassword from '../PasswordRecovery/ForgotPassword';
+import CheckEmail from '../PasswordRecovery/CheckEmail';
 // A Custom Wrapper Component -- This will keep our code DRY.
 // Responsible for watching redux state, and returning an appropriate component
 // API for this component is the same as a regular route
@@ -57,7 +59,15 @@ const ProtectedRoute = (props) => {
     // if they are not logged in, check the loginMode on Redux State
     // if the mode is 'login', show the LoginPage
     ComponentToShow = LoginPage;
-  } else {
+  } 
+  else if (loginMode === 'passwordRecovery'){
+    ComponentToShow = ForgotPassword;
+  }
+
+  else if (loginMode === 'checkEmailSuccess'){
+    ComponentToShow = CheckEmail;
+  }
+  else {
     // the the user is not logged in and the mode is not 'login'
     // show the RegisterPage
     ComponentToShow = RegisterPage;

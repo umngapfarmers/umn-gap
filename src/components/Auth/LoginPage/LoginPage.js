@@ -71,6 +71,7 @@ class LoginPage extends Component {
                             onChange={this.handleInputChangeFor('username')}
                             type="text"
                             value={this.state.username}
+                            
                             >
                           </TextField>
                       </FormControl>
@@ -81,11 +82,12 @@ class LoginPage extends Component {
                         onChange={this.handleInputChangeFor('password')}
                         type="password"
                         value={this.state.password}
+                        
                         ></TextField>
                   </Grid>
                  
                   <Grid item xs={8} sm={6}>
-                    <Typography>{this.props.errors.loginMessage}</Typography>
+                      <Typography>{this.props.errors.loginMessage}</Typography>
                   </Grid>
 
                   <Grid item xs={8} sm={6}>
@@ -94,6 +96,10 @@ class LoginPage extends Component {
                   
                   <Grid item xs={8} sm={6}>
                     <Button size="large" color="primary" onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}>Register</Button>
+                  </Grid>
+
+                  <Grid item xs={8} sm={6}>
+                    <Button size="large" color="primary" onClick={() => {this.props.dispatch({type: 'FORGOT_PASSWORD'})}}>Forgot Password?</Button>
                   </Grid>
                  
               </Grid>
