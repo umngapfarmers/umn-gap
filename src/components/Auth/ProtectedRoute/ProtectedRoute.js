@@ -9,6 +9,7 @@ import SetupFarm from '../../AdminComponents/SetupFarm/SetupFarm';
 import SuperAdminDashboard from '../../SuperAdminDashboard/SuperAdminDashboard';
 import CreateHarvestYear from '../../AdminComponents/HarvestYear/NewHarvestYear/SelectNewHarvestYearDate/SelectNewHarvestYearDate';
 import ForgotPassword from '../PasswordRecovery/ForgotPassword';
+import CheckEmail from '../PasswordRecovery/CheckEmail';
 // A Custom Wrapper Component -- This will keep our code DRY.
 // Responsible for watching redux state, and returning an appropriate component
 // API for this component is the same as a regular route
@@ -61,6 +62,10 @@ const ProtectedRoute = (props) => {
   } 
   else if (loginMode === 'passwordRecovery'){
     ComponentToShow = ForgotPassword;
+  }
+
+  else if (loginMode === 'checkEmail'){
+    ComponentToShow = CheckEmail;
   }
   else {
     // the the user is not logged in and the mode is not 'login'

@@ -8,6 +8,8 @@ const loginMode = (state = 'login', action) => {
         return 'registerFarm';
       case 'FORGOT_PASSWORD':
         return 'passwordRecovery';
+      case 'CHECK_EMAIL':
+        return 'checkEmail';
       default:
         return state;
     }

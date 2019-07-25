@@ -14,9 +14,15 @@ class ForgotPassword extends Component {
 
 
   handleSubmit = event => {
+      if(this.state.email) {
       this.props.dispatch({type: 'CHECK_EMAIL', payload: this.state.email});
-      this.props.history.push('/');
+      this.props.history.push('/checkEmail');
+      }
+      else{
+          alert('Email address was not found!');
+      }
   }
+
 
 
 
@@ -34,28 +40,35 @@ class ForgotPassword extends Component {
       return (
         <React.Fragment>
     
-        <Grid container spacing={12}
-         container
-         direction="column"
-         justify="center"
-         alignItems="center"
-         className={classes.gridMargin}
-       >
-        
-                  <Grid item xs={8} sm={6} >
-                      <FormControl>
-                          <TextField label="Email Address" variant="outlined" color="primary"
-                            onChange={this.handleInputChangeFor('email')}
-                            type="text"
-                            value={this.state.email}
-                            >
-                          </TextField>
-                      </FormControl>
-                  </Grid>
-                
-                  <Grid item xs={8} sm={6}>
-                    <Button size="large" color="primary" onClick={this.handleSubmit}>Submit?</Button>
-                  </Grid>
+            <Grid container spacing={24}
+                container
+                direction="column"
+                justify="center"
+                alignItems="center"
+                className={classes.gridMargin}
+            >
+
+            
+                <Grid item xs={8} sm={6} >
+                    <FormControl>
+                        <TextField label="Email Address" variant="outlined" color="primary"
+                        onChange={this.handleInputChangeFor('email')}
+                        type="text"
+                        value={this.state.email}
+                        >
+                        </TextField>
+                    </FormControl>
+                </Grid>
+
+                    
+                <Grid item xs={8} sm={6}>
+                <Button size="large" color="primary" onClick={this.handleSubmit}>Submit</Button>
+                </Grid>
+
+                <Grid item xs={8} sm={6}>
+                    <Typography variant="h6">Please enter the email associated with your account. 
+                    <br/>Once submitted you will receive an email with instructions to reset your password.</Typography>
+                </Grid>
                  
               </Grid>
 

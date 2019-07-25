@@ -65,6 +65,7 @@ import RecordHarvestDashboard from '../AllUsersComponents/Records/SelectHarvestR
 import RecordCropsFieldsLabelCode from '../AllUsersComponents/Records/CropsFieldsLabelCodeRecord/CropsFieldsLabelCodeRecord';
 import ExportDash from '../AllUsersComponents/Records/ExportPdf/ExportDash.js';
 import ForgotPassword from '../Auth/PasswordRecovery/ForgotPassword';
+import CheckEmail from '../Auth/PasswordRecovery/CheckEmail';
 import Typography from '@material-ui/core/Typography';
 library.add(faHome,faCarrot, faRecycle, faPen, faPlus, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters, faTrashAlt, faMinusCircle, faUserEdit, faUserPlus, faFileExport);
 
@@ -83,9 +84,10 @@ class App extends Component {
               {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
               <Redirect exact from="/" to="/home" />
 
-              <Route
+              <ProtectedRoute
                 exact
-                path='/forgotpassword'
+                path='/checkemail'
+                component={CheckEmail}
               />
               {/* Visiting localhost:3000/about will show the about page.
               This is a route anyone can see, no login necessary */}
