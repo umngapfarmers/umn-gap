@@ -20,6 +20,7 @@ router.post('/register', async (req, res) => {
     console.log('in register');
     const username = req.body.newUser.username;
     const password = encryptLib.encryptPassword(req.body.newUser.password);
+    const email = req.body.newUser.email;
     const user_role = req.body.newUser.user_role;
     const person_first = req.body.newUser.person_first;
     const person_last = req.body.newUser.person_last;
@@ -35,14 +36,14 @@ router.post('/register', async (req, res) => {
         console.log(registrationCode);
       
         const farmQuery = `INSERT INTO "farm_registry" ("farm_name", "address", "city", "state", "zip_code") VALUES ($1, $2, $3, $4, $5) RETURNING "farm_id"`
-        const usernameQuery=  `INSERT INTO "user" (username, password, user_role, farm_registry_id) VALUES ($1, $2, $3, $4) RETURNING user_id`;
+        const usernameQuery=  `INSERT INTO "user" (username, password, email, user_role, farm_registry_id) VALUES ($1, $2, $3, $4, $5) RETURNING user_id`;
         const personQuery = `INSERT INTO "person" ("person_first", "person_last", "person_status", "user_id") VALUES ($1, $2, $3, $4)`;
         await client.query('BEGIN')
           
           const farmInsertResults = await client.query(farmQuery,  [newFarm.farm_name, newFarm.address, newFarm.city, newFarm.state, newFarm.zip_code]);
           const farm_id = farmInsertResults.rows[0].farm_id;
           
-          const userInsertResults = await client.query(usernameQuery, [username, password, user_role, farm_id]);
+          const userInsertResults = await client.query(usernameQuery, [username, password, email, user_role, farm_id]);
           const user_id = userInsertResults.rows[0].user_id;
           console.log(user_id);
 
