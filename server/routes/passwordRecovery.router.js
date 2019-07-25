@@ -5,10 +5,11 @@ const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 const moment = require('moment');
+const encryptLib = require('../modules/encryption');
 
 
 
-router.get('/', async (req, res) => {
+router.get('/checkEmail', async (req, res) => {
     const client = await pool.connect();
 
     try{
@@ -64,7 +65,7 @@ router.get('/', async (req, res) => {
             }
             else{
                 console.log('Email does not exist');
-                res.sendStatus(500);
+                res.sendStatus(401);
             }
             
     }
@@ -76,6 +77,24 @@ router.get('/', async (req, res) => {
     finally {
         client.release()
     }
+})
+
+
+router.put( '/resetPassword', (req, res) => {
+    console.log('in update password');
+    console.log(req.body);
+    const token = req.body.token;
+    const updatedPassword = encryptLib.encryptPassword(req.body.password1);
+
+    const sqlText = `UPDATE "user" SET "password" = $1 WHERE "password_recovery_token" = $2;`
+    pool.query(sqlText, [updatedPassword, token])
+    .then ( (result) => {
+        res.sendStatus(201);
+    })
+    .catch ( (error) => {
+        console.log('Error in update', error);
+        res.sendStatus(500);
+    })
 })
 
 // router.get('/', (req,res) => {

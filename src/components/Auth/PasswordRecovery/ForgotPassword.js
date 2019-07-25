@@ -16,10 +16,9 @@ class ForgotPassword extends Component {
   handleSubmit = event => {
       if(this.state.email) {
       this.props.dispatch({type: 'CHECK_EMAIL', payload: this.state.email});
-      this.props.history.push('/checkEmail');
       }
       else{
-          alert('Email address was not found!');
+          this.props.dispatch({type:'CHECK_EMAIL_ERROR'})
       }
   }
 
@@ -62,8 +61,12 @@ class ForgotPassword extends Component {
 
                     
                 <Grid item xs={8} sm={6}>
-                <Button size="large" color="primary" onClick={this.handleSubmit}>Submit</Button>
+                    <Button size="large" color="primary" onClick={this.handleSubmit}>Submit</Button>
                 </Grid>
+
+                <Grid item xs={8} sm={6}>
+                    <Typography>{this.props.errors.loginMessage}</Typography>
+                  </Grid>
 
                 <Grid item xs={8} sm={6}>
                     <Typography variant="h6">Please enter the email associated with your account. 

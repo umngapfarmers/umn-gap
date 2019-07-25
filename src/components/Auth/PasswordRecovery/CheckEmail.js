@@ -9,6 +9,11 @@ import Button from '@material-ui/core/Button';
 
 class CheckEmail extends Component {
 
+    checkEmail = () => {
+        this.props.dispatch({type:'SET_TO_LOGIN_MODE'});
+        this.props.dispatch({type:'CLEAR_LOGIN_ERROR'});
+    }
+
   render() {
       const {classes} = this.props;
       console.log(this.state);
@@ -29,7 +34,7 @@ class CheckEmail extends Component {
            </Grid>
                 
                   <Grid item xs={8} sm={6}>
-                    <Button size="large" color="primary" onClick= {() => {this.props.dispatch({type:'SET_TO_LOGIN_MODE'})}}>Return To Login</Button>
+                    <Button size="large" color="primary" onClick={this.checkEmail}>Return To Login</Button>
                   </Grid>
                  
               </Grid>

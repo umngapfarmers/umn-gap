@@ -77,7 +77,7 @@ app.use('/log/water', log_waterRouter); //adds logs for water treatment and insp
 app.use('/superadmin', superAdminRouter); //gets and changes id to superadmin if user has permissions
 app.use('/record/compostturn', record_compostTurnRouter); //gets records for compost management logs
 app.use('/record/export', exportRouter)
-app.use('/checkEmail', passwordRecoveryRouter);
+app.use('/passwordRecovery', passwordRecoveryRouter);
 
 // Serve static files
 app.use(express.static('build'));

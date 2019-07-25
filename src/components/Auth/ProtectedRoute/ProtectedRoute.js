@@ -64,7 +64,7 @@ const ProtectedRoute = (props) => {
     ComponentToShow = ForgotPassword;
   }
 
-  else if (loginMode === 'checkEmail'){
+  else if (loginMode === 'checkEmailSuccess'){
     ComponentToShow = CheckEmail;
   }
   else {

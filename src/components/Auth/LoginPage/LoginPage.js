@@ -85,7 +85,7 @@ class LoginPage extends Component {
                   </Grid>
                  
                   <Grid item xs={8} sm={6}>
-                    <Typography>{this.props.errors.loginMessage}</Typography>
+                      <Typography>{this.props.errors.loginMessage}</Typography>
                   </Grid>
 
                   <Grid item xs={8} sm={6}>
