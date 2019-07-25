@@ -18,7 +18,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
             res.send(result.rows)
         })
         .catch((error)=>{
-            console.log(`error getting manure`, error);
             res.sendStatus(500);
         })
 });
@@ -40,7 +39,6 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
     pool.query(sqlText, values)
         .then((result) => {
-            console.log('added manure source ', result.rows[0]);
             
             res.send(result.rows[0]);
         })
@@ -67,7 +65,6 @@ router.post('/new', rejectUnauthenticated, (req, res) => {
 
     pool.query(sqlText, values)
         .then((result) => {
-            console.log('added manure source ', result.rows[0]);
 
             res.send(result.rows[0]);
         })
@@ -82,7 +79,6 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
     let manure_id = req.params.id;
     pool.query(sqlText, [manure_id])
         .then((result) => {
-            console.log('deleted manure source ');
             res.sendStatus(200);
         })
         .catch((error) => {

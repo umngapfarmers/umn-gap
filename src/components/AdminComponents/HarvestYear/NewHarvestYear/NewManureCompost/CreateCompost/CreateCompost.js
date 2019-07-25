@@ -15,7 +15,6 @@ const moment = require('moment');
 // Accessed as part of intial farm set up workflow and through harvest year edit
 class CreateCompost extends Component {
 
-
   state= {
     farm_compost_name: '',
     farm_compost_date: moment().format('YYYY-MM-DD'),
@@ -24,6 +23,7 @@ class CreateCompost extends Component {
     farm_compost_status:true
   }
 
+  // sets state when form is changed
   handleChangeFor = property => event => {
     this.setState({
         ...this.state,
@@ -32,9 +32,11 @@ class CreateCompost extends Component {
   }
 
   componentDidMount(){
+    // hits getCompsotSaga to grab list of compost sources, sets compost reducer to recieved compsost sources
     this.props.dispatch({type: 'GET_COMPOST_SOURCE'}) 
   }
 
+  // when form is submitted, dispatches state to saga and posts form data
   onSubmit = () => {
     this.props.dispatch({type: 'ADD_COMPOST_SOURCE', payload:{...this.state}});
     this.setState({
@@ -46,32 +48,30 @@ class CreateCompost extends Component {
     })
   }
   
+  // removes a compost source 
   handleRemove = (id) => {
     this.props.dispatch({type: 'DELETE_COMPOST_SOURCE', payload:{id,}})
   }
 
+  // pushes pack to fertilizer dash
   handleNext = () => {
     this.props.history.push('/fertilizerdash');
   }
 
+  // if the state is filled then the add compost button enables
   validateFilled = () => {
-    console.log('validation')
     if (this.state.farm_compost_name) {
-      console.log(`valdiated`)
       return false
     }
     else {
-      console.log(`unvalidated`);
       
       return true
     }
   }
   
   render() {
-    console.log(`state in creat compost form `, this.state);
     
     const {classes} = this.props;
-    console.log(this.props.reduxState.user);
     return (
       <React.Fragment>
       <Typography variant="h6" gutterBottom align="center">
@@ -137,6 +137,7 @@ class CreateCompost extends Component {
  
         <Grid item xs={10} sm={6} >
           <ul>
+            {/* checks if redux state is filled */}
             {this.props.reduxState.setupCompost[0] && this.props.reduxState.setupCompost.map(compost =>
               <li key={compost.farm_compost_id}>{compost.farm_compost_name+' '+ moment(compost.farm_compost_date).format('YYYY-MM-DD')}
                 <IconButton size="large" color="primary" variant='contained' onClick={() => this.handleRemove(compost.farm_compost_id)}><FontAwesomeIcon icon='minus-circle'/></IconButton>

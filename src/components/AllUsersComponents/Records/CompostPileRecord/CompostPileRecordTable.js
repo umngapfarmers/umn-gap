@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -13,9 +12,8 @@ const moment = require('moment');
 
 class CompostPileRecordTable extends Component {
 
-
+  //maps through reducer to create table that displays selected harvest year data based on selected record
   render() {
-    console.log(this.state);
     const { classes} = this.props;
     return (
         <div style={{overflow : 'auto',fontSize: '14px'}}>

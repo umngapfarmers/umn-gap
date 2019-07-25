@@ -12,7 +12,8 @@ import {connect} from 'react-redux';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import IconButton from '@material-ui/core/IconButton';
 
-
+// Allows farmer to create a water source.
+// Accessed as part of intial farm set up workflow and through harvest year edit
 class CreateWaterSources extends Component {
 
 
@@ -37,7 +38,6 @@ class CreateWaterSources extends Component {
 
   addWaterSource = (event) => {
     event.preventDefault();
-    console.log('New water');
     this.props.dispatch({type:'ADD_WATER_SOURCE', payload: this.state.newWaterSource})
     this.setState({
       newWaterSource: {
@@ -50,7 +50,6 @@ class CreateWaterSources extends Component {
   
   removeWaterSource = (event) => {
     event.preventDefault();
-    console.log('Remove water');
     this.props.dispatch({ type: 'DELETE_WATER_SOURCE', payload: event.currentTarget.name })
   }
 

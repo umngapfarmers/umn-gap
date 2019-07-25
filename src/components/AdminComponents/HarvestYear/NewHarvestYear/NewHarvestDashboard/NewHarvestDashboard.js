@@ -37,20 +37,17 @@ class NewHarvestDashboard extends Component {
 
   handleCreate = event => {
     event.preventDefault();
-    console.log('in handleCreate');
     this.props.dispatch({ type: 'ADD_HARVEST_YEAR', payload: this.state.newHarvestYear });
     this.props.history.push('/newfarminfo')
   }
   
   handlePrevious = event => {
     event.preventDefault();
-    console.log('in handlePrevious');
     this.props.dispatch({ type: 'IMPORT_HARVEST', payload: this.state.newHarvestYear });
     this.props.history.push('/edithierarchy')
   }
 
   handleError = () => {
-    console.log('in handleError');
     if (this.state.newHarvestYear.harvest_year !== '') {
       return (
       <>

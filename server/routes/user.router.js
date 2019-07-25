@@ -29,7 +29,7 @@ router.post('/register', async (req, res) => {
     console.log('in registration POST')
     console.log('registrationCode is:', req.body.newUser.registrationCode);
 
-    if(registrationCode == 122090) {
+    if(registrationCode == 1086420) {
         try {
         
         console.log(registrationCode);
@@ -61,33 +61,6 @@ router.post('/register', async (req, res) => {
     res.sendStatus(500);
   }
 });
-
-
-// router.post('/register', (req, res, next) => {  
-//   console.log('in register');
-//   const username = req.body.username;
-//   const password = encryptLib.encryptPassword(req.body.password);
-//   const user_role = req.body.user_role;
-//   let registrationCode = req.body.registrationCode;
-//   console.log(registrationCode);
-//   if ( registrationCode == 122090 ){
-//   const queryText = 'INSERT INTO "user" (username, password, user_role) VALUES ($1, $2, $3) RETURNING user_id';
-//   pool.query(queryText, [username, password, user_role])
-//     .then(() => res.sendStatus(201))
-//     .catch( (error) =>{
-//     console.log(error);
-//     res.sendStatus(500);
-//     })
-//   }
-//   else{
-//     console.log('in else statement');
-//   }
-// });
-
-// Handles login form authenticate/login POST
-// userStrategy.authenticate('local') is middleware that we run on this route
-// this middleware will run our POST if successful
-// this middleware will send a 404 if not successful
 
 
 router.post('/login', userStrategy.authenticate('local'), (req, res) => {

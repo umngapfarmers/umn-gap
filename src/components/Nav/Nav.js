@@ -19,18 +19,22 @@ class MenuAppBar extends React.Component {
       anchorEl: null,
     };
   
+   //FUNCTION- handles change of text fields-- sets state to user inputed values 
     handleChange = event => {
       this.setState({ auth: event.target.checked });
     };
-  
+    
+    //FUNCTION - handles the opening of menu
     handleMenu = event => {
       this.setState({ anchorEl: event.currentTarget });
     };
   
+    //FUNCTION - handles the closing of menu
     handleClose = () => {
       this.setState({ anchorEl: null });
     };
 
+    //FUNCTION- conditionally renders the menu items in nav based on user permissions
     conditionallyRenderMenuItems = () => {
         if(this.props.reduxState.user.user_role == 'admin'){
             return(

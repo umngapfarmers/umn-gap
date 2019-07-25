@@ -41,7 +41,6 @@ class CompostPileLog extends Component {
   }
 
   handleCheck = (event) => {
-    console.log(`in handleCheck`);
     
     this.setState({
       entry:{
@@ -59,13 +58,10 @@ class CompostPileLog extends Component {
   }
 
   validateFilled = () => {
-    console.log('validation')
     if(this.state.entry.farm_compost_id && this.state.entry.compost_sig){
-      console.log(`valdiated`)
       return false
     }
     else {
-      console.log(`unvalidated`);
       
       return true
     }
@@ -91,7 +87,6 @@ class CompostPileLog extends Component {
 
   render() {
 
-    console.log(`state in compost pile log `, this.state);
 
     return (
       <React.Fragment>

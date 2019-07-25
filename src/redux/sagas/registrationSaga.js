@@ -3,7 +3,6 @@ import axios from 'axios';
 
 // worker Saga: will be fired on "REGISTER" actions
 function* registerUser(action) {
-  console.log('Registration payload is:', action.payload)
   try {
     // clear any existing error on the registration page
     yield put({ type: 'CLEAR_REGISTRATION_ERROR' });
@@ -20,7 +19,6 @@ function* registerUser(action) {
   // set to 'login' mode so they see the login screen
     // after registration or after they log out
   } catch (error) {
-      console.log('Error with user registration:', error);
       yield put({type: 'REGISTRATION_FAILED'});
   }
 }

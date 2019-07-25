@@ -5,27 +5,6 @@ const {
     rejectUnauthenticated
 } = require('../modules/authentication-middleware');
 
-
-
-// router.get('/', rejectUnauthenticated, (req, res) => {
-//     let sqlText = `SELECT * FROM "farm_manure" 
-//         JOIN "label_code" on "farm_manure"."label_code_id" = "label_code"."label_code_id"
-//         WHERE "farm_manure"."harvest_year_id" = $1;`
-//     let harvest_id = req.user.current_harvest_year;
-//     console.log(`harvest id off user `, harvest_id);
-
-//     pool.query(sqlText, [harvest_id])
-//         .then((result) => {
-//             // console.log(`result from manure GET`, result.rows);
-//             res.send(result.rows)
-//         })
-//         .catch((error) => {
-//             console.log(`error getting manure`, error);
-//             res.sendStatus(500);
-//         })
-// });
-
-
 router.post('/', rejectUnauthenticated, (req, res) => {
     console.log(`req.user `, req.user);
     
@@ -48,29 +27,13 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
     pool.query(sqlText, values)
         .then((result) => {
-            console.log('added compost treatment log ');
 
             res.sendStatus(201);
         })
         .catch((error) => {
-            console.log(`error in compost treatment log post `, error);
             res.sendStatus(500);
         })
 });
 
-// router.delete('/:id', rejectUnauthenticated, (req, res) => {
-//     let sqlText = `DELETE FROM "farm_manure" WHERE "farm_manure_id" = $1`;
-//     let manure_id = req.params.id;
-//     pool.query(sqlText, [manure_id])
-//         .then((result) => {
-//             console.log('deleted manure source ');
-//             res.sendStatus(200);
-//         })
-//         .catch((error) => {
-//             console.log(`error in farm_manure delete `, error);
-//             res.sendStatus(500);
-//         })
-
-// })
 
 module.exports = router;

@@ -3,15 +3,12 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 
 function* getHarvestRecord(action){
-    console.log('in getHarvestRecord', action.payload)
-    console.log('getHarvestRecord:', action.payload)
     try{
         let result = yield axios.get(`/record/harvest?harvest_year_id=${action.payload}`);
         yield put({type: 'SET_RECORD_HARVEST', payload: result.data})
 
     }
     catch (error){
-        console.log('ERROR IN GET HARVEST RECORD', error);
         alert(`Sorry! Was unable to get harvest record! Try again later.`)
     }
 }
