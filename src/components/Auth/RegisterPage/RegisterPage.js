@@ -17,6 +17,7 @@ class RegisterPage extends Component {
         person_last: '',
         username: '',
         password: '',
+        email: '',
         person_status: '',
         user_role: '',
     },
@@ -128,6 +129,14 @@ class RegisterPage extends Component {
                       onChange={this.handleInputChangeForNewUser('password')}
                       type="password"
                       value={this.state.newUser.password}
+                      ></TextField>
+                </Grid>
+
+                <Grid item xs={8} sm={6}>
+                    <TextField label="Email Address" variant="outlined" color="primary"
+                      onChange={this.handleInputChangeForNewUser('email')}
+                      type="email"
+                      value={this.state.newUser.email}
                       ></TextField>
                 </Grid>
 
