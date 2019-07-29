@@ -71,6 +71,14 @@ import FacilitiesCooler from '../AllUsersComponents/LogForms/FacilitiesCooler/Fa
 import FacilitiesBathroom from '../AllUsersComponents/LogForms/FacilitiesBathroom/FaciltiesBathroom';
 import FacilitiesPacking from '../AllUsersComponents/LogForms/FacilitiesPacking/FacilitiesPacking';
 import FacilitiesOther from '../AllUsersComponents/LogForms/FacilitiesOther/FacilitiesOther';
+import FacilitiesLogDashboard from '../AllUsersComponents/LogForms/SelectFacilitiesLog/SelectFacilitiesLog';
+import EquipmentToolLog from '../AllUsersComponents/LogForms/EquipmentToolLog/EquipmentToolLog';
+import EquipmentVehicleLog from '../AllUsersComponents/LogForms/EquipmentVehicleLog/EquipmentVehicleLog';
+import EquipmentThermometerLog from '../AllUsersComponents/LogForms/EquipmentThermometerLog/EquipmentThermometerLog';
+import EquipmentFirstAidLog from '../AllUsersComponents/LogForms/EquipmentFirstAidLog/EquipmentFirstAidLog';
+import EquipmentPestLog from '../AllUsersComponents/LogForms/EquipmentPestLog/EquipmentPestLog';
+import EquipmentOtherLog from '../AllUsersComponents/LogForms/EquipmentOtherLog/EquipmentOtherLog';
+import EquipmentLogDashboard from '../AllUsersComponents/LogForms/SelectEquipmentLog/SelectEquipmentLog';
 import Typography from '@material-ui/core/Typography';
 library.add(faHome,faCarrot, faRecycle, faPen, faPlus, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters, faTrashAlt, faMinusCircle, faUserEdit, faUserPlus, faFileExport, faWarehouse, faTools);
 
@@ -392,6 +400,54 @@ class App extends Component {
             exact
             path='/facilitiesotherlog'
             component={FacilitiesOther}
+          />
+
+          <ProtectedRoute
+            exact
+            path='/facilitieslogdashboard'
+            component={FacilitiesLogDashboard}
+          />
+
+          <ProtectedRoute
+            exact
+            path='/equipmentlogdasboard'
+            component={EquipmentLogDashboard}
+          />
+
+          <ProtectedRoute
+            exact
+            path='/equipmenttoollog'
+            component={EquipmentToolLog}
+          />
+
+          <ProtectedRoute
+            exact
+            path='/equipmentvehiclelog'
+            component={EquipmentVehicleLog}
+          />
+
+          <ProtectedRoute
+            exact
+            path='/equipmentthermomlog'
+            component={EquipmentThermometerLog}
+          />
+
+          <ProtectedRoute
+            exact
+            path='/equipmentfirstaidlog'
+            component={EquipmentFirstAidLog}
+          />
+
+          <ProtectedRoute
+            exact
+            path='/equipmentpestlog'
+            component={EquipmentPestLog}
+          />
+
+          <ProtectedRoute
+            exact
+            path='/equipmentotherlog'
+            component={EquipmentOtherLog}
           />
             
           
