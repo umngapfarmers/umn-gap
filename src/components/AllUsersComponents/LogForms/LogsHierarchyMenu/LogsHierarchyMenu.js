@@ -83,7 +83,22 @@ class LogsHierarchyMenu extends Component {
               style={{width:'80vw', maxWidth:400}}
             >
               <Typography className={classes.fabColor}>Facilities</Typography>
-              <FontAwesomeIcon icon="tint" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+              <FontAwesomeIcon icon="warehouse" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+            </Fab>
+          </Grid>
+
+          <Grid item xs={10} sm={6}>
+            <Fab
+              variant="extended"
+              size="large"
+              color="primary"
+              aria-label="Add"
+              className={classes.margin}
+              onClick={() => {this.props.history.push('/equipmentlogdashboard')}}
+              style={{width:'80vw', maxWidth:400}}
+            >
+              <Typography className={classes.fabColor}>Equipment</Typography>
+              <FontAwesomeIcon icon="tools" style={{marginLeft: 5}} className={classes.fabIconColor}/>
             </Fab>
           </Grid>
 
