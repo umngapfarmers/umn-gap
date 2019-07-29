@@ -67,6 +67,10 @@ import ExportDash from '../AllUsersComponents/Records/ExportPdf/ExportDash.js';
 import ForgotPassword from '../Auth/PasswordRecovery/ForgotPassword';
 import CheckEmail from '../Auth/PasswordRecovery/CheckEmail';
 import ChangePassword from '../Auth/PasswordRecovery/ChangePassword';
+import FacilitiesCooler from '../AllUsersComponents/LogForms/FacilitiesCooler/FacilitiesCooler';
+import FacilitiesBathroom from '../AllUsersComponents/LogForms/FacilitiesBathroom/FaciltiesBathroom';
+import FacilitiesPacking from '../AllUsersComponents/LogForms/FacilitiesPacking/FacilitiesPacking';
+import FacilitiesOther from '../AllUsersComponents/LogForms/FacilitiesOther/FacilitiesOther';
 import Typography from '@material-ui/core/Typography';
 library.add(faHome,faCarrot, faRecycle, faPen, faPlus, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters, faTrashAlt, faMinusCircle, faUserEdit, faUserPlus, faFileExport);
 
@@ -364,6 +368,30 @@ class App extends Component {
             exact
             path='/exportdash'
             component={ExportDash}
+          />
+
+          <ProtectedRoute
+            exact
+            path='/facilitiesbathlog'
+            component={FacilitiesBathroom}
+          />
+
+          <ProtectedRoute
+            exact
+            path='/facilitiespacklog'
+            component={FacilitiesPacking}
+          />
+
+          <ProtectedRoute
+            exact
+            path='/facilitiescoolerlog'
+            component={FacilitiesCooler}
+          />
+
+          <ProtectedRoute
+            exact
+            path='/facilitiesotherlog'
+            component={FacilitiesOther}
           />
             
           
