@@ -28,7 +28,7 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import theme from './theme';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRecycle, faCarrot, faTint, faPen, faPlus, faSeedling, faHome, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters, faTrashAlt, faMinusCircle, faUserEdit, faUserPlus, faFileExport, faWarehouse, faTools } from '@fortawesome/free-solid-svg-icons';
+import { faRecycle, faCarrot, faTint, faPen, faPlus, faSeedling, faHome, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters, faTrashAlt, faMinusCircle, faUserEdit, faUserPlus, faFileExport, faWarehouse, faTools, faToolbox, faTruckPickup, faThermometerHalf, faFirstAid, faSpider, faBoxOpen, faRestroom, faIgloo  } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 import ManageWorker from '../AdminComponents/ManageRoles/ManageWorker';
 
@@ -80,7 +80,7 @@ import EquipmentPestLog from '../AllUsersComponents/LogForms/EquipmentPestLog/Eq
 import EquipmentOtherLog from '../AllUsersComponents/LogForms/EquipmentOtherLog/EquipmentOtherLog';
 import EquipmentLogDashboard from '../AllUsersComponents/LogForms/SelectEquipmentLog/SelectEquipmentLog';
 import Typography from '@material-ui/core/Typography';
-library.add(faHome,faCarrot, faRecycle, faPen, faPlus, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters, faTrashAlt, faMinusCircle, faUserEdit, faUserPlus, faFileExport, faWarehouse, faTools);
+library.add(faHome,faCarrot, faRecycle, faPen, faPlus, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters, faTrashAlt, faMinusCircle, faUserEdit, faUserPlus, faFileExport, faWarehouse, faTools, faToolbox,faTruckPickup, faThermometerHalf, faFirstAid, faSpider, faBoxOpen, faRestroom, faIgloo);
 
 
 class App extends Component {
@@ -410,7 +410,7 @@ class App extends Component {
 
           <ProtectedRoute
             exact
-            path='/equipmentlogdasboard'
+            path='/equipmentlogdashboard'
             component={EquipmentLogDashboard}
           />
 
