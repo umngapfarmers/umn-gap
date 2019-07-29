@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Nav from '../../../Nav/Nav';
 
 
-class SelectFacilitiesLog extends Component {
+class SelectEquipmentRecord extends Component {
 
 
   //SelectWaterLog allows user to navigate to which water log they would like to complete
@@ -18,7 +18,7 @@ class SelectFacilitiesLog extends Component {
       <React.Fragment>
         <Nav/>
       <Typography variant="h6" gutterBottom align="center">
-         Select Facilities 
+         Select Equipment Record
       </Typography>
       <Grid container spacing={24}
         direction="column"
@@ -33,10 +33,10 @@ class SelectFacilitiesLog extends Component {
                     aria-label="Add"
                     className={classes.margin}
                     style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/facilitiesbathlog')}}
+                    onClick={() => {this.props.history.push('/recordequipmentool')}}
                     >
-                       <Typography className={classes.fabColor}>Bathroom</Typography>
-                      <FontAwesomeIcon icon="restroom" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+                       <Typography className={classes.fabColor}>Tools</Typography>
+                      <FontAwesomeIcon icon="toolbox" style={{marginLeft: 5}} className={classes.fabIconColor}/>
                   </Fab>
               </Grid>
 
@@ -48,10 +48,10 @@ class SelectFacilitiesLog extends Component {
                     aria-label="Add"
                     className={classes.margin}
                     style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/facilitiespacklog')}}
+                    onClick={() => {this.props.history.push('/recordequipmenvehicle')}}
                     >
-                       <Typography className={classes.fabColor}>Packing</Typography>
-                      <FontAwesomeIcon icon="box-open" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+                       <Typography className={classes.fabColor}>Vehicles</Typography>
+                      <FontAwesomeIcon icon="truck-pickup" style={{marginLeft: 5}} className={classes.fabIconColor}/>
                   </Fab>
               </Grid>
 
@@ -63,10 +63,10 @@ class SelectFacilitiesLog extends Component {
                     aria-label="Add"
                     className={classes.margin}
                     style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/facilitiescoolerlog')}}
+                    onClick={() => {this.props.history.push('/recordequipmenthermom')}}
                     >
-                       <Typography className={classes.fabColor}>Cooler</Typography>
-                      <FontAwesomeIcon icon="igloo" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+                       <Typography className={classes.fabColor}>Thermometers</Typography>
+                      <FontAwesomeIcon icon="thermometer-half" style={{marginLeft: 5}} className={classes.fabIconColor}/>
                   </Fab>
               </Grid>
 
@@ -78,14 +78,42 @@ class SelectFacilitiesLog extends Component {
                     aria-label="Add"
                     className={classes.margin}
                     style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/facilitiesotherlog')}}
+                    onClick={() => {this.props.history.push('/recordequipmentfirstaid')}}
                     >
-                       <Typography className={classes.fabColor}>Other Facilities</Typography>
-                      <FontAwesomeIcon icon="warehouse" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+                       <Typography className={classes.fabColor}>First Aid</Typography>
+                      <FontAwesomeIcon icon="first-aid" style={{marginLeft: 5}} className={classes.fabIconColor}/>
                   </Fab>
               </Grid>
 
-              
+              <Grid item xs={12} sm={6}>
+                 <Fab 
+                    variant="extended"
+                    size="large"
+                    color="primary"
+                    aria-label="Add"
+                    className={classes.margin}
+                    style={{width:'80vw', maxWidth:400}}
+                    onClick={() => {this.props.history.push('/recordequipmentpest')}}
+                    >
+                       <Typography className={classes.fabColor}>Pests</Typography>
+                      <FontAwesomeIcon icon="spider" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+                  </Fab>
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                 <Fab 
+                    variant="extended"
+                    size="large"
+                    color="primary"
+                    aria-label="Add"
+                    className={classes.margin}
+                    style={{width:'80vw', maxWidth:400}}
+                    onClick={() => {this.props.history.push('/recordequipmentother')}}
+                    >
+                       <Typography className={classes.fabColor}>Other Equipment</Typography>
+                      <FontAwesomeIcon icon="tools" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+                  </Fab>
+              </Grid>
 
       </Grid>
      
@@ -124,4 +152,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect( mapReduxStateToProps )(withStyles(styles)(SelectFacilitiesLog));
+export default connect( mapReduxStateToProps )(withStyles(styles)(SelectEquipmentRecord));

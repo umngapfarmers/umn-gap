@@ -67,10 +67,10 @@ import ExportDash from '../AllUsersComponents/Records/ExportPdf/ExportDash.js';
 import ForgotPassword from '../Auth/PasswordRecovery/ForgotPassword';
 import CheckEmail from '../Auth/PasswordRecovery/CheckEmail';
 import ChangePassword from '../Auth/PasswordRecovery/ChangePassword';
-import FacilitiesCooler from '../AllUsersComponents/LogForms/FacilitiesCooler/FacilitiesCooler';
-import FacilitiesBathroom from '../AllUsersComponents/LogForms/FacilitiesBathroom/FaciltiesBathroom';
-import FacilitiesPacking from '../AllUsersComponents/LogForms/FacilitiesPacking/FacilitiesPacking';
-import FacilitiesOther from '../AllUsersComponents/LogForms/FacilitiesOther/FacilitiesOther';
+import FacilitiesCoolerLog from '../AllUsersComponents/LogForms/FacilitiesCooler/FacilitiesCooler';
+import FacilitiesBathroomLog from '../AllUsersComponents/LogForms/FacilitiesBathroom/FaciltiesBathroom';
+import FacilitiesPackingLog from '../AllUsersComponents/LogForms/FacilitiesPacking/FacilitiesPacking';
+import FacilitiesOtherLog from '../AllUsersComponents/LogForms/FacilitiesOther/FacilitiesOther';
 import FacilitiesLogDashboard from '../AllUsersComponents/LogForms/SelectFacilitiesLog/SelectFacilitiesLog';
 import EquipmentToolLog from '../AllUsersComponents/LogForms/EquipmentToolLog/EquipmentToolLog';
 import EquipmentVehicleLog from '../AllUsersComponents/LogForms/EquipmentVehicleLog/EquipmentVehicleLog';
@@ -79,6 +79,18 @@ import EquipmentFirstAidLog from '../AllUsersComponents/LogForms/EquipmentFirstA
 import EquipmentPestLog from '../AllUsersComponents/LogForms/EquipmentPestLog/EquipmentPestLog';
 import EquipmentOtherLog from '../AllUsersComponents/LogForms/EquipmentOtherLog/EquipmentOtherLog';
 import EquipmentLogDashboard from '../AllUsersComponents/LogForms/SelectEquipmentLog/SelectEquipmentLog';
+import RecordFacilitiesCooler from '../AllUsersComponents/Records/FacilitiesCoolerRecord/FacilitiesCoolerRecord';
+import RecordFacilitiesBathroom from '../AllUsersComponents/Records/FacilitiesBathroomRecord/FacilitiesBathroomRecord';
+import RecordFacilitiesPacking from '../AllUsersComponents/Records/FacilitiesPackingRecord/FacilitiesPackingRecord';
+import RecordFacilitiesOther from '../AllUsersComponents/Records/FacilitiesOtherRecord/FacilitiesOtherRecord';
+import RecordFacilitiesDashboard from '../AllUsersComponents/Records/SelectFacilitiesRecord/SelectFacilitiesRecord';
+import RecordEquipmentDashboard from '../AllUsersComponents/Records/SelectEquipmentRecord/SelectEquipmentRecord';
+import RecordEquipmentTool from '../AllUsersComponents/Records/EquipmentToolRecord/EquipmentToolRecord';
+import RecordEquipmentVehicle from '../AllUsersComponents/Records/EquipmentVehicleRecord/EquipmentVehicleRecord';
+import RecordEquipmentThermometer from '../AllUsersComponents/Records/EquipmentThermometerRecord/EquipmentThermometerRecord';
+import RecordEquipmentFirstAid from '../AllUsersComponents/Records/EquipmentFirtAidRecord/EquipmentFirstAidRecord';
+import RecordEquipmentPest from '../AllUsersComponents/Records/EquipmentPestRecord/EquipmentPestRecord';
+import RecordEquipmentOther from '../AllUsersComponents/Records/EquipmentOtherRecord/EquipmentOtherRecord';
 import Typography from '@material-ui/core/Typography';
 library.add(faHome,faCarrot, faRecycle, faPen, faPlus, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters, faTrashAlt, faMinusCircle, faUserEdit, faUserPlus, faFileExport, faWarehouse, faTools, faToolbox,faTruckPickup, faThermometerHalf, faFirstAid, faSpider, faBoxOpen, faRestroom, faIgloo);
 
@@ -381,25 +393,25 @@ class App extends Component {
           <ProtectedRoute
             exact
             path='/facilitiesbathlog'
-            component={FacilitiesBathroom}
+            component={FacilitiesBathroomLog}
           />
 
           <ProtectedRoute
             exact
             path='/facilitiespacklog'
-            component={FacilitiesPacking}
+            component={FacilitiesPackingLog}
           />
 
           <ProtectedRoute
             exact
             path='/facilitiescoolerlog'
-            component={FacilitiesCooler}
+            component={FacilitiesCoolerLog}
           />
 
           <ProtectedRoute
             exact
             path='/facilitiesotherlog'
-            component={FacilitiesOther}
+            component={FacilitiesOtherLog}
           />
 
           <ProtectedRoute
@@ -449,6 +461,88 @@ class App extends Component {
             path='/equipmentotherlog'
             component={EquipmentOtherLog}
           />
+
+          <ProtectedRoute
+            exact
+            path='/recordfacilitiesdashboard'
+            component={RecordFacilitiesDashboard}
+          />
+
+          <ProtectedRoute
+            exact
+            path='/recordequipmentdashboard'
+            component={RecordEquipmentDashboard}
+          />
+
+          <ProtectedRoute
+            exact
+            path='/recordfacilitiescooler'
+            component={RecordFacilitiesCooler}
+          />
+
+          <ProtectedRoute
+              exact
+              path='/recordfacilitiesbathroom'
+              component={RecordFacilitiesBathroom}
+          />
+
+          <ProtectedRoute
+              exact
+              path='/recordfacilitiespacking'
+              component={RecordFacilitiesPacking}
+          />
+
+          <ProtectedRoute
+              exact
+              path='/recordfacilitiesother'
+              component={RecordFacilitiesOther}
+          />
+
+          <ProtectedRoute
+              exact
+              path='/recordfacilitiescooler'
+              component={RecordFacilitiesCooler}
+          />
+
+          <ProtectedRoute
+              exact
+              path='/recordequipmentool'
+              component={RecordEquipmentTool}
+          />
+          
+          <ProtectedRoute
+              exact
+              path='/recordequipmenvehicle'
+              component={RecordEquipmentVehicle}
+          />
+
+           <ProtectedRoute
+              exact
+              path='/recordequipmenthermom'
+              component={RecordEquipmentThermometer}
+          />
+
+           <ProtectedRoute
+              exact
+              path='/recordequipmentfirstaid'
+              component={RecordEquipmentFirstAid}
+          />
+
+           <ProtectedRoute
+              exact
+              path='/recordequipmentpest'
+              component={RecordEquipmentPest}
+          />
+
+           <ProtectedRoute
+              exact
+              path='/recordequipmentother'
+              component={RecordEquipmentOther}
+          />
+
+
+
+
             
           
 

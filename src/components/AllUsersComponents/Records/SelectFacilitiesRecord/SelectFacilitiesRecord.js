@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Nav from '../../../Nav/Nav';
 
 
-class SelectFacilitiesLog extends Component {
+class SelectFacilitiesRecord extends Component {
 
 
   //SelectWaterLog allows user to navigate to which water log they would like to complete
@@ -18,7 +18,7 @@ class SelectFacilitiesLog extends Component {
       <React.Fragment>
         <Nav/>
       <Typography variant="h6" gutterBottom align="center">
-         Select Facilities 
+         Select Facilities Record
       </Typography>
       <Grid container spacing={24}
         direction="column"
@@ -33,7 +33,7 @@ class SelectFacilitiesLog extends Component {
                     aria-label="Add"
                     className={classes.margin}
                     style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/facilitiesbathlog')}}
+                    onClick={() => {this.props.history.push('/recordfacilitiesbathroom')}}
                     >
                        <Typography className={classes.fabColor}>Bathroom</Typography>
                       <FontAwesomeIcon icon="restroom" style={{marginLeft: 5}} className={classes.fabIconColor}/>
@@ -48,7 +48,7 @@ class SelectFacilitiesLog extends Component {
                     aria-label="Add"
                     className={classes.margin}
                     style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/facilitiespacklog')}}
+                    onClick={() => {this.props.history.push('/recordfacilitiespacking')}}
                     >
                        <Typography className={classes.fabColor}>Packing</Typography>
                       <FontAwesomeIcon icon="box-open" style={{marginLeft: 5}} className={classes.fabIconColor}/>
@@ -63,7 +63,7 @@ class SelectFacilitiesLog extends Component {
                     aria-label="Add"
                     className={classes.margin}
                     style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/facilitiescoolerlog')}}
+                    onClick={() => {this.props.history.push('/recordfacilitiescooler')}}
                     >
                        <Typography className={classes.fabColor}>Cooler</Typography>
                       <FontAwesomeIcon icon="igloo" style={{marginLeft: 5}} className={classes.fabIconColor}/>
@@ -78,7 +78,7 @@ class SelectFacilitiesLog extends Component {
                     aria-label="Add"
                     className={classes.margin}
                     style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/facilitiesotherlog')}}
+                    onClick={() => {this.props.history.push('/recordfacilitiesother')}}
                     >
                        <Typography className={classes.fabColor}>Other Facilities</Typography>
                       <FontAwesomeIcon icon="warehouse" style={{marginLeft: 5}} className={classes.fabIconColor}/>
@@ -124,4 +124,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect( mapReduxStateToProps )(withStyles(styles)(SelectFacilitiesLog));
+export default connect( mapReduxStateToProps )(withStyles(styles)(SelectFacilitiesRecord));
