@@ -39,9 +39,10 @@ class LogsHierarchyMenu extends Component {
             >
               <Typography className={classes.fabColor}>Harvest Traceability</Typography>
               <FontAwesomeIcon icon="seedling" style={{marginLeft: 5}} className={classes.fabIconColor}/>
-        </Fab>
+            </Fab>
         </Grid>
-            <Grid item xs={10} sm={6}>
+        
+        <Grid item xs={10} sm={6}>
             <Fab
               variant="extended"
               size="large"
@@ -53,8 +54,9 @@ class LogsHierarchyMenu extends Component {
             >
               <Typography className={classes.fabColor}>Compost Management</Typography>
               <FontAwesomeIcon icon="recycle" style={{marginLeft: 5}} className={classes.fabIconColor}/>
-        </Fab>
+            </Fab>
           </Grid>
+
           <Grid item xs={10} sm={6}>
             <Fab
               variant="extended"
@@ -67,8 +69,26 @@ class LogsHierarchyMenu extends Component {
             >
               <Typography className={classes.fabColor}>Water Sources</Typography>
               <FontAwesomeIcon icon="tint" style={{marginLeft: 5}} className={classes.fabIconColor}/>
-        </Fab>
+            </Fab>
           </Grid>
+
+          <Grid item xs={10} sm={6}>
+            <Fab
+              variant="extended"
+              size="large"
+              color="primary"
+              aria-label="Add"
+              className={classes.margin}
+              onClick={() => {this.props.history.push('/facilitieslogdashboard')}}
+              style={{width:'80vw', maxWidth:400}}
+            >
+              <Typography className={classes.fabColor}>Facilities</Typography>
+              <FontAwesomeIcon icon="tint" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+            </Fab>
+          </Grid>
+
+
+
           {this.props.reduxState.user.user_role === 'admin' ? <Grid item xs={10} sm={6}>
             <Fab
               variant="extended"
