@@ -341,7 +341,7 @@ CREATE TABLE "pest" (
 
 CREATE TABLE "farm_thermometer" (
   "farm_thermometer_id" serial primary key,
-  "farm_thermometer_location" varchar(50) NOT NULL
+  "farm_thermometer_name" varchar(50) NOT NULL
 );
 
 CREATE TABLE "thermometer" (
