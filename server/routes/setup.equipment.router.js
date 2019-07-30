@@ -16,7 +16,7 @@ router.post('/new/farm_tool', (req, res) => {
 
   pool.query(sqlText, values)
     .then((result) => {
-      console.log('added farm tool ', result.rows[0]);
+      console.log('added farm tool ');
       res.sendStatus(201);
     })
     .catch((error) => {
@@ -34,7 +34,7 @@ router.post('/new/thermometer', (req, res) => {
 
   pool.query(sqlText, values)
     .then((result) => {
-      console.log('added thermometer', result.rows[0]);
+      console.log('added thermometer');
       res.sendStatus(201);
     })
     .catch((error) => {
@@ -52,7 +52,7 @@ router.post('/new/firstaid', (req, res) => {
 
   pool.query(sqlText, values)
     .then((result) => {
-      console.log('added firstaid', result.rows[0]);
+      console.log('added firstaid');
       res.sendStatus(201);
     })
     .catch((error) => {
@@ -71,11 +71,48 @@ router.post('/new/pest', (req, res) => {
 
   pool.query(sqlText, values)
     .then((result) => {
-      console.log('added pest', result.rows[0]);
+      console.log('added pest');
       res.sendStatus(201);
     })
     .catch((error) => {
       console.log(`error in pest post `, error);
+      res.sendStatus(500);
+    })
+});
+
+router.post('/new/pest', (req, res) => {
+
+  let sqlText = `INSERT INTO "farm_pest" ("farm_pest_type", "farm_pest_location") VALUES ($1, $2);`
+  let values = [
+    req.body.farm_pest_type,
+    req.body.farm_pest_location
+  ];
+
+  pool.query(sqlText, values)
+    .then((result) => {
+      console.log('added pest');
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log(`error in pest post `, error);
+      res.sendStatus(500);
+    })
+});
+
+router.post('/new/equipment_other', (req, res) => {
+
+  let sqlText = `INSERT INTO "farm_equipment_other" ("farm_equipment_other_name") VALUES ($1);`
+  let values = [
+    req.body.farm_equipment_other_name
+  ];
+
+  pool.query(sqlText, values)
+    .then((result) => {
+      console.log('added other equipment');
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log(`error in other equipment post `, error);
       res.sendStatus(500);
     })
 });
