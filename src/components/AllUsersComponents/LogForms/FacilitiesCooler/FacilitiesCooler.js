@@ -32,7 +32,7 @@ class FacilitiesCoolerLog extends Component {
   
   componentDidMount(){
     this.props.dispatch({type: 'GET_PERSON'});
-    // this.props.dispatch({type: 'GET_COOLER'});
+    this.props.dispatch({type: 'GET_COOLER'});
   }
 
 
@@ -142,11 +142,11 @@ class FacilitiesCoolerLog extends Component {
               style={{width:'80vw', maxWidth:400}}
             >
               <MenuItem disabled>Select Cooler</MenuItem>
-              {/* {this.props.reduxState.coolerReducer.map(option => (
+              {this.props.reduxState.coolerReducer.map(option => (
                   <MenuItem key={option.farm_cooler_id} value={option.farm_cooler_id}>
                   {option.farm_cooler_name}
                   </MenuItem>
-              ))} */}
+              ))}
            </TextField>
           </Grid>
 
