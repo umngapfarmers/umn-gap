@@ -159,7 +159,7 @@ class EnterFarmInformationHierarchyMenu extends Component {
           <RadioButtonUncheckedOutlined/>
         </ListItemIcon>
       </ListItem>
-        <ListItem button>
+        <ListItem button onClick={() => {this.props.history.push('/newEquipment')}}>
           <ListItemIcon>
             Step 4
           </ListItemIcon>

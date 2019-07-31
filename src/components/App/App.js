@@ -19,6 +19,7 @@ import ManureCompostDash from '../AdminComponents/HarvestYear/NewHarvestYear/New
 import CreateManure from '../AdminComponents/HarvestYear/NewHarvestYear/NewManureCompost/CreateManure/CreateManure.js';
 import CreateCompost from '../AdminComponents/HarvestYear/NewHarvestYear/NewManureCompost/CreateCompost/CreateCompost.js';
 import CreateEquipmentSelect from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/NewEquipmentSelect/NewEquipmentSelect.js'
+import CreateEquipmentOther from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/CreateOther/CreateOther';
 import LogDashboard from '../AllUsersComponents/LogForms/LogsHierarchyMenu/LogsHierarchyMenu';
 import HarvestLog from '../AllUsersComponents/LogForms/HarvestLog/HarvestLog';
 import EditHierarchy from '../AdminComponents/HarvestYear/EditHarvestYear/EditFarmInformationHierarchyMenu/EditFarmInformationHierarchyMenu';
@@ -147,8 +148,6 @@ class App extends Component {
                 component={EnterFarmInformationHierarchyMenu}
               />
 
-              
-          
             <AdminProtectedRoute
               exact
               path="/water"
@@ -174,11 +173,20 @@ class App extends Component {
               path="/labelcode"
               component={LabelCode}
             />
+{/************* SETUP EQUIPMENT *************/ }
             <AdminProtectedRoute
               exact
               path="/newequipment"
               component={CreateEquipmentSelect}
             />
+            < AdminProtectedRoute
+              exact
+              path = "/newOtherEquipment"
+              component = {CreateEquipmentOther}
+            />
+
+{/************* SETUP EQUIPMENT END *************/ }
+
             <AdminProtectedRoute
               exact
               path="/admin"
