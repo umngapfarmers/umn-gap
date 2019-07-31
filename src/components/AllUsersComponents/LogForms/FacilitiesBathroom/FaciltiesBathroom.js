@@ -139,11 +139,11 @@ class FacilitiesBathroomLog extends Component {
               style={{width:'80vw', maxWidth:400}}
             >
               <MenuItem disabled>Select Bathroom</MenuItem>
-              {/* {this.props.reduxState.bathroom.waterSource.map(option => (
-                  <MenuItem key={option.farm_water_source_id} value={option.farm_water_source_id}>
-                  {option.farm_water_source_name}
+              {this.props.reduxState.bathroomReducer.map(option => (
+                  <MenuItem key={option.farm_bathroom_id} value={option.farm_bathroom_id}>
+                  {option.farm_bathroom_name}
                   </MenuItem>
-              ))} */}
+              ))}
            </TextField>
           </Grid>
 
@@ -215,7 +215,7 @@ class FacilitiesBathroomLog extends Component {
               variant="outlined"
               style={{width:'80vw', maxWidth:400}}
             >
-              {/* <MenuItem disabled>Select Employee Signature</MenuItem> */}
+              <MenuItem disabled>Select Employee Signature</MenuItem>
               {this.props.reduxState.person.map(option => (
                   <MenuItem key={option.person_id} value={option.person_id}>
                   {option.person_first} {option.person_last}
