@@ -18,6 +18,7 @@ import EnterFarmInformationHierarchyMenu from '../AdminComponents/HarvestYear/Ne
 import ManureCompostDash from '../AdminComponents/HarvestYear/NewHarvestYear/NewManureCompost/ManureCompostDash/ManureCompostDash';
 import CreateManure from '../AdminComponents/HarvestYear/NewHarvestYear/NewManureCompost/CreateManure/CreateManure.js';
 import CreateCompost from '../AdminComponents/HarvestYear/NewHarvestYear/NewManureCompost/CreateCompost/CreateCompost.js';
+import CreateEquipmentSelect from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/NewEquipmentSelect/NewEquipmentSelect.js'
 import LogDashboard from '../AllUsersComponents/LogForms/LogsHierarchyMenu/LogsHierarchyMenu';
 import HarvestLog from '../AllUsersComponents/LogForms/HarvestLog/HarvestLog';
 import EditHierarchy from '../AdminComponents/HarvestYear/EditHarvestYear/EditFarmInformationHierarchyMenu/EditFarmInformationHierarchyMenu';
@@ -175,6 +176,11 @@ class App extends Component {
             />
             <AdminProtectedRoute
               exact
+              path="/newequipment"
+              component={CreateEquipmentSelect}
+            />
+            <AdminProtectedRoute
+              exact
               path="/admin"
               component={AdminDashboard}
             />
@@ -203,11 +209,11 @@ class App extends Component {
               path="/harvestdashboard"
               component={HarvestDashboard}
             />
-              <AdminProtectedRoute
-                exact
-                path="/newharvestyeardashboard"
-                component={NewHarvestYearDashboard}
-              />
+            <AdminProtectedRoute
+              exact
+              path="/newharvestyeardashboard"
+              component={NewHarvestYearDashboard}
+            />
             <ProtectedRoute
               exact
               path="/worker"

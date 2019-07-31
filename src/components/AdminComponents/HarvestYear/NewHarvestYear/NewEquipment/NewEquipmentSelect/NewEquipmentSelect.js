@@ -5,10 +5,10 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Nav from '../../../Nav/Nav';
+import Nav from '../../../../../Nav/Nav.js';
 
 
-class SelectEquipmentLog extends Component {
+class NewEquipmentSelect extends Component {
 
   render() {
     const {classes} = this.props;
@@ -16,7 +16,7 @@ class SelectEquipmentLog extends Component {
       <React.Fragment>
         <Nav/>
       <Typography variant="h6" gutterBottom align="center">
-         Select Equipment Log
+         Select Equipment to Create
       </Typography>
       <Grid container spacing={24}
         direction="column"
@@ -150,4 +150,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect( mapReduxStateToProps )(withStyles(styles)(SelectEquipmentLog));
+export default connect(mapReduxStateToProps)(withStyles(styles)(NewEquipmentSelect));
