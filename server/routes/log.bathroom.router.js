@@ -6,11 +6,12 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
  * GET route template
  */
 
-router.get('/', rejectUnauthenticated, (req, res) => {
+router.get('/', (req, res) => {
     console.log('IN GET BATHROOM')
     console.log('Harvest year is:', req.user.current_harvest_year);
+    const harvest_year_id = req.user.current_harvest_year;
     let sqlQuery = `SELECT * FROM "farm_bathroom" WHERE "harvest_year_id" = $1;`
-    pool.query(sqlQuery, [req.user.current_harvest_year])
+    pool.query(sqlQuery, [harvest_year_id])
         .then((response) => {
             console.log(`Bathroom information`, response.rows);
             res.send(response.rows)  
