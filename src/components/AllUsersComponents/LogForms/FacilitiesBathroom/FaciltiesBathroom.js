@@ -51,6 +51,7 @@ class FacilitiesBathroomLog extends Component {
   // navigates user to logs dashboard
   handleSubmit = (event) => {
     event.preventDefault();
+    this.props.dispatch({type: 'ADD_BATHROOM_LOG', payload: this.state.newBathroomLog});
   }
 
 
