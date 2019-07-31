@@ -35,7 +35,7 @@ const superAdminRouter = require('./routes/superadmin.router')
 const record_compostTurnRouter = require('./routes/record.compostTurn.router');
 const exportRouter = require('./routes/record.export.router');
 const passwordRecoveryRouter = require ('./routes/passwordRecovery.router');
-
+const log_bathroomRouter= require('./routes/log.bathroom.router');
 
 
 // Body parser middleware
@@ -78,6 +78,7 @@ app.use('/superadmin', superAdminRouter); //gets and changes id to superadmin if
 app.use('/record/compostturn', record_compostTurnRouter); //gets records for compost management logs
 app.use('/record/export', exportRouter)
 app.use('/passwordRecovery', passwordRecoveryRouter);
+app.use('/log/bathroom', log_bathroomRouter);
 
 // Serve static files
 app.use(express.static('build'));
