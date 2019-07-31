@@ -243,18 +243,19 @@ CREATE TABLE "cooler" (
 
 CREATE TABLE "farm_bathroom" (
   "farm_bathroom_id" serial primary key,
-  "farm_bathroom_name" varchar(50)
+  "farm_bathroom_name" varchar(50),
+  "harvest_year_id" int references "harvest_year",
+  "farm_bathroom_status" boolean DEFAULT true
 );
 
 CREATE TABLE "bathroom" (
   "bathroom_id" serial primary key ,
-  "farm_bathroom_id" int references  "farm_packing",
+  "farm_bathroom_id" int references  "farm_bathroom",
   "bathroom_date" timestamptz NOT NULL,
   "bathroom_cleaned" boolean,
   "bathroom_sanitized" boolean,
   "bathroom_area" varchar(50) ,
   "bathroom_comment" varchar(100),
-  "user_id" int references "user",
   "bathroom_sig" varchar(200),
   "harvest_year_id" int references "harvest_year"
 );
