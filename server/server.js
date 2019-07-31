@@ -36,6 +36,7 @@ const record_compostTurnRouter = require('./routes/record.compostTurn.router');
 const exportRouter = require('./routes/record.export.router');
 const passwordRecoveryRouter = require ('./routes/passwordRecovery.router');
 const log_bathroomRouter= require('./routes/log.bathroom.router');
+const log_coolerRouter = require('./routes/log.cooler.router');
 
 
 // Body parser middleware
@@ -79,6 +80,7 @@ app.use('/record/compostturn', record_compostTurnRouter); //gets records for com
 app.use('/record/export', exportRouter)
 app.use('/passwordRecovery', passwordRecoveryRouter);
 app.use('/log/bathroom', log_bathroomRouter);
+app.use('/log/cooler', log_coolerRouter);
 
 // Serve static files
 app.use(express.static('build'));
