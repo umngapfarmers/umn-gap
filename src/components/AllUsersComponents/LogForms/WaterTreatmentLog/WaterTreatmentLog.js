@@ -40,7 +40,7 @@ class WaterTreatmentLog extends Component {
     return(
       <Button variant="contained" color="primary" style={{width:'80vw', maxWidth:400}} disabled>Submit</Button>
     )
-  }
+    }
   }
 
     //FUNCTION-- on initialization of page-- dispatch GET_PERSON to get employees from DB , store them in reducer, populate drop down menu
