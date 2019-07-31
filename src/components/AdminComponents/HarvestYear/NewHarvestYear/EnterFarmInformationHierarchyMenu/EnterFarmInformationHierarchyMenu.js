@@ -14,16 +14,9 @@ import './EnterFarmInformationHierarchyMenu.css'
 
 class EnterFarmInformationHierarchyMenu extends Component {
 
-
-  state= {
-    
-  }
-
   componentDidMount(){
     // this.props.dispatch({type:'SET_MENU_BOOLEAN', payload: 0})
   }
-
-
 
   render() {
     const {classes} = this.props;
@@ -31,7 +24,7 @@ class EnterFarmInformationHierarchyMenu extends Component {
     let menuToDisplay = null;
 
     //CONDITIONAL RENDERING -- no menu sections have been completed
-    if (menuBoolean ===0){
+    if (menuBoolean === 0){
       menuToDisplay =
       <List>
       <ListItem button onClick={() => {this.props.history.push('/crops')}}>
@@ -61,6 +54,25 @@ class EnterFarmInformationHierarchyMenu extends Component {
           <RadioButtonUncheckedOutlined/>
         </ListItemIcon>
       </ListItem>
+      <ListItem button disabled>
+        <ListItemIcon>
+          Step 4
+        </ListItemIcon>
+        <ListItemText primary="Equipment"/>
+        <ListItemIcon>
+          <RadioButtonUncheckedOutlined/>
+        </ListItemIcon>
+      </ListItem>
+      <ListItem button disabled>
+        <ListItemIcon>
+          Step 5
+        </ListItemIcon>
+        <ListItemText primary="Facilties"/>
+        <ListItemIcon>
+          <RadioButtonUncheckedOutlined/>
+        </ListItemIcon>
+      </ListItem>
+
     </List> 
     }
 
@@ -91,6 +103,24 @@ class EnterFarmInformationHierarchyMenu extends Component {
             Step 3
           </ListItemIcon>
           <ListItemText primary="Water Sources"/>
+          <ListItemIcon>
+            <RadioButtonUncheckedOutlined/>
+          </ListItemIcon>
+        </ListItem>
+        <ListItem button disabled>
+          <ListItemIcon>
+            Step 4
+          </ListItemIcon>
+          <ListItemText primary="Equipment"/>
+          <ListItemIcon>
+            <RadioButtonUncheckedOutlined/>
+          </ListItemIcon>
+        </ListItem>
+        <ListItem button disabled>
+          <ListItemIcon>
+            Step 5
+          </ListItemIcon>
+          <ListItemText primary="Facilties"/>
           <ListItemIcon>
             <RadioButtonUncheckedOutlined/>
           </ListItemIcon>
@@ -129,6 +159,24 @@ class EnterFarmInformationHierarchyMenu extends Component {
           <RadioButtonUncheckedOutlined/>
         </ListItemIcon>
       </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            Step 4
+          </ListItemIcon>
+          <ListItemText primary="Equipment"/>
+          <ListItemIcon>
+            <RadioButtonUncheckedOutlined/>
+          </ListItemIcon>
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            Step 5
+          </ListItemIcon>
+          <ListItemText primary="Facilties"/>
+          <ListItemIcon>
+            <RadioButtonUncheckedOutlined/>
+          </ListItemIcon>
+        </ListItem>
     </List> 
     }
 
@@ -137,7 +185,7 @@ class EnterFarmInformationHierarchyMenu extends Component {
       <React.Fragment>
       
       <Typography variant="h6" gutterBottom align="center">
-      Enter Farm Information Hierarchy Menu
+      Enter Farm Information
       </Typography>
       <Grid container spacing={24}>
          
