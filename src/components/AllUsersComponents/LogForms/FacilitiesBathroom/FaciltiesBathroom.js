@@ -31,6 +31,7 @@ class FacilitiesBathroomLog extends Component {
   
   componentDidMount(){
     this.props.dispatch({type: 'GET_PERSON'});
+    this.props.dispatch({type: 'GET_BATHROOM'});
   }
 
 
