@@ -74,7 +74,7 @@ class FacilitiesCoolerLog extends Component {
     this.setState({
         newCoolerLog:{
         ...this.state.newCoolerLog,
-        bathroom_cleaned: event.target.checked
+        cooler_cleaned: event.target.checked
       }
     })
   }
@@ -84,7 +84,7 @@ class FacilitiesCoolerLog extends Component {
     this.setState({
         newCoolerLog:{
         ...this.state.newCoolerLog,
-        bathroom_sanitized: event.target.checked
+        cooler_sanitized: event.target.checked
       }
     })
   }
@@ -126,7 +126,7 @@ class FacilitiesCoolerLog extends Component {
 
           <Grid item xs={12} sm={6}>
             <TextField
-              id="bathroom"
+              id="cooler"
               select
               label="Select Cooler"
               value={this.state.newCoolerLog.farm_cooler_id}
@@ -213,7 +213,7 @@ class FacilitiesCoolerLog extends Component {
 
           <Grid item xs={12} sm={6}>
             <TextField
-              id="bathroom_signature"
+              id="cooler_signature"
               select
               label="Select Employee Signature"
               value={this.state.newCoolerLog.cooler_sig}
