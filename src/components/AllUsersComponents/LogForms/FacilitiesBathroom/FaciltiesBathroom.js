@@ -23,7 +23,7 @@ class FacilitiesBathroomLog extends Component {
         bathroom_cleaned: false,
         bathroom_sanitized: false,
         bathroom_area: '',
-        bathroom_comments: '',
+        bathroom_comment: '',
         bathroom_sig: '',
       }
   }
@@ -52,6 +52,7 @@ class FacilitiesBathroomLog extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.dispatch({type: 'ADD_BATHROOM_LOG', payload: this.state.newBathroomLog});
+    this.props.history.push('/logdashboard');
   }
 
 
@@ -191,8 +192,8 @@ class FacilitiesBathroomLog extends Component {
             label="Comments"
             margin="normal"
             variant="outlined"
-            value={this.state.newBathroomLog.bathroom_comments}
-            onChange={this.handleChange('bathroom_comments')}
+            value={this.state.newBathroomLog.bathroom_comment}
+            onChange={this.handleChange('bathroom_comment')}
             style={{width:'80vw', maxWidth:400}}
             /> 
           </Grid>

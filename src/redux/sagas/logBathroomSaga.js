@@ -12,7 +12,7 @@ function* getBathroomSaga(action){
     }
 }
 
-function* getBathroomSaga(action){
+function* addBathroomLogSaga(action){
     try{
         let result = yield axios.post(`/log/bathroom/add`, action.payload);
     }
