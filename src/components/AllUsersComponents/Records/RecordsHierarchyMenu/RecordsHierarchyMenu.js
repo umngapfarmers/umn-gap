@@ -68,6 +68,36 @@ class RecordsHierarchyMenu extends Component {
       </Grid>
 
       <Grid item xs={10} sm={6}>
+            <Fab
+              variant="extended"
+              size="large"
+              color="primary"
+              aria-label="Add"
+              className={classes.margin}
+              onClick={() => {this.props.history.push('/recordfacilitiesdashboard')}}
+              style={{width:'80vw', maxWidth:400}}
+            >
+              <Typography className={classes.fabColor}>Facilities</Typography>
+              <FontAwesomeIcon icon="warehouse" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+            </Fab>
+          </Grid>
+
+          <Grid item xs={10} sm={6}>
+            <Fab
+              variant="extended"
+              size="large"
+              color="primary"
+              aria-label="Add"
+              className={classes.margin}
+              onClick={() => {this.props.history.push('/recordequipmentdashboard')}}
+              style={{width:'80vw', maxWidth:400}}
+            >
+              <Typography className={classes.fabColor}>Equipment</Typography>
+              <FontAwesomeIcon icon="tools" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+            </Fab>
+          </Grid>
+
+      <Grid item xs={10} sm={6}>
 
               <Fab 
                 variant="extended"
