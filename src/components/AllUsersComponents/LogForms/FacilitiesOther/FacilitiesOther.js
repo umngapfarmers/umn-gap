@@ -32,7 +32,7 @@ class FacilitiesOtherLog extends Component {
   
   componentDidMount(){
     this.props.dispatch({type: 'GET_PERSON'});
-    this.props.dispatch({type: 'GET_OTHER_FACILITY'});
+    this.props.dispatch({type: 'GET_FACILITY_OTHER'});
   }
 
 
@@ -52,8 +52,8 @@ class FacilitiesOtherLog extends Component {
   // navigates user to logs dashboard
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.dispatch({type: 'ADD_OTHER_FACILITY_LOG', payload: this.state.newFacilityOtherLog});
-    // this.props.history.push('/logdashboard');
+    this.props.dispatch({type: 'ADD_FACILITY_OTHER_LOG', payload: this.state.newFacilityOtherLog});
+    this.props.history.push('/logdashboard');
   }
 
 
@@ -98,7 +98,7 @@ class FacilitiesOtherLog extends Component {
       <React.Fragment>
         <Nav/>
       <Typography variant="h6" gutterBottom align="center">
-         Other Facility Maintenace Log
+         Facility Other Maintenace Log
       </Typography>
       <Grid spacing={8}
       container
@@ -128,7 +128,7 @@ class FacilitiesOtherLog extends Component {
             <TextField
               id="facility_other"
               select
-              label="Select Other Facility"
+              label="Select Facility Other"
               value={this.state.newFacilityOtherLog.farm_facility_other_id}
               onChange={this.handleChange('farm_facility_other_id')}
               SelectProps={{
@@ -142,11 +142,11 @@ class FacilitiesOtherLog extends Component {
               style={{width:'80vw', maxWidth:400}}
             >
               <MenuItem disabled>Select Other</MenuItem>
-              {/* {this.props.reduxState.facility_otherReducer.map(option => (
+              {this.props.reduxState.facilityOtherReducer.map(option => (
                   <MenuItem key={option.farm_facility_other_id} value={option.farm_facility_other_id}>
                   {option.farm_facility_other_name}
                   </MenuItem>
-              ))} */}
+              ))}
            </TextField>
           </Grid>
 
@@ -159,7 +159,7 @@ class FacilitiesOtherLog extends Component {
                   checked={this.state.facility_other_cleaned}
                 />
               }
-              label="Other Facility Cleaned"
+              label="Facility Other Cleaned"
             />
           </Grid>
 
@@ -172,14 +172,14 @@ class FacilitiesOtherLog extends Component {
                   checked={this.state.newFacilityOtherLog.facility_other_sanitized}
                 />
               }
-              label="Other Facility Sanitized"
+              label="Facility Other Sanitized"
             />
           </Grid>
 
 
           <Grid item xs={12} sm={6}>
             <TextField 
-            label="Other Facility Area"
+            label="Facility Other Area"
             margin="normal"
             variant="outlined"
             onChange={this.handleChange('facility_other_area')}
