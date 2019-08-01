@@ -34,6 +34,7 @@ import exportPdfSaga from './exportPdfSaga';
 import passwordRecoverySaga from './passwordRecoverySaga';
 import logBathroomSaga from './logBathroomSaga';
 import logCoolerSaga from './logCoolerSaga';
+import logPackingSaga from './logPackingSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -76,6 +77,7 @@ export default function* rootSaga() {
     exportPdfSaga(),
     passwordRecoverySaga(),
     logBathroomSaga(),
-    logCoolerSaga()
+    logCoolerSaga(),
+    logPackingSaga()
   ]);
 }
