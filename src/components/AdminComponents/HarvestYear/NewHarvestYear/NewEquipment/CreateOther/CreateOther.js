@@ -43,7 +43,7 @@ class CreateCompost extends Component {
         ...this.state
       }
     });
-    
+
     this.setState({
       farm_equipment_other_name: ''
     })
@@ -85,6 +85,16 @@ class CreateCompost extends Component {
             onClick={this.onSubmit} 
             style={{width:'80vw', maxWidth:400}}>
               Add New Equipment
+            </Button>
+        </Grid>
+         <Grid item xs={10} sm={6} >
+           <Button  
+              size="large" 
+              color="primary" 
+              variant="contained" 
+              onClick={()=>this.props.history.push('/newequipment')} 
+              style={{width:'80vw', maxWidth:400}}>
+                Back to Equipment
             </Button>
         </Grid>
   

@@ -6,8 +6,6 @@ function* addOtherEquipment(action){
     try{
       console.log(`in other equipment`)
         yield axios.post('/setup/equipment/new/equipment_other', action.payload);
-        // let result = yield axios.get(`/setup/compost`);
-        // yield put({type: 'SET_COMPOST_SETUP', payload: result.data})
 
     }
     catch (error){

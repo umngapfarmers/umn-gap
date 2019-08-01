@@ -179,7 +179,7 @@ class App extends Component {
               path="/newequipment"
               component={CreateEquipmentSelect}
             />
-            < AdminProtectedRoute
+            < Route
               exact
               path = "/newOtherEquipment"
               component = {CreateEquipmentOther}
