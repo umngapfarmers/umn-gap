@@ -7,13 +7,14 @@ import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 
+
 // Allows farmer to create a new equipment
 // Accessed as part of intial farm set up workflow and through harvest year edit
-// access at /newOtherEquipment
-class CreateOther extends Component {
+// access at "/newTool"
+class CreateTool extends Component {
 
   state = {
-    farm_equipment_other_name: ''
+    farm__tool_name: ''
   }
 
   handleChangeFor = property => event => {
@@ -24,7 +25,7 @@ class CreateOther extends Component {
   }
 
   validateFilled = () => {
-    if (this.state.farm_equipment_other_name) {
+    if (this.state.farm__tool_name) {
       return false
     } else {
 
@@ -34,14 +35,14 @@ class CreateOther extends Component {
 
   onSubmit = () => {
     this.props.dispatch({
-      type: 'ADD_OTHER_EQUIPMENT',
+      type: 'ADD_TOOL',
       payload: {
         ...this.state
       }
     });
 
     this.setState({
-      farm_equipment_other_name: ''
+      farm__tool_name: ''
     })
   }
   
@@ -62,11 +63,15 @@ class CreateOther extends Component {
         <Grid item xs={10} sm={6} >
             <FormControl>
                 <TextField 
-                    label="Equipment Name" 
+                    label="Tool Name" 
                     variant="outlined" 
                     color="primary"
-                    onChange={this.handleChangeFor('farm_equipment_other_name')}
-                    value={this.state.farm_equipment_other_name}
+                    onChange = {
+                      this.handleChangeFor('farm__tool_name')
+                    }
+                    value = {
+                      this.state.farm__tool_name
+                    }
                     style={{width:'80vw', maxWidth:400}}
                   >
                 </TextField>
@@ -80,7 +85,7 @@ class CreateOther extends Component {
             variant="contained" 
             onClick={this.onSubmit} 
             style={{width:'80vw', maxWidth:400}}>
-              Add New Equipment
+              Add New Tool
             </Button>
         </Grid>
         
@@ -114,4 +119,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect(mapReduxStateToProps)(withStyles(styles)(CreateOther));
+export default connect(mapReduxStateToProps)(withStyles(styles)(CreateTool));

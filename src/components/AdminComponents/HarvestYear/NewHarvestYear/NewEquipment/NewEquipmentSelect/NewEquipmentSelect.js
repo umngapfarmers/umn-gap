@@ -31,7 +31,7 @@ class NewEquipmentSelect extends Component {
                     aria-label="Add"
                     className={classes.margin}
                     style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/equipmenttoollog')}}
+                    onClick={() => {this.props.history.push('/newTool')}}
                     >
                        <Typography className={classes.fabColor}>Tools</Typography>
                       <FontAwesomeIcon icon="toolbox" style={{marginLeft: 5}} className={classes.fabIconColor}/>
