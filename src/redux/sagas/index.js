@@ -13,6 +13,7 @@ import setupSaga from './setupSaga';
 import getLabelCodeSaga from './getLabelCodeSaga';
 import setupManureSaga from './setupManureSaga';
 import setupCompostSaga from './setupCompostSaga';
+import setupEquipmentSaga from './setupEquipmentSaga';
 import personSaga from './personSaga';
 import harvestSaga from './harvestLogSaga';
 import employeeLogSaga from './employeeLogSaga';
@@ -56,6 +57,7 @@ export default function* rootSaga() {
     setupSaga(),
     setupManureSaga(),
     setupCompostSaga(),
+    setupEquipmentSaga(),
     personSaga(),
     harvestSaga(),
     employeeLogSaga(),

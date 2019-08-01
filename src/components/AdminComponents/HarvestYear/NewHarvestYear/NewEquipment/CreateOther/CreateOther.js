@@ -13,6 +13,7 @@ const moment = require('moment');
 
 // Allows farmer to create a new equipment
 // Accessed as part of intial farm set up workflow and through harvest year edit
+// access at /newOtherEquipment
 class CreateCompost extends Component {
 
   state = {
@@ -36,7 +37,13 @@ class CreateCompost extends Component {
   }
 
   onSubmit = () => {
-    this.props.dispatch({type: 'ADD_OTHER_EQUIPMENT', payload:{...this.state}});
+    this.props.dispatch({
+      type: 'ADD_OTHER_EQUIPMENT',
+      payload: {
+        ...this.state
+      }
+    });
+    
     this.setState({
       farm_equipment_other_name: ''
     })
