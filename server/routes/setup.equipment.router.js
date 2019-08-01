@@ -102,4 +102,17 @@ router.post('/new/equipment_other', (req, res) => {
     })
 });
 
+router.get('/equipment_other', rejectUnauthenticated, (req, res) => {
+  let harvestYear = req.user.current_harvest_year;
+  let sqlQuery = `SELECT * FROM "farm_equipment_other" WHERE "harvest_year_id" = $1;`
+  pool.query(sqlQuery, [harvestYear])
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(error => {
+      console.log(`Couldn't get data`, error);
+      res.sendStatus(500);
+    })
+});
+
 module.exports = router;
