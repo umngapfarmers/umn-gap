@@ -100,15 +100,16 @@ router.post('/new/pest', (req, res) => {
 });
 
 router.post('/new/equipment_other', (req, res) => {
-
-  let sqlText = `INSERT INTO "farm_equipment_other" ("farm_equipment_other_name") VALUES ($1);`
+  let harvest_id = req.user.current_harvest_year;
+  let sqlText = `INSERT INTO "farm_equipment_other" ("farm_equipment_other_name", "harvest_year_id") VALUES ($1, $2);`
   let values = [
-    req.body.farm_equipment_other_name
+    req.body.farm_equipment_other_name,
+    harvest_id
   ];
 
   pool.query(sqlText, values)
     .then((result) => {
-      console.log('added other equipment');
+      console.log('added other equipment, ', req.user);
       res.sendStatus(201);
     })
     .catch((error) => {
