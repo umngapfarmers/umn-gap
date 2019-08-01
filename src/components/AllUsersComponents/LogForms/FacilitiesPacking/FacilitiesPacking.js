@@ -52,7 +52,7 @@ class FacilitiesPackingLog extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.dispatch({type: 'ADD_PACKING_LOG', payload: this.state.newPackingLog});
-    // this.props.history.push('/logdashboard');
+    this.props.history.push('/logdashboard');
   }
 
 
@@ -141,11 +141,11 @@ class FacilitiesPackingLog extends Component {
               style={{width:'80vw', maxWidth:400}}
             >
               <MenuItem disabled>Select Packing</MenuItem>
-              {/* {this.props.reduxState.packingReducer.map(option => (
+              {this.props.reduxState.packingReducer.map(option => (
                   <MenuItem key={option.farm_packing_id} value={option.farm_packing_id}>
                   {option.farm_packing_name}
                   </MenuItem>
-              ))} */}
+              ))}
            </TextField>
           </Grid>
 
