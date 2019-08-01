@@ -140,11 +140,11 @@ class EquipmentToolLog extends Component {
               style={{width:'80vw', maxWidth:400}}
             >
               <MenuItem disabled>Select Tool</MenuItem>
-              {/* {this.props.reduxState.toolReducer.map(option => (
+              {this.props.reduxState.toolReducer.map(option => (
                   <MenuItem key={option.farm_tool_id} value={option.farm_tool_id}>
                   {option.farm_tool_name}
                   </MenuItem>
-              ))} */}
+              ))}
            </TextField>
           </Grid>
 
