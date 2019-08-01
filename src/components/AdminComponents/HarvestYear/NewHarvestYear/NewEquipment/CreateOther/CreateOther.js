@@ -6,6 +6,8 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import IconButton from '@material-ui/core/IconButton';
 
 // Allows farmer to create a new equipment
 // Accessed as part of intial farm set up workflow and through harvest year edit
@@ -94,7 +96,17 @@ class CreateOther extends Component {
                 Back to Equipment
             </Button>
         </Grid>
-  
+        <Grid item xs={10} sm={6} >
+          <ul>
+            {/* checks if redux state is filled */}
+            {
+              this.props.reduxState.equipmentReducer.otherEquipment[0] && this.props.reduxState.equipmentReducer.otherEquipment.map(equipment =>
+              <li key={equipment.farm_equipment_other_id}>{equipment.farm_equipment_other_name}
+                <IconButton size="large" color="primary" variant='contained' onClick={() => this.handleRemove(equipment.farm_equipment_other_id)}><FontAwesomeIcon icon='minus-circle'/></IconButton>
+              </li>
+            )}
+          </ul>
+        </Grid>
       </Grid>
      
   </React.Fragment>
