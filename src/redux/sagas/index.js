@@ -33,6 +33,10 @@ import recordCompostTurnSaga from './recordCompostTurnSaga';
 import exportPdfSaga from './exportPdfSaga';
 import passwordRecoverySaga from './passwordRecoverySaga';
 import logBathroomSaga from './logBathroomSaga';
+import logCoolerSaga from './logCoolerSaga';
+import logToolSaga from './logToolSaga';
+import logFacilityOtherSaga from './logFacilityOtherSaga';
+import logPackingSaga from './logPackingSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -74,6 +78,10 @@ export default function* rootSaga() {
     recordCompostTurnSaga(),
     exportPdfSaga(),
     passwordRecoverySaga(),
-    logBathroomSaga()
+    logBathroomSaga(),
+    logCoolerSaga(),
+    logToolSaga(),
+    logFacilityOtherSaga(),
+    logPackingSaga()
   ]);
 }
