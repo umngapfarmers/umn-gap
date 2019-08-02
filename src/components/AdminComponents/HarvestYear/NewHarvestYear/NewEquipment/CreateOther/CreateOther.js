@@ -55,6 +55,10 @@ class CreateOther extends Component {
       }
     })
   }
+
+  componentDidMount(){
+    this.props.dispatch({type: 'GET_OTHER_EQUIPMENT'});
+  }
   
   render() {
     const {classes} = this.props;

@@ -30,8 +30,8 @@ function* deleteOtherEquipment(action){
     console.log(`in delete other equipment`);
     let id = action.payload.id;
     yield axios.delete(`/setup/equipment/delete/equipment_other/${id}`);
-    let result = yield axios.get('/setup/equipment/equipment_other')
-    yield put({type: 'SET_OTHER_EQUIPMENT', payload: result.data})
+    yield put({type: 'GET_OTHER_EQUIPMENT'});
+
 
   }
   catch(error){
