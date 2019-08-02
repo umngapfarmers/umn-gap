@@ -9,7 +9,7 @@ const thermometerEquipmentRouter = require('../equipmentRoutes/equipment.thermom
 router.use('/tool', toolEquipmentRouter);
 router.use('/vehicle', vehicleEquipmentRouter);
 router.use('/equipment_other', otherEquipmentRouter);
-routher.use('/thermometer', thermometerEquipmentRouter);
+router.use('/thermometer', thermometerEquipmentRouter);
 
 
 
