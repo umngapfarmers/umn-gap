@@ -13,7 +13,9 @@ import setupSaga from './setupSaga';
 import getLabelCodeSaga from './getLabelCodeSaga';
 import setupManureSaga from './setupManureSaga';
 import setupCompostSaga from './setupCompostSaga';
-import setupOtherEquipmentSaga from './setupOtherEquipmentSaga';
+import setupOtherEquipmentSaga from './equipmentSagas/setupOtherEquipmentSaga';
+import setupToolSaga from './equipmentSagas/setupToolEquipmentSaga';
+
 import personSaga from './personSaga';
 import harvestSaga from './harvestLogSaga';
 import employeeLogSaga from './employeeLogSaga';
@@ -76,6 +78,7 @@ export default function* rootSaga() {
     recordCompostTurnSaga(),
     exportPdfSaga(),
     passwordRecoverySaga(),
-    logBathroomSaga()
+    logBathroomSaga(),
+    setupToolSaga()
   ]);
 }

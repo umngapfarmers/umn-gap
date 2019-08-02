@@ -6,6 +6,8 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 
 // Allows farmer to create a new equipment
@@ -14,24 +16,24 @@ import Button from '@material-ui/core/Button';
 class CreateTool extends Component {
 
   state = {
-    farm__tool_name: ''
-  }
+    farm_tool_name: ''
+  };
 
   handleChangeFor = property => event => {
     this.setState({
       ...this.state,
       [property]: event.target.value
-    })
-  }
+    });
+  };
 
   validateFilled = () => {
-    if (this.state.farm__tool_name) {
+    if (this.state.farm_tool_name) {
       return false
     } else {
 
       return true
-    }
-  }
+    };
+  };
 
   onSubmit = () => {
     this.props.dispatch({
@@ -40,18 +42,30 @@ class CreateTool extends Component {
         ...this.state
       }
     });
-
     this.setState({
-      farm__tool_name: ''
-    })
-  }
+      farm_tool_name: ''
+    });
+  };
+
+  handleRemove = (id) => {
+    this.props.dispatch({
+      type: 'DELETE_TOOL',
+      payload: {
+        id,
+      }
+    });
+  };
+
+  componentDidMount(){
+    this.props.dispatch({type: 'GET_TOOL'});
+  };
   
   render() {
     const {classes} = this.props;
     return (
       <React.Fragment>
       <Typography variant="h6" gutterBottom align="center">
-          Create New Equipment of Type "Other"
+          Create New Tool
       </Typography>
       <Grid 
         container 
@@ -67,10 +81,10 @@ class CreateTool extends Component {
                     variant="outlined" 
                     color="primary"
                     onChange = {
-                      this.handleChangeFor('farm__tool_name')
+                      this.handleChangeFor('farm_tool_name')
                     }
                     value = {
-                      this.state.farm__tool_name
+                      this.state.farm_tool_name
                     }
                     style={{width:'80vw', maxWidth:400}}
                   >
@@ -98,6 +112,18 @@ class CreateTool extends Component {
               style={{width:'80vw', maxWidth:400}}>
                 Back to Equipment
             </Button>
+        </Grid>
+
+        <Grid item xs={10} sm={6} >
+          <ul>
+            {/* checks if redux state is filled */}
+            {
+              this.props.reduxState.equipmentReducer.tool[0] && this.props.reduxState.equipmentReducer.tool.map(equipment =>
+              <li key={equipment.farm_tool_id}>{equipment.farm_tool_name}
+                <IconButton size="large" color="primary" variant='contained' onClick={() => this.handleRemove(equipment.farm_tool_id)}><FontAwesomeIcon icon='minus-circle'/></IconButton>
+              </li>
+            )}
+          </ul>
         </Grid>
   
       </Grid>

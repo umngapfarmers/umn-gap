@@ -2,30 +2,14 @@ const express = require('express');
 const pool = require('../../modules/pool');
 const router = express.Router();
 const otherEquipmentRouter = require('../equipmentRoutes/equipment.other.router');
+const toolEquipmentRouter = require('../equipmentRoutes/equipment.tool.router')
 const {
   rejectUnauthenticated
 } = require('../../modules/authentication-middleware');
 
 router.use('/equipment_other', otherEquipmentRouter);
+router.use('/tool', toolEquipmentRouter)
 
-router.post('/new/farm_tool', (req, res) => {
-  let harvest_id = req.user.current_harvest_year;
-  let sqlText = `INSERT INTO "farm_tool" ("farm_tool_name", "harvest_year_id") VALUES ($1, $2);`
-  let values = [
-    req.body.farm_tool_name,
-    harvest_id
-  ];
-
-  pool.query(sqlText, values)
-    .then((result) => {
-      console.log('added farm tool ');
-      res.sendStatus(201);
-    })
-    .catch((error) => {
-      console.log(`error in farm_tool post `, error);
-      res.sendStatus(500);
-    })
-});
 
 router.post('/new/thermometer', (req, res) => {
   let harvest_id = req.user.current_harvest_year;

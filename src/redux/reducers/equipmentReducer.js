@@ -2,9 +2,16 @@ import { combineReducers } from 'redux';
 
 const otherEquipment = (state = [], action) => {
     switch (action.type) {
-        case 'SET_OTHER_EQUIPMENT':
-            // console.log(`Set other equipment reducer`, action.payload);
-            
+        case 'SET_OTHER_EQUIPMENT':            
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+const tool = (state = [], action) => {
+    switch (action.type){
+        case 'SET_TOOL':
             return action.payload;
         default:
             return state;
@@ -13,4 +20,5 @@ const otherEquipment = (state = [], action) => {
 
 export default combineReducers({
     otherEquipment,
+    tool,
 });
