@@ -46,7 +46,7 @@ class NewEquipmentSelect extends Component {
                     aria-label="Add"
                     className={classes.margin}
                     style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/equipmentvehiclelog')}}
+                    onClick={() => {this.props.history.push('/newVehicle')}}
                     >
                        <Typography className={classes.fabColor}>Vehicles</Typography>
                       <FontAwesomeIcon icon="truck-pickup" style={{marginLeft: 5}} className={classes.fabIconColor}/>
