@@ -16,7 +16,7 @@ function* getOtherEquipment(action){
 
 function* addOtherEquipment(action){
     try{
-      yield axios.post('/setup/equipment/new/equipment_other', action.payload);
+      yield axios.post('/setup/equipment/equipment_other/new', action.payload);
       yield put({type: 'GET_OTHER_EQUIPMENT'});
     }
     catch (error){
@@ -29,7 +29,7 @@ function* deleteOtherEquipment(action){
   try{
     console.log(`in delete other equipment`);
     let id = action.payload.id;
-    yield axios.delete(`/setup/equipment/delete/equipment_other/${id}`);
+    yield axios.delete(`/setup/equipment/equipment_other/delete/${id}`);
     yield put({type: 'GET_OTHER_EQUIPMENT'});
 
 
