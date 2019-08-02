@@ -21,6 +21,8 @@ import CreateCompost from '../AdminComponents/HarvestYear/NewHarvestYear/NewManu
 import CreateEquipmentSelect from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/NewEquipmentSelect/NewEquipmentSelect.js'
 import CreateEquipmentOther from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/CreateOther/CreateOther';
 import CreateEquipmentTool from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/CreateTool/CreateTool';
+import CreateEquipmentVehicle from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/CreateVehicle/CreateVehicle';
+
 import LogDashboard from '../AllUsersComponents/LogForms/LogsHierarchyMenu/LogsHierarchyMenu';
 import HarvestLog from '../AllUsersComponents/LogForms/HarvestLog/HarvestLog';
 import EditHierarchy from '../AdminComponents/HarvestYear/EditHarvestYear/EditFarmInformationHierarchyMenu/EditFarmInformationHierarchyMenu';
@@ -189,6 +191,11 @@ class App extends Component {
               exact
               path = "/newTool"
               component = {CreateEquipmentTool}
+            />
+            < AdminProtectedRoute
+              exact
+              path = "/newVehicle"
+              component = {CreateEquipmentVehicle}
             />
 
 {/************* SETUP EQUIPMENT END *************/ }

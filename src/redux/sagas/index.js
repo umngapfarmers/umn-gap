@@ -15,6 +15,7 @@ import setupManureSaga from './setupManureSaga';
 import setupCompostSaga from './setupCompostSaga';
 import setupOtherEquipmentSaga from './equipmentSagas/setupOtherEquipmentSaga';
 import setupToolSaga from './equipmentSagas/setupToolEquipmentSaga';
+import setupVehicleSaga from './equipmentSagas/setupVehicleEquipmentSaga';
 
 import personSaga from './personSaga';
 import harvestSaga from './harvestLogSaga';
@@ -47,7 +48,6 @@ import logBathroomSaga from './logBathroomSaga';
 export default function* rootSaga() {
   yield all([
     manageUserSaga(),
-
     loginSaga(),
     registrationSaga(),
     userSaga(),
@@ -79,6 +79,7 @@ export default function* rootSaga() {
     exportPdfSaga(),
     passwordRecoverySaga(),
     logBathroomSaga(),
-    setupToolSaga()
+    setupToolSaga(),
+    setupVehicleSaga(),
   ]);
 }

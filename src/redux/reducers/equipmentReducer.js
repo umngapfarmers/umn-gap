@@ -18,7 +18,17 @@ const tool = (state = [], action) => {
     }
 }
 
+const vehicle = (state = [], action) => {
+    switch (action.type){
+        case 'SET_VEHICLE':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 export default combineReducers({
     otherEquipment,
     tool,
+    vehicle,
 });
