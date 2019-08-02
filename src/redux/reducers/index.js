@@ -27,6 +27,10 @@ import userdata from './allUsersReducer';
 import recordcrops from './recordCropReducer';
 import recordcompostturn from './recordCompostTurnReducer';
 import bathroomReducer from './logBathroomReducer';
+import coolerReducer from './logCoolerReducer';
+import toolReducer from './logToolReducer';
+import facilityOtherReducer from './logFacilityOtherReducer';
+import packingReducer from './logPackingReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -61,7 +65,11 @@ const rootReducer = combineReducers({
   recordcrops,
   recordcompostturn,
   bathroomReducer,
-  equipmentReducer
+  equipmentReducer,
+  coolerReducer,
+  toolReducer,
+  facilityOtherReducer,
+  packingReducer
   
 });
 
