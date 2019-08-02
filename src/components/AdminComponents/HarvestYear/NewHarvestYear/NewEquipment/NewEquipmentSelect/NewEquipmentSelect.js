@@ -61,7 +61,7 @@ class NewEquipmentSelect extends Component {
                     aria-label="Add"
                     className={classes.margin}
                     style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/equipmentthermomlog')}}
+                    onClick={() => {this.props.history.push('/newThermometer')}}
                     >
                        <Typography className={classes.fabColor}>Thermometers</Typography>
                       <FontAwesomeIcon icon="thermometer-half" style={{marginLeft: 5}} className={classes.fabIconColor}/>
@@ -76,7 +76,7 @@ class NewEquipmentSelect extends Component {
                     aria-label="Add"
                     className={classes.margin}
                     style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/equipmentfirstaidlog')}}
+                    onClick={() => {this.props.history.push('/newFirstaid')}}
                     >
                        <Typography className={classes.fabColor}>First Aid</Typography>
                       <FontAwesomeIcon icon="first-aid" style={{marginLeft: 5}} className={classes.fabIconColor}/>
@@ -91,7 +91,7 @@ class NewEquipmentSelect extends Component {
                     aria-label="Add"
                     className={classes.margin}
                     style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/equipmentpestlog')}}
+                    onClick={() => {this.props.history.push('/newPest')}}
                     >
                        <Typography className={classes.fabColor}>Pests</Typography>
                       <FontAwesomeIcon icon="spider" style={{marginLeft: 5}} className={classes.fabIconColor}/>
