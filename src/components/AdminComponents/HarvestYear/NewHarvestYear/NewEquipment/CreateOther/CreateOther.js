@@ -46,6 +46,15 @@ class CreateOther extends Component {
       farm_equipment_other_name: ''
     })
   }
+
+  handleRemove = (id) => {
+    this.props.dispatch({
+      type: 'DELETE_OTHER_EQUIPMENT',
+      payload: {
+        id,
+      }
+    })
+  }
   
   render() {
     const {classes} = this.props;
