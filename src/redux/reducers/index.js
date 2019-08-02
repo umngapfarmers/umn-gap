@@ -27,6 +27,7 @@ import recordcrops from './recordCropReducer';
 import recordcompostturn from './recordCompostTurnReducer';
 import bathroomReducer from './logBathroomReducer';
 import coolerReducer from './logCoolerReducer';
+import toolReducer from './logToolReducer';
 import facilityOtherReducer from './logFacilityOtherReducer';
 import packingReducer from './logPackingReducer';
 
@@ -64,6 +65,7 @@ const rootReducer = combineReducers({
   recordcompostturn,
   bathroomReducer,
   coolerReducer,
+  toolReducer,
   facilityOtherReducer,
   packingReducer
   

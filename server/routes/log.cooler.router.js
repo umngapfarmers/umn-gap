@@ -10,7 +10,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('IN GET COOLER')
     console.log('Harvest year is:', req.user.current_harvest_year);
     const harvest_year_id = req.user.current_harvest_year;
-    let sqlQuery = `SELECT * FROM "farm_cooler" WHERE "harvest_year_id" = $1;`
+    let sqlQuery = `SELECT * FROM "farm_cooler" WHERE "harvest_year_id" = $1 AND "farm_cooler_status" = TRUE;`
     pool.query(sqlQuery, [harvest_year_id])
         .then((response) => {
             console.log(`Cooler information`, response.rows);

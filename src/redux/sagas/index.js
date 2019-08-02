@@ -34,6 +34,7 @@ import exportPdfSaga from './exportPdfSaga';
 import passwordRecoverySaga from './passwordRecoverySaga';
 import logBathroomSaga from './logBathroomSaga';
 import logCoolerSaga from './logCoolerSaga';
+import logToolSaga from './logToolSaga';
 import logFacilityOtherSaga from './logFacilityOtherSaga';
 import logPackingSaga from './logPackingSaga';
 
@@ -79,6 +80,7 @@ export default function* rootSaga() {
     passwordRecoverySaga(),
     logBathroomSaga(),
     logCoolerSaga(),
+    logToolSaga(),
     logFacilityOtherSaga(),
     logPackingSaga()
   ]);

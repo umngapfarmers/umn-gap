@@ -221,9 +221,8 @@ CREATE TABLE "tool" (
   "tool_sanitized" boolean,
   "tool_cleaned" boolean,
   "tool_comment" varchar(200),
-  "user_id" int references "user",
   "tool_sig" varchar(200),
-  "harverst_year_id" int references "harvest_year"
+  "harvest_year_id" int references "harvest_year"
 );
 
 CREATE TABLE "farm_cooler" (
