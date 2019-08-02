@@ -38,6 +38,8 @@ const passwordRecoveryRouter = require ('./routes/passwordRecovery.router');
 const log_bathroomRouter= require('./routes/log.bathroom.router');
 const log_coolerRouter = require('./routes/log.cooler.router');
 const log_toolRouter = require('./routes/log.tool.router');
+const log_otherFacilityRouter = require('./routes/log.facilityOther.router');
+const log_PackingRouter = require('./routes/log.packing.router');
 
 
 // Body parser middleware
@@ -83,6 +85,8 @@ app.use('/passwordRecovery', passwordRecoveryRouter);
 app.use('/log/bathroom', log_bathroomRouter);
 app.use('/log/cooler', log_coolerRouter);
 app.use('/log/tool', log_toolRouter);
+app.use('/log/facilityother', log_otherFacilityRouter);
+app.use('/log/packing', log_PackingRouter);
 
 // Serve static files
 app.use(express.static('build'));
