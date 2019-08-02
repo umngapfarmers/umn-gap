@@ -5,7 +5,7 @@ const {
   rejectUnauthenticated
 } = require('../../modules/authentication-middleware');
 
-router.post('/new', (req, res) => {
+router.post('/new', rejectUnauthenticated, (req, res) => {
   console.log(`in post `, req.body);
 
   let harvest_id = req.user.current_harvest_year;
