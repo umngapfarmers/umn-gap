@@ -5,7 +5,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-    let sqlText = `SELECT * FROM "farm_cooler" WHERE "farm_cooler"."harvest_year_id" = $1 AND "farm_compost"."farm_compost_status"=true;`
+    let sqlText = `SELECT * FROM "farm_cooler" WHERE "farm_cooler"."harvest_year_id" = $1 AND "farm_cooler"."farm_cooler_status"=true;`
     let harvest_id = req.user.current_harvest_year;
     console.log(`harvest id off user GET`, harvest_id);
     // let harvest_id = 2
@@ -23,25 +23,23 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.post('/', rejectUnauthenticated, (req, res) => {
     console.log(`in post compost `, req.user);
 
-    let sqlText = `INSERT INTO "farm_compost"
-        ("farm_compost_name", "farm_compost_date", "farm_compost_description", "harvest_year_id", "farm_compost_status")
-        VALUES ($1, $2, $3, $4, $5);`;
+    let sqlText = `INSERT INTO "farm_cooler"
+        ("farm_cooler_name", "harvest_year_id", "farm_compost_status")
+        VALUES ($1, $2, $3);`;
     let values = [
-        req.body.farm_compost_name,
-        req.body.farm_compost_date,
-        req.body.farm_compost_description,
+        req.body.farm_cooler_name,
         req.user.current_harvest_year,
         req.body.farm_compost_status
     ];
 
     pool.query(sqlText, values)
         .then((result) => {
-            console.log(`sent compost`);
+            console.log(`sent cooler`);
 
             res.sendStatus(201);
         })
         .catch((error) => {
-            console.log(`error in farm_compost post `, error);
+            console.log(`error in farm_cooler post `, error);
             res.sendStatus(500);
         })
 });
@@ -49,39 +47,37 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 router.post('/edit', rejectUnauthenticated, (req, res) => {
     console.log(`in post compost `, req.user);
 
-    let sqlText = `INSERT INTO "farm_compost"
-        ("farm_compost_name", "farm_compost_date", "farm_compost_description", "harvest_year_id")
+    let sqlText = `INSERT INTO "farm_cooler"
+        ("farm_cooler_name", "harvest_year_id")
         VALUES ($1, $2, $3, $4);`;
     let values = [
         req.body.name,
-        req.body.date,
-        req.body.description,
         req.user.current_harvest_year,
 
     ];
 
     pool.query(sqlText, values)
         .then((result) => {
-            console.log(`sent compost`);
+            console.log(`sent cooler`);
 
             res.sendStatus(201);
         })
         .catch((error) => {
-            console.log(`error in farm_compost post `, error);
+            console.log(`error in farm_cooler post `, error);
             res.sendStatus(500);
         })
 });
 
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
-    let sqlText = `DELETE FROM "farm_compost" WHERE "farm_compost_id" = $1`;
-    let compost_id = req.params.id;
-    pool.query(sqlText, [compost_id])
+    let sqlText = `DELETE FROM "farm_cooler" WHERE "farm_cooler_id" = $1`;
+    let cooler_id = req.params.id;
+    pool.query(sqlText, [cooler_id])
         .then((result) => {
-            console.log('deleted compost source ');
+            console.log('deleted cooler source ');
             res.sendStatus(200);
         })
         .catch((error) => {
-            console.log(`error in farm_compost delete `, error);
+            console.log(`error in farm_cooler delete `, error);
             res.sendStatus(500);
         })
 

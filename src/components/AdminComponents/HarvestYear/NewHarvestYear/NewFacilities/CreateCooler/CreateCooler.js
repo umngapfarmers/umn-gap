@@ -16,11 +16,9 @@ const moment = require('moment');
 class CreateCooler extends Component {
 
     state = {
-        farm_compost_name: '',
-        farm_compost_date: moment().format('YYYY-MM-DD'),
-        farm_compost_description: '',
+        farm_cooler_name: '',
         harvest_year_id: this.props.reduxState.user.user_id,
-        farm_compost_status: true
+        farm_cooler_status: true
     }
 
     // sets state when form is changed
@@ -32,25 +30,23 @@ class CreateCooler extends Component {
     }
 
     componentDidMount() {
-        // hits getCompsotSaga to grab list of compost sources, sets compost reducer to recieved compsost sources
-        this.props.dispatch({ type: 'GET_COMPOST_SOURCE' })
+        // hits getCompsotSaga to grab list of cooler sources, sets cooler reducer to recieved compsost sources
+        this.props.dispatch({ type: 'GET_COOLER_SOURCE' })
     }
 
     // when form is submitted, dispatches state to saga and posts form data
     onSubmit = () => {
-        this.props.dispatch({ type: 'ADD_COMPOST_SOURCE', payload: { ...this.state } });
+        this.props.dispatch({ type: 'ADD_COOLER_SOURCE', payload: { ...this.state } });
         this.setState({
-            farm_compost_name: '',
-            farm_compost_date: '',
-            farm_compost_description: '',
+            farm_cooler_name: '',
             harvest_year_id: '',
-            farm_compost_status: true
+            farm_cooler_status: true
         })
     }
 
-    // removes a compost source 
+    // removes a cooler source 
     handleRemove = (id) => {
-        this.props.dispatch({ type: 'DELETE_COMPOST_SOURCE', payload: { id, } })
+        this.props.dispatch({ type: 'DELETE_COOLER_SOURCE', payload: { id, } })
     }
 
     // pushes pack to fertilizer dash
@@ -58,9 +54,9 @@ class CreateCooler extends Component {
         this.props.history.push('/fertilizerdash');
     }
 
-    // if the state is filled then the add compost button enables
+    // if the state is filled then the add cooler button enables
     validateFilled = () => {
-        if (this.state.farm_compost_name) {
+        if (this.state.farm_cooler_name) {
             return false
         }
         else {
@@ -75,7 +71,7 @@ class CreateCooler extends Component {
         return (
             <React.Fragment>
                 <Typography variant="h6" gutterBottom align="center">
-                    Create New Compost Pile
+                    Create New Cooler
       </Typography>
                 <Grid
                     container
@@ -90,9 +86,9 @@ class CreateCooler extends Component {
                                 label="Start Date"
                                 variant="outlined"
                                 color="primary"
-                                onChange={this.handleChangeFor('farm_compost_date')}
+                                onChange={this.handleChangeFor('farm_cooler_date')}
                                 type="date"
-                                value={this.state.farm_compost_date}
+                                value={this.state.farm_cooler_date}
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
@@ -105,11 +101,11 @@ class CreateCooler extends Component {
                     <Grid item xs={10} sm={6} >
                         <FormControl>
                             <TextField
-                                label="Name Compost"
+                                label="Name cooler"
                                 variant="outlined"
                                 color="primary"
-                                onChange={this.handleChangeFor('farm_compost_name')}
-                                value={this.state.farm_compost_name}
+                                onChange={this.handleChangeFor('farm_cooler_name')}
+                                value={this.state.farm_cooler_name}
                                 style={{ width: '80vw', maxWidth: 400 }}
                                 helperText='required'
                             >
@@ -120,11 +116,11 @@ class CreateCooler extends Component {
                     <Grid item xs={10} sm={6} >
                         <FormControl>
                             <TextField
-                                label="Compost Ingredients"
+                                label="cooler Ingredients"
                                 variant="outlined"
                                 color="primary"
-                                onChange={this.handleChangeFor('farm_compost_description')}
-                                value={this.state.farm_compost_description}
+                                onChange={this.handleChangeFor('farm_cooler_description')}
+                                value={this.state.farm_cooler_description}
                                 style={{ width: '80vw', maxWidth: 400 }}
                             >
                             </TextField>
@@ -132,15 +128,15 @@ class CreateCooler extends Component {
                     </Grid>
 
                     <Grid item xs={10} sm={6} >
-                        <Button disabled={this.validateFilled()} size="large" color="primary" variant="contained" onClick={this.onSubmit} style={{ width: '80vw', maxWidth: 400 }}>Add New Compost</Button>
+                        <Button disabled={this.validateFilled()} size="large" color="primary" variant="contained" onClick={this.onSubmit} style={{ width: '80vw', maxWidth: 400 }}>Add New Cooler</Button>
                     </Grid>
 
                     <Grid item xs={10} sm={6} >
                         <ul>
                             {/* checks if redux state is filled */}
-                            {this.props.reduxState.setupCompost[0] && this.props.reduxState.setupCompost.map(compost =>
-                                <li key={compost.farm_compost_id}>{compost.farm_compost_name + ' ' + moment(compost.farm_compost_date).format('YYYY-MM-DD')}
-                                    <IconButton size="large" color="primary" variant='contained' onClick={() => this.handleRemove(compost.farm_compost_id)}><FontAwesomeIcon icon='minus-circle' /></IconButton>
+                            {this.props.reduxState.setupcooler[0] && this.props.reduxState.setupcooler.map(cooler =>
+                                <li key={cooler.farm_cooler_id}>{cooler.farm_cooler_name + ' ' + moment(cooler.farm_cooler_date).format('YYYY-MM-DD')}
+                                    <IconButton size="large" color="primary" variant='contained' onClick={() => this.handleRemove(cooler.farm_cooler_id)}><FontAwesomeIcon icon='minus-circle' /></IconButton>
                                 </li>
                             )}
                         </ul>
