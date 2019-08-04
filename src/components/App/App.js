@@ -89,6 +89,7 @@ import CreateEquipmentOther from '../AdminComponents/HarvestYear/NewHarvestYear/
 import CreateEquipmentTool from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/CreateTool/CreateTool';
 import CreateEquipmentVehicle from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/CreateVehicle/CreateVehicle';
 import CreateEquipmentThermometer from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/CreateThermometer/CreateThermometer';
+import CreateEquipmentPest from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/CreatePest/CreatePest';
 
 //EDIT
 import EditCrops from '../AdminComponents/HarvestYear/EditHarvestYear/EditCrops/EditCrops';
@@ -227,6 +228,12 @@ class App extends Component {
               exact
               path = "/newThermometer"
               component = {CreateEquipmentThermometer}
+            />
+
+            < AdminProtectedRoute
+              exact
+              path = "/newPest"
+              component = {CreateEquipmentPest}
             />
 
 {/************* SETUP EQUIPMENT END *************/ }
