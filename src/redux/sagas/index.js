@@ -17,6 +17,7 @@ import setupOtherEquipmentSaga from './equipmentSagas/setupOtherEquipmentSaga';
 import setupToolSaga from './equipmentSagas/setupToolEquipmentSaga';
 import setupVehicleSaga from './equipmentSagas/setupVehicleEquipmentSaga';
 import setupThermometerSaga from './equipmentSagas/setupThermometerEquipmentSaga';
+import setupPestSaga from './equipmentSagas/setupPestEquipmentSaga';
 
 import personSaga from './personSaga';
 import harvestSaga from './harvestLogSaga';
@@ -90,6 +91,7 @@ export default function* rootSaga() {
     logToolSaga(),
     logFacilityOtherSaga(),
     logPackingSaga(),
-    setupThermometerSaga()
+    setupThermometerSaga(),
+    setupPestSaga()
   ]);
 }
