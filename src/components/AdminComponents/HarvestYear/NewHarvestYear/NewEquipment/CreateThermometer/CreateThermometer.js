@@ -16,7 +16,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 class CreateThermometer extends Component {
 
   state = {
-    farm_thermometer_name: ''
+    farm_thermometer_location: ''
   };
 
   handleChangeFor = property => event => {
@@ -27,7 +27,7 @@ class CreateThermometer extends Component {
   };
 
   validateFilled = () => {
-    if (this.state.farm_thermometer_name) {
+    if (this.state.farm_thermometer_location) {
       return false
     } else {
 
@@ -43,7 +43,7 @@ class CreateThermometer extends Component {
       }
     });
     this.setState({
-      farm_thermometer_name: ''
+      farm_thermometer_location: ''
     });
   };
 
@@ -81,10 +81,10 @@ class CreateThermometer extends Component {
                     variant="outlined" 
                     color="primary"
                     onChange = {
-                      this.handleChangeFor('farm_thermometer_name')
+                      this.handleChangeFor('farm_thermometer_location')
                     }
                     value = {
-                      this.state.farm_thermometer_name
+                      this.state.farm_thermometer_location
                     }
                     style={{width:'80vw', maxWidth:400}}
                   >
@@ -119,7 +119,7 @@ class CreateThermometer extends Component {
             {/* checks if redux state is filled */}
             {
               this.props.reduxState.equipmentReducer.thermometer[0] && this.props.reduxState.equipmentReducer.thermometer.map(equipment =>
-              <li key={equipment.farm_thermometer_id}>{equipment.farm_thermometer_name}
+              <li key={equipment.farm_thermometer_id}>{equipment.farm_thermometer_location}
                 <IconButton size="large" color="primary" variant='contained' onClick={() => this.handleRemove(equipment.farm_thermometer_id)}><FontAwesomeIcon icon='minus-circle'/></IconButton>
               </li>
             )}
