@@ -36,9 +36,30 @@ const thermometer = (state = [], action) => {
     }
 }
 
+const firstaid = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_FIRSTAID':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+const pest = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_PEST':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+
 export default combineReducers({
     otherEquipment,
     tool,
     vehicle,
     thermometer,
+    firstaid,
+    pest,
 });
