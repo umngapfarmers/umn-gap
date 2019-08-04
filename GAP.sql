@@ -319,7 +319,7 @@ CREATE TABLE "vehicle" (
 
 CREATE TABLE "farm_firstaid" (
   "farm_firstaid_id" serial primary key,
-  "farm_firstaid_location" varchar(50) NOT NULL,
+  "farm_firstaid_name" varchar(50) NOT NULL,
   "harvest_year_id" int references "harvest_year",
   "farm_firstaid_status" boolean DEFAULT true
 );
@@ -337,7 +337,7 @@ CREATE TABLE "firstaid" (
 CREATE TABLE "farm_pest" (
   "farm_pest_id" serial primary key,
   "farm_pest_type" varchar(50) NOT NULL,
-  "farm_pest_location" varchar(50) NOT NULL,
+  "farm_pest_name" varchar(50) NOT NULL,
   "harvest_year_id" int references "harvest_year",
   "farm_pest_status" boolean DEFAULT true
 );
@@ -354,7 +354,7 @@ CREATE TABLE "pest" (
 
 CREATE TABLE "farm_thermometer" (
   "farm_thermometer_id" serial primary key,
-  "farm_thermometer_location" varchar(50) NOT NULL,
+  "farm_thermometer_name" varchar(50) NOT NULL,
   "harvest_year_id" int references "harvest_year",
   "farm_thermometer_status" boolean DEFAULT true
 );

@@ -27,8 +27,18 @@ const vehicle = (state = [], action) => {
     }
 }
 
+const thermometer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_THERMOMETER':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 export default combineReducers({
     otherEquipment,
     tool,
     vehicle,
+    thermometer,
 });

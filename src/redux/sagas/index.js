@@ -16,6 +16,7 @@ import setupCompostSaga from './setupCompostSaga';
 import setupOtherEquipmentSaga from './equipmentSagas/setupOtherEquipmentSaga';
 import setupToolSaga from './equipmentSagas/setupToolEquipmentSaga';
 import setupVehicleSaga from './equipmentSagas/setupVehicleEquipmentSaga';
+import setupThermometerSaga from './equipmentSagas/setupThermometerEquipmentSaga';
 
 import personSaga from './personSaga';
 import harvestSaga from './harvestLogSaga';
@@ -88,6 +89,7 @@ export default function* rootSaga() {
     logCoolerSaga(),
     logToolSaga(),
     logFacilityOtherSaga(),
-    logPackingSaga()
+    logPackingSaga(),
+    setupThermometerSaga()
   ]);
 }

@@ -9,9 +9,9 @@ router.post('/new', (req, res) => {
   console.log(`in post `, req.body);
 
   let harvest_id = req.user.current_harvest_year;
-  let sqlText = `INSERT INTO "farm_thermometer" ("farm_thermometer_location", "harvest_year_id") VALUES ($1, $2);`
+  let sqlText = `INSERT INTO "farm_thermometer" ("farm_thermometer_name", "harvest_year_id") VALUES ($1, $2);`
   let values = [
-    req.body.farm_thermometer_location,
+    req.body.farm_thermometer_name,
     harvest_id
   ];
 
