@@ -20,7 +20,7 @@ class EquipmentPestLog extends Component {
       newPestLog :{
         pest_date: '',
         farm_pest_id: '',
-        pest_adminstrator: '',
+        pest_administrator: '',
         pest_comment: '',
         pest_sig: '',
       }
@@ -29,7 +29,7 @@ class EquipmentPestLog extends Component {
   
   componentDidMount(){
     this.props.dispatch({type: 'GET_PERSON'});
-    this.props.dispatch({type: 'GET_FIRSTAID'});
+    this.props.dispatch({type: 'GET_PEST'});
   }
 
 
@@ -49,7 +49,7 @@ class EquipmentPestLog extends Component {
   // navigates user to logs dashboard
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.dispatch({type: 'ADD_FIRSTAID_LOG', payload: this.state.newPestLog});
+    this.props.dispatch({type: 'ADD_PEST_LOG', payload: this.state.newPestLog});
     this.props.history.push('/logdashboard');
   }
 
@@ -129,12 +129,12 @@ class EquipmentPestLog extends Component {
               helperText='Required'
               style={{width:'80vw', maxWidth:400}}
             >
-              <MenuItem disabled>Select Pest Control Location</MenuItem>
-              {/* {this.props.reduxState.pestReducer.map(option => (
+              <MenuItem disabled>Select Pest Control Type and  Location</MenuItem>
+              {this.props.reduxState.pestReducer.map(option => (
                   <MenuItem key={option.farm_pest_id} value={option.farm_pest_id}>
-                  {option.farm_pest_location}
+                  Location: {option.farm_pest_location} Type: {option.farm_pest_type}
                   </MenuItem>
-              ))} */}
+              ))}
            </TextField>
           </Grid>
 
@@ -143,8 +143,8 @@ class EquipmentPestLog extends Component {
             label="Pest Control Adminstrated By"
             margin="normal"
             variant="outlined"
-            value={this.state.newPestLog.pest_adminstrator}
-            onChange={this.handleChange('pest_adminstrator')}
+            value={this.state.newPestLog.pest_administrator}
+            onChange={this.handleChange('pest_administrator')}
             style={{width:'80vw', maxWidth:400}}
             /> 
           </Grid>

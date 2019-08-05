@@ -44,6 +44,7 @@ const log_packingRouter = require('./routes/log.packing.router');
 const log_vehicleRouter= require('./routes/log.vehicle.router');
 const log_thermometerRouter = require('./routes/log.thermometer.router');
 const log_firstAidRouter = require('./routes/log.firstaid.router');
+const log_pestRouter = require('./routes/log.pest.router');
 
 
 // Body parser middleware
@@ -95,6 +96,7 @@ app.use('/log/packing', log_packingRouter);
 app.use('/log/vehicle', log_vehicleRouter);
 app.use('/log/thermometer', log_thermometerRouter);
 app.use('/log/firstaid', log_firstAidRouter);
+app.use('/log/pest', log_pestRouter);
 
 // Serve static files
 app.use(express.static('build'));
