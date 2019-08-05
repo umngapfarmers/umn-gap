@@ -14,10 +14,11 @@ const addWorkerRouter = require ('./routes/addWorker.router')
 const harvestYearRouter= require('./routes/harvestYear.router')
 const setupWaterRouter = require('./routes/setup.water.router')
 const setupCropRouter = require('./routes/setup.crop.router')
+const setupManureRouter = require('./routes/setup.manure.router');
+const setupCoolerRouter = require('./routes/setup.cooler.router')
+const setupCompostRouter = require('./routes/setup.compost.router');
 const setupRouter = require('./routes/setup.router');
 const labelCodeRouter = require('./routes/setup.labelCode.router');
-const setupManureRouter = require('./routes/setup.manure.router');
-const setupCompostRouter = require('./routes/setup.compost.router');
 const logCompost = require('./routes/log.compost.router')
 const log_harvestRouter = require('./routes/log.harvest.router');
 const log_employeeRouter = require('./routes/log.employee.router');
@@ -63,6 +64,7 @@ app.use('/hyear',harvestYearRouter); //gets the harvest_year_id
 app.use('/setupWater', setupWaterRouter); //gets, adds, edits, removes, and disables any water sources or water labels
 app.use('/setupCrop', setupCropRouter); //gets, adds, edits, removes, and disables any crop or field sources
 app.use('/setup', setupRouter); //creates a new harvest year in database
+app.use('/setup/cooler', setupCoolerRouter);
 app.use('/setup/label_code', labelCodeRouter);//gets, adds, edits, removes, and disables any labelcodes
 app.use('/setup/manure', setupManureRouter); //gets, adds, edits, removes, and disables any manure sources
 app.use('/setup/compost', setupCompostRouter) //gets, adds, edits, removes, and disables any compost sources
