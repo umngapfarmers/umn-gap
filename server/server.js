@@ -39,7 +39,8 @@ const log_bathroomRouter= require('./routes/log.bathroom.router');
 const log_coolerRouter = require('./routes/log.cooler.router');
 const log_toolRouter = require('./routes/log.tool.router');
 const log_otherFacilityRouter = require('./routes/log.facilityOther.router');
-const log_PackingRouter = require('./routes/log.packing.router');
+const log_packingRouter = require('./routes/log.packing.router');
+const log_vehicleRouter= require('./routes/log.vehicle.router');
 
 
 // Body parser middleware
@@ -86,7 +87,8 @@ app.use('/log/bathroom', log_bathroomRouter);
 app.use('/log/cooler', log_coolerRouter);
 app.use('/log/tool', log_toolRouter);
 app.use('/log/facilityother', log_otherFacilityRouter);
-app.use('/log/packing', log_PackingRouter);
+app.use('/log/packing', log_packingRouter);
+app.use('/log/vehicle', log_vehicleRouter);
 
 // Serve static files
 app.use(express.static('build'));
