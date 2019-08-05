@@ -79,6 +79,7 @@ import RecordCropsFieldsLabelCode from '../AllUsersComponents/Records/CropsField
 import CreateCompost from '../AdminComponents/HarvestYear/NewHarvestYear/NewManureCompost/CreateCompost/CreateCompost.js';
 import CreateManure from '../AdminComponents/HarvestYear/NewHarvestYear/NewManureCompost/CreateManure/CreateManure.js';
 import CropTypes from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateCrops/CreateCrops';
+import CreateCooler from '../AdminComponents/HarvestYear/NewHarvestYear/NewFacilities/CreateCooler/CreateCooler';
 import FieldTypes from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateFields/CreateFields';
 import LabelCode from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateLabelCodes/CreateLabelCodes';
 import NewHarvestYearDate from '../AdminComponents/HarvestYear/NewHarvestYear/SelectNewHarvestYearDate/SelectNewHarvestYearDate';
@@ -222,6 +223,12 @@ class App extends Component {
               exact
               path="/createcompost"
               component={CreateCompost}
+            />
+
+            <AdminProtectedRoute
+              exact
+              path="/createcooler"
+              component={CreateCooler}
             />
 
             
