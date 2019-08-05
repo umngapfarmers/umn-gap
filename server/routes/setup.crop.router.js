@@ -46,7 +46,6 @@ router.post('/crop', rejectUnauthenticated, (req, res) => {
     pool.query(queryText, queryValues)
         .then(() => { res.sendStatus(201); })
         .catch((err) => {
-            console.log('Error completing INSERT crop query', err);
             res.sendStatus(500);
         });
 });
@@ -64,7 +63,6 @@ router.post('/field', rejectUnauthenticated, (req, res) => {
     pool.query(queryText, queryValues)
         .then(() => { res.sendStatus(201); })
         .catch((err) => {
-            console.log('Error completing INSERT field query', err);
             res.sendStatus(500);
         });
 });
@@ -74,7 +72,6 @@ router.delete('/crop/:id', rejectUnauthenticated, (req, res) => {
     pool.query(queryText, [req.params.id])
         .then(() => { res.sendStatus(200); })
         .catch((err) => {
-            console.log('Error deleting crop query', err);
             res.sendStatus(500);
         });
 });
@@ -84,7 +81,6 @@ router.delete('/field/:id', rejectUnauthenticated, (req, res) => {
     pool.query(queryText, [req.params.id])
         .then(() => { res.sendStatus(200); })
         .catch((err) => {
-            console.log('Error deleting field query', err);
             res.sendStatus(500);
         });
 });
@@ -98,7 +94,6 @@ router.put('/editcrop', rejectUnauthenticated, (req, res) => {
     pool.query(queryText, [type, id])
         .then(() => { res.sendStatus(200); })
         .catch((err) => {
-            console.log('Error deleting crop query', err);
             res.sendStatus(500);
         });
 });
@@ -112,7 +107,6 @@ router.put('/editfield', rejectUnauthenticated, (req, res) => {
     pool.query(queryText, [type, id])
         .then(() => { res.sendStatus(200); })
         .catch((err) => {
-            console.log('Error deleting field query', err);
             res.sendStatus(500);
         });
 });
@@ -126,7 +120,6 @@ router.put('/disablecrop', rejectUnauthenticated, (req, res) => {
         pool.query(queryText, [num])
             .then(() => { res.sendStatus(200); })
             .catch((err) => {
-                console.log('Error deleting crop query', err);
                 res.sendStatus(500);
             });
     }
@@ -141,7 +134,6 @@ router.put('/disablefield', rejectUnauthenticated, (req, res) => {
         pool.query(queryText, [num])
             .then(() => { res.sendStatus(200); })
             .catch((err) => {
-                console.log('Error deleting field query', err);
                 res.sendStatus(500);
             });
     }

@@ -8,7 +8,7 @@ import harvestYearSaga from './harvestYearSaga';
 
 import waterSetup from './waterSetup';
 import cropSetup from './cropSetup';
-
+import setupCoolerSaga from './setupCoolerSaga';
 import setupSaga from './setupSaga';
 import getLabelCodeSaga from './getLabelCodeSaga';
 import setupManureSaga from './setupManureSaga';
@@ -63,6 +63,7 @@ export default function* rootSaga() {
     waterSetup(),
     cropSetup(),
     getLabelCodeSaga(),
+    setupCoolerSaga(),
     setupSaga(),
     setupManureSaga(),
     setupCompostSaga(),

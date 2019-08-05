@@ -10,7 +10,8 @@ import equipmentReducer from './equipmentReducer';
 import farmMenuConditional from './farmMenuConditionalReducer';
 import labelCode from './labelCodesReducer';
 import setupManure from './setupManureReducer';
-import setupCompost from './setupCompostReducer'
+import setupCompost from './setupCompostReducer';
+import setupFacilities from './setupFacilitiesReducer';
 import person from './personReducer';
 import recordharvestyear from './recordHarvestYearReducer';
 import recordwaterinspect from './recordWaterInspectReducer';
@@ -52,6 +53,7 @@ const rootReducer = combineReducers({
   labelCode,
   setupManure,
   setupCompost,
+  setupFacilities,
   person,
   recordharvestyear,
   recordwaterinspect,
@@ -69,7 +71,7 @@ const rootReducer = combineReducers({
   coolerReducer,
   toolReducer,
   facilityOtherReducer,
-  packingReducer
+  packingReducer,
   
 });
 
