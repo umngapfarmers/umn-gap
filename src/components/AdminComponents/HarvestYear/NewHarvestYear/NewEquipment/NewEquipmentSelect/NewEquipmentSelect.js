@@ -117,6 +117,28 @@ class NewEquipmentSelect extends Component {
                   </Fab>
               </Grid>
 
+              <Grid item xs={12} sm={6}>
+                 <Fab 
+                    variant="extended"
+                    size="large"
+                    color="primary"
+                    aria-label="Add"
+                    className={classes.margin}
+                    style={{width:'80vw', maxWidth:400}}
+                    onClick = {
+                      () => {
+                        this.props.history.push('/');
+                        this.props.dispatch({
+                          type: "SET_MENU_BOOLEAN",
+                          payload: 3
+                        })
+                      }
+                    }
+                    >
+                       <Typography className={classes.fabColor}>Continue</Typography>
+                  </Fab>
+              </Grid>
+
       </Grid>
      
   </React.Fragment>

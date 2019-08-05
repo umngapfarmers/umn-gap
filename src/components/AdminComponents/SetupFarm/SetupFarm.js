@@ -37,6 +37,10 @@ class SetupFarm extends Component {
     event.preventDefault();
     this.props.dispatch({type: 'ADD_FARM', payload: this.state.newFarm});
     this.props.dispatch({type: 'SET_TO_LOGIN_MODE'});
+    this.props.dispatch({
+      type: 'SET_MENU_BOOLEAN',
+      payload: 0
+    });
     this.props.history.push('/');
   }
   
