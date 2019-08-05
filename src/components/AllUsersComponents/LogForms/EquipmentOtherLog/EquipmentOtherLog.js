@@ -85,7 +85,7 @@ class EquipmentEquipmentOtherLog extends Component {
       <React.Fragment>
         <Nav/>
       <Typography variant="h6" gutterBottom align="center">
-         EquipmentOther Control Maintenance Log
+         Other Equipment Maintenance Log
       </Typography>
       <Grid spacing={8}
       container
@@ -113,7 +113,7 @@ class EquipmentEquipmentOtherLog extends Component {
 
           <Grid item xs={12} sm={6}>
             <TextField
-              id="equipment_other"
+              id="equipment"
               select
               label="Select Equipment"
               value={this.state.newEquipmentOtherLog.farm_equipment_other_id}
@@ -129,10 +129,11 @@ class EquipmentEquipmentOtherLog extends Component {
               style={{width:'80vw', maxWidth:400}}
             >
               <MenuItem disabled>Select Equipment</MenuItem>
-              {/* {this.props.reduxState.equipment_otherReducer.map(option => (
+              {this.props.reduxState.equipmentOtherReducer.map(option => (
                   <MenuItem key={option.farm_equipment_other_id} value={option.farm_equipment_other_id}>
                   {option.farm_equipment_other_name}
-              ))} */}
+                  </MenuItem>
+              ))}
            </TextField>
           </Grid>
          

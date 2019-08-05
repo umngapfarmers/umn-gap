@@ -294,10 +294,10 @@ CREATE TABLE "farm_equipment_other" (
 CREATE TABLE "equipment_other" (
   "equipment_other_id" serial primary key,
   "farm_equipment_other_id" int references "farm_equipment_other",
-  "equipment_other_comments" varchar(200),
+  "equipment_other_comment" varchar(200),
   "equipment_other_date" TIMESTAMPTZ,
   "equipment_other_sig" VARCHAR(200),
-  "harverst_year_id" int references "harvest_year"
+  "harvest_year_id" int references "harvest_year"
 );
 
 CREATE TABLE "farm_vehicle" (
