@@ -41,7 +41,12 @@ const log_bathroomRouter= require('./routes/log.bathroom.router');
 const log_coolerRouter = require('./routes/log.cooler.router');
 const log_toolRouter = require('./routes/log.tool.router');
 const log_otherFacilityRouter = require('./routes/log.facilityOther.router');
-const log_PackingRouter = require('./routes/log.packing.router');
+const log_packingRouter = require('./routes/log.packing.router');
+const log_vehicleRouter= require('./routes/log.vehicle.router');
+const log_thermometerRouter = require('./routes/log.thermometer.router');
+const log_firstAidRouter = require('./routes/log.firstaid.router');
+const log_pestRouter = require('./routes/log.pest.router');
+const log_equipmentOtherRouter = require('./routes/log.equipmentother.router');
 
 
 // Body parser middleware
@@ -90,7 +95,12 @@ app.use('/log/bathroom', log_bathroomRouter);
 app.use('/log/cooler', log_coolerRouter);
 app.use('/log/tool', log_toolRouter);
 app.use('/log/facilityother', log_otherFacilityRouter);
-app.use('/log/packing', log_PackingRouter);
+app.use('/log/packing', log_packingRouter);
+app.use('/log/vehicle', log_vehicleRouter);
+app.use('/log/thermometer', log_thermometerRouter);
+app.use('/log/firstaid', log_firstAidRouter);
+app.use('/log/pest', log_pestRouter);
+app.use('/log/equipmentother', log_equipmentOtherRouter);
 
 // Serve static files
 app.use(express.static('build'));
