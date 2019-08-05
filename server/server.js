@@ -17,6 +17,7 @@ const setupCropRouter = require('./routes/setup.crop.router')
 const setupManureRouter = require('./routes/setup.manure.router');
 const setupCoolerRouter = require('./routes/setup.cooler.router')
 const setupCompostRouter = require('./routes/setup.compost.router');
+const setupEquipmentRouter = require('./routes/equipmentRoutes/setup.equipment.router')
 const setupRouter = require('./routes/setup.router');
 const labelCodeRouter = require('./routes/setup.labelCode.router');
 const logCompost = require('./routes/log.compost.router')
@@ -66,7 +67,8 @@ app.use('/setup', setupRouter); //creates a new harvest year in database
 app.use('/setup/cooler', setupCoolerRouter);
 app.use('/setup/label_code', labelCodeRouter);//gets, adds, edits, removes, and disables any labelcodes
 app.use('/setup/manure', setupManureRouter); //gets, adds, edits, removes, and disables any manure sources
-app.use('/setup/compost', setupCompostRouter) //gets, adds, edits, removes, and disables any compost sources
+app.use('/setup/compost', setupCompostRouter); //gets, adds, edits, removes, and disables any compost sources
+app.use('/setup/equipment', setupEquipmentRouter);
 app.use('/log/harvest/', log_harvestRouter); //gets person data and adds harvest logs
 app.use('/log/employee', log_employeeRouter); //gets, adds, edits, removes, and disables employee data
 app.use('/import', importHarvestRouter); //gets data from past year and copies it into a new harvest year
@@ -82,7 +84,7 @@ app.use('/record/compostPile', record_compostPileRouter); //gets records for com
 app.use('/log/water', log_waterRouter); //adds logs for water treatment and inspection
 app.use('/superadmin', superAdminRouter); //gets and changes id to superadmin if user has permissions
 app.use('/record/compostturn', record_compostTurnRouter); //gets records for compost management logs
-app.use('/record/export', exportRouter)
+app.use('/record/export', exportRouter);
 app.use('/passwordRecovery', passwordRecoveryRouter);
 app.use('/log/bathroom', log_bathroomRouter);
 app.use('/log/cooler', log_coolerRouter);

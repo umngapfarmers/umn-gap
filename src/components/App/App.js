@@ -85,6 +85,13 @@ import LabelCode from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/Cr
 import NewHarvestYearDate from '../AdminComponents/HarvestYear/NewHarvestYear/SelectNewHarvestYearDate/SelectNewHarvestYearDate';
 import WaterSource from '../AdminComponents/HarvestYear/NewHarvestYear/NewWater/CreateWaterSources/CreateWaterSources'
 import WaterLabel from '../AdminComponents/HarvestYear/NewHarvestYear/NewWater/CreateWaterSourcesLabelCodes/CreateWaterSourcesLabelCodes';
+import CreateEquipmentSelect from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/NewEquipmentSelect/NewEquipmentSelect.js'
+import CreateEquipmentOther from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/CreateOther/CreateOther';
+import CreateEquipmentTool from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/CreateTool/CreateTool';
+import CreateEquipmentVehicle from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/CreateVehicle/CreateVehicle';
+import CreateEquipmentThermometer from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/CreateThermometer/CreateThermometer';
+import CreateEquipmentPest from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/CreatePest/CreatePest';
+import CreateEquipmentFirstaid from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/CreateFirstaid/CreateFirstaid';
 
 //EDIT
 import EditCrops from '../AdminComponents/HarvestYear/EditHarvestYear/EditCrops/EditCrops';
@@ -109,21 +116,6 @@ import theme from './theme';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRecycle, faCarrot, faTint, faPen, faPlus, faSeedling, faHome, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters, faTrashAlt, faMinusCircle, faUserEdit, faUserPlus, faFileExport, faWarehouse, faTools, faToolbox, faTruckPickup, faThermometerHalf, faFirstAid, faSpider, faBoxOpen, faRestroom, faIgloo  } from '@fortawesome/free-solid-svg-icons';
-
-
-
-
-// import ManureLogDashboard from '../AllUsersComponents/LogForms/SelectCompostManureLog/SelectCompostManureLog';
-// import CompostLog from '../AllUsersComponents/LogForms/CompostManagementLog/CompostManagementLog';
-
-
-
-
-
-
-
-
-
 
 import Typography from '@material-ui/core/Typography';
 library.add(faHome,faCarrot, faRecycle, faPen, faPlus, faSeedling, faTint, faTractor, faClipboard, faUsers, faTable, faHorse, faIdCard, faVial, faSignOutAlt, faThermometerThreeQuarters, faTrashAlt, faMinusCircle, faUserEdit, faUserPlus, faFileExport, faWarehouse, faTools, faToolbox,faTruckPickup, faThermometerHalf, faFirstAid, faSpider, faBoxOpen, faRestroom, faIgloo);
@@ -212,6 +204,47 @@ class App extends Component {
               path="/labelcode"
               component={LabelCode}
             />
+{/************* SETUP EQUIPMENT *************/ }
+            <AdminProtectedRoute
+              exact
+              path="/newequipment"
+              component={CreateEquipmentSelect}
+            />
+            < AdminProtectedRoute
+              exact
+              path = "/newOtherEquipment"
+              component = {CreateEquipmentOther}
+            />
+            < AdminProtectedRoute
+              exact
+              path = "/newTool"
+              component = {CreateEquipmentTool}
+            />
+            < AdminProtectedRoute
+              exact
+              path = "/newVehicle"
+              component = {CreateEquipmentVehicle}
+            />
+
+            < AdminProtectedRoute
+              exact
+              path = "/newThermometer"
+              component = {CreateEquipmentThermometer}
+            />
+
+            < AdminProtectedRoute
+              exact
+              path = "/newPest"
+              component = {CreateEquipmentPest}
+            />
+
+            < AdminProtectedRoute
+              exact
+              path = "/newFirstaid"
+              component = {CreateEquipmentFirstaid}
+            />
+{/************* SETUP EQUIPMENT END *************/ }
+
 
             <AdminProtectedRoute
               exact
@@ -349,6 +382,21 @@ class App extends Component {
               exact
               path="/editwater"
               component={EditWater}
+            />
+            <AdminProtectedRoute
+              exact
+              path="/harvestdashboard"
+              component={HarvestDashboard}
+            />
+            <AdminProtectedRoute
+              exact
+              path="/newharvestyeardashboard"
+              component={NewHarvestYearDashboard}
+            />
+            <ProtectedRoute
+              exact
+              path="/worker"
+              component={WorkerDashboard}
             />
            
             {/* MANAGE USERS */}
