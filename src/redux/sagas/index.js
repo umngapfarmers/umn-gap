@@ -102,7 +102,7 @@ export default function* rootSaga() {
     logThermometerSaga(),
     logFirstAidSaga(),
     logPestSaga(),
-    logEquipmentOtherSaga()
+    logEquipmentOtherSaga(),
     setupThermometerSaga(),
     setupPestSaga(),
     setupFirstaidSaga(),
