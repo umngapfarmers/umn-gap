@@ -139,7 +139,8 @@ class CreatePest extends Component {
             {/* checks if redux state is filled */}
             {
               this.props.reduxState.equipmentReducer.pest[0] && this.props.reduxState.equipmentReducer.pest.map(equipment =>
-              <li key={equipment.farm_pest_id}>{equipment.farm_pest_location}
+              <li key={equipment.farm_pest_id}>
+                {equipment.farm_pest_location + ': ' + equipment.farm_pest_type}
                 <IconButton size="large" color="primary" variant='contained' onClick={() => this.handleRemove(equipment.farm_pest_id)}><FontAwesomeIcon icon='minus-circle'/></IconButton>
               </li>
             )}
