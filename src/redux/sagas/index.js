@@ -41,6 +41,7 @@ import logVehicleSaga from './logVehicleSaga';
 import logThermometerSaga from './logThermometerSaga';
 import logFirstAidSaga from './logFirstAidSaga';
 import logPestSaga from './logPestSaga';
+import logEquipmentOtherSaga from './logEquipmentOtherSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -91,6 +92,7 @@ export default function* rootSaga() {
     logVehicleSaga(),
     logThermometerSaga(),
     logFirstAidSaga(),
-    logPestSaga()
+    logPestSaga(),
+    logEquipmentOtherSaga()
   ]);
 }
