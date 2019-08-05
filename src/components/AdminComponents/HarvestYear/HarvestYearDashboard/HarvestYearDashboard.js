@@ -45,7 +45,13 @@ class HarvestYearDashboard extends Component {
               color="primary"
               aria-label="Add"
               className={classes.margin}
-              onClick={() => { this.props.history.push('/newharvestyeardashboard') }}
+              onClick={() => { 
+                this.props.history.push('/newharvestyeardashboard');
+                this.props.dispatch({
+                  type: 'SET_MENU_BOOLEAN',
+                  payload: 0
+                });
+             }}
               style={{ width: '80vw', maxWidth: 400 }}
             >
               <Typography className={classes.fabColor}>Create New Harvest Year</Typography>

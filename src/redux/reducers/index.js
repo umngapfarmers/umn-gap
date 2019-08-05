@@ -6,6 +6,7 @@ import loginMode from './loginModeReducer';
 import user from './userReducer';
 import waterSetup from './waterSetup';
 import cropSetup from './cropSetup';
+import equipmentReducer from './equipmentReducer';
 import farmMenuConditional from './farmMenuConditionalReducer';
 import labelCode from './labelCodesReducer';
 import setupManure from './setupManureReducer';
@@ -71,6 +72,7 @@ const rootReducer = combineReducers({
   recordcrops,
   recordcompostturn,
   bathroomReducer,
+  equipmentReducer,
   coolerReducer,
   toolReducer,
   facilityOtherReducer,

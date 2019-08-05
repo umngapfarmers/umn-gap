@@ -77,7 +77,7 @@ function* editManureSource(action) {
 
 function* setupManureSaga() {
   yield takeLatest('ADD_MANURE_SOURCE', addManureSource);
-    yield takeLatest('ADD_MANURE_EDIT', addManureEdit);
+  yield takeLatest('ADD_MANURE_EDIT', addManureEdit);
   yield takeLatest('GET_MANURE_SOURCE', getManureSource);
   yield takeLatest('DELETE_MANURE_SOURCE', deleteManureSource);
   yield takeLatest('EDIT_MANURE_SOURCE', editManureSource);

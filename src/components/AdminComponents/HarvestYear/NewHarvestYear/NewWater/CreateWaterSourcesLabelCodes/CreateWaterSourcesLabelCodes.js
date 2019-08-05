@@ -64,7 +64,11 @@ class CreateWaterSourcesLabelCodes extends Component {
   }
 
   nextPage = () => {
-    this.props.history.push('/');
+    this.props.dispatch({
+      type: 'SET_MENU_BOOLEAN',
+      payload: 3
+    });
+    this.props.history.push('/newfarminfo');
   }
 
 
