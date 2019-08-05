@@ -5,31 +5,31 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-    let sqlText = `SELECT * FROM "farm_cooler" WHERE "farm_cooler"."harvest_year_id" = $1 AND "farm_cooler"."farm_cooler_status"=true;`
+    let sqlText = `SELECT * FROM "farm_cooler" WHERE "harvest_year_id" = $1 AND "farm_cooler_status"=true;`
     let harvest_id = req.user.current_harvest_year;
     console.log(`harvest id off user GET`, harvest_id);
     // let harvest_id = 2
     pool.query(sqlText, [harvest_id])
         .then((result) => {
-            console.log(`result from compost GET`, result.rows);
+            console.log(`result from coooler GET`, result.rows);
             res.send(result.rows)
         })
         .catch((error) => {
-            console.log(`error getting compost`, error);
+            console.log(`error getting cooler`, error);
             res.sendStatus(500);
         })
 });
+
 
 router.post('/', rejectUnauthenticated, (req, res) => {
     console.log(`in post compost `, req.user);
 
     let sqlText = `INSERT INTO "farm_cooler"
-        ("farm_cooler_name", "harvest_year_id", "farm_compost_status")
-        VALUES ($1, $2, $3);`;
+        ("farm_cooler_name", "harvest_year_id")
+        VALUES ($1, $2);`;
     let values = [
-        req.body.farm_cooler_name,
+        req.body.name,
         req.user.current_harvest_year,
-        req.body.farm_compost_status
     ];
 
     pool.query(sqlText, values)
