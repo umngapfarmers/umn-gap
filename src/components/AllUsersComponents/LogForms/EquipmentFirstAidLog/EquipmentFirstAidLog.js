@@ -116,7 +116,7 @@ class EquipmentFirstAidLog extends Component {
             <TextField
               id="firstaid"
               select
-              label="Select FirstAid"
+              label="Select First Aid"
               value={this.state.newFirstAidLog.farm_firstaid_id}
               onChange={this.handleChange('farm_firstaid_id')}
               SelectProps={{
