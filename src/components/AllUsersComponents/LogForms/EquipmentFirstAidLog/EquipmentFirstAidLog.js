@@ -50,7 +50,7 @@ class EquipmentFirstAidLog extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.dispatch({type: 'ADD_FIRSTAID_LOG', payload: this.state.newFirstAidLog});
-    // this.props.history.push('/logdashboard');
+    this.props.history.push('/logdashboard');
   }
 
 
@@ -129,12 +129,12 @@ class EquipmentFirstAidLog extends Component {
               helperText='Required'
               style={{width:'80vw', maxWidth:400}}
             >
-              <MenuItem disabled>Select FirstAid</MenuItem>
-              {/* {this.props.reduxState.firstaidReducer.map(option => (
+              <MenuItem disabled>Select First Aid</MenuItem>
+              {this.props.reduxState.firstAidReducer.map(option => (
                   <MenuItem key={option.farm_firstaid_id} value={option.farm_firstaid_id}>
-                  {option.farm_firstaid_name}
+                  {option.farm_firstaid_location}
                   </MenuItem>
-              ))} */}
+              ))}
            </TextField>
           </Grid>
 
