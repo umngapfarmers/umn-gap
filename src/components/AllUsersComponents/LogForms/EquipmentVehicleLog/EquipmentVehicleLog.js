@@ -50,7 +50,7 @@ class EquipmentVehicleLog extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.dispatch({type: 'ADD_VEHICLE_LOG', payload: this.state.newVehicleLog});
-    // this.props.history.push('/logdashboard');
+    this.props.history.push('/logdashboard');
   }
 
 
@@ -127,11 +127,11 @@ class EquipmentVehicleLog extends Component {
               style={{width:'80vw', maxWidth:400}}
             >
               <MenuItem disabled>Select Vehicle</MenuItem>
-              {/* {this.props.reduxState.vehicleReducer.map(option => (
+              {this.props.reduxState.vehicleReducer.map(option => (
                   <MenuItem key={option.farm_vehicle_id} value={option.farm_vehicle_id}>
                   {option.farm_vehicle_name}
                   </MenuItem>
-              ))} */}
+              ))}
            </TextField>
           </Grid>
 

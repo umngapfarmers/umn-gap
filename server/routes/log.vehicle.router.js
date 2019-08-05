@@ -30,7 +30,7 @@ router.post('/add', rejectUnauthenticated, (req,res) => {
     console.log('User id is:', req.user);
     console.log('New Vehicle Log is:', req.body);
     console.log('Vehicle id is:', req.body.farm_vehicle_id);
-    let sqlQuery = `INSERT INTO "vehicle" ("farm_vehicle_id", "vehicle_date", "vehicle_cleaned", "vehicle_comment", "vehicle_sig", "harvest_year_id") VALUES ($1, $2, $3, $4, $5, $6, $7)`;
+    let sqlQuery = `INSERT INTO "vehicle" ("farm_vehicle_id", "vehicle_date", "vehicle_cleaned", "vehicle_comment", "vehicle_sig", "harvest_year_id") VALUES ($1, $2, $3, $4, $5, $6)`;
     pool.query(sqlQuery, [req.body.farm_vehicle_id, req.body.vehicle_date, req.body.vehicle_cleaned, req.body.vehicle_comment, req.body.vehicle_sig, harvest_year_id])
         .then((response) => {
             res.sendStatus(201);
