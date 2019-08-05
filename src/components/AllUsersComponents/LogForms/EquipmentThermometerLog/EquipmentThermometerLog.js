@@ -127,11 +127,11 @@ class EquipmentThermometerLog extends Component {
               style={{width:'80vw', maxWidth:400}}
             >
               <MenuItem disabled>Select Thermometer</MenuItem>
-              {/* {this.props.reduxState.thermometerReducer.map(option => (
+              {this.props.reduxState.thermometerReducer.map(option => (
                   <MenuItem key={option.farm_thermometer_id} value={option.farm_thermometer_id}>
-                  {option.farm_thermometer_name}
+                  {option.farm_thermometer_location}
                   </MenuItem>
-              ))} */}
+              ))}
            </TextField>
           </Grid>
 
