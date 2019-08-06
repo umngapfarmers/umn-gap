@@ -39,7 +39,7 @@ function* getCoolerSource(action) {
 
 function* deleteCoolerSource(action) {
     try {
-        yield axios.delete(`/setup/cooler/${action.payload.id}`);
+        yield axios.delete(`/setup/cooler/${action.payload}`);
         let result = yield axios.get(`/setup/cooler`);
         yield put({ type: 'SET_COOLER_SETUP', payload: result.data })
 
