@@ -127,10 +127,10 @@ class NewEquipmentSelect extends Component {
                     style={{width:'80vw', maxWidth:400}}
                     onClick = {
                       () => {
-                        this.props.history.push('/');
+                        this.props.history.push('/newfarminfo');
                         this.props.dispatch({
                           type: "SET_MENU_BOOLEAN",
-                          payload: 3
+                          payload: 4
                         })
                       }
                     }
