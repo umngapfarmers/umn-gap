@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Nav from '../../../Nav/Nav';
+import Nav from '../../../../../Nav/Nav.js';
 
 
 class SelectFacilities extends Component {
@@ -17,7 +17,7 @@ class SelectFacilities extends Component {
       <React.Fragment>
         <Nav/>
       <Typography variant="h6" gutterBottom align="center">
-         Select Facilities 
+         Select Facility to Create 
       </Typography>
       <Grid container spacing={24}
         direction="column"
@@ -32,7 +32,11 @@ class SelectFacilities extends Component {
                     aria-label="Add"
                     className={classes.margin}
                     style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/facilitiesbathlog')}}
+                    onClick = {
+                      () => {
+                        this.props.history.push('/createbathroom')
+                      }
+                    }
                     >
                        <Typography className={classes.fabColor}>Bathroom</Typography>
                       <FontAwesomeIcon icon="restroom" style={{marginLeft: 5}} className={classes.fabIconColor}/>
@@ -47,7 +51,7 @@ class SelectFacilities extends Component {
                     aria-label="Add"
                     className={classes.margin}
                     style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/facilitiespacklog')}}
+                    onClick={() => {this.props.history.push('/createpacking')}}
                     >
                        <Typography className={classes.fabColor}>Packing</Typography>
                       <FontAwesomeIcon icon="box-open" style={{marginLeft: 5}} className={classes.fabIconColor}/>
@@ -62,7 +66,11 @@ class SelectFacilities extends Component {
                     aria-label="Add"
                     className={classes.margin}
                     style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/facilitiescoolerlog')}}
+                    onClick = {
+                      () => {
+                        this.props.history.push('/createcooler')
+                      }
+                    }
                     >
                        <Typography className={classes.fabColor}>Cooler</Typography>
                       <FontAwesomeIcon icon="igloo" style={{marginLeft: 5}} className={classes.fabIconColor}/>
@@ -77,7 +85,7 @@ class SelectFacilities extends Component {
                     aria-label="Add"
                     className={classes.margin}
                     style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/facilitiesotherlog')}}
+                    onClick={() => {this.props.history.push('/createfacilitiesother')}}
                     >
                        <Typography className={classes.fabColor}>Other Facilities</Typography>
                       <FontAwesomeIcon icon="warehouse" style={{marginLeft: 5}} className={classes.fabIconColor}/>
