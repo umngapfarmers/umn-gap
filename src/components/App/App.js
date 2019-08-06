@@ -259,6 +259,8 @@ class App extends Component {
               component={CreateCompost}
             />
 
+{
+  /* ******************* BEGIN CREATE FACILITIES ******************* */ }
             <AdminProtectedRoute
               exact
               path="/createcooler"
@@ -270,6 +272,12 @@ class App extends Component {
               path="/createbathroom"
               component={CreateBathroom}
             />        
+
+            
+
+{
+  /* ******************* END CREATE FACILTIES ******************* */ }
+
 
              {/* DASHBOARDS */}
             <AdminProtectedRoute
