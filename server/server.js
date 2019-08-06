@@ -17,6 +17,8 @@ const setupCropRouter = require('./routes/setup.crop.router')
 const setupManureRouter = require('./routes/setup.manure.router');
 const setupCoolerRouter = require('./routes/setup.cooler.router');
 const setupBathroomRouter = require('./routes/setup.bathroom.router');
+const setupPackingRouter = require('./routes/setup.packing.router');
+
 const setupCompostRouter = require('./routes/setup.compost.router');
 const setupEquipmentRouter = require('./routes/equipmentRoutes/setup.equipment.router')
 const setupRouter = require('./routes/setup.router');
@@ -73,6 +75,7 @@ app.use('/setup', setupRouter); //creates a new harvest year in database
 
 app.use('/setup/cooler', setupCoolerRouter);
 app.use('/setup/bathroom', setupBathroomRouter);
+app.use('/setup/packing', setupPackingRouter);
 
 app.use('/setup/label_code', labelCodeRouter);//gets, adds, edits, removes, and disables any labelcodes
 app.use('/setup/manure', setupManureRouter); //gets, adds, edits, removes, and disables any manure sources
