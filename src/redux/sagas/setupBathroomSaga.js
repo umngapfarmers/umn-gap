@@ -39,7 +39,7 @@ function* getBathroomSource(action) {
 
 function* deleteBathroomSource(action) {
     try {
-        yield axios.delete(`/setup/bathroom/${action.payload.id}`);
+        yield axios.delete(`/setup/bathroom/${action.payload}`);
         let result = yield axios.get(`/setup/bathroom`);
         yield put({ type: 'SET_BATHROOM_SETUP', payload: result.data })
 
