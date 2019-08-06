@@ -70,8 +70,10 @@ app.use('/hyear',harvestYearRouter); //gets the harvest_year_id
 app.use('/setupWater', setupWaterRouter); //gets, adds, edits, removes, and disables any water sources or water labels
 app.use('/setupCrop', setupCropRouter); //gets, adds, edits, removes, and disables any crop or field sources
 app.use('/setup', setupRouter); //creates a new harvest year in database
+
 app.use('/setup/cooler', setupCoolerRouter);
 app.use('/setup/bathroom', setupBathroomRouter);
+
 app.use('/setup/label_code', labelCodeRouter);//gets, adds, edits, removes, and disables any labelcodes
 app.use('/setup/manure', setupManureRouter); //gets, adds, edits, removes, and disables any manure sources
 app.use('/setup/compost', setupCompostRouter); //gets, adds, edits, removes, and disables any compost sources
