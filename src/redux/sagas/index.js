@@ -14,6 +14,13 @@ import setupSaga from './setupSaga';
 import getLabelCodeSaga from './getLabelCodeSaga';
 import setupManureSaga from './setupManureSaga';
 import setupCompostSaga from './setupCompostSaga';
+import setupOtherEquipmentSaga from './equipmentSagas/setupOtherEquipmentSaga';
+import setupToolSaga from './equipmentSagas/setupToolEquipmentSaga';
+import setupVehicleSaga from './equipmentSagas/setupVehicleEquipmentSaga';
+import setupThermometerSaga from './equipmentSagas/setupThermometerEquipmentSaga';
+import setupPestSaga from './equipmentSagas/setupPestEquipmentSaga';
+import setupFirstaidSaga from './equipmentSagas/setupFirstaidEquipmentSaga';
+
 import personSaga from './personSaga';
 import harvestSaga from './harvestLogSaga';
 import employeeLogSaga from './employeeLogSaga';
@@ -38,6 +45,11 @@ import logCoolerSaga from './logCoolerSaga';
 import logToolSaga from './logToolSaga';
 import logFacilityOtherSaga from './logFacilityOtherSaga';
 import logPackingSaga from './logPackingSaga';
+import logVehicleSaga from './logVehicleSaga';
+import logThermometerSaga from './logThermometerSaga';
+import logFirstAidSaga from './logFirstAidSaga';
+import logPestSaga from './logPestSaga';
+import logEquipmentOtherSaga from './logEquipmentOtherSaga';
 
 
 // rootSaga is the primary saga.
@@ -50,7 +62,6 @@ import logPackingSaga from './logPackingSaga';
 export default function* rootSaga() {
   yield all([
     manageUserSaga(),
-
     loginSaga(),
     registrationSaga(),
     userSaga(),
@@ -64,6 +75,7 @@ export default function* rootSaga() {
     setupSaga(),
     setupManureSaga(),
     setupCompostSaga(),
+    setupOtherEquipmentSaga(),
     personSaga(),
     harvestSaga(),
     employeeLogSaga(),
@@ -83,9 +95,19 @@ export default function* rootSaga() {
     exportPdfSaga(),
     passwordRecoverySaga(),
     logBathroomSaga(),
+    setupToolSaga(),
+    setupVehicleSaga(),
     logCoolerSaga(),
     logToolSaga(),
     logFacilityOtherSaga(),
-    logPackingSaga()
+    logPackingSaga(),
+    logVehicleSaga(),
+    logThermometerSaga(),
+    logFirstAidSaga(),
+    logPestSaga(),
+    logEquipmentOtherSaga(),
+    setupThermometerSaga(),
+    setupPestSaga(),
+    setupFirstaidSaga(),
   ]);
 }

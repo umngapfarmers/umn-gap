@@ -187,15 +187,17 @@ CREATE TABLE "water_treatment"
   "harvest_year_id" int references "harvest_year"
 );
 
-CREATE TABLE "farm_packing" (
+CREATE TABLE "farm_packing"
+(
   "farm_packing_id" serial primary key,
   "farm_packing_name" varchar(50),
-   "harvest_year_id" int references "harvest_year",
-  "farm_packing_status" boolean DEFAULT true 
-  
+  "harvest_year_id" int references "harvest_year",
+  "farm_packing_status" boolean DEFAULT true
+
 );
 
-CREATE TABLE "packing" (
+CREATE TABLE "packing"
+(
   "packing_id" serial primary key ,
   "farm_packing_id" int references  "farm_packing",
   "packing_date" timestamptz NOT NULL,
@@ -207,14 +209,16 @@ CREATE TABLE "packing" (
   "harvest_year_id" int references "harvest_year"
 );
 
-CREATE TABLE "farm_tool" (
+CREATE TABLE "farm_tool"
+(
   "farm_tool_id" serial primary key,
   "farm_tool_name" varchar(50) NOT NULL,
   "harvest_year_id" int references "harvest_year",
   "farm_tool_status" boolean DEFAULT true
 );
 
-CREATE TABLE "tool" (
+CREATE TABLE "tool"
+(
   "tool_id" serial primary key,
   "farm_tool_id" int references "farm_tool",
   "tool_date" TIMESTAMPTZ NOT NULL,
@@ -225,15 +229,17 @@ CREATE TABLE "tool" (
   "harvest_year_id" int references "harvest_year"
 );
 
-CREATE TABLE "farm_cooler" (
+CREATE TABLE "farm_cooler"
+(
   "farm_cooler_id" serial primary key,
   "farm_cooler_name" varchar(50),
-   "harvest_year_id" int references "harvest_year",
+  "harvest_year_id" int references "harvest_year",
   "farm_cooler_status" boolean DEFAULT true
-  
+
 );
 
-CREATE TABLE "cooler" (
+CREATE TABLE "cooler"
+(
   "cooler_id" serial primary key ,
   "farm_cooler_id" int references  "farm_cooler",
   "cooler_date" timestamptz NOT NULL,
@@ -246,14 +252,16 @@ CREATE TABLE "cooler" (
   "harvest_year_id" int references "harvest_year"
 );
 
-CREATE TABLE "farm_bathroom" (
+CREATE TABLE "farm_bathroom"
+(
   "farm_bathroom_id" serial primary key,
   "farm_bathroom_name" varchar(50),
   "harvest_year_id" int references "harvest_year",
   "farm_bathroom_status" boolean DEFAULT true
 );
 
-CREATE TABLE "bathroom" (
+CREATE TABLE "bathroom"
+(
   "bathroom_id" serial primary key ,
   "farm_bathroom_id" int references  "farm_bathroom",
   "bathroom_date" timestamptz NOT NULL,
@@ -265,14 +273,16 @@ CREATE TABLE "bathroom" (
   "harvest_year_id" int references "harvest_year"
 );
 
-CREATE TABLE "farm_facility_other" (
+CREATE TABLE "farm_facility_other"
+(
   "farm_facility_other_id" serial primary key,
   "farm_facility_other_name" varchar(50),
-   "harvest_year_id" int references "harvest_year",
+  "harvest_year_id" int references "harvest_year",
   "farm_facility_other_status" boolean DEFAULT true
 );
 
-CREATE TABLE "facility_other" (
+CREATE TABLE "facility_other"
+(
   "facility_other_id" serial primary key,
   "farm_facility_other_id" int references "farm_facility_other" NOT NULL,
   "facility_other_date" timestamptz NOT NULL,
@@ -284,30 +294,34 @@ CREATE TABLE "facility_other" (
   "harvest_year_id" int references "harvest_year"
 );
 
-CREATE TABLE "farm_equipment_other" (
+CREATE TABLE "farm_equipment_other"
+(
   "farm_equipment_other_id" serial primary key,
   "farm_equipment_other_name" varchar(50),
   "harvest_year_id" int references "harvest_year",
   "farm_equipment_other_status" boolean DEFAULT true
 );
 
-CREATE TABLE "equipment_other" (
+CREATE TABLE "equipment_other"
+(
   "equipment_other_id" serial primary key,
   "farm_equipment_other_id" int references "farm_equipment_other",
-  "equipment_other_comments" varchar(200),
+  "equipment_other_comment" varchar(200),
   "equipment_other_date" TIMESTAMPTZ,
   "equipment_other_sig" VARCHAR(200),
-  "harverst_year_id" int references "harvest_year"
+  "harvest_year_id" int references "harvest_year"
 );
 
-CREATE TABLE "farm_vehicle" (
+CREATE TABLE "farm_vehicle"
+(
   "farm_vehicle_id" serial primary key,
   "farm_vehicle_name" varchar(50) NOT NULL,
   "harvest_year_id" int references "harvest_year",
   "farm_vehicle_status" boolean DEFAULT true
 );
 
-CREATE TABLE "vehicle" (
+CREATE TABLE "vehicle"
+(
   "vehicle_id" serial primary key,
   "farm_vehicle_id" int references "farm_vehicle",
   "vehicle_date" TIMESTAMPTZ NOT NULL,
@@ -317,14 +331,16 @@ CREATE TABLE "vehicle" (
   "harvest_year_id" int references "harvest_year"
 );
 
-CREATE TABLE "farm_firstaid" (
+CREATE TABLE "farm_firstaid"
+(
   "farm_firstaid_id" serial primary key,
   "farm_firstaid_location" varchar(50) NOT NULL,
   "harvest_year_id" int references "harvest_year",
   "farm_firstaid_status" boolean DEFAULT true
 );
 
-CREATE TABLE "firstaid" (
+CREATE TABLE "firstaid"
+(
   "firstaid_id" serial primary key,
   "farm_firstaid_id" int references "farm_firstaid",
   "firstaid_date" TIMESTAMPTZ,
@@ -334,7 +350,8 @@ CREATE TABLE "firstaid" (
   "harvest_year_id" int references "harvest_year"
 );
 
-CREATE TABLE "farm_pest" (
+CREATE TABLE "farm_pest"
+(
   "farm_pest_id" serial primary key,
   "farm_pest_type" varchar(50) NOT NULL,
   "farm_pest_location" varchar(50) NOT NULL,
@@ -342,7 +359,8 @@ CREATE TABLE "farm_pest" (
   "farm_pest_status" boolean DEFAULT true
 );
 
-CREATE TABLE "pest" (
+CREATE TABLE "pest"
+(
   "pest_id" serial primary key,
   "pest_administrator" varchar(200),
   "farm_pest_id" int references "farm_pest",
@@ -352,14 +370,16 @@ CREATE TABLE "pest" (
   "harvest_year_id" int references "harvest_year"
 );
 
-CREATE TABLE "farm_thermometer" (
+CREATE TABLE "farm_thermometer"
+(
   "farm_thermometer_id" serial primary key,
   "farm_thermometer_location" varchar(50) NOT NULL,
   "harvest_year_id" int references "harvest_year",
-  "farm_pest_status" boolean DEFAULT true
+  "farm_thermometer_status" boolean DEFAULT true
 );
 
-CREATE TABLE "thermometer" (
+CREATE TABLE "thermometer"
+(
   "thermometer_id" serial primary key,
   "farm_thermometer_id" int references "farm_thermometer",
   "thermometer_date" TIMESTAMPTZ,

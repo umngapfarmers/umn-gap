@@ -14,16 +14,9 @@ import './EnterFarmInformationHierarchyMenu.css'
 
 class EnterFarmInformationHierarchyMenu extends Component {
 
-
-  state= {
-    
-  }
-
   componentDidMount(){
-    // this.props.dispatch({type:'SET_MENU_BOOLEAN', payload: 0})
+    //this.props.dispatch({type:'SET_MENU_BOOLEAN', payload: 0})
   }
-
-
 
   render() {
     const {classes} = this.props;
@@ -31,7 +24,7 @@ class EnterFarmInformationHierarchyMenu extends Component {
     let menuToDisplay = null;
 
     //CONDITIONAL RENDERING -- no menu sections have been completed
-    if (menuBoolean ===0){
+    if (menuBoolean === 0){
       menuToDisplay =
       <List>
       <ListItem button onClick={() => {this.props.history.push('/crops')}}>
@@ -61,6 +54,25 @@ class EnterFarmInformationHierarchyMenu extends Component {
           <RadioButtonUncheckedOutlined/>
         </ListItemIcon>
       </ListItem>
+      <ListItem button disabled>
+        <ListItemIcon>
+          Step 4
+        </ListItemIcon>
+        <ListItemText primary="Equipment"/>
+        <ListItemIcon>
+          <RadioButtonUncheckedOutlined/>
+        </ListItemIcon>
+      </ListItem>
+      <ListItem button disabled>
+        <ListItemIcon>
+          Step 5
+        </ListItemIcon>
+        <ListItemText primary="Facilties"/>
+        <ListItemIcon>
+          <RadioButtonUncheckedOutlined/>
+        </ListItemIcon>
+      </ListItem>
+
     </List> 
     }
 
@@ -95,6 +107,24 @@ class EnterFarmInformationHierarchyMenu extends Component {
             <RadioButtonUncheckedOutlined/>
           </ListItemIcon>
         </ListItem>
+        <ListItem button disabled>
+          <ListItemIcon>
+            Step 4
+          </ListItemIcon>
+          <ListItemText primary="Equipment"/>
+          <ListItemIcon>
+            <RadioButtonUncheckedOutlined/>
+          </ListItemIcon>
+        </ListItem>
+        <ListItem button disabled>
+          <ListItemIcon>
+            Step 5
+          </ListItemIcon>
+          <ListItemText primary="Facilties"/>
+          <ListItemIcon>
+            <RadioButtonUncheckedOutlined/>
+          </ListItemIcon>
+        </ListItem>
       </List> 
       }
 
@@ -111,7 +141,7 @@ class EnterFarmInformationHierarchyMenu extends Component {
           <CheckCircleOutline/>
         </ListItemIcon>
       </ListItem>
-      <ListItem button onClick={() => {this.props.history.push('/create_manure')}}>
+      <ListItem button onClick={() => {this.props.history.push('/fertilizerdash')}}>
         <ListItemIcon>
           Step 2
         </ListItemIcon>
@@ -129,15 +159,83 @@ class EnterFarmInformationHierarchyMenu extends Component {
           <RadioButtonUncheckedOutlined/>
         </ListItemIcon>
       </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            Step 4
+          </ListItemIcon>
+          <ListItemText primary="Equipment"/>
+          <ListItemIcon>
+            <RadioButtonUncheckedOutlined/>
+          </ListItemIcon>
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            Step 5
+          </ListItemIcon>
+          <ListItemText primary="Facilties"/>
+          <ListItemIcon>
+            <RadioButtonUncheckedOutlined/>
+          </ListItemIcon>
+        </ListItem>
     </List> 
     }
 
+      if (menuBoolean ===3){
+    menuToDisplay =
+    <List>
+    <ListItem button onClick={() => {this.props.history.push('/crop')}}>
+      <ListItemIcon>
+        Step 1
+      </ListItemIcon>
+      <ListItemText primary="Crops, Fields and Label Codes"/>
+      <ListItemIcon>
+        <CheckCircleOutline/>
+      </ListItemIcon>
+    </ListItem>
+    <ListItem button onClick={() => {this.props.history.push('/fertilizerdash')}}>
+      <ListItemIcon>
+        Step 2
+      </ListItemIcon>
+      <ListItemText primary="Manure and Compost"/>
+      <ListItemIcon>
+        <CheckCircleOutline/>
+      </ListItemIcon>
+    </ListItem>
+    <ListItem button onClick={() => {this.props.history.push('/water')}}>
+      <ListItemIcon>
+        Step 3
+      </ListItemIcon>
+      <ListItemText primary="Water Sources"/>
+      <ListItemIcon>
+        <CheckCircleOutline/>
+      </ListItemIcon>
+    </ListItem>
+      <ListItem button onClick={() => {this.props.history.push('/newEquipment')}}>
+        <ListItemIcon>
+          Step 4
+        </ListItemIcon>
+        <ListItemText primary="Equipment"/>
+        <ListItemIcon>
+          <RadioButtonUncheckedOutlined/>
+        </ListItemIcon>
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          Step 5
+        </ListItemIcon>
+        <ListItemText primary="Facilties"/>
+        <ListItemIcon>
+          <RadioButtonUncheckedOutlined/>
+        </ListItemIcon>
+      </ListItem>
+  </List> 
+  }
 
     return (
       <React.Fragment>
       
       <Typography variant="h6" gutterBottom align="center">
-      Enter Farm Information Hierarchy Menu
+      Enter Farm Information
       </Typography>
       <Grid container spacing={24}>
          

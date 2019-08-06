@@ -6,6 +6,7 @@ import loginMode from './loginModeReducer';
 import user from './userReducer';
 import waterSetup from './waterSetup';
 import cropSetup from './cropSetup';
+import equipmentReducer from './equipmentReducer';
 import farmMenuConditional from './farmMenuConditionalReducer';
 import labelCode from './labelCodesReducer';
 import setupManure from './setupManureReducer';
@@ -31,6 +32,11 @@ import coolerReducer from './logCoolerReducer';
 import toolReducer from './logToolReducer';
 import facilityOtherReducer from './logFacilityOtherReducer';
 import packingReducer from './logPackingReducer';
+import vehicleReducer from './logVehicleReducer';
+import thermometerReducer from './logThermometerReducer';
+import firstAidReducer from './logFirstAidReducer';
+import pestReducer from './logPestReducer';
+import equipmentOtherReducer from './logEquipmentOtherReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -66,11 +72,16 @@ const rootReducer = combineReducers({
   recordcrops,
   recordcompostturn,
   bathroomReducer,
+  equipmentReducer,
   coolerReducer,
   toolReducer,
   facilityOtherReducer,
   packingReducer,
-  
+  vehicleReducer,
+  thermometerReducer,
+  firstAidReducer,
+  pestReducer,
+  equipmentOtherReducer
 });
 
 export default rootReducer;

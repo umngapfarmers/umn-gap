@@ -18,6 +18,7 @@ const setupManureRouter = require('./routes/setup.manure.router');
 const setupCoolerRouter = require('./routes/setup.cooler.router');
 const setupBathroomRouter = require('./routes/setup.bathroom.router');
 const setupCompostRouter = require('./routes/setup.compost.router');
+const setupEquipmentRouter = require('./routes/equipmentRoutes/setup.equipment.router')
 const setupRouter = require('./routes/setup.router');
 const labelCodeRouter = require('./routes/setup.labelCode.router');
 const logCompost = require('./routes/log.compost.router')
@@ -41,7 +42,12 @@ const log_bathroomRouter= require('./routes/log.bathroom.router');
 const log_coolerRouter = require('./routes/log.cooler.router');
 const log_toolRouter = require('./routes/log.tool.router');
 const log_otherFacilityRouter = require('./routes/log.facilityOther.router');
-const log_PackingRouter = require('./routes/log.packing.router');
+const log_packingRouter = require('./routes/log.packing.router');
+const log_vehicleRouter= require('./routes/log.vehicle.router');
+const log_thermometerRouter = require('./routes/log.thermometer.router');
+const log_firstAidRouter = require('./routes/log.firstaid.router');
+const log_pestRouter = require('./routes/log.pest.router');
+const log_equipmentOtherRouter = require('./routes/log.equipmentother.router');
 
 
 // Body parser middleware
@@ -68,7 +74,8 @@ app.use('/setup/cooler', setupCoolerRouter);
 app.use('/setup/bathroom', setupBathroomRouter);
 app.use('/setup/label_code', labelCodeRouter);//gets, adds, edits, removes, and disables any labelcodes
 app.use('/setup/manure', setupManureRouter); //gets, adds, edits, removes, and disables any manure sources
-app.use('/setup/compost', setupCompostRouter) //gets, adds, edits, removes, and disables any compost sources
+app.use('/setup/compost', setupCompostRouter); //gets, adds, edits, removes, and disables any compost sources
+app.use('/setup/equipment', setupEquipmentRouter);
 app.use('/log/harvest/', log_harvestRouter); //gets person data and adds harvest logs
 app.use('/log/employee', log_employeeRouter); //gets, adds, edits, removes, and disables employee data
 app.use('/import', importHarvestRouter); //gets data from past year and copies it into a new harvest year
@@ -84,13 +91,18 @@ app.use('/record/compostPile', record_compostPileRouter); //gets records for com
 app.use('/log/water', log_waterRouter); //adds logs for water treatment and inspection
 app.use('/superadmin', superAdminRouter); //gets and changes id to superadmin if user has permissions
 app.use('/record/compostturn', record_compostTurnRouter); //gets records for compost management logs
-app.use('/record/export', exportRouter)
+app.use('/record/export', exportRouter);
 app.use('/passwordRecovery', passwordRecoveryRouter);
 app.use('/log/bathroom', log_bathroomRouter);
 app.use('/log/cooler', log_coolerRouter);
 app.use('/log/tool', log_toolRouter);
 app.use('/log/facilityother', log_otherFacilityRouter);
-app.use('/log/packing', log_PackingRouter);
+app.use('/log/packing', log_packingRouter);
+app.use('/log/vehicle', log_vehicleRouter);
+app.use('/log/thermometer', log_thermometerRouter);
+app.use('/log/firstaid', log_firstAidRouter);
+app.use('/log/pest', log_pestRouter);
+app.use('/log/equipmentother', log_equipmentOtherRouter);
 
 // Serve static files
 app.use(express.static('build'));
