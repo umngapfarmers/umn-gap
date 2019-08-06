@@ -8,6 +8,7 @@ import harvestYearSaga from './harvestYearSaga';
 
 import waterSetup from './waterSetup';
 import cropSetup from './cropSetup';
+import setupBathroomSaga from './setupBathroomSaga';
 import setupCoolerSaga from './setupCoolerSaga';
 import setupSaga from './setupSaga';
 import getLabelCodeSaga from './getLabelCodeSaga';
@@ -50,6 +51,7 @@ import logFirstAidSaga from './logFirstAidSaga';
 import logPestSaga from './logPestSaga';
 import logEquipmentOtherSaga from './logEquipmentOtherSaga';
 
+
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -69,6 +71,7 @@ export default function* rootSaga() {
     cropSetup(),
     getLabelCodeSaga(),
     setupCoolerSaga(),
+    setupBathroomSaga(),
     setupSaga(),
     setupManureSaga(),
     setupCompostSaga(),
