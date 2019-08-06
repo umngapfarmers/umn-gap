@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post('/', rejectUnauthenticated, async (req, res) => {
     const client = await pool.connect();
-    const harvest_year_id = 1;   // CHANGE ME -----------
+    const harvest_year_id = req.user.current_harvest_year; 
 
     const newHarvest = req.body;
     const newHarvestQuery = `INSERT INTO "harvest_year" ("harvest_year", "farm_id") VALUES ($1, $2) RETURNING "harvest_id";`
