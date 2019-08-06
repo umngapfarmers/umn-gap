@@ -375,7 +375,7 @@ CREATE TABLE "farm_thermometer"
   "farm_thermometer_id" serial primary key,
   "farm_thermometer_location" varchar(50) NOT NULL,
   "harvest_year_id" int references "harvest_year",
-  "farm_pest_status" boolean DEFAULT true
+  "farm_thermometer_status" boolean DEFAULT true
 );
 
 CREATE TABLE "thermometer"
