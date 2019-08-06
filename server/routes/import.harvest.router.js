@@ -43,6 +43,10 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
     const insertFarmWaterQuery = `INSERT INTO "farm_water" ("farm_water_source_id", "label_code_id", "harvest_year_id")VALUES ($1, $2, $3);`;
     const farmWaterKeys = ["farm_water_source_id", "label_code_id", "harvest_year_id"];
 
+    const getFarmFirstaid = 'SELECT * FROM "farm_firstaid" WHERE "harvest_year_id" = $1;';
+    const insertFarmFirstaidQuery = `INSERT INTO "farm_firstaid" ("farm_firstaid_location", "harvest_year_id") VALUES ($1, $2);`;
+    const farmFirstaidKeys = ["farm_firstaid_location", "harvest_year_id"];
+
     const userUpdateQuery = `UPDATE "user" SET "current_harvest_year" = $1 WHERE "user_id" = $2`;
 
     // updates harvest year of each item    
