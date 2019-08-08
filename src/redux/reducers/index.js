@@ -37,6 +37,7 @@ import thermometerReducer from './logThermometerReducer';
 import firstAidReducer from './logFirstAidReducer';
 import pestReducer from './logPestReducer';
 import equipmentOtherReducer from './logEquipmentOtherReducer';
+import recordBathroom from './recordBathroom';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -81,7 +82,8 @@ const rootReducer = combineReducers({
   thermometerReducer,
   firstAidReducer,
   pestReducer,
-  equipmentOtherReducer
+  equipmentOtherReducer,
+  recordBathroom
 });
 
 export default rootReducer;
