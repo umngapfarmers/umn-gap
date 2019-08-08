@@ -7,7 +7,7 @@ import {
 
 function* getOtherFacility(action) {
   try {
-    let result = yield axios.get('/setup/facility/packing');
+    let result = yield axios.get('/setup/packing');
     yield put({
       type: 'SET_PACKING_FACILITY',
       payload: result.data
@@ -21,13 +21,13 @@ function* getOtherFacility(action) {
 
 function* addOtherFacility(action) {
   try {
-    yield axios.post('/setup/facility/packing/new', action.payload);
+    yield axios.post('/setup/packing/new', action.payload);
     yield put({
       type: 'GET_PACKING_FACILITY'
     });
   } catch (error) {
     console.log(`Error adding facility `, error);
-    alert(`Sorry! Was unable to add an facility of type other. Try again later.`)
+    alert(`Sorry! Was unable to add a packing facility. Try again later.`)
   }
 }
 

@@ -120,8 +120,8 @@ class CreatePacking extends Component {
           <ul>
             {/* checks if redux state is filled */}
             {
-              this.props.reduxState.faciltiesReducer.setupPackingReducer[0] && this.props.reduxState.facilitiesReducer.setupPackingReducer.map(equipment =>
-              <li key={facility.farm_firstaid_id}>{facility.farm_packing_name}
+              this.props.reduxState.setupFacilities.setupPackingReducer[0] && this.props.reduxState.setupFacilities.setupPackingReducer.map(facility =>
+              <li key={facility.farm_packing_id}>{facility.farm_packing_name}
                 <IconButton size="large" color="primary" variant='contained' onClick={() => this.handleRemove(facility.farm_firstaid_id)}><FontAwesomeIcon icon='minus-circle'/></IconButton>
               </li>
             )}
