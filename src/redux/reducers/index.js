@@ -39,6 +39,7 @@ import equipmentOtherReducer from './logEquipmentOtherReducer';
 import recordBathroom from './recordBathroomReducer';
 import recordCooler from './recordCoolerReducer';
 import recordPacking from './recordPackingReducer';
+import recordFacilityOther from './recordFacilityOtherReducer';
 
 //rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -86,7 +87,8 @@ const rootReducer = combineReducers({
   equipmentOtherReducer,
   recordBathroom,
   recordCooler,
-  recordPacking
+  recordPacking,
+  recordFacilityOther
 });
 
 export default rootReducer;
