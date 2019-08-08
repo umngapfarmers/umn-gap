@@ -60,6 +60,7 @@ class FacilitiesBathroomRecord extends Component {
 
   render() {
     const { classes } = this.props;
+    console.log(this.state.selectHarvestYear);
     return (
       <React.Fragment>
       <Nav/>
@@ -100,7 +101,7 @@ class FacilitiesBathroomRecord extends Component {
 
             <Grid item xs={12} sm={6}>
              
-                {/* <FacilitiesBathroomTable/> */}
+                <FacilitiesBathroomTable/>
               
             </Grid>
 

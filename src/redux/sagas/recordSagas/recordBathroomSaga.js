@@ -4,7 +4,8 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* getBathroomRecordSaga(action){
     try{
-        let result = yield axios.get(`/record/harvest/bathroom/?harvest_year_id=${action.payload}`);
+        console.log('action.payload', action.payload);
+        let result = yield axios.get(`/record/bathroom/?harvest_year_id=${action.payload}`);
         yield put({type: 'SET_RECORD_BATHROOM', payload: result.data})
 
     }
