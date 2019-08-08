@@ -50,7 +50,8 @@ import logThermometerSaga from './logThermometerSaga';
 import logFirstAidSaga from './logFirstAidSaga';
 import logPestSaga from './logPestSaga';
 import logEquipmentOtherSaga from './logEquipmentOtherSaga';
-import bathroomSaga from './recordSagas/recordBathroomSaga';
+import recordBathroomSaga from './recordSagas/recordBathroomSaga';
+import recordCoolerSaga from './recordSagas/recordCoolerSaga';
 
 
 // rootSaga is the primary saga.
@@ -110,6 +111,7 @@ export default function* rootSaga() {
     setupThermometerSaga(),
     setupPestSaga(),
     setupFirstaidSaga(),
-    bathroomSaga()
+    recordBathroomSaga(),
+    recordCoolerSaga()
   ]);
 }
