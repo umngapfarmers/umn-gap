@@ -50,6 +50,7 @@ const log_pestRouter = require('./routes/log.pest.router');
 const log_equipmentOtherRouter = require('./routes/log.equipmentother.router');
 const record_bathroomRouter = require('./routes/record.bathroom.router');
 const record_coolerRouter = require('./routes/record.cooler.router');
+const record_packingRouter = require('./routes/record.packing.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -106,6 +107,7 @@ app.use('/log/pest', log_pestRouter);
 app.use('/log/equipmentother', log_equipmentOtherRouter);
 app.use('/record/bathroom', record_bathroomRouter);
 app.use('/record/cooler', record_coolerRouter);
+app.use('/record/packing', record_packingRouter);
 
 // Serve static files
 app.use(express.static('build'));

@@ -14,7 +14,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     let sqlQuery = `SELECT "cooler"."cooler_id", "cooler"."cooler_date", "cooler"."cooler_cleaned", "cooler"."cooler_sanitized", "cooler"."cooler_area", "cooler"."cooler_comment", "cooler"."cooler_temperature", "farm_cooler"."farm_cooler_name", "person"."person_first", "person"."person_last" FROM "cooler" JOIN "farm_cooler" ON "farm_cooler"."farm_cooler_id" = "cooler"."farm_cooler_id" JOIN "person" ON "person"."person_id" = "cooler"."cooler_sig" WHERE "cooler"."harvest_year_id" = $1 ORDER BY "cooler"."cooler_date" ASC  `
     pool.query(sqlQuery, [harvest_year_id])
         .then((response) => {
-            console.log(`Record Bathroom Response`, response.rows);
+            console.log(`Record Cooler Response`, response.rows);
             res.send(response.rows)  
         })
         .catch((error) => {
