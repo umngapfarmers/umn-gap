@@ -21,7 +21,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 
-router.post('/', rejectUnauthenticated, (req, res) => {
+router.post('/new', rejectUnauthenticated, (req, res) => {
   console.log(`in post compost `, req.user);
 
   let sqlText = `INSERT INTO "farm_packing"

@@ -14,7 +14,23 @@ const setupBathroomReducer = (state = [], action) => {
     return state
 };
 
+const setupPackingReducer = (state = [], action) => {
+    if (action.type === 'SET_PACKING_SETUP') {
+        return action.payload
+    }
+    return state
+};
+
+const setupOtherReducer = (state = [], action) => {
+    if (action.type === 'SET_OTHER_FACILITIES_SETUP') {
+        return action.payload
+    }
+    return state
+}
+
 export default combineReducers({
-setupCoolerReducer,
-setupBathroomReducer,
+    setupCoolerReducer,
+    setupBathroomReducer,
+    setupPackingReducer,
+    setupOtherReducer
 })
