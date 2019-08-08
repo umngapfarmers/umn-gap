@@ -13,7 +13,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 // Allows farmer to create a new equipment
 // Accessed as part of intial farm set up workflow and through harvest year edit
 // access at "/newFirstaid"
-class CreateFirstaid extends Component {
+class CreatePacking extends Component {
 
   state = {
     farm_packing_name: ''
@@ -37,7 +37,7 @@ class CreateFirstaid extends Component {
 
   onSubmit = () => {
     this.props.dispatch({
-      type: 'ADD_FIRSTAID',
+      type: 'ADD_PACKING_FACILITY',
       payload: {
         ...this.state
       }
@@ -49,7 +49,7 @@ class CreateFirstaid extends Component {
 
   handleRemove = (id) => {
     this.props.dispatch({
-      type: 'DELETE_FIRSTAID',
+      type: 'DELETE_PACKING_FACILITY',
       payload: {
         id,
       }
@@ -57,7 +57,7 @@ class CreateFirstaid extends Component {
   };
 
   componentDidMount(){
-    this.props.dispatch({type: 'GET_FIRSTAID'});
+    this.props.dispatch({type: 'GET_PACKING_FACILITY'});
   };
   
   render() {
@@ -65,7 +65,7 @@ class CreateFirstaid extends Component {
     return (
       <React.Fragment>
       <Typography variant="h6" gutterBottom align="center">
-          Create New Firstaid
+          Create New Packing Facility
       </Typography>
       <Grid 
         container 
@@ -77,7 +77,7 @@ class CreateFirstaid extends Component {
         <Grid item xs={10} sm={6} >
             <FormControl>
                 <TextField 
-                    label="Firstaid Name" 
+                    label="Packing Facility Name" 
                     variant="outlined" 
                     color="primary"
                     onChange = {
@@ -99,7 +99,7 @@ class CreateFirstaid extends Component {
             variant="contained" 
             onClick={this.onSubmit} 
             style={{width:'80vw', maxWidth:400}}>
-              Add New Firstaid
+              Add New Facility
             </Button>
         </Grid>
         
@@ -108,9 +108,11 @@ class CreateFirstaid extends Component {
               size="large" 
               color="primary" 
               variant="contained" 
-              onClick={()=>this.props.history.push('/newequipment')} 
+              onClick = {
+                () => this.props.history.push('/createfacilitiesselect')
+              }
               style={{width:'80vw', maxWidth:400}}>
-                Back to Equipment
+                Back to Facility Select
             </Button>
         </Grid>
 
@@ -118,9 +120,9 @@ class CreateFirstaid extends Component {
           <ul>
             {/* checks if redux state is filled */}
             {
-              this.props.reduxState.faciltiesReducer.firstaid[0] && this.props.reduxState.facilitiesReducer.firstaid.map(equipment =>
-              <li key={equipment.farm_firstaid_id}>{equipment.farm_packing_name}
-                <IconButton size="large" color="primary" variant='contained' onClick={() => this.handleRemove(equipment.farm_firstaid_id)}><FontAwesomeIcon icon='minus-circle'/></IconButton>
+              this.props.reduxState.faciltiesReducer.setupPackingReducer[0] && this.props.reduxState.facilitiesReducer.setupPackingReducer.map(equipment =>
+              <li key={facility.farm_firstaid_id}>{facility.farm_packing_name}
+                <IconButton size="large" color="primary" variant='contained' onClick={() => this.handleRemove(facility.farm_firstaid_id)}><FontAwesomeIcon icon='minus-circle'/></IconButton>
               </li>
             )}
           </ul>
@@ -145,4 +147,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect(mapReduxStateToProps)(withStyles(styles)(CreateFirstaid));
+export default connect(mapReduxStateToProps)(withStyles(styles)(CreatePacking));

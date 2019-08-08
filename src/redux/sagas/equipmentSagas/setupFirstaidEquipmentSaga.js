@@ -7,7 +7,7 @@ import {
 
 function* getOtherEquipment(action) {
   try {
-    let result = yield axios.get('/setup/equipment/firstaid');
+    let result = yield axios.get('/setup/packing/');
     yield put({
       type: 'SET_FIRSTAID',
       payload: result.data
@@ -21,7 +21,7 @@ function* getOtherEquipment(action) {
 
 function* addOtherEquipment(action) {
   try {
-    yield axios.post('/setup/equipment/firstaid/new', action.payload);
+    yield axios.post('/setup/packing/new', action.payload);
     yield put({
       type: 'GET_FIRSTAID'
     });
@@ -35,7 +35,7 @@ function* deleteOtherEquipment(action) {
   try {
     console.log(`in delete other equipment`);
     let id = action.payload.id;
-    yield axios.delete(`/setup/equipment/firstaid/delete/${id}`);
+    yield axios.delete(`/setup/packing/${id}`);
     yield put({
       type: 'GET_FIRSTAID'
     });
