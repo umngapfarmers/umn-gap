@@ -238,8 +238,7 @@ CREATE TABLE "farm_cooler"
 
 );
 
-CREATE TABLE "cooler"
-(
+CREATE TABLE "cooler" (
   "cooler_id" serial primary key ,
   "farm_cooler_id" int references  "farm_cooler",
   "cooler_date" timestamptz NOT NULL,
@@ -248,7 +247,7 @@ CREATE TABLE "cooler"
   "cooler_sanitized" boolean,
   "cooler_area" varchar(50) ,
   "cooler_comment" varchar(100),
-  "cooler_sig" varchar(200),
+  "cooler_sig" int references "person",
   "harvest_year_id" int references "harvest_year"
 );
 
