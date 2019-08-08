@@ -260,8 +260,7 @@ CREATE TABLE "farm_bathroom"
   "farm_bathroom_status" boolean DEFAULT true
 );
 
-CREATE TABLE "bathroom"
-(
+CREATE TABLE "bathroom" (
   "bathroom_id" serial primary key ,
   "farm_bathroom_id" int references  "farm_bathroom",
   "bathroom_date" timestamptz NOT NULL,
@@ -269,7 +268,7 @@ CREATE TABLE "bathroom"
   "bathroom_sanitized" boolean,
   "bathroom_area" varchar(50) ,
   "bathroom_comment" varchar(100),
-  "bathroom_sig" varchar(200),
+  "bathroom_sig" INT references person,
   "harvest_year_id" int references "harvest_year"
 );
 
