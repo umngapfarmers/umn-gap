@@ -22,19 +22,18 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 
 router.post('/new', rejectUnauthenticated, (req, res) => {
-  console.log(`in post compost `, req.user);
 
   let sqlText = `INSERT INTO "farm_packing"
         ("farm_packing_name", "harvest_year_id")
         VALUES ($1, $2);`;
   let values = [
-    req.body.name,
+    req.body.farm_packing_name,
     req.user.current_harvest_year,
   ];
 
   pool.query(sqlText, values)
     .then((result) => {
-      console.log(`sent cooler`);
+      console.log(`sent packing facility`);
 
       res.sendStatus(201);
     })
