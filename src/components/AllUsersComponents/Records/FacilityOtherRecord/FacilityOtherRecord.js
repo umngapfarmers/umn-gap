@@ -101,7 +101,7 @@ class FacilityOtherRecord extends Component {
 
             <Grid item xs={12} sm={6}>
              
-                {/* <FacilityOtherTable/> */}
+                <FacilityOtherTable/>
               
             </Grid>
 

@@ -7,4 +7,4 @@ const recordFacilityOther = (state = [], action) => {
 
 // user will be on the redux state at:
 // state.user
-export default recordCooler;
+export default recordFacilityOther;

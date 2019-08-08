@@ -278,8 +278,7 @@ CREATE TABLE "farm_facility_other"
   "farm_facility_other_status" boolean DEFAULT true
 );
 
-CREATE TABLE "facility_other"
-(
+CREATE TABLE "facility_other" (
   "facility_other_id" serial primary key,
   "farm_facility_other_id" int references "farm_facility_other" NOT NULL,
   "facility_other_date" timestamptz NOT NULL,
@@ -287,7 +286,7 @@ CREATE TABLE "facility_other"
   "facility_other_sanitized" boolean,
   "facility_other_area" varchar(50) ,
   "facility_other_comment" varchar(100),
-  "facility_other_sig" varchar(200),
+  "facility_other_sig" INT REFERENCES "person",
   "harvest_year_id" int references "harvest_year"
 );
 
