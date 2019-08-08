@@ -11,18 +11,18 @@ const moment = require('moment');
 
 
 
-class FacilitiesCoolerTable extends Component {
+class FacilityOther extends Component {
 
 
       //FUNCTION- toggles the check of the checkbox
-      displayCoolerCleaned = (cooler_cleaned) => {
-        if (cooler_cleaned == true){
+      displayFacilityOtherCleaned = (facility_other_cleaned) => {
+        if (facility_other_cleaned == true){
             return (
             <Typography>Yes</Typography>
             )
         }
     
-        else if (cooler_cleaned == false){
+        else if (facility_other_cleaned == false){
             return (
                 <Typography>No</Typography>
                 )
@@ -30,14 +30,14 @@ class FacilitiesCoolerTable extends Component {
     }
 
        //FUNCTION- toggles the check of the checkbox
-       displayCoolerSanitized = (cooler_sanitized) => {
-        if (cooler_sanitized == true){
+       displayFacilityOtherSanitized = (facility_other_sanitized) => {
+        if (facility_other_sanitized == true){
             return (
             <Typography>Yes</Typography>
             )
         }
     
-        else if (cooler_sanitized == false){
+        else if (facility_other_sanitized == false){
             return (
                 <Typography>No</Typography>
                 )
@@ -56,7 +56,6 @@ class FacilitiesCoolerTable extends Component {
           <TableRow hover='true'>
             <TableCell align="center" className={classes.tableFontBody}>Date</TableCell>
             <TableCell align="center"  className={classes.tableFontBody}>Name</TableCell>
-            <TableCell align="center"  className={classes.tableFontBody}>Temperature</TableCell>
             <TableCell align="center"  className={classes.tableFontBody}>Cleaned</TableCell>
             <TableCell align="center"  className={classes.tableFontBody}>Sanitized</TableCell>
             <TableCell align="center"  className={classes.tableFontBody}>Area</TableCell>
@@ -65,15 +64,14 @@ class FacilitiesCoolerTable extends Component {
           </TableRow>
         </TableHead>
         <TableBody>
-          {this.props.reduxState.recordCooler.map(row => (
-            <TableRow key={row.cooler_id} hover='true'>
-              <TableCell align="left" scope="row" className={classes.tableFontAndBorder}>{moment(row.cooler_date).format('MM-DD-YYYY')}</TableCell>
-              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.farm_cooler_name}</TableCell>
-              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.cooler_temperature}</TableCell>
-              <TableCell align="left"  className={classes.tableFontAndBorder}>{this.displayCoolerCleaned(row.cooler_cleaned)}</TableCell>
-              <TableCell align="left"  className={classes.tableFontAndBorder}>{this.displayCoolerSanitized(row.cooler_sanitized)}</TableCell>
-              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.cooler_area}</TableCell>
-              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.cooler_comment}</TableCell>
+          {this.props.reduxState.recordFacilityOther.map(row => (
+            <TableRow key={row.facility_other_id} hover='true'>
+              <TableCell align="left" scope="row" className={classes.tableFontAndBorder}>{moment(row.facility_other_date).format('MM-DD-YYYY')}</TableCell>
+              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.farm_facility_other_name}</TableCell>
+              <TableCell align="left"  className={classes.tableFontAndBorder}>{this.displayFacilityOtherCleaned(row.facility_other_cleaned)}</TableCell>
+              <TableCell align="left"  className={classes.tableFontAndBorder}>{this.displayFacilityOtherSanitized(row.facility_other_sanitized)}</TableCell>
+              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.facility_other_area}</TableCell>
+              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.facility_other_comment}</TableCell>
               <TableCell align="left"  className={classes.tableFontAndBorder}>{row.person_first} {row.person_last}</TableCell>
             </TableRow>
           ))}
@@ -107,4 +105,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect( mapReduxStateToProps )(withStyles(styles)(FacilitiesCoolerTable));
+export default connect( mapReduxStateToProps )(withStyles(styles)(FacilityOther));

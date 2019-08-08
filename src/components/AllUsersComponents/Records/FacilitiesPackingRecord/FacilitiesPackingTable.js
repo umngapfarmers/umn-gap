@@ -55,7 +55,7 @@ class FacilitiesPackingTable extends Component {
         <TableHead>
           <TableRow hover='true'>
             <TableCell align="center" className={classes.tableFontBody}>Date</TableCell>
-            <TableCell align="center"  className={classes.tableFontBody}>Packing Name</TableCell>
+            <TableCell align="center"  className={classes.tableFontBody}>Name</TableCell>
             <TableCell align="center"  className={classes.tableFontBody}>Cleaned</TableCell>
             <TableCell align="center"  className={classes.tableFontBody}>Sanitized</TableCell>
             <TableCell align="center"  className={classes.tableFontBody}>Area</TableCell>
