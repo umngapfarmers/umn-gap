@@ -196,8 +196,7 @@ CREATE TABLE "farm_packing"
 
 );
 
-CREATE TABLE "packing"
-(
+CREATE TABLE "packing" (
   "packing_id" serial primary key ,
   "farm_packing_id" int references  "farm_packing",
   "packing_date" timestamptz NOT NULL,
@@ -205,7 +204,7 @@ CREATE TABLE "packing"
   "packing_sanitized" boolean,
   "packing_area" varchar(50) ,
   "packing_comment" varchar(100),
-  "packing_sig" varchar(200),
+  "packing_sig" INT REFERENCES "person",
   "harvest_year_id" int references "harvest_year"
 );
 
