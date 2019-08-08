@@ -101,7 +101,7 @@ class FacilitiesPackingRecord extends Component {
 
             <Grid item xs={12} sm={6}>
              
-                {/* <FacilitiesPackingTable/> */}
+                <FacilitiesPackingTable/>
               
             </Grid>
 
