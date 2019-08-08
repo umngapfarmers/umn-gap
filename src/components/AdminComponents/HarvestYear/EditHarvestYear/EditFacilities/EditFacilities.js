@@ -6,6 +6,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import EditCooler from "./EditCooler/EditCooler";
 import Nav from "../../../../Nav/Nav";
+import EditBathroom from "./EditBathroom/EditBathroom";
 
 class EditFacilities extends Component {
   state = {};
@@ -19,6 +20,7 @@ class EditFacilities extends Component {
       <React.Fragment>
         <Nav />
         <EditCooler />
+        <EditBathroom/>
 
         <Grid
           container
