@@ -100,6 +100,7 @@ import EditEmployee from '../AdminComponents/ManageRoles/EditEmployee';
 import EditManure from '../AdminComponents/HarvestYear/EditHarvestYear/EditManureCompost/EditManureCompost';
 import EditWater from '../AdminComponents/HarvestYear/EditHarvestYear/EditWater/EditWater';
 import EditWorker from '../AdminComponents/ManageRoles/EditWorker';
+import EditFacilities from '../AdminComponents/HarvestYear/EditHarvestYear/EditFacilities/EditFacilities';
 
 //MANAGE USER
 import AddWorker from '../AdminComponents/ManageRoles/AddWorker';
@@ -137,534 +138,536 @@ class App extends Component {
               <Redirect exact from="/" to="/home" />
 
               <Route
-              exact
-              path='/resetpassword'
-              component={ChangePassword}
+                exact
+                path="/resetpassword"
+                component={ChangePassword}
               />
 
               <ProtectedRoute
                 exact
-                path='/checkemail'
+                path="/checkemail"
                 component={CheckEmail}
               />
               {/* Visiting localhost:3000/about will show the about page.
               This is a route anyone can see, no login necessary */}
-             <ProtectedRoute
-              exact
-              path="/home"
-            />
+              <ProtectedRoute exact path="/home" />
               {/* For protected routes, the view could show one of several things on the same route.
               Visiting localhost:3000/home will show the UserPage if the user is logged in.
               If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
               Even though it seems like they are different pages, the user is always on localhost:3000/home */}
-          
+
               {/* This works the same as the other protected route, except that if the user is logged in,
               they will see the info page instead. */}
-              
-              
+
               {/* CREATE */}
-          
-            <AdminProtectedRoute
+
+              <AdminProtectedRoute
                 exact
                 path="/newharvestyear"
                 component={NewHarvestYearDate}
-            />
+              />
 
-            <AdminProtectedRoute
+              <AdminProtectedRoute
                 exact
                 path="/newfarminfo"
                 component={EnterFarmInformationHierarchyMenu}
-            />
+              />
 
-            <AdminProtectedRoute
-              exact
-              path="/water"
-              component={WaterSource}
-            />
+              <AdminProtectedRoute
+                exact
+                path="/water"
+                component={WaterSource}
+              />
 
-            <AdminProtectedRoute
-              exact
-              path="/waterlabel"
-              component={WaterLabel}
-            />
+              <AdminProtectedRoute
+                exact
+                path="/waterlabel"
+                component={WaterLabel}
+              />
 
-            <AdminProtectedRoute
-              exact
-              path="/crops"
-              component={CropTypes}
-            />
+              <AdminProtectedRoute
+                exact
+                path="/crops"
+                component={CropTypes}
+              />
 
-            <AdminProtectedRoute
-              exact
-              path="/field"
-              component={FieldTypes}
-            />
+              <AdminProtectedRoute
+                exact
+                path="/field"
+                component={FieldTypes}
+              />
 
-            <AdminProtectedRoute
-              exact
-              path="/labelcode"
-              component={LabelCode}
-            />
-{/************* SETUP EQUIPMENT *************/ }
-            <AdminProtectedRoute
-              exact
-              path="/newequipment"
-              component={CreateEquipmentSelect}
-            />
-            < AdminProtectedRoute
-              exact
-              path = "/newOtherEquipment"
-              component = {CreateEquipmentOther}
-            />
-            < AdminProtectedRoute
-              exact
-              path = "/newTool"
-              component = {CreateEquipmentTool}
-            />
-            < AdminProtectedRoute
-              exact
-              path = "/newVehicle"
-              component = {CreateEquipmentVehicle}
-            />
+              <AdminProtectedRoute
+                exact
+                path="/labelcode"
+                component={LabelCode}
+              />
+              {/************* SETUP EQUIPMENT *************/}
+              <AdminProtectedRoute
+                exact
+                path="/newequipment"
+                component={CreateEquipmentSelect}
+              />
+              <AdminProtectedRoute
+                exact
+                path="/newOtherEquipment"
+                component={CreateEquipmentOther}
+              />
+              <AdminProtectedRoute
+                exact
+                path="/newTool"
+                component={CreateEquipmentTool}
+              />
+              <AdminProtectedRoute
+                exact
+                path="/newVehicle"
+                component={CreateEquipmentVehicle}
+              />
 
-            < AdminProtectedRoute
-              exact
-              path = "/newThermometer"
-              component = {CreateEquipmentThermometer}
-            />
+              <AdminProtectedRoute
+                exact
+                path="/newThermometer"
+                component={CreateEquipmentThermometer}
+              />
 
-            < AdminProtectedRoute
-              exact
-              path = "/newPest"
-              component = {CreateEquipmentPest}
-            />
+              <AdminProtectedRoute
+                exact
+                path="/newPest"
+                component={CreateEquipmentPest}
+              />
 
-            < AdminProtectedRoute
-              exact
-              path = "/newFirstaid"
-              component = {CreateEquipmentFirstaid}
-            />
-{/************* SETUP EQUIPMENT END *************/ }
+              <AdminProtectedRoute
+                exact
+                path="/newFirstaid"
+                component={CreateEquipmentFirstaid}
+              />
+              {/************* SETUP EQUIPMENT END *************/}
 
+              <AdminProtectedRoute
+                exact
+                path="/createmanure"
+                component={CreateManure}
+              />
 
-            <AdminProtectedRoute
-              exact
-              path="/createmanure"
-              component={CreateManure}
-            />
+              <AdminProtectedRoute
+                exact
+                path="/createcompost"
+                component={CreateCompost}
+              />
 
-            <AdminProtectedRoute
-              exact
-              path="/createcompost"
-              component={CreateCompost}
-            />
+              <AdminProtectedRoute
+                exact
+                path="/createcooler"
+                component={CreateCooler}
+              />
 
-            <AdminProtectedRoute
-              exact
-              path="/createcooler"
-              component={CreateCooler}
-            />
+              <AdminProtectedRoute
+                exact
+                path="/createbathroom"
+                component={CreateBathroom}
+              />
 
-            <AdminProtectedRoute
-              exact
-              path="/createbathroom"
-              component={CreateBathroom}
-            />        
+              {/* DASHBOARDS */}
+              <AdminProtectedRoute
+                exact
+                path="/admin"
+                component={AdminDashboard}
+              />
 
-             {/* DASHBOARDS */}
-            <AdminProtectedRoute
-              exact
-              path="/admin"
-              component={AdminDashboard}
-            />
-            
-            <AdminProtectedRoute
-              exact
-              path="/harvestdashboard"
-              component={HarvestDashboard}
-            />
+              <AdminProtectedRoute
+                exact
+                path="/harvestdashboard"
+                component={HarvestDashboard}
+              />
 
-            <AdminProtectedRoute
+              <AdminProtectedRoute
                 exact
                 path="/newharvestyeardashboard"
                 component={NewHarvestYearDashboard}
-            />
+              />
 
-            <ProtectedRoute
-              exact
-              path="/worker"
-              component={WorkerDashboard}
-            />
-
-            <AdminProtectedRoute
-              exact
-              path="/fertilizerdash"
-              component={ManureCompostDash}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/logdashboard'
-              component={LogDashboard}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/waterlogdashboard'
-              component={WaterLogDashboard}
-            /> 
-
-            <ProtectedRoute
-              exact
-              path="/recorddashboard"
-              component={RecordDashboard}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/recordwaterdashboard'
-              component={RecordWaterDashboard}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/recordmanuredashboard'
-              component={RecordManureDashboard}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/recordharvestdashboard'
-              component={RecordHarvestDashboard}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/facilitieslogdashboard'
-              component={FacilitiesLogDashboard}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/equipmentlogdashboard'
-              component={EquipmentLogDashboard}
-            /> 
-
-            <ProtectedRoute
-              exact
-              path='/recordfacilitiesdashboard'
-              component={RecordFacilitiesDashboard}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/recordequipmentdashboard'
-              component={RecordEquipmentDashboard}
-            />
-
-
-
-             {/* EDIT */}
-            <AdminProtectedRoute
-              exact
-              path="/edithierarchy"
-              component={EditHierarchy}
-            />
-
-            <AdminProtectedRoute
-              exact
-              path="/editcrops"
-              component={EditCrops}
-            />
-
-            <AdminProtectedRoute
-              exact
-              path="/editmanure"
-              component={EditManure}
-            />
-
-            <AdminProtectedRoute
-              exact
-              path="/editwater"
-              component={EditWater}
-            />
-            <AdminProtectedRoute
-              exact
-              path="/harvestdashboard"
-              component={HarvestDashboard}
-            />
-            <AdminProtectedRoute
-              exact
-              path="/newharvestyeardashboard"
-              component={NewHarvestYearDashboard}
-            />
-            <ProtectedRoute
-              exact
-              path="/worker"
-              component={WorkerDashboard}
-            />
-           
-            {/* MANAGE USERS */}
-
-            <AdminProtectedRoute
-              exact
-              path="/manageuser"
-              component={ManageWorker}
-            />
-
-            <AdminProtectedRoute
-              exact
-              path="/addworker"
-              component={AddWorker}
-            />
-
-            <AdminProtectedRoute
-              exact
-              path="/editworker"
-              component={EditWorker}
-          />
-
-            <AdminProtectedRoute
-              exact
-              path="/editemployee"
-              component={EditEmployee}
-            />
-
-            <AdminProtectedRoute
-              exact
-              path="/edituser"
-              component={EditUser}
-            />
-
-            <AdminProtectedRoute
-              exact
-              path='/manageuseraccounts'
-              component={ManageUserAccounts}
-            />
-
-            {/* LOGS */}
-
-            <ProtectedRoute
-              exact
-              path='/harvestlog'
-              component={HarvestLog}
-            />
-
-            <ProtectedRoute
-              exact
-              path = '/compostlog'
-              component={CompostLog}
-            /> 
-
-            <AdminProtectedRoute
-              exact
-              path='/employeelog'
-              component={EmployeeLog}
-            />
-
-            <ProtectedRoute
-              exact
-              path="/watertreatlog"
-              component={WaterTreatLog}
-            />
-
-            <ProtectedRoute
-              exact
-              path="/waterinspectlog"
-              component={WaterInspectLog}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/facilitiesbathlog'
-              component={FacilitiesBathroomLog}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/facilitiespacklog'
-              component={FacilitiesPackingLog}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/facilitiescoolerlog'
-              component={FacilitiesCoolerLog}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/facilitiesotherlog'
-              component={FacilitiesOtherLog}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/equipmenttoollog'
-              component={EquipmentToolLog}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/equipmentvehiclelog'
-              component={EquipmentVehicleLog}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/equipmentthermomlog'
-              component={EquipmentThermometerLog}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/equipmentfirstaidlog'
-              component={EquipmentFirstAidLog}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/equipmentpestlog'
-              component={EquipmentPestLog}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/equipmentotherlog'
-              component={EquipmentOtherLog}
-            />
-
-             {/* RECORDS */}
-
-
-            <ProtectedRoute
-              exact
-              path='/recordharvest'
-              component={RecordHarvest}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/recordemployeetraining'
-              component={RecordEmployeeTraining}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/recordwaterinspect'
-              component={RecordWaterInspect}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/recordwatertreat'
-              component={RecordWaterTreat}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/recordmanure'
-              component={RecordManure}
-            />  
-
-            <ProtectedRoute
-              exact
-              path='/recordcompostpile'
-              component={RecordCompostPile}
-            />  
-
-            <ProtectedRoute
-              exact
-              path='/recordcompostturn'
-              component={RecordCompostTurn}
-            />  
-          
-            <ProtectedRoute
-              exact
-              path='/recordcropsfields'
-              component={RecordCropsFieldsLabelCode}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/exportdash'
-              component={ExportDash}
-            />
-
-            <ProtectedRoute
-              exact
-              path='/recordfacilitiescooler'
-              component={RecordFacilitiesCooler}
-            />
-
-            <ProtectedRoute
+              <ProtectedRoute
                 exact
-                path='/recordfacilitiesbathroom'
-                component={RecordFacilitiesBathroom}
-            />
+                path="/worker"
+                component={WorkerDashboard}
+              />
 
-            <ProtectedRoute
+              <AdminProtectedRoute
                 exact
-                path='/recordfacilitiespacking'
-                component={RecordFacilitiesPacking}
-            />
+                path="/fertilizerdash"
+                component={ManureCompostDash}
+              />
 
-            <ProtectedRoute
+              <ProtectedRoute
                 exact
-                path='/recordfacilitiesother'
-                component={RecordFacilitiesOther}
-            />
+                path="/logdashboard"
+                component={LogDashboard}
+              />
 
-            <ProtectedRoute
+              <ProtectedRoute
                 exact
-                path='/recordfacilitiescooler'
+                path="/waterlogdashboard"
+                component={WaterLogDashboard}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/recorddashboard"
+                component={RecordDashboard}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/recordwaterdashboard"
+                component={RecordWaterDashboard}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/recordmanuredashboard"
+                component={RecordManureDashboard}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/recordharvestdashboard"
+                component={RecordHarvestDashboard}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/facilitieslogdashboard"
+                component={FacilitiesLogDashboard}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/equipmentlogdashboard"
+                component={EquipmentLogDashboard}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/recordfacilitiesdashboard"
+                component={RecordFacilitiesDashboard}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/recordequipmentdashboard"
+                component={RecordEquipmentDashboard}
+              />
+
+              {/* EDIT */}
+              <AdminProtectedRoute
+                exact
+                path="/edithierarchy"
+                component={EditHierarchy}
+              />
+
+              <AdminProtectedRoute
+                exact
+                path="/editcrops"
+                component={EditCrops}
+              />
+
+              <AdminProtectedRoute
+                exact
+                path="/editmanure"
+                component={EditManure}
+              />
+
+              <AdminProtectedRoute
+                exact
+                path="/editwater"
+                component={EditWater}
+              />
+              <AdminProtectedRoute
+                exact
+                path="/editfacilities"
+                component={EditFacilities}
+              />
+              <AdminProtectedRoute
+                exact
+                path="/harvestdashboard"
+                component={HarvestDashboard}
+              />
+              <AdminProtectedRoute
+                exact
+                path="/newharvestyeardashboard"
+                component={NewHarvestYearDashboard}
+              />
+              <ProtectedRoute
+                exact
+                path="/worker"
+                component={WorkerDashboard}
+              />
+
+              {/* MANAGE USERS */}
+
+              <AdminProtectedRoute
+                exact
+                path="/manageuser"
+                component={ManageWorker}
+              />
+
+              <AdminProtectedRoute
+                exact
+                path="/addworker"
+                component={AddWorker}
+              />
+
+              <AdminProtectedRoute
+                exact
+                path="/editworker"
+                component={EditWorker}
+              />
+
+              <AdminProtectedRoute
+                exact
+                path="/editemployee"
+                component={EditEmployee}
+              />
+
+              <AdminProtectedRoute
+                exact
+                path="/edituser"
+                component={EditUser}
+              />
+
+              <AdminProtectedRoute
+                exact
+                path="/manageuseraccounts"
+                component={ManageUserAccounts}
+              />
+
+              {/* LOGS */}
+
+              <ProtectedRoute
+                exact
+                path="/harvestlog"
+                component={HarvestLog}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/compostlog"
+                component={CompostLog}
+              />
+
+              <AdminProtectedRoute
+                exact
+                path="/employeelog"
+                component={EmployeeLog}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/watertreatlog"
+                component={WaterTreatLog}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/waterinspectlog"
+                component={WaterInspectLog}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/facilitiesbathlog"
+                component={FacilitiesBathroomLog}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/facilitiespacklog"
+                component={FacilitiesPackingLog}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/facilitiescoolerlog"
+                component={FacilitiesCoolerLog}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/facilitiesotherlog"
+                component={FacilitiesOtherLog}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/equipmenttoollog"
+                component={EquipmentToolLog}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/equipmentvehiclelog"
+                component={EquipmentVehicleLog}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/equipmentthermomlog"
+                component={EquipmentThermometerLog}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/equipmentfirstaidlog"
+                component={EquipmentFirstAidLog}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/equipmentpestlog"
+                component={EquipmentPestLog}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/equipmentotherlog"
+                component={EquipmentOtherLog}
+              />
+
+              {/* RECORDS */}
+
+              <ProtectedRoute
+                exact
+                path="/recordharvest"
+                component={RecordHarvest}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/recordemployeetraining"
+                component={RecordEmployeeTraining}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/recordwaterinspect"
+                component={RecordWaterInspect}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/recordwatertreat"
+                component={RecordWaterTreat}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/recordmanure"
+                component={RecordManure}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/recordcompostpile"
+                component={RecordCompostPile}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/recordcompostturn"
+                component={RecordCompostTurn}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/recordcropsfields"
+                component={RecordCropsFieldsLabelCode}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/exportdash"
+                component={ExportDash}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/recordfacilitiescooler"
                 component={RecordFacilitiesCooler}
-            />
+              />
 
-            <ProtectedRoute
+              <ProtectedRoute
                 exact
-                path='/recordequipmentool'
+                path="/recordfacilitiesbathroom"
+                component={RecordFacilitiesBathroom}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/recordfacilitiespacking"
+                component={RecordFacilitiesPacking}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/recordfacilitiesother"
+                component={RecordFacilitiesOther}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/recordfacilitiescooler"
+                component={RecordFacilitiesCooler}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/recordequipmentool"
                 component={RecordEquipmentTool}
-            />
-            
-            <ProtectedRoute
+              />
+
+              <ProtectedRoute
                 exact
-                path='/recordequipmenvehicle'
+                path="/recordequipmenvehicle"
                 component={RecordEquipmentVehicle}
-            />
+              />
 
-            <ProtectedRoute
+              <ProtectedRoute
                 exact
-                path='/recordequipmenthermom'
+                path="/recordequipmenthermom"
                 component={RecordEquipmentThermometer}
-            />
+              />
 
-            <ProtectedRoute
+              <ProtectedRoute
                 exact
-                path='/recordequipmentfirstaid'
+                path="/recordequipmentfirstaid"
                 component={RecordEquipmentFirstAid}
-            />
+              />
 
-            <ProtectedRoute
+              <ProtectedRoute
                 exact
-                path='/recordequipmentpest'
+                path="/recordequipmentpest"
                 component={RecordEquipmentPest}
-            />
+              />
 
-            <ProtectedRoute
+              <ProtectedRoute
                 exact
-                path='/recordequipmentother'
+                path="/recordequipmentother"
                 component={RecordEquipmentOther}
-            />
-
+              />
 
               {/* If none of the other routes matched, we will show a 404. */}
-              <Route render={() => <Typography variant='h6' align="center">Page Could Not Be Found!</Typography>} />
+              <Route
+                render={() => (
+                  <Typography variant="h6" align="center">
+                    Page Could Not Be Found!
+                  </Typography>
+                )}
+              />
             </Switch>
           </div>
         </Router>
       </MuiThemeProvider>
-  )}
+    );}
 }
 
 export default connect()(App);
