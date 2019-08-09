@@ -21,6 +21,7 @@ import setupThermometerSaga from './equipmentSagas/setupThermometerEquipmentSaga
 import setupPestSaga from './equipmentSagas/setupPestEquipmentSaga';
 import setupFirstaidSaga from './equipmentSagas/setupFirstaidEquipmentSaga';
 import setupPackingSaga from './setupPackingSaga';
+import setupOtherFacilitySaga from './setupOtherFacilitySaga';
 
 import personSaga from './personSaga';
 import harvestSaga from './harvestLogSaga';
@@ -111,5 +112,6 @@ export default function* rootSaga() {
     setupPestSaga(),
     setupFirstaidSaga(),
     setupPackingSaga(),
+    setupOtherFacilitySaga(),
   ]);
 }
