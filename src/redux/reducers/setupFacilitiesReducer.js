@@ -15,7 +15,7 @@ const setupBathroomReducer = (state = [], action) => {
 };
 
 const setupPackingReducer = (state = [], action) => {
-    if (action.type === 'SET_PACKING_FACILITY') {
+    if (action.type === 'SET_PACKING_SETUP') {
         return action.payload
     }
     return state

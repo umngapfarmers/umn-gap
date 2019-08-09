@@ -9,7 +9,7 @@ function* getOtherFacility(action) {
   try {
     let result = yield axios.get('/setup/packing');
     yield put({
-      type: 'SET_PACKING_FACILITY',
+      type: 'SET_PACKING_SETUP',
       payload: result.data
     });
   } catch (error) {
