@@ -10,13 +10,13 @@ import IconButton from '@material-ui/core/IconButton';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 
-// Allows farmer to create a new packing facility
+// Allows farmer to create a new facility of tyep other 
 // Accessed as part of intial farm set up workflow and through harvest year edit
-// access at "/createpacking"
-class CreatePacking extends Component {
+// access at "/createfacilityother"
+class CreateFacilityOther extends Component {
 
   state = {
-    farm_packing_name: ''
+    farm_facility_other_name: ''
   };
 
   handleChangeFor = property => event => {
@@ -27,7 +27,7 @@ class CreatePacking extends Component {
   };
 
   validateFilled = () => {
-    if (this.state.farm_packing_name) {
+    if (this.state.farm_facility_other_name) {
       return false
     } else {
 
@@ -37,19 +37,19 @@ class CreatePacking extends Component {
 
   onSubmit = () => {
     this.props.dispatch({
-      type: 'ADD_PACKING_FACILITY',
+      type: 'ADD_OTHER_FACILITY',
       payload: {
         ...this.state
       }
     });
     this.setState({
-      farm_packing_name: ''
+      farm_facility_other_name: ''
     });
   };
 
   handleRemove = (id) => {
     this.props.dispatch({
-      type: 'DELETE_PACKING_FACILITY',
+      type: 'DELETE_OTHER_FACILITY',
       payload: {
         id,
       }
@@ -57,7 +57,7 @@ class CreatePacking extends Component {
   };
 
   componentDidMount(){
-    this.props.dispatch({type: 'GET_PACKING_FACILITY'});
+    this.props.dispatch({type: 'GET_OTHER_FACILITY'});
   };
   
   render() {
@@ -65,7 +65,7 @@ class CreatePacking extends Component {
     return (
       <React.Fragment>
       <Typography variant="h6" gutterBottom align="center">
-          Create New Packing Facility
+          Create New Facility of Type Other
       </Typography>
       <Grid 
         container 
@@ -77,14 +77,14 @@ class CreatePacking extends Component {
         <Grid item xs={10} sm={6} >
             <FormControl>
                 <TextField 
-                    label="Packing Facility Name" 
+                    label="Other Facility Name" 
                     variant="outlined" 
                     color="primary"
                     onChange = {
-                      this.handleChangeFor('farm_packing_name')
+                      this.handleChangeFor('farm_facility_other_name')
                     }
                     value = {
-                      this.state.farm_packing_name
+                      this.state.farm_facility_other_name
                     }
                     style={{width:'80vw', maxWidth:400}}
                   >
@@ -120,9 +120,9 @@ class CreatePacking extends Component {
           <ul>
             {/* checks if redux state is filled */}
             {
-              this.props.reduxState.setupFacilities.setupPackingReducer[0] && this.props.reduxState.setupFacilities.setupPackingReducer.map(facility =>
-              <li key={facility.farm_packing_id}>{facility.farm_packing_name}
-                <IconButton size="large" color="primary" variant='contained' onClick={() => this.handleRemove(facility.farm_packing_id)}><FontAwesomeIcon icon='minus-circle'/></IconButton>
+              this.props.reduxState.setupFacilities.setupOtherReducer[0] && this.props.reduxState.setupFacilities.setupOtherReducer.map(facility =>
+              <li key={facility.farm_facility_other_id}>{facility.farm_facility_other_name}
+                <IconButton size="large" color="primary" variant='contained' onClick={() => this.handleRemove(facility.farm_facility_other_id)}><FontAwesomeIcon icon='minus-circle'/></IconButton>
               </li>
             )}
           </ul>
@@ -147,4 +147,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect(mapReduxStateToProps)(withStyles(styles)(CreatePacking));
+export default connect(mapReduxStateToProps)(withStyles(styles)(CreateFacilityOther));
