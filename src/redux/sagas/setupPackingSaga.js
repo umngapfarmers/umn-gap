@@ -33,9 +33,9 @@ function* addOtherFacility(action) {
 
 function* deleteOtherFacility(action) {
   try {
-    console.log(`in delete other facility`);
+    console.log(`in delete packing facility`);
     let id = action.payload.id;
-    yield axios.delete(`/setup/facility/packing/${id}`);
+    yield axios.delete(`/setup/packing/${id}`);
     yield put({
       type: 'GET_PACKING_FACILITY'
     });
