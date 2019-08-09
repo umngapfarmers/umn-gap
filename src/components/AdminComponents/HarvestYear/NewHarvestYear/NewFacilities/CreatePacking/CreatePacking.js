@@ -65,7 +65,7 @@ class CreatePacking extends Component {
     return (
       <React.Fragment>
       <Typography variant="h6" gutterBottom align="center">
-          Create New Packing Facility
+          Add packing areas you want to track
       </Typography>
       <Grid 
         container 
@@ -100,7 +100,7 @@ class CreatePacking extends Component {
             onClick={this.onSubmit} 
             style={{width:'80vw', maxWidth:400}}>
               Add New Facility
-            </Button>
+          </Button>
         </Grid>
         
          <Grid item xs={10} sm={6} >

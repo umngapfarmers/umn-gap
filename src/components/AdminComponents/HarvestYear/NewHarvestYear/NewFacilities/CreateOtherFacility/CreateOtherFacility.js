@@ -65,7 +65,7 @@ class CreateFacilityOther extends Component {
     return (
       <React.Fragment>
       <Typography variant="h6" gutterBottom align="center">
-          Create New Facility of Type Other
+          Add facilities we don't have a category for
       </Typography>
       <Grid 
         container 
