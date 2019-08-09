@@ -7,9 +7,9 @@ import {
 
 function* getOtherFacility(action) {
   try {
-    let result = yield axios.get('/setup/otherfacility');
+    let result = yield axios.get('/setup/otherfacility/');
     yield put({
-      type: 'SET_OTHER_SETUP',
+      type: 'SET_OTHER_FACILITY_SETUP',
       payload: result.data
     });
   } catch (error) {

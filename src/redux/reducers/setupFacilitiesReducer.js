@@ -22,7 +22,7 @@ const setupPackingReducer = (state = [], action) => {
 };
 
 const setupOtherReducer = (state = [], action) => {
-    if (action.type === 'SET_OTHER_FACILITIES_SETUP') {
+    if (action.type === 'SET_OTHER_FACILITY_SETUP') {
         return action.payload
     }
     return state
