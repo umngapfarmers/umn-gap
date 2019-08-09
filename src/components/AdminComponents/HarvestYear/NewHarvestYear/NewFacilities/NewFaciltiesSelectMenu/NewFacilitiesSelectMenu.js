@@ -85,7 +85,11 @@ class SelectFacilities extends Component {
                     aria-label="Add"
                     className={classes.margin}
                     style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/createfacilitiesother')}}
+                    onClick = {
+                      () => {
+                        this.props.history.push('/createfacilityother')
+                      }
+                    }
                     >
                        <Typography className={classes.fabColor}>Other Facilities</Typography>
                       <FontAwesomeIcon icon="warehouse" style={{marginLeft: 5}} className={classes.fabIconColor}/>

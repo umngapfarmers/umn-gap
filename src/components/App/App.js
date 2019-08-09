@@ -95,7 +95,7 @@ import CreateEquipmentThermometer from '../AdminComponents/HarvestYear/NewHarves
 import CreateEquipmentPest from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/CreatePest/CreatePest';
 import CreateEquipmentFirstaid from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/CreateFirstaid/CreateFirstaid';
 import CreatePacking from '../AdminComponents/HarvestYear/NewHarvestYear/NewFacilities/CreatePacking/CreatePacking';
-
+import createFacilityOther from '../AdminComponents/HarvestYear/NewHarvestYear/NewFacilities/CreateOtherFacility/CreateOtherFacility';
 //EDIT
 import EditCrops from '../AdminComponents/HarvestYear/EditHarvestYear/EditCrops/EditCrops';
 import EditEmployee from '../AdminComponents/ManageRoles/EditEmployee';
@@ -286,6 +286,14 @@ class App extends Component {
               path="/createfacilitiesselect"
               component = {
                 CreateFacilitiesSelect
+              }
+            />  
+
+            < AdminProtectedRoute
+              exact
+              path = "/createfacilityother"
+              component = {
+                createFacilityOther
               }
             />  
 
