@@ -60,6 +60,7 @@ const record_toolRouter = require('./routes/record.tool.router');
 const record_equipmentOtherRouter = require('./routes/record.equipmentOther.router');
 const record_pestRouter = require('./routes/record.pest.router');
 const record_vehicleRouter = require('./routes/record.vehicle.router');
+const record_thermometerRouter = require('./routes/record.thermometer.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -127,6 +128,7 @@ app.use('/record/tool', record_toolRouter);
 app.use('/record/equipmentother', record_equipmentOtherRouter);
 app.use('/record/pest', record_pestRouter);
 app.use('/record/vehicle', record_vehicleRouter);
+app.use('/record/thermometer', record_thermometerRouter);
 
 // Serve static files
 app.use(express.static('build'));
