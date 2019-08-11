@@ -304,7 +304,7 @@ CREATE TABLE "equipment_other"
   "farm_equipment_other_id" int references "farm_equipment_other",
   "equipment_other_comment" varchar(200),
   "equipment_other_date" TIMESTAMPTZ,
-  "equipment_other_sig" VARCHAR(200),
+  "equipment_other_sig" INT REFERENCES "person",,
   "harvest_year_id" int references "harvest_year"
 );
 
@@ -323,7 +323,7 @@ CREATE TABLE "vehicle"
   "vehicle_date" TIMESTAMPTZ NOT NULL,
   "vehicle_cleaned" boolean,
   "vehicle_comment" varchar(200),
-  "vehicle_sig" varchar(200) ,
+  "vehicle_sig" INT REFERENCES "person",
   "harvest_year_id" int references "harvest_year"
 );
 
@@ -335,14 +335,13 @@ CREATE TABLE "farm_firstaid"
   "farm_firstaid_status" boolean DEFAULT true
 );
 
-CREATE TABLE "firstaid"
-(
+CREATE TABLE "firstaid" (
   "firstaid_id" serial primary key,
   "farm_firstaid_id" int references "farm_firstaid",
   "firstaid_date" TIMESTAMPTZ,
   "firstaid_stocked" boolean,
   "firstaid_comment" varchar(200),
-  "firstaid_sig" varchar(200),
+  "firstaid_sig" INT REFERENCES "person",
   "harvest_year_id" int references "harvest_year"
 );
 
@@ -355,14 +354,13 @@ CREATE TABLE "farm_pest"
   "farm_pest_status" boolean DEFAULT true
 );
 
-CREATE TABLE "pest"
-(
+CREATE TABLE "pest" (
   "pest_id" serial primary key,
   "pest_administrator" varchar(200),
   "farm_pest_id" int references "farm_pest",
   "pest_date" TIMESTAMPTZ,
   "pest_comment" varchar(200),
-  "pest_sig" varchar(200),
+  "pest_sig" INT REFERENCES "person",
   "harvest_year_id" int references "harvest_year"
 );
 
@@ -381,6 +379,6 @@ CREATE TABLE "thermometer"
   "thermometer_date" TIMESTAMPTZ,
   "thermometer_calibrate" boolean,
   "thermometer_comment" varchar(200),
-  "thermometer_sig" varchar(200),
+  "thermometer_sig" INT REFERENCES "person",
   "harvest_year_id" int references "harvest_year"
 );

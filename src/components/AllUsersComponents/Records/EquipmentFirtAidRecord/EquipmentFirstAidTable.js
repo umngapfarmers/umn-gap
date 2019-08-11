@@ -48,7 +48,7 @@ class EquipmentFirstAidTable extends Component {
           </TableRow>
         </TableHead>
         <TableBody>
-          {this.props.reduxState.recordFirstaid.map(row => (
+          {this.props.reduxState.recordFirstAid.map(row => (
             <TableRow key={row.firstaid_id} hover='true'>
               <TableCell align="left" scope="row" className={classes.tableFontAndBorder}>{moment(row.firstaid_date).format('MM-DD-YYYY')}</TableCell>
               <TableCell align="left"  className={classes.tableFontAndBorder}>{row.farm_firstaid_location}</TableCell>

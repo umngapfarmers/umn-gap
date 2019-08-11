@@ -40,7 +40,7 @@ import recordBathroom from './recordBathroomReducer';
 import recordCooler from './recordCoolerReducer';
 import recordPacking from './recordPackingReducer';
 import recordFacilityOther from './recordFacilityOtherReducer';
-import recordFirstAidReducer from './recordFirstAidReducer';
+import recordFirstAid from './recordFirstAidReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -90,7 +90,7 @@ const rootReducer = combineReducers({
   recordCooler,
   recordPacking,
   recordFacilityOther,
-  recordFirstAidReducer
+  recordFirstAid,
 });
 
 export default rootReducer;
