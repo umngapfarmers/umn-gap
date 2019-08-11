@@ -31,7 +31,7 @@ class EquipmentOtherTable extends Component {
           </TableRow>
         </TableHead>
         <TableBody>
-          {this.props.reduxState.recordEquipOther.map(row => (
+          {this.props.reduxState.recordEquipmentOther.map(row => (
             <TableRow key={row.equipment_other_id} hover='true'>
               <TableCell align="left" scope="row" className={classes.tableFontAndBorder}>{moment(row.equipment_other_date).format('MM-DD-YYYY')}</TableCell>
               <TableCell align="left"  className={classes.tableFontAndBorder}>{row.farm_equipment_other_name}</TableCell>
