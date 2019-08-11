@@ -45,6 +45,7 @@ import recordTool from './recordToolReducer';
 import recordEquipmentOther from './recordEquipmentOtherReducer';
 import recordPest from './recordPestReducer';
 import recordVehicle from './recordVehicleReducer';
+import recordThermometer from './recordThermometerReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -98,7 +99,8 @@ const rootReducer = combineReducers({
   recordTool,
   recordEquipmentOther,
   recordPest,
-  recordVehicle
+  recordVehicle,
+  recordThermometer
 });
 
 export default rootReducer;
