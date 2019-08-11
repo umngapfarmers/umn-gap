@@ -79,6 +79,7 @@ import RecordCropsFieldsLabelCode from '../AllUsersComponents/Records/CropsField
 import CreateCompost from '../AdminComponents/HarvestYear/NewHarvestYear/NewManureCompost/CreateCompost/CreateCompost.js';
 import CreateManure from '../AdminComponents/HarvestYear/NewHarvestYear/NewManureCompost/CreateManure/CreateManure.js';
 import CropTypes from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateCrops/CreateCrops';
+import CreateFacilitiesSelect from '../AdminComponents/HarvestYear/NewHarvestYear/NewFacilities/NewFaciltiesSelectMenu/NewFacilitiesSelectMenu';
 import CreateBathroom from '../AdminComponents/HarvestYear/NewHarvestYear/NewFacilities/CreateBathroom/CreateBathroom.js';
 import CreateCooler from '../AdminComponents/HarvestYear/NewHarvestYear/NewFacilities/CreateCooler/CreateCooler';
 import FieldTypes from '../AdminComponents/HarvestYear/NewHarvestYear/NewCrops/CreateFields/CreateFields';
@@ -93,7 +94,8 @@ import CreateEquipmentVehicle from '../AdminComponents/HarvestYear/NewHarvestYea
 import CreateEquipmentThermometer from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/CreateThermometer/CreateThermometer';
 import CreateEquipmentPest from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/CreatePest/CreatePest';
 import CreateEquipmentFirstaid from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/CreateFirstaid/CreateFirstaid';
-
+import CreatePacking from '../AdminComponents/HarvestYear/NewHarvestYear/NewFacilities/CreatePacking/CreatePacking';
+import createFacilityOther from '../AdminComponents/HarvestYear/NewHarvestYear/NewFacilities/CreateOtherFacility/CreateOtherFacility';
 //EDIT
 import EditCrops from '../AdminComponents/HarvestYear/EditHarvestYear/EditCrops/EditCrops';
 import EditEmployee from '../AdminComponents/ManageRoles/EditEmployee';
@@ -259,6 +261,8 @@ class App extends Component {
               component={CreateCompost}
             />
 
+{
+  /* ******************* BEGIN CREATE FACILITIES ******************* */ }
             <AdminProtectedRoute
               exact
               path="/createcooler"
@@ -269,7 +273,34 @@ class App extends Component {
               exact
               path="/createbathroom"
               component={CreateBathroom}
-            />        
+            />    
+
+            <AdminProtectedRoute
+              exact
+              path="/createpacking"
+              component={CreatePacking}
+            />    
+
+            <AdminProtectedRoute
+              exact
+              path="/createfacilitiesselect"
+              component = {
+                CreateFacilitiesSelect
+              }
+            />  
+
+            < AdminProtectedRoute
+              exact
+              path = "/createfacilityother"
+              component = {
+                createFacilityOther
+              }
+            />  
+
+
+{
+  /* ******************* END CREATE FACILTIES ******************* */ }
+
 
              {/* DASHBOARDS */}
             <AdminProtectedRoute

@@ -18,8 +18,6 @@ class CreateCooler extends Component {
         newCooler: {
             name: '',
         },
-        disable: true,
-        disableNext: true
 
     }
     //takes textfield input as the new value for properties within the newLabel state
@@ -51,10 +49,10 @@ class CreateCooler extends Component {
         this.props.dispatch({ type: 'DELETE_COOLER_SOURCE', payload: event.currentTarget.name });
     }
 
-    //navigates to the add field page for farm creation
-    nextPage = () => {
-        this.props.history.push('/field');
-    }
+    // //navigates to the add field page for farm creation
+    // nextPage = () => {
+    //     this.props.history.push('/field');
+    // }
 
 
     render() {
@@ -69,13 +67,13 @@ class CreateCooler extends Component {
                     justify="center"
                     alignItems="center">
 
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={10} sm={6}>
                         <Typography variant="h6" gutterBottom>
-                            List all coolers you want to track
+                            Add coolers you want to track
                         </Typography>
                     </Grid>
 
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={10} sm={6}>
                         <TextField label="Coolers to track" variant="outlined" color="primary"
                             onChange={this.handleInputChangeFor('name')}
                             value={this.state.newCooler.name}
@@ -84,39 +82,44 @@ class CreateCooler extends Component {
                         </TextField>
                     </Grid>
 
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={10} sm={6}>
                         <Button size="large" color="primary" variant="contained"
+                            style={{width:'80vw', maxWidth:400}}
                             onClick={this.addCoolerSource}
                             disabled={this.state.disable}
                         >
-                            Add
+                            Add New Facility
                         </Button>
                     </Grid>
 
-                    <Grid item xs={12} sm={6}>
-                        <ul>
-                            {this.props.reduxState.setupFacilities.setupCoolerReducer.map(cooler =>
-                                <li key={cooler.farm_cooler_id} value={cooler.farm_cooler_id}>{cooler.farm_cooler_name}
-                                    <IconButton size="small" color="primary" variant="contained"
-                                        onClick={this.removeCoolerSource}
-                                        name={cooler.farm_cooler_id}
-                                    >
-                                        <FontAwesomeIcon icon='minus-circle' />
-                                    </IconButton>
-                                </li>
-                            )}
-                        </ul>
-                    </Grid>
-
-                    <Grid item xs={12} sm={6}>
-                        <Button size="large" color="primary" variant="contained"
-                            onClick={this.nextPage}
-                            disabled={this.state.disableNext}
-                        >
-                            Next
+                    <Grid item xs={10} sm={6}>
+                        <Button  
+                        size="large" 
+                        color="primary" 
+                        variant="contained" 
+                        onClick = {
+                            () => this.props.history.push('/createfacilitiesselect')
+                        }
+                        style={{width:'80vw', maxWidth:400}}>
+                            Back to Facility Select
                         </Button>
 
                     </Grid>
+                </Grid>
+
+                <Grid item xs={10} sm={6}>
+                    <ul>
+                        {this.props.reduxState.setupFacilities.setupCoolerReducer.map(cooler =>
+                            <li key={cooler.farm_cooler_id} value={cooler.farm_cooler_id}>{cooler.farm_cooler_name}
+                                <IconButton size="small" color="primary" variant="contained"
+                                    onClick={this.removeCoolerSource}
+                                    name={cooler.farm_cooler_id}
+                                >
+                                    <FontAwesomeIcon icon='minus-circle' />
+                                </IconButton>
+                            </li>
+                        )}
+                    </ul>
                 </Grid>
 
             </React.Fragment>

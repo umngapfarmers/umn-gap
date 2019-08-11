@@ -231,6 +231,58 @@ class EnterFarmInformationHierarchyMenu extends Component {
   </List> 
   }
 
+  if (menuBoolean ===4){
+    menuToDisplay =
+    <List>
+    <ListItem button onClick={() => {this.props.history.push('/crop')}}>
+      <ListItemIcon>
+        Step 1
+      </ListItemIcon>
+      <ListItemText primary="Crops, Fields and Label Codes"/>
+      <ListItemIcon>
+        <CheckCircleOutline/>
+      </ListItemIcon>
+    </ListItem>
+    <ListItem button onClick={() => {this.props.history.push('/fertilizerdash')}}>
+      <ListItemIcon>
+        Step 2
+      </ListItemIcon>
+      <ListItemText primary="Manure and Compost"/>
+      <ListItemIcon>
+        <CheckCircleOutline/>
+      </ListItemIcon>
+    </ListItem>
+    <ListItem button onClick={() => {this.props.history.push('/water')}}>
+      <ListItemIcon>
+        Step 3
+      </ListItemIcon>
+      <ListItemText primary="Water Sources"/>
+      <ListItemIcon>
+        <CheckCircleOutline/>
+      </ListItemIcon>
+    </ListItem>
+      <ListItem button onClick={() => {this.props.history.push('/newEquipment')}}>
+        <ListItemIcon>
+          Step 4
+        </ListItemIcon>
+        <ListItemText primary="Equipment"/>
+        <ListItemIcon>
+          <CheckCircleOutline/>
+        </ListItemIcon>
+      </ListItem>
+      <ListItem button onClick={() => {this.props.history.push('/createfacilitiesselect')}}>
+        <ListItemIcon>
+          Step 5
+        </ListItemIcon>
+        <ListItemText primary="Facilties"/>
+        <ListItemIcon>
+          <RadioButtonUncheckedOutlined/>
+        </ListItemIcon>
+      </ListItem>
+  </List> 
+  }
+
+  
     return (
       <React.Fragment>
       
