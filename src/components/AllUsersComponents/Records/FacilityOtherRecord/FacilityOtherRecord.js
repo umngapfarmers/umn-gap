@@ -7,11 +7,11 @@ import Nav from '../../../Nav/Nav';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
-import FacilitiesBathroomTable from './FacilitiesBathroomTable';
+import FacilityOtherTable from './FacilityOtherTable';
 
 
 
-class FacilitiesBathroomRecord extends Component {
+class FacilityOtherRecord extends Component {
 
 
   state= {
@@ -36,7 +36,7 @@ class FacilitiesBathroomRecord extends Component {
 
       //FUNCTION - on click of submit button- prevents refresh of page-- dispatches payload of state to database to get data based on selected harvest year
     handleSubmit = () => {
-      this.props.dispatch({type:'GET_RECORD_BATHROOM', payload: this.state.selectHarvestYear})
+      this.props.dispatch({type:'GET_RECORD_FACILITY_OTHER', payload: this.state.selectHarvestYear})
     }
 
     //FUNCTION- validation- conditionally renders submit button based on status of state-- if state contains values then submit button is enabled,
@@ -65,7 +65,7 @@ class FacilitiesBathroomRecord extends Component {
       <React.Fragment>
       <Nav/>
       <Typography variant="h6" gutterBottom align="center">
-         Bathroom Maintenance Record
+         Other Facilities Maintenance Record
       </Typography>
       <Grid container spacing={24}
         direction="column"
@@ -101,7 +101,7 @@ class FacilitiesBathroomRecord extends Component {
 
             <Grid item xs={12} sm={6}>
              
-                <FacilitiesBathroomTable/>
+                <FacilityOtherTable/>
               
             </Grid>
 
@@ -126,4 +126,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect( mapReduxStateToProps )(withStyles(styles)(FacilitiesBathroomRecord));
+export default connect( mapReduxStateToProps )(withStyles(styles)(FacilityOtherRecord));

@@ -51,7 +51,16 @@ const log_thermometerRouter = require('./routes/log.thermometer.router');
 const log_firstAidRouter = require('./routes/log.firstaid.router');
 const log_pestRouter = require('./routes/log.pest.router');
 const log_equipmentOtherRouter = require('./routes/log.equipmentother.router');
-
+const record_bathroomRouter = require('./routes/record.bathroom.router');
+const record_coolerRouter = require('./routes/record.cooler.router');
+const record_packingRouter = require('./routes/record.packing.router');
+const record_facilityOtherRouter = require('./routes/record.facilityOther.router');
+const record_firstAidRouter = require('./routes/record.firstAid.router');
+const record_toolRouter = require('./routes/record.tool.router');
+const record_equipmentOtherRouter = require('./routes/record.equipmentOther.router');
+const record_pestRouter = require('./routes/record.pest.router');
+const record_vehicleRouter = require('./routes/record.vehicle.router');
+const record_thermometerRouter = require('./routes/record.thermometer.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -110,6 +119,16 @@ app.use('/log/thermometer', log_thermometerRouter);
 app.use('/log/firstaid', log_firstAidRouter);
 app.use('/log/pest', log_pestRouter);
 app.use('/log/equipmentother', log_equipmentOtherRouter);
+app.use('/record/bathroom', record_bathroomRouter);
+app.use('/record/cooler', record_coolerRouter);
+app.use('/record/packing', record_packingRouter);
+app.use('/record/facilityother', record_facilityOtherRouter);
+app.use('/record/firstaid', record_firstAidRouter);
+app.use('/record/tool', record_toolRouter);
+app.use('/record/equipmentother', record_equipmentOtherRouter);
+app.use('/record/pest', record_pestRouter);
+app.use('/record/vehicle', record_vehicleRouter);
+app.use('/record/thermometer', record_thermometerRouter);
 
 // Serve static files
 app.use(express.static('build'));

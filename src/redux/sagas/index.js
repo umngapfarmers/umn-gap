@@ -27,19 +27,19 @@ import personSaga from './personSaga';
 import harvestSaga from './harvestLogSaga';
 import employeeLogSaga from './employeeLogSaga';
 import manageUserSaga from './manageUserSaga';
-import recordHarvestYearSaga from './recordHarvestYearSaga';
-import recordWaterInspectSaga from './recordWaterInspectSaga';
-import recordEmployeeSaga from './recordEmployeeSaga';
-import recordHarvestSaga from './recordHarvestSaga';
+import recordHarvestYearSaga from './recordSagas/recordHarvestYearSaga';
+import recordWaterInspectSaga from './recordSagas/recordWaterInspectSaga';
+import recordEmployeeSaga from './recordSagas/recordEmployeeSaga';
+import recordHarvestSaga from './recordSagas/recordHarvestSaga';
 import importHarvestSaga from './importHarvestSaga';
 import addCompostLogSaga from './logCompostSaga'
-import recordWaterTreatSaga from './recordWaterTreatSaga'
-import recordManureSaga from './recordManureSaga';
-import recordCompostPileSaga from './recordCompostPileSaga';
+import recordWaterTreatSaga from './recordSagas/recordWaterTreatSaga'
+import recordManureSaga from './recordSagas/recordManureSaga';
+import recordCompostPileSaga from './recordSagas/recordCompostPileSaga';
 import logWaterSaga from './logWaterSaga';
 import allUsersSaga from './allUsersSaga';
-import recordCropSaga from './recordCropSaga';
-import recordCompostTurnSaga from './recordCompostTurnSaga';
+import recordCropSaga from './recordSagas/recordCropSaga';
+import recordCompostTurnSaga from './recordSagas/recordCompostTurnSaga';
 import exportPdfSaga from './exportPdfSaga';
 import passwordRecoverySaga from './passwordRecoverySaga';
 import logBathroomSaga from './logBathroomSaga';
@@ -52,7 +52,16 @@ import logThermometerSaga from './logThermometerSaga';
 import logFirstAidSaga from './logFirstAidSaga';
 import logPestSaga from './logPestSaga';
 import logEquipmentOtherSaga from './logEquipmentOtherSaga';
-
+import recordBathroomSaga from './recordSagas/recordBathroomSaga';
+import recordCoolerSaga from './recordSagas/recordCoolerSaga';
+import recordPackingSaga from './recordSagas/recordPackingSaga';
+import recordFacilityOtherSaga from './recordSagas/recordFacilityOtherSaga';
+import recordFirstAidSaga from './recordSagas/recordFirstAidSaga';
+import recordToolSaga from './recordSagas/recordToolSaga';
+import recordEquipmentOtherSaga from './recordSagas/recordEquipmentOtherSaga';
+import recordPestSaga from './recordSagas/recordPestSaga';
+import recordVehicleSaga from './recordSagas/recordVehicleSaga';
+import recordThermometerSaga from './recordSagas/recordThermometerSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -111,7 +120,17 @@ export default function* rootSaga() {
     setupThermometerSaga(),
     setupPestSaga(),
     setupFirstaidSaga(),
+    recordBathroomSaga(),
+    recordCoolerSaga(),
+    recordPackingSaga(),
+    recordFacilityOtherSaga(),
     setupPackingSaga(),
     setupOtherFacilitySaga(),
+    recordFirstAidSaga(),
+    recordToolSaga(),
+    recordEquipmentOtherSaga(),
+    recordPestSaga(),
+    recordVehicleSaga(),
+    recordThermometerSaga()
   ]);
 }

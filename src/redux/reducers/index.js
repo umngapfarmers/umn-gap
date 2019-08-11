@@ -23,7 +23,6 @@ import recordmanure from './recordManureReducer';
 import recordcompostpile from './recordCompostPileReducer';
 import editPerson from './EditPersonReducer';
 import editUser from './EditUserReducer';
-
 import userdata from './allUsersReducer';
 import recordcrops from './recordCropReducer';
 import recordcompostturn from './recordCompostTurnReducer';
@@ -37,7 +36,16 @@ import thermometerReducer from './logThermometerReducer';
 import firstAidReducer from './logFirstAidReducer';
 import pestReducer from './logPestReducer';
 import equipmentOtherReducer from './logEquipmentOtherReducer';
-
+import recordBathroom from './recordBathroomReducer';
+import recordCooler from './recordCoolerReducer';
+import recordPacking from './recordPackingReducer';
+import recordFacilityOther from './recordFacilityOtherReducer';
+import recordFirstAid from './recordFirstAidReducer';
+import recordTool from './recordToolReducer';
+import recordEquipmentOther from './recordEquipmentOtherReducer';
+import recordPest from './recordPestReducer';
+import recordVehicle from './recordVehicleReducer';
+import recordThermometer from './recordThermometerReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -82,7 +90,17 @@ const rootReducer = combineReducers({
   thermometerReducer,
   firstAidReducer,
   pestReducer,
-  equipmentOtherReducer
+  equipmentOtherReducer,
+  recordBathroom,
+  recordCooler,
+  recordPacking,
+  recordFacilityOther,
+  recordFirstAid,
+  recordTool,
+  recordEquipmentOther,
+  recordPest,
+  recordVehicle,
+  recordThermometer
 });
 
 export default rootReducer;
