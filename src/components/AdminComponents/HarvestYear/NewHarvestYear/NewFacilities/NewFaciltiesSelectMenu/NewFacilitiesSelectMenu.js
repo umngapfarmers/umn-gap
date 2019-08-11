@@ -8,7 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Nav from '../../../../../Nav/Nav.js';
 
 
-class NewEquipmentSelect extends Component {
+class SelectFacilities extends Component {
+
 
   render() {
     const {classes} = this.props;
@@ -16,7 +17,7 @@ class NewEquipmentSelect extends Component {
       <React.Fragment>
         <Nav/>
       <Typography variant="h6" gutterBottom align="center">
-         Select Equipment to Create
+         Select Facility to Create 
       </Typography>
       <Grid container spacing={24}
         direction="column"
@@ -31,89 +32,29 @@ class NewEquipmentSelect extends Component {
                     aria-label="Add"
                     className={classes.margin}
                     style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/newTool')}}
-                    >
-                       <Typography className={classes.fabColor}>Tools</Typography>
-                      <FontAwesomeIcon icon="toolbox" style={{marginLeft: 5}} className={classes.fabIconColor}/>
-                  </Fab>
-              </Grid>
-
-              <Grid item xs={12} sm={6}>
-                 <Fab 
-                    variant="extended"
-                    size="large"
-                    color="primary"
-                    aria-label="Add"
-                    className={classes.margin}
-                    style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/newVehicle')}}
-                    >
-                       <Typography className={classes.fabColor}>Vehicles</Typography>
-                      <FontAwesomeIcon icon="truck-pickup" style={{marginLeft: 5}} className={classes.fabIconColor}/>
-                  </Fab>
-              </Grid>
-
-              <Grid item xs={12} sm={6}>
-                 <Fab 
-                    variant="extended"
-                    size="large"
-                    color="primary"
-                    aria-label="Add"
-                    className={classes.margin}
-                    style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/newThermometer')}}
-                    >
-                       <Typography className={classes.fabColor}>Thermometers</Typography>
-                      <FontAwesomeIcon icon="thermometer-half" style={{marginLeft: 5}} className={classes.fabIconColor}/>
-                  </Fab>
-              </Grid>
-
-              <Grid item xs={12} sm={6}>
-                 <Fab 
-                    variant="extended"
-                    size="large"
-                    color="primary"
-                    aria-label="Add"
-                    className={classes.margin}
-                    style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/newFirstaid')}}
-                    >
-                       <Typography className={classes.fabColor}>First Aid</Typography>
-                      <FontAwesomeIcon icon="first-aid" style={{marginLeft: 5}} className={classes.fabIconColor}/>
-                  </Fab>
-              </Grid>
-
-              <Grid item xs={12} sm={6}>
-                 <Fab 
-                    variant="extended"
-                    size="large"
-                    color="primary"
-                    aria-label="Add"
-                    className={classes.margin}
-                    style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/newPest')}}
-                    >
-                       <Typography className={classes.fabColor}>Pests</Typography>
-                      <FontAwesomeIcon icon="spider" style={{marginLeft: 5}} className={classes.fabIconColor}/>
-                  </Fab>
-              </Grid>
-
-              <Grid item xs={12} sm={6}>
-                 <Fab 
-                    variant="extended"
-                    size="large"
-                    color="primary"
-                    aria-label="Add"
-                    className={classes.margin}
-                    style={{width:'80vw', maxWidth:400}}
                     onClick = {
                       () => {
-                        this.props.history.push('/newOtherEquipment')
+                        this.props.history.push('/createbathroom')
                       }
                     }
                     >
-                       <Typography className={classes.fabColor}>Other Equipment</Typography>
-                      <FontAwesomeIcon icon="tools" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+                       <Typography className={classes.fabColor}>Bathroom</Typography>
+                      <FontAwesomeIcon icon="restroom" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+                  </Fab>
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                 <Fab 
+                    variant="extended"
+                    size="large"
+                    color="primary"
+                    aria-label="Add"
+                    className={classes.margin}
+                    style={{width:'80vw', maxWidth:400}}
+                    onClick={() => {this.props.history.push('/createpacking')}}
+                    >
+                       <Typography className={classes.fabColor}>Packing</Typography>
+                      <FontAwesomeIcon icon="box-open" style={{marginLeft: 5}} className={classes.fabIconColor}/>
                   </Fab>
               </Grid>
 
@@ -127,17 +68,53 @@ class NewEquipmentSelect extends Component {
                     style={{width:'80vw', maxWidth:400}}
                     onClick = {
                       () => {
-                        this.props.history.push('/newfarminfo');
-                        this.props.dispatch({
-                          type: "SET_MENU_BOOLEAN",
-                          payload: 4
-                        })
+                        this.props.history.push('/createcooler')
+                      }
+                    }
+                    >
+                       <Typography className={classes.fabColor}>Cooler</Typography>
+                      <FontAwesomeIcon icon="igloo" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+                  </Fab>
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                 <Fab 
+                    variant="extended"
+                    size="large"
+                    color="primary"
+                    aria-label="Add"
+                    className={classes.margin}
+                    style={{width:'80vw', maxWidth:400}}
+                    onClick = {
+                      () => {
+                        this.props.history.push('/createfacilityother')
+                      }
+                    }
+                    >
+                       <Typography className={classes.fabColor}>Other Facilities</Typography>
+                      <FontAwesomeIcon icon="warehouse" style={{marginLeft: 5}} className={classes.fabIconColor}/>
+                  </Fab>
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                 <Fab 
+                    variant="extended"
+                    size="large"
+                    color="primary"
+                    aria-label="Add"
+                    className={classes.margin}
+                    style={{width:'80vw', maxWidth:400}}
+                    onClick = {
+                      () => {
+                        this.props.history.push('/')
                       }
                     }
                     >
                        <Typography className={classes.fabColor}>Continue</Typography>
                   </Fab>
               </Grid>
+
+              
 
       </Grid>
      
@@ -176,4 +153,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect(mapReduxStateToProps)(withStyles(styles)(NewEquipmentSelect));
+export default connect( mapReduxStateToProps )(withStyles(styles)(SelectFacilities));

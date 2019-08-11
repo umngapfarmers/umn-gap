@@ -69,13 +69,13 @@ class CreateBathroom extends Component {
                     justify="center"
                     alignItems="center">
 
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={10} sm={6}>
                         <Typography variant="h6" gutterBottom>
-                            List all bathrooms you want to track
+                            Add bathrooms you want to track
                         </Typography>
                     </Grid>
 
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={10} sm={6}>
                         <TextField label="Bathrooms to track" variant="outlined" color="primary"
                             onChange={this.handleInputChangeFor('name')}
                             value={this.state.newBathroom.name}
@@ -84,16 +84,31 @@ class CreateBathroom extends Component {
                         </TextField>
                     </Grid>
 
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={10} sm={6}>
                         <Button size="large" color="primary" variant="contained"
+                            style={{width:'80vw', maxWidth:400}}
                             onClick={this.addBathroomSource}
                             disabled={this.state.disable}
                         >
-                            Add
+                            Add New Facility
                         </Button>
                     </Grid>
 
-                    <Grid item xs={12} sm={6}>
+
+                    <Grid item xs={10} sm={6}>
+                      <Button  
+                        size="large" 
+                        color="primary" 
+                        variant="contained" 
+                        onClick = {
+                            () => this.props.history.push('/createfacilitiesselect')
+                        }
+                        style={{width:'80vw', maxWidth:400}}>
+                            Back to Facility Select
+                        </Button>
+                    </Grid>
+
+                    <Grid item xs={10} sm={6}>
                         <ul>
                             {this.props.reduxState.setupFacilities.setupBathroomReducer.map(Bathroom =>
                                 <li key={Bathroom.farm_bathroom_id} value={Bathroom.farm_bathroom_id}>{Bathroom.farm_bathroom_name}
@@ -108,15 +123,6 @@ class CreateBathroom extends Component {
                         </ul>
                     </Grid>
 
-                    <Grid item xs={12} sm={6}>
-                        <Button size="large" color="primary" variant="contained"
-                            onClick={this.nextPage}
-                            disabled={this.state.disableNext}
-                        >
-                            Next
-                        </Button>
-
-                    </Grid>
                 </Grid>
 
             </React.Fragment>
