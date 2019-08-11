@@ -58,6 +58,7 @@ const record_facilityOtherRouter = require('./routes/record.facilityOther.router
 const record_firstAidRouter = require('./routes/record.firstAid.router');
 const record_toolRouter = require('./routes/record.tool.router');
 const record_equipmentOtherRouter = require('./routes/record.equipmentOther.router');
+const record_pestRouter = require('./routes/record.pest.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -123,6 +124,7 @@ app.use('/record/facilityother', record_facilityOtherRouter);
 app.use('/record/firstaid', record_firstAidRouter);
 app.use('/record/tool', record_toolRouter);
 app.use('/record/equipmentother', record_equipmentOtherRouter);
+app.use('/record/pest', record_pestRouter);
 
 // Serve static files
 app.use(express.static('build'));
