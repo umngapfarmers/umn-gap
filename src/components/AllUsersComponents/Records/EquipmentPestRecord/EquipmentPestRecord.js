@@ -36,7 +36,7 @@ class EquipmentPestRecord extends Component {
 
       //FUNCTION - on click of submit button- prevents refresh of page-- dispatches payload of state to database to get data based on selected harvest year
     handleSubmit = () => {
-      this.props.dispatch({type:'GET_RECORD_FIRSTAID', payload: this.state.selectHarvestYear})
+      this.props.dispatch({type:'GET_RECORD_PEST', payload: this.state.selectHarvestYear})
     }
 
     //FUNCTION- validation- conditionally renders submit button based on status of state-- if state contains values then submit button is enabled,

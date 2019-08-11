@@ -43,6 +43,7 @@ import recordFacilityOther from './recordFacilityOtherReducer';
 import recordFirstAid from './recordFirstAidReducer';
 import recordTool from './recordToolReducer';
 import recordEquipmentOther from './recordEquipmentOtherReducer';
+import recordPest from './recordPestReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -94,7 +95,8 @@ const rootReducer = combineReducers({
   recordFacilityOther,
   recordFirstAid,
   recordTool,
-  recordEquipmentOther
+  recordEquipmentOther,
+  recordPest
 });
 
 export default rootReducer;
