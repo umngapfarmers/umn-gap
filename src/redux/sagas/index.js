@@ -57,7 +57,7 @@ import recordCoolerSaga from './recordSagas/recordCoolerSaga';
 import recordPackingSaga from './recordSagas/recordPackingSaga';
 import recordFacilityOtherSaga from './recordSagas/recordFacilityOtherSaga';
 import recordFirstAidSaga from './recordSagas/recordFirstAidSaga';
-
+import recordToolSaga from './recordSagas/recordToolSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -122,6 +122,7 @@ export default function* rootSaga() {
     recordFacilityOtherSaga(),
     setupPackingSaga(),
     setupOtherFacilitySaga(),
-    recordFirstAidSaga()
+    recordFirstAidSaga(),
+    recordToolSaga()
   ]);
 }
