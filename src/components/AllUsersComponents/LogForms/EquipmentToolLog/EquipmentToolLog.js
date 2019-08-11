@@ -51,7 +51,7 @@ class EquipmentToolLog extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.dispatch({type: 'ADD_TOOL_LOG', payload: this.state.newToolLog});
-    // this.props.history.push('/logdashboard');
+    this.props.history.push('/logdashboard');
     this.setState({
       newToolLog: {
         tool_date: '',
