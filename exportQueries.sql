@@ -82,6 +82,16 @@ SELECT "water_treatment"."treatment_date" as "date",
             JOIN "person" on "person"."person_id" = "water_treatment"."treatment_sig"
             WHERE "water_treatment"."harvest_year_id" = $1;
 
+SELECT "tool"."tool_date" as "date", 
+      "farm_tool"."farm_tool_name" as "tool", 
+       "tool"."tool_sanitized" as "sanitized", 
+       "tool"."tool_cleaned" as "cleaned", 
+       "tool"."tool_comment" as "comment", 
+       "tool"."tool_sig" as "signature"
+      FROM "tool"
+      JOIN "farm_tool" on "farm_tool"."farm_tool_id" = "tool"."farm_tool_id"
+      JOIN "person" on "person"."person_id" = "tool"."tool_sig"
+      WHERE "tool"."harvest_year_id" = $1;
 
 
 
