@@ -60,6 +60,7 @@ import recordFirstAidSaga from './recordSagas/recordFirstAidSaga';
 import recordToolSaga from './recordSagas/recordToolSaga';
 import recordEquipmentOtherSaga from './recordSagas/recordEquipmentOtherSaga';
 import recordPestSaga from './recordSagas/recordPestSaga';
+import recordVehicleSaga from './recordSagas/recordVehicleSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -127,6 +128,7 @@ export default function* rootSaga() {
     recordFirstAidSaga(),
     recordToolSaga(),
     recordEquipmentOtherSaga(),
-    recordPestSaga()
+    recordPestSaga(),
+    recordVehicleSaga()
   ]);
 }
