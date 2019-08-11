@@ -11,33 +11,18 @@ const moment = require('moment');
 
 
 
-class FacilitiesBathroomTable extends Component {
+class EquipmentThermometerTable extends Component {
 
 
       //FUNCTION- toggles the check of the checkbox
-      displayBathroomCleaned = (bathroom_cleaned) => {
-        if (bathroom_cleaned == true){
+      displayThermometerCailibrated = (thermometer_calibrate) => {
+        if (thermometer_calibrate == true){
             return (
             <Typography>Yes</Typography>
             )
         }
     
-        else if (bathroom_cleaned == false){
-            return (
-                <Typography>No</Typography>
-                )
-        }
-    }
-
-       //FUNCTION- toggles the check of the checkbox
-       displayBathroomSanitized = (bathroom_sanitized) => {
-        if (bathroom_sanitized == true){
-            return (
-            <Typography>Yes</Typography>
-            )
-        }
-    
-        else if (bathroom_sanitized == false){
+        else if (thermometer_calibrate == false){
             return (
                 <Typography>No</Typography>
                 )
@@ -55,23 +40,19 @@ class FacilitiesBathroomTable extends Component {
         <TableHead>
           <TableRow hover='true'>
             <TableCell align="center" className={classes.tableFontBody}>Date</TableCell>
-            <TableCell align="center"  className={classes.tableFontBody}>Name</TableCell>
-            <TableCell align="center"  className={classes.tableFontBody}>Cleaned</TableCell>
-            <TableCell align="center"  className={classes.tableFontBody}>Sanitized</TableCell>
-            <TableCell align="center"  className={classes.tableFontBody}>Area</TableCell>
+            <TableCell align="center"  className={classes.tableFontBody}>Location</TableCell>
+            <TableCell align="center"  className={classes.tableFontBody}>Calibrated</TableCell>
             <TableCell align="center"  className={classes.tableFontBody}>Comments</TableCell>
             <TableCell align="center"  className={classes.tableFontBody}>Signature</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {this.props.reduxState.recordBathroom.map(row => (
-            <TableRow key={row.bathroom_id} hover='true'>
-              <TableCell align="left" scope="row" className={classes.tableFontAndBorder}>{moment(row.bathroom_date).format('MM-DD-YYYY')}</TableCell>
-              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.farm_bathroom_name}</TableCell>
-              <TableCell align="left"  className={classes.tableFontAndBorder}>{this.displayBathroomCleaned(row.bathroom_cleaned)}</TableCell>
-              <TableCell align="left"  className={classes.tableFontAndBorder}>{this.displayBathroomSanitized(row.bathroom_sanitized)}</TableCell>
-              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.bathroom_area}</TableCell>
-              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.bathroom_comment}</TableCell>
+          {this.props.reduxState.recordThermometer.map(row => (
+            <TableRow key={row.thermometer_id} hover='true'>
+              <TableCell align="left" scope="row" className={classes.tableFontAndBorder}>{moment(row.thermometer_date).format('MM-DD-YYYY')}</TableCell>
+              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.farm_thermometer_location}</TableCell>
+              <TableCell align="left"  className={classes.tableFontAndBorder}>{this.displayThermometerCailibrated(row.thermometer_calibrate)}</TableCell>
+              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.thermometer_comment}</TableCell>
               <TableCell align="left"  className={classes.tableFontAndBorder}>{row.person_first} {row.person_last}</TableCell>
             </TableRow>
           ))}
@@ -105,4 +86,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect( mapReduxStateToProps )(withStyles(styles)(FacilitiesBathroomTable));
+export default connect( mapReduxStateToProps )(withStyles(styles)(EquipmentThermometerTable));
