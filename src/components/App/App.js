@@ -66,7 +66,7 @@ import RecordEquipmentOther from '../AllUsersComponents/Records/EquipmentOtherRe
 import RecordFacilitiesCooler from '../AllUsersComponents/Records/FacilitiesCoolerRecord/FacilitiesCoolerRecord';
 import RecordFacilitiesBathroom from '../AllUsersComponents/Records/FacilitiesBathroomRecord/FacilitiesBathroomRecord';
 import RecordFacilitiesPacking from '../AllUsersComponents/Records/FacilitiesPackingRecord/FacilitiesPackingRecord';
-import RecordFacilityOther from '../AllUsersComponents/Records/FacilityOtherRecord/FacilityOtherRecord';
+import RecordFacilitiesOther from '../AllUsersComponents/Records/FacilitiesOtherRecord/FacilitiesOtherRecord';
 import RecordHarvest from '../AllUsersComponents/Records/HarvestRecord/HarvestRecord';
 import RecordManure from '../AllUsersComponents/Records/ManureRecord/ManureRecord';
 import RecordWaterInspect from '../AllUsersComponents/Records/WaterInspectionRecord/WaterInspectionRecord';
@@ -643,7 +643,7 @@ class App extends Component {
             <ProtectedRoute
                 exact
                 path='/recordfacilitiesother'
-                component={RecordFacilityOther}
+                component={RecordFacilitiesOther}
             />
 
             <ProtectedRoute
