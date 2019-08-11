@@ -56,6 +56,7 @@ const record_coolerRouter = require('./routes/record.cooler.router');
 const record_packingRouter = require('./routes/record.packing.router');
 const record_facilityOtherRouter = require('./routes/record.facilityOther.router');
 const record_firstAidRouter = require('./routes/record.firstAid.router');
+const record_toolRouter = require('./routes/record.tool.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -119,6 +120,7 @@ app.use('/record/cooler', record_coolerRouter);
 app.use('/record/packing', record_packingRouter);
 app.use('/record/facilityother', record_facilityOtherRouter);
 app.use('/record/firstaid', record_firstAidRouter);
+app.use('/record/tool', record_toolRouter);
 
 // Serve static files
 app.use(express.static('build'));

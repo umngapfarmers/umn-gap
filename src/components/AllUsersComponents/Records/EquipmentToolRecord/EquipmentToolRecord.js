@@ -101,7 +101,7 @@ class EquipmentToolRecord extends Component {
 
             <Grid item xs={12} sm={6}>
              
-                {/* <EquipmentToolTable/> */}
+                <EquipmentToolTable/>
               
             </Grid>
 
