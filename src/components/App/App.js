@@ -60,7 +60,7 @@ import RecordEmployeeTraining from '../AllUsersComponents/Records/EmployeeTraini
 import RecordEquipmentTool from '../AllUsersComponents/Records/EquipmentToolRecord/EquipmentToolRecord';
 import RecordEquipmentVehicle from '../AllUsersComponents/Records/EquipmentVehicleRecord/EquipmentVehicleRecord';
 import RecordEquipmentThermometer from '../AllUsersComponents/Records/EquipmentThermometerRecord/EquipmentThermometerRecord';
-import RecordEquipmentFirstAid from '../AllUsersComponents/Records/EquipmentFirtAidRecord/EquipmentFirstAidRecord';
+import RecordEquipmentFirstAid from '../AllUsersComponents/Records/EquipmentFirstAidRecord/EquipmentFirstAidRecord';
 import RecordEquipmentPest from '../AllUsersComponents/Records/EquipmentPestRecord/EquipmentPestRecord';
 import RecordEquipmentOther from '../AllUsersComponents/Records/EquipmentOtherRecord/EquipmentOtherRecord';
 import RecordFacilitiesCooler from '../AllUsersComponents/Records/FacilitiesCoolerRecord/FacilitiesCoolerRecord';
