@@ -56,6 +56,7 @@ import recordBathroomSaga from './recordSagas/recordBathroomSaga';
 import recordCoolerSaga from './recordSagas/recordCoolerSaga';
 import recordPackingSaga from './recordSagas/recordPackingSaga';
 import recordFacilityOtherSaga from './recordSagas/recordFacilityOtherSaga';
+import recordFirstAidSaga from './recordSagas/recordFirstAidSaga';
 
 
 // rootSaga is the primary saga.
@@ -121,5 +122,6 @@ export default function* rootSaga() {
     recordFacilityOtherSaga(),
     setupPackingSaga(),
     setupOtherFacilitySaga(),
+    recordFirstAidSaga()
   ]);
 }
