@@ -11,38 +11,24 @@ const moment = require('moment');
 
 
 
-class EquipmentToolTable extends Component {
+class EquipmentVehicleTable extends Component {
 
 
       //FUNCTION- toggles the check of the checkbox
-      displayToolCleaned = (tool_cleaned) => {
-        if (tool_cleaned == true){
+      displayVehicleCleaned = (vehicle_cleaned) => {
+        if (vehicle_cleaned == true){
             return (
             <Typography>Yes</Typography>
             )
         }
     
-        else if (tool_cleaned == false){
+        else if (vehicle_cleaned == false){
             return (
                 <Typography>No</Typography>
                 )
         }
     }
 
-       //FUNCTION- toggles the check of the checkbox
-       displayToolSanitized = (tool_sanitized) => {
-        if (tool_sanitized == true){
-            return (
-            <Typography>Yes</Typography>
-            )
-        }
-    
-        else if (tool_sanitized == false){
-            return (
-                <Typography>No</Typography>
-                )
-        }
-    }
 
   //maps through reducer to create table that displays selected harvest year data based on selected record
   render() {
@@ -57,19 +43,17 @@ class EquipmentToolTable extends Component {
             <TableCell align="center" className={classes.tableFontBody}>Date</TableCell>
             <TableCell align="center"  className={classes.tableFontBody}>Name</TableCell>
             <TableCell align="center"  className={classes.tableFontBody}>Cleaned</TableCell>
-            <TableCell align="center"  className={classes.tableFontBody}>Sanitized</TableCell>
             <TableCell align="center"  className={classes.tableFontBody}>Comments</TableCell>
             <TableCell align="center"  className={classes.tableFontBody}>Signature</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {this.props.reduxState.recordTool.map(row => (
-            <TableRow key={row.tool_id} hover='true'>
-              <TableCell align="left" scope="row" className={classes.tableFontAndBorder}>{moment(row.tool_date).format('MM-DD-YYYY')}</TableCell>
-              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.farm_tool_name}</TableCell>
-              <TableCell align="left"  className={classes.tableFontAndBorder}>{this.displayToolCleaned(row.tool_cleaned)}</TableCell>
-              <TableCell align="left"  className={classes.tableFontAndBorder}>{this.displayToolSanitized(row.tool_sanitized)}</TableCell>
-              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.tool_comment}</TableCell>
+          {this.props.reduxState.recordVehicle.map(row => (
+            <TableRow key={row.vehicle_id} hover='true'>
+              <TableCell align="left" scope="row" className={classes.tableFontAndBorder}>{moment(row.vehicle_date).format('MM-DD-YYYY')}</TableCell>
+              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.farm_vehicle_name}</TableCell>
+              <TableCell align="left"  className={classes.tableFontAndBorder}>{this.displayVehicleCleaned(row.vehicle_cleaned)}</TableCell>
+              <TableCell align="left"  className={classes.tableFontAndBorder}>{row.vehicle_comment}</TableCell>
               <TableCell align="left"  className={classes.tableFontAndBorder}>{row.person_first} {row.person_last}</TableCell>
             </TableRow>
           ))}
@@ -103,4 +87,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect( mapReduxStateToProps )(withStyles(styles)(EquipmentToolTable));
+export default connect( mapReduxStateToProps )(withStyles(styles)(EquipmentVehicleTable));
