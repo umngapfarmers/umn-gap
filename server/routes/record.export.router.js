@@ -114,12 +114,23 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
             JOIN "person" on "person"."person_id" = "water_treatment"."treatment_sig" 
             WHERE "water_treatment"."harvest_year_id" = $1;`
 
+    const toolLogQuery = 
+        ` SELECT "tool"."tool_date" as "date", 
+            "farm_tool"."farm_tool_name" as "tool", 
+            "tool"."tool_sanitized" as "sanitized", 
+            "tool"."tool_cleaned" as "cleaned", 
+            "tool"."tool_comment" as "comment", 
+            concat("person"."person_first", ' ' , "person"."person_last") as "signature" 
+            FROM "tool"
+            JOIN "farm_tool" on "farm_tool"."farm_tool_id" = "tool"."farm_tool_id"
+            JOIN "person" on "person"."person_id" = "tool"."tool_sig"
+            WHERE "tool"."harvest_year_id" = $1;`
+
     
 
     // farm information for pdf header
     const farmQuery = `SELECT * FROM "farm_registry" WHERE "farm_id" = $1;`
     
-
     // will loop through the query result and reformat for pdfmake display
     // calls typeCheck to parse bool and date formats
     // flattens object into array of values for pdfmaker
@@ -249,10 +260,11 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
         let trainingRes = await client.query(trainingQuery, [harvestId]);
         let trainingDef = getTable(trainingRes, 'Employee Training');
 
-
-
         let waterInspectionRes = await client.query(waterInspectionQuery, [harvestId]);
         let waterInspectionDef = getTable(waterInspectionRes, 'Water Inspection');
+
+        let toolLogRes = await client.query(toolLogQuery, [harvestId]);
+        let toolLogDef = getTable(toolLogRes, 'Tool Cleaning and Sanitizing')
 
         let farmInfo = await client.query(farmQuery, [farmId])
         farmInfo=farmInfo.rows[0]
@@ -288,6 +300,7 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
                 farmWaterAppDef,
                 waterInspectionDef,
                 waterTreatmentDef,
+                toolLogDef,
                 trainingDef
                 ),
             styles: {
