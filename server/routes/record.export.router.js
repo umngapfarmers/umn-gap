@@ -125,6 +125,10 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
             JOIN "farm_tool" on "farm_tool"."farm_tool_id" = "tool"."farm_tool_id"
             JOIN "person" on "person"."person_id" = "tool"."tool_sig"
             WHERE "tool"."harvest_year_id" = $1;`
+    
+    const toolListQuery = `SELECT "farm_tool"."farm_tool_name" as "name", "farm_tool"."farm_tool_status" as "active" 
+                            FROM "farm_tool" WHERE "farm_tool"."harvest_year_id" = $1;`
+
 
     
 
@@ -263,8 +267,14 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
         let waterInspectionRes = await client.query(waterInspectionQuery, [harvestId]);
         let waterInspectionDef = getTable(waterInspectionRes, 'Water Inspection');
 
+        // begin equipment
+        let toolListResponse = await client.query(toolListQuery, [harvestId]);
+        let toolListDef = getTable(toolListResponse, 'Tool List');
+
         let toolLogRes = await client.query(toolLogQuery, [harvestId]);
-        let toolLogDef = getTable(toolLogRes, 'Tool Cleaning and Sanitizing')
+        let toolLogDef = getTable(toolLogRes, 'Tool Cleaning and Sanitizing');
+
+
 
         let farmInfo = await client.query(farmQuery, [farmId])
         farmInfo=farmInfo.rows[0]
@@ -300,6 +310,7 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
                 farmWaterAppDef,
                 waterInspectionDef,
                 waterTreatmentDef,
+                toolListDef,
                 toolLogDef,
                 trainingDef
                 ),
