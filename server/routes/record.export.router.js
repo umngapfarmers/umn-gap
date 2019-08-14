@@ -126,8 +126,35 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
             JOIN "person" on "person"."person_id" = "tool"."tool_sig"
             WHERE "tool"."harvest_year_id" = $1;`
     
-    const toolListQuery = `SELECT "farm_tool"."farm_tool_name" as "name", "farm_tool"."farm_tool_status" as "active" 
-                            FROM "farm_tool" WHERE "farm_tool"."harvest_year_id" = $1;`
+    const toolListQuery = 
+            `SELECT "farm_tool"."farm_tool_name" as "name", "farm_tool"."farm_tool_status" as "active" 
+            FROM "farm_tool" WHERE "farm_tool"."harvest_year_id" = $1;`
+
+    const vehicleListQuery = `
+        SELECT "farm_vehicle"."farm_vehicle_name" as "name", 
+        "farm_vehicle"."farm_vehicle_status" as "active" 
+        FROM "farm_vehicle"
+        WHERE "farm_vehicle"."harvest_year_id" = 1;`
+
+    const vehicleLogQuery = `
+        SELECT "vehicle"."vehicle_date" as "date", 
+        "farm_vehicle"."farm_vehicle_name" as "vehicle", 
+        "vehicle"."vehicle_cleaned" as "cleaned",
+        "vehicle"."vehicle_comment" as "comment",
+        concat("person"."person_first", ' ' , "person"."person_last") as "signature"
+        FROM "vehicle"
+        JOIN "person" on "person"."person_id" = "vehicle"."vehicle_sig"
+        JOIN "farm_vehicle" on "farm_vehicle"."farm_vehicle_id" = "vehicle"."farm_vehicle_id"
+        WHERE "vehicle"."harvest_year_id" = 1;`
+        
+    const thermometerListQuery = ``
+    const thermometerLogQuery = ``
+    const firstaidListQuery = ``
+    const firstaidLogQuery = ``
+    const pestListQuery = ``
+    const pestLogQuery = ``
+    const otherEquipmentListQuery = ``
+    const otherEquipmentLogQuery = ``
 
 
     
