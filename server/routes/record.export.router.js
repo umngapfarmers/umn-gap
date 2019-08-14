@@ -201,7 +201,6 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
                 }
             }
         }
-        
         res.send(docDef);
     } catch (error) {
         await client.query('ROLLBACK')
