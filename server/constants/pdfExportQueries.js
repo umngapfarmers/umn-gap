@@ -67,48 +67,48 @@ const farmWaterQuery =
           WHERE "farm_water"."harvest_year_id" = $1;`
 
 const trainingQuery = 
-      `SELECT "employee_training"."topic",
-          concat("person"."person_first", ' ' , "person"."person_last") as "name",
+      `   SELECT "employee_training"."topic",
+            concat("person"."person_first", ' ' , "person"."person_last") as "name",
 
-          "employee_training"."trainer_name" as "trainer",
-          "employee_training"."date_trained" as "date trained"
+            "employee_training"."trainer_name" as "trainer",
+            "employee_training"."date_trained" as "date trained"
           FROM "employee_training"
           JOIN "person" on "employee_training"."person_id" = "person"."person_id"
           WHERE "employee_training"."harvest_year_id"=$1;`
 
 const waterInspectionQuery = 
-      `SELECT "water_inspection"."inspection_date" as "date",
-          "farm_water_source"."farm_water_source_name" as "source",
-          "water_inspection"."distribution" as "distribution",
-          "water_inspection"."observation" as "observation",
-          "water_inspection"."inspection_corrective_action" as "corrective action",
+      `   SELECT "water_inspection"."inspection_date" as "date",
+            "farm_water_source"."farm_water_source_name" as "source",
+            "water_inspection"."distribution" as "distribution",
+            "water_inspection"."observation" as "observation",
+            "water_inspection"."inspection_corrective_action" as "corrective action",
           concat("person"."person_first", ' ' , "person"."person_last") as "signature"
           FROM "water_inspection"
           JOIN "farm_water_source" on "farm_water_source"."farm_water_source_id" = "water_inspection"."inspection_water_source"
           JOIN "person" on "person"."person_id" = "water_inspection"."inspection_signature"
           WHERE "water_inspection"."harvest_year_id" = $1;`
 
-const waterTreatmentQuery = 
-      `SELECT "water_treatment"."treatment_date" as "date",
-          "farm_water_source"."farm_water_source_name" as "source",
-          "water_treatment"."water_ph" as "pH",
-          "water_treatment"."water_temp" as "temp",
-          "water_treatment"."turbidity" as "turbidity",
-          "water_treatment"."sanitizer" as "sanitizer",
-          "water_treatment"."corrective_action" as "corrective action",
-          concat("person"."person_first", ' ' , "person"."person_last") as "signature" 
+const waterTreatmentQuery = `
+          SELECT "water_treatment"."treatment_date" as "date",
+            "farm_water_source"."farm_water_source_name" as "source",
+            "water_treatment"."water_ph" as "pH",
+            "water_treatment"."water_temp" as "temp",
+            "water_treatment"."turbidity" as "turbidity",
+            "water_treatment"."sanitizer" as "sanitizer",
+            "water_treatment"."corrective_action" as "corrective action",
+            concat("person"."person_first", ' ' , "person"."person_last") as "signature" 
           FROM "water_treatment" 
           JOIN "farm_water_source" on "farm_water_source"."farm_water_source_id" = "water_treatment"."farm_water_source_id" 
           JOIN "person" on "person"."person_id" = "water_treatment"."treatment_sig" 
           WHERE "water_treatment"."harvest_year_id" = $1;`
 
-const toolLogQuery = 
-      ` SELECT "tool"."tool_date" as "date", 
-          "farm_tool"."farm_tool_name" as "tool", 
-          "tool"."tool_sanitized" as "sanitized", 
-          "tool"."tool_cleaned" as "cleaned", 
-          "tool"."tool_comment" as "comment", 
-          concat("person"."person_first", ' ' , "person"."person_last") as "signature" 
+const toolLogQuery = `   
+          SELECT "tool"."tool_date" as "date", 
+            "farm_tool"."farm_tool_name" as "tool", 
+            "tool"."tool_sanitized" as "sanitized", 
+            "tool"."tool_cleaned" as "cleaned", 
+            "tool"."tool_comment" as "comment", 
+            concat("person"."person_first", ' ' , "person"."person_last") as "signature" 
           FROM "tool"
           JOIN "farm_tool" on "farm_tool"."farm_tool_id" = "tool"."farm_tool_id"
           JOIN "person" on "person"."person_id" = "tool"."tool_sig"
@@ -122,31 +122,106 @@ const vehicleListQuery = `
       SELECT "farm_vehicle"."farm_vehicle_name" as "name", 
       "farm_vehicle"."farm_vehicle_status" as "active" 
       FROM "farm_vehicle"
-      WHERE "farm_vehicle"."harvest_year_id" = 1;`
+      WHERE "farm_vehicle"."harvest_year_id" = $1;`
 
 const vehicleLogQuery = `
       SELECT "vehicle"."vehicle_date" as "date", 
-      "farm_vehicle"."farm_vehicle_name" as "vehicle", 
-      "vehicle"."vehicle_cleaned" as "cleaned",
-      "vehicle"."vehicle_comment" as "comment",
-      concat("person"."person_first", ' ' , "person"."person_last") as "signature"
+        "farm_vehicle"."farm_vehicle_name" as "vehicle", 
+        "vehicle"."vehicle_cleaned" as "cleaned",
+        "vehicle"."vehicle_comment" as "comment",
+        concat("person"."person_first", ' ' , "person"."person_last") as "signature"
       FROM "vehicle"
       JOIN "person" on "person"."person_id" = "vehicle"."vehicle_sig"
       JOIN "farm_vehicle" on "farm_vehicle"."farm_vehicle_id" = "vehicle"."farm_vehicle_id"
-      WHERE "vehicle"."harvest_year_id" = 1;`
+      WHERE "vehicle"."harvest_year_id" = $1;`
 
-const thermometerListQuery = ``
-const thermometerLogQuery = ``
-const firstaidListQuery = ``
-const firstaidLogQuery = ``
-const pestListQuery = ``
-const pestLogQuery = ``
-const otherEquipmentListQuery = ``
-const otherEquipmentLogQuery = ``
+const thermometerListQuery = `
+      SELECT "farm_thermometer".farm_thermometer_location as "location",
+        "farm_thermometer".farm_thermometer_status as "inactive"
+      FROM "farm_thermometer"
+      WHERE "farm_thermometer"."harvest_year_id" = $1;`
+
+const thermometerLogQuery = `
+      SELECT "thermometer".thermometer_date as "date",
+        "farm_thermometer".farm_thermometer_location as "location",
+        "thermometer".thermometer_calibrate as "calibrated",
+        "thermometer".thermometer_comment as "comment",
+        concat("person"."person_first", ' ' , "person"."person_last") as "signature"
+      FROM "thermometer"
+      JOIN "person" on "person"."person_id" = "thermometer"."thermometer_sig"
+      JOIN "farm_thermometer" on "farm_thermometer".farm_thermometer_id = "thermometer".farm_thermometer_id
+      WHERE "thermometer".harvest_year_id = $1;`
+
+const firstaidListQuery = `
+      SELECT "farm_firstaid".farm_firstaid_location as "location",
+        "farm_firstaid".farm_firstaid_status as "active"
+      FROM "farm_firstaid"
+      WHERE "farm_firstaid".harvest_year_id = $1;`
+
+const firstaidLogQuery = `
+      SELECT "firstaid".firstaid_date as "date",
+        "farm_firstaid".farm_firstaid_location as "location",
+        "firstaid".firstaid_stocked as "stocked",
+        "firstaid".firstaid_comment as "comment",
+        concat("person"."person_first", ' ', "person"."person_last") as "signature"
+      FROM "firstaid"
+      JOIN "person"
+      on "person".
+      "person_id" = "firstaid".
+      "firstaid_sig"
+      JOIN "farm_firstaid"
+      on "firstaid".farm_firstaid_id = "farm_firstaid".farm_firstaid_id
+      WHERE "firstaid".harvest_year_id = $1;`
+
+const pestListQuery = `
+      SELECT "farm_pest".farm_pest_location as "location",
+        "farm_pest_type" as "type",
+        "farm_pest_status" as "active"
+      FROM "farm_pest"
+      WHERE "harvest_year_id" = $1;`
+
+const pestLogQuery = `
+      SELECT "pest".pest_date as "date",
+        "farm_pest".farm_pest_location as "location",
+        "pest".pest_administrator as "adminstrator",
+        "pest".pest_comment as "comment",
+        concat("person".
+        "person_first", ' ', "person".
+        "person_last") as "signature"
+      FROM "pest"
+      JOIN "person"
+      on "person".
+      "person_id" = "pest".
+      "pest_sig"
+      JOIN "farm_pest"
+      on "farm_pest".farm_pest_id = "pest".farm_pest_id
+      WHERE "pest".harvest_year_id = $1;
+      `
+const otherEquipmentListQuery = `
+      SELECT "farm_equipment_other".farm_equipment_other_name as "name",
+        "farm_equipment_other".farm_equipment_other_status as "active"
+      FROM "farm_equipment_other"
+      WHERE "harvest_year_id" = $1;`
+
+const otherEquipmentLogQuery = `
+      SELECT "equipment_other".equipment_other_date as "date",
+        "farm_equipment_other".farm_equipment_other_name as "name",
+        "equipment_other".equipment_other_comment as "comment",
+        concat("person".
+          "person_first", ' ', "person".
+          "person_last") as "signature"
+      FROM "equipment_other"
+      JOIN "farm_equipment_other"
+      on "farm_equipment_other".farm_equipment_other_id = "equipment_other".farm_equipment_other_id
+      JOIN "person"
+      on "person".
+      "person_id" = "equipment_other".
+      "equipment_other_sig"
+      WHERE "harvest_year_id" = $1;
+      `
 
 // farm information for pdf header
 const farmQuery = `SELECT * FROM "farm_registry" WHERE "farm_id" = $1;`
-
 
 module.exports = {
   farmQuery,
