@@ -137,7 +137,7 @@ const vehicleLogQuery = `
 
 const thermometerListQuery = `
       SELECT "farm_thermometer".farm_thermometer_location as "location",
-        "farm_thermometer".farm_thermometer_status as "inactive"
+        "farm_thermometer".farm_thermometer_status as "active"
       FROM "farm_thermometer"
       WHERE "farm_thermometer"."harvest_year_id" = $1;`
 
@@ -201,7 +201,7 @@ const otherEquipmentListQuery = `
       SELECT "farm_equipment_other".farm_equipment_other_name as "name",
         "farm_equipment_other".farm_equipment_other_status as "active"
       FROM "farm_equipment_other"
-      WHERE "harvest_year_id" = $1;`
+      WHERE "farm_equipment_other"."harvest_year_id" = $1;`
 
 const otherEquipmentLogQuery = `
       SELECT "equipment_other".equipment_other_date as "date",
@@ -217,7 +217,7 @@ const otherEquipmentLogQuery = `
       on "person".
       "person_id" = "equipment_other".
       "equipment_other_sig"
-      WHERE "harvest_year_id" = $1;
+      WHERE "equipment_other"."harvest_year_id" = $1;
       `
 
 // farm information for pdf header
@@ -243,6 +243,7 @@ module.exports = {
   thermometerLogQuery,
   firstaidListQuery,
   firstaidLogQuery,
+
   pestListQuery,
   pestLogQuery,
   otherEquipmentListQuery,

@@ -148,6 +148,36 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
         let toolLogRes = await client.query(queries.toolLogQuery, [harvestId]);
         let toolLogDef = getTable(toolLogRes, 'Tool Cleaning and Sanitizing');
 
+        let vehicleList = await client.query(queries.vehicleListQuery, [harvestId]);
+        let vehicleListDef = getTable(vehicleList, 'Vehicle List');
+
+        let vehicleLogList = await client.query(queries.vehicleLogQuery, [harvestId]);
+        let vehicleLogDef = getTable(vehicleLogList, 'Vehicle Log');
+
+        let thermometerList = await client.query(queries.thermometerListQuery, [harvestId]);
+        let thermometerListDef = getTable(thermometerList, 'Thermometer List');
+
+        let thermometerLog = await client.query(queries.thermometerLogQuery, [harvestId]);
+        let thermoemterLogDef = getTable(thermometerLog, 'Thermometer Log');
+
+        let firstaidList = await client.query(queries.thermometerLogQuery, [harvestId]);
+        let firstaidListDef = getTable(firstaidList, 'Firstaid List');
+
+        let firstaidLog = await client.query(queries.firstaidLogQuery, [harvestId]);
+        let firstaidLogtDef = getTable(firstaidLog, 'Firstaid Log');
+
+        let pestList = await client.query(queries.pestListQuery, [harvestId]);
+        let pestListDef = getTable(pestList, 'Trap List');
+
+        let pestLog = await client.query(queries.pestLogQuery, [harvestId]);
+        let pestLogDef = getTable(pestLog, 'Trap Log');
+
+        let otherEquipmentList = await client.query(queries.otherEquipmentListQuery, [harvestId]);
+        let otherEquipmentListDef = getTable(otherEquipmentList, 'Other Equipment List');
+
+        let otherEquipmentLog = await client.query(queries.otherEquipmentLogQuery, [harvestId]);
+        let otherEquipmentLogDef = getTable(otherEquipmentLog, 'Other Equipment Log');
+
         let farmInfo = await client.query(queries.farmQuery, [farmId])
         farmInfo=farmInfo.rows[0]
         
@@ -184,6 +214,19 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
                 waterTreatmentDef,
                 toolListDef,
                 toolLogDef,
+                vehicleListDef,
+                vehicleLogDef,
+                thermometerListDef,
+                thermoemterLogDef,
+                firstaidListDef,
+                firstaidLogtDef,
+                pestListDef,
+                pestLogDef,
+                otherEquipmentListDef,
+                otherEquipmentLogDef,
+
+
+
                 trainingDef
                 ),
             styles: {
