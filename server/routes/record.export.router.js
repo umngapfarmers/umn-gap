@@ -178,6 +178,30 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
         let otherEquipmentLog = await client.query(queries.otherEquipmentLogQuery, [harvestId]);
         let otherEquipmentLogDef = getTable(otherEquipmentLog, 'Other Equipment Log');
 
+        let bathroomList = await client.query(queries.bathroomListQuery, [harvestId]);
+        let bathroomListDef = getTable(bathroomList, 'Bathroom List');
+
+        let bathroomLog = await client.query(queries.bathroomLogQuery, [harvestId]);
+        let bathroomLogDef = getTable(bathroomLog, 'Bathroom Log');
+
+        let packingList = await client.query(queries.packingListQuery, [harvestId]);
+        let packingListDef = getTable(packingList, 'Packing Facility List');
+
+        let packingLog = await client.query(queries.packingLogQuery, [harvestId]);
+        let packingLogDef = getTable(packingLog, 'Packing Facility Log');
+
+        let coolerList = await client.query(queries.coolerListQuery, [harvestId]);
+        let coolerListDef = getTable(coolerList, 'Cooler List');
+
+        let coolerLog = await client.query(queries.coolerLogQuery, [harvestId]);
+        let coolerLogDef = getTable(coolerLog, 'Cooler Log');
+
+        let otherFacilityList = await client.query(queries.otherFacilityListQuery, [harvestId]);
+        let otherFacilityListDef = getTable(otherFacilityList, 'Other Facility List');
+
+        let otherFacilityLog = await client.query(queries.otherFacilityLogQuery, [harvestId]);
+        let otherFacilityLogDef = getTable(otherFacilityLog, 'Other Facility Log');
+
         let farmInfo = await client.query(queries.farmQuery, [farmId]);
         farmInfo=farmInfo.rows[0];
         
@@ -225,9 +249,14 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
                 pestLogDef,
                 otherEquipmentListDef,
                 otherEquipmentLogDef,
-
-
-
+                bathroomListDef,
+                bathroomLogDef,
+                packingListDef,
+                packingLogDef,
+                coolerListDef,
+                coolerLogDef,
+                otherFacilityListDef,
+                otherFacilityLogDef,
                 trainingDef
                 ),
             styles: {

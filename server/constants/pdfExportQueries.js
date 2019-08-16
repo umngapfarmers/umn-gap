@@ -241,7 +241,7 @@ const bathroomLogQuery = `
       "person_id" = "bathroom".bathroom_sig
       JOIN "farm_bathroom"
       on "farm_bathroom".farm_bathroom_id = "bathroom".farm_bathroom_id
-      WHERE "bathroom".harvest_year_id = 1;
+      WHERE "bathroom".harvest_year_id = $1;
       `
 
 const packingListQuery = `
@@ -345,7 +345,6 @@ module.exports = {
   pestLogQuery,
   otherEquipmentListQuery,
   otherEquipmentLogQuery,
-
   bathroomListQuery,
   bathroomLogQuery,
   packingListQuery,
