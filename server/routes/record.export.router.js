@@ -178,8 +178,8 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
         let otherEquipmentLog = await client.query(queries.otherEquipmentLogQuery, [harvestId]);
         let otherEquipmentLogDef = getTable(otherEquipmentLog, 'Other Equipment Log');
 
-        let farmInfo = await client.query(queries.farmQuery, [farmId])
-        farmInfo=farmInfo.rows[0]
+        let farmInfo = await client.query(queries.farmQuery, [farmId]);
+        farmInfo=farmInfo.rows[0];
         
         // the document definition, read by pdfMake to render pdf
         docDef = {
@@ -202,6 +202,7 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
                     text: `${farmInfo.city}, ${farmInfo.state} ${farmInfo.zip_code}`,
                     style: 'subheader'
                 }
+
             ].concat(
                 labelCodeDef, 
                 harvestDef, 

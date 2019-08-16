@@ -219,6 +219,104 @@ const otherEquipmentLogQuery = `
       "equipment_other_sig"
       WHERE "equipment_other"."harvest_year_id" = $1;
       `
+const bathroomListQuery = `
+      SELECT "farm_bathroom".farm_bathroom_name as "name",
+        "farm_bathroom".farm_bathroom_status as "active"
+      FROM "farm_bathroom"
+      WHERE "farm_bathroom".harvest_year_id = $1;`;
+
+const bathroomLogQuery = `
+      SELECT "bathroom".bathroom_date as "date",
+        "farm_bathroom".farm_bathroom_name as "name",
+        "bathroom".bathroom_area as "area",
+        "bathroom".bathroom_cleaned as "cleaned",
+        "bathroom".bathroom_sanitized as "sanitized",
+        "bathroom".bathroom_comment as "comment",
+        concat("person".
+        "person_first", ' ', "person".
+        "person_last") as "signature"
+      FROM "bathroom"
+      JOIN "person"
+      on "person".
+      "person_id" = "bathroom".bathroom_sig
+      JOIN "farm_bathroom"
+      on "farm_bathroom".farm_bathroom_id = "bathroom".farm_bathroom_id
+      WHERE "bathroom".harvest_year_id = 1;
+      `
+
+const packingListQuery = `
+      SELECT "farm_packing".farm_packing_name as "name",
+        "farm_packing".farm_packing_status as "status"
+      FROM "farm_packing"
+      WHERE "farm_packing".harvest_year_id = $1;
+`;
+
+const packingLogQuery = `
+      SELECT "packing".packing_date as "date",
+        "farm_packing".farm_packing_name as "name",
+        "packing".packing_area as "area",
+        "packing".packing_cleaned as "cleaned",
+        "packing".packing_sanitized as "sanitized",
+        "packing".packing_comment as "comment",
+        concat("person".
+          "person_first", ' ', "person".
+          "person_last") as "signature"
+      FROM "packing"
+      JOIN "farm_packing"
+      on "farm_packing".farm_packing_id = "packing".farm_packing_id
+      JOIN "person"
+      on "person".
+      "person_id" = "packing".packing_sig
+      WHERE "packing".harvest_year_id = $1;
+`;
+
+const coolerListQuery = `
+      SELECT "farm_cooler_name"
+      as "name",
+        "farm_cooler_status"
+      as "active"
+      FROM "farm_cooler"
+      WHERE "harvest_year_id" = $1;
+`;
+
+const coolerLogQuery = `
+      SELECT "cooler".cooler_date as "date",
+        "farm_cooler".farm_cooler_name as "name",
+        "cooler".cooler_temperature as "temperature",
+        "cooler".cooler_cleaned as "cleaned",
+        "cooler".cooler_sanitized as "sanitized",
+        "cooler".cooler_area as "area",
+        "cooler".cooler_comment as "comment",
+        concat("person".
+          "person_first", ' ', "person".
+          "person_last") as "signature"
+      FROM "cooler"
+      JOIN "farm_cooler"
+      on "farm_cooler".farm_cooler_id = "cooler".farm_cooler_id
+      JOIN "person"
+      on "person".
+      "person_id" = "cooler".cooler_sig
+      WHERE "cooler".harvest_year_id = $1;
+`;
+
+const otherFacilityListQuery = `
+      SELECT "farm_facility_other".farm_facility_other_name as "name",
+        farm_facility_other.farm_facility_other_status as "status"
+      FROM "farm_facility_other"
+      WHERE harvest_year_id = $1;
+`;
+
+const otherFacilityLogQuery = `
+      SELECT "facility_other".facility_other_date as "date",
+        "farm_facility_other".farm_facility_other_name as "name",
+        "facility_other".facility_other_area as "area",
+        "facility_other".facility_other_cleaned as "cleaned",
+        "facility_other".facility_other_sanitized as "sanitized",
+        concat("person"."person_first", ' ' , "person"."person_last") as "signature"
+      FROM "facility_other"
+      JOIN farm_facility_other on farm_facility_other.farm_facility_other_id = facility_other.farm_facility_other_id
+      JOIN "person" on "person"."person_id" = "facility_other".facility_other_sig
+      WHERE "facility_other".harvest_year_id = $1;`;
 
 // farm information for pdf header
 const farmQuery = `SELECT * FROM "farm_registry" WHERE "farm_id" = $1;`
@@ -243,9 +341,17 @@ module.exports = {
   thermometerLogQuery,
   firstaidListQuery,
   firstaidLogQuery,
-
   pestListQuery,
   pestLogQuery,
   otherEquipmentListQuery,
   otherEquipmentLogQuery,
+
+  bathroomListQuery,
+  bathroomLogQuery,
+  packingListQuery,
+  packingLogQuery,
+  coolerListQuery,
+  coolerLogQuery,
+  otherFacilityListQuery,
+  otherFacilityLogQuery
 }
