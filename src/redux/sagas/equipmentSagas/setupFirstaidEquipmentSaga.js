@@ -7,7 +7,7 @@ import {
 
 function* getOtherEquipment(action) {
   try {
-    let result = yield axios.get('/setup/equipment/firstaid');
+    let result = yield axios.get('/setup/equipment/firstaid/');
     yield put({
       type: 'SET_FIRSTAID',
       payload: result.data

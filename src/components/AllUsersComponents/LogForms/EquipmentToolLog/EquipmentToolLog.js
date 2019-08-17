@@ -51,7 +51,17 @@ class EquipmentToolLog extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.dispatch({type: 'ADD_TOOL_LOG', payload: this.state.newToolLog});
-    // this.props.history.push('/logdashboard');
+    this.props.history.push('/logdashboard');
+    this.setState({
+      newToolLog: {
+        tool_date: '',
+        farm_tool_id: '',
+        tool_cleaned: false,
+        tool_sanitized: false,
+        tool_comment: '',
+        tool_sig: '',
+      }
+    })
   }
 
 
@@ -153,8 +163,8 @@ class EquipmentToolLog extends Component {
               control={
                 <Checkbox 
                   onChange={this.handleCheckCleaned} 
-                  value={this.state.tool_cleaned}
-                  checked={this.state.tool_cleaned}
+                  value={this.state.newToolLog.tool_cleaned}
+                  checked={this.state.newToolLog.tool_cleaned}
                 />
               }
               label="Tool Cleaned"
