@@ -232,7 +232,7 @@ class EditBathroom extends Component {
                 style={{ marginRight: 5, marginTop: -2, height: 10 }}
                 className={classes.fabIconColor}
               />
-              <Typography className={classes.fabColor}>Add Bathroom</Typography>
+              <Typography className={classes.fabColor}>Add Bathrooms</Typography>
             </Button>
           </Grid>
 
