@@ -13,13 +13,12 @@ const userRouter = require('./routes/user.router');
 const addWorkerRouter = require ('./routes/addWorker.router')
 const harvestYearRouter= require('./routes/harvestYear.router')
 const setupWaterRouter = require('./routes/setup.water.router')
+const setupBathroomRouter = require('./routes/setup.bathroom.router')
 const setupCropRouter = require('./routes/setup.crop.router')
 const setupManureRouter = require('./routes/setup.manure.router');
 const setupCoolerRouter = require('./routes/setup.cooler.router');
-const setupBathroomRouter = require('./routes/setup.bathroom.router');
 const setupPackingRouter = require('./routes/setup.packing.router');
 const setupFacilityOtherRouter = require('./routes/setup.otherfacility.router');
-
 const setupCompostRouter = require('./routes/setup.compost.router');
 const setupEquipmentRouter = require('./routes/equipmentRoutes/setup.equipment.router')
 const setupRouter = require('./routes/setup.router');
@@ -82,7 +81,6 @@ app.use('/hyear',harvestYearRouter); //gets the harvest_year_id
 app.use('/setupWater', setupWaterRouter); //gets, adds, edits, removes, and disables any water sources or water labels
 app.use('/setupCrop', setupCropRouter); //gets, adds, edits, removes, and disables any crop or field sources
 app.use('/setup', setupRouter); //creates a new harvest year in database
-
 app.use('/setup/cooler', setupCoolerRouter);
 app.use('/setup/bathroom', setupBathroomRouter);
 app.use('/setup/packing', setupPackingRouter);

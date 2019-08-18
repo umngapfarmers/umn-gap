@@ -187,125 +187,213 @@ class Crops extends Component {
     render() {
         const { classes } = this.props;
         return (
-            <React.Fragment>
-                
-                <Grid container spacing={24}
-                    container
-                    direction="column"
-                    justify="center"
-                    alignItems="center"
-                    style={{marginTop: 20}}
-                    >
-                    <Grid item xs={12} sm={6}>
-                        <Typography variant="h6" gutterBottom align="center" className={classes.titleColor} align="center">
-                            Add or Edit Crops You Want to Track
-                        </Typography>
-                    </Grid>
+          <React.Fragment>
+            <Grid
+              container
+              spacing={24}
+              container
+              direction="column"
+              justify="center"
+              alignItems="center"
+              style={{ marginTop: 20 }}
+            >
+              <Grid item xs={12} sm={6}>
+                <Typography
+                  variant="h6"
+                  gutterBottom
+                  align="center"
+                  className={classes.titleColor}
+                  align="center"
+                >
+                  Add or Edit Crops You Want to Track
+                </Typography>
+              </Grid>
 
-                    <Grid item xs={12} sm={6}>
-                        <TextField label="Crops to track" variant="outlined" color="primary"
-                            onChange={this.handleInputChangeFor('type')}
-                            value={this.state.newCrop.type}
-                            style={{ width: '80vw', maxWidth: 400, }}
-                        >
-                        </TextField>
-                    </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  label="Crops to track"
+                  variant="outlined"
+                  color="primary"
+                  onChange={this.handleInputChangeFor("type")}
+                  value={this.state.newCrop.type}
+                  style={{ width: "80vw", maxWidth: 400 }}
+                />
+              </Grid>
 
-                    <Grid item xs={12} sm={6}>
-                         <Button size="large" color="primary" variant="contained"
-                            onClick={this.addCropSource}
-                            disabled={this.state.disable}
-                        >
-                            <FontAwesomeIcon icon="plus" style={{ marginRight: 5, marginTop:-2, height: 10 }} className={classes.fabIconColor} />
-                            <Typography className={classes.fabColor}>Add Crop</Typography>
-                        </Button>
-                    </Grid>
+              <Grid item xs={12} sm={6}>
+                <Button
+                  size="large"
+                  color="primary"
+                  variant="contained"
+                  onClick={this.addCropSource}
+                  disabled={this.state.disable}
+                >
+                  <FontAwesomeIcon
+                    icon="plus"
+                    style={{
+                      marginRight: 5,
+                      marginTop: -2,
+                      height: 10
+                    }}
+                    className={classes.fabIconColor}
+                  />
+                  <Typography className={classes.fabColor}>
+                    Add Crop
+                  </Typography>
+                </Button>
+              </Grid>
 
+              <Grid item xs={12} sm={6}>
+                <ExpansionPanel
+                  style={{ width: "80vw", maxWidth: 300 }}
+                >
+                  <ExpansionPanelSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <Typography className={classes.heading}>
+                      My Crops
+                    </Typography>
+                  </ExpansionPanelSummary>
+                  <ExpansionPanelDetails>
                     <Grid item xs={12} sm={6}>
-                        <ExpansionPanel style={{width: '80vw', maxWidth: 300}}>
-                            <ExpansionPanelSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1a-content"
-                                id="panel1a-header"    
-                            >
-                                <Typography className={classes.heading}>My Crops</Typography>
-                            </ExpansionPanelSummary>
-                            <ExpansionPanelDetails >
-
-                                <Grid item xs={12} sm={6}>
-                                    <List style={{ marginLeft: -25, width: '70vw', maxWidth: 300 }}>
-                                        {this.props.reduxState.cropSetup.cropSetup.map((crop, i) =>
-                                        <section key={crop.farm_crop_id}>
-                                            <ListItem key={crop.farm_crop_id} 
-                                                style={{ display: "flex", direction: "column", width: '70vw', maxWidth: 270 }}
-                                                onClick={this.handleCheck(crop.farm_crop_id)}
-                                            >
-                                                <ListItemIcon>
-                                                    <Checkbox
-                                                        edge="start"
-                                                        //checks for the id in state.checked array of item bing clicked on
-                                                        //if it is present in state.checked, box appears as checked
-                                                        checked={this.state.checked.indexOf(crop.farm_crop_id) !== -1}                                                       
-                                                        tabIndex={-1}
-                                                        disableRipple
-                                                    />
-                                                </ListItemIcon>
-                                                    <ListItemText primary={crop.farm_crop_type} style={{ marginLeft: "-20px"}}/>
-                                                <ListItemSecondaryAction>
-                                                <Button variant="outlined" color="primary" variant="contained"
-                                                    //onClick, the index of the item is passed through 
-                                                    onClick={event => this.handleClickOpen(i)} 
-                                                    value={crop.farm_crop_type}
-                                                    style={{ width: '200', maxWidth: 270 }}
-                                                >
-                                                    Edit
-                                                </Button>
-                                                </ListItemSecondaryAction>
-                        
-                                            </ListItem>
-                                                <Divider variant="middle" />
-                                        </section>
-                                    )}    
-                                            <Button size="large" color="secondary" variant="contained"
-                                                style={{marginTop: 18, marginLeft: 10, height:50, width: "70vw", maxWidth: 280}}
-                                                onClick={this.removeCropSource}
-                                                disabled={this.state.disableDelete}
-                                            >
-                                                <FontAwesomeIcon icon="trash-alt" style={{ marginRight: 10, marginTop: -2  }} className={classes.fabIconColor} />
-                                                <Typography className={classes.fabColor}>Remove Crops</Typography>
-                                            </Button>
-                                    </List>
-                                </Grid>   
-                            </ExpansionPanelDetails>
-                        </ExpansionPanel>
-                    </Grid>
-
-                    <Grid item xs={12} sm={6}>
-                        <Dialog open={this.state.setOpen} aria-labelledby="form-dialog-title">
-                            <DialogContent style={{ width: '80vw', maxWidth: 200 }}>
-                                <TextField
-                                    autoFocus
-                                    margin="dense"
-                                    id="name"
-                                    label={"Crop Name"}
-                                    value={this.state.dialogState.array.farm_crop_type}
-                                    onChange={this.handleDialogChangeFor('farm_crop_type')}
-                                    fullWidth
+                      <List
+                        style={{
+                          marginLeft: -25,
+                          width: "70vw",
+                          maxWidth: 300
+                        }}
+                      >
+                        {this.props.reduxState.cropSetup.cropSetup.map(
+                          (crop, i) => (
+                            <section key={crop.farm_crop_id}>
+                              <ListItem
+                                key={crop.farm_crop_id}
+                                style={{
+                                  display: "flex",
+                                  direction: "column",
+                                  width: "70vw",
+                                  maxWidth: 270
+                                }}
+                                onClick={this.handleCheck(
+                                  crop.farm_crop_id
+                                )}
+                              >
+                                <ListItemIcon>
+                                  <Checkbox
+                                    edge="start"
+                                    //checks for the id in state.checked array of item bing clicked on
+                                    //if it is present in state.checked, box appears as checked
+                                    checked={
+                                      this.state.checked.indexOf(
+                                        crop.farm_crop_id
+                                      ) !== -1
+                                    }
+                                    tabIndex={-1}
+                                    disableRipple
+                                  />
+                                </ListItemIcon>
+                                <ListItemText
+                                  primary={crop.farm_crop_type}
+                                  style={{ marginLeft: "-20px" }}
                                 />
-                            </DialogContent>
-                            <DialogActions>
-                                <Button onClick={this.handleClose} value={1} color="primary" variant="contained">
-                                    Cancel
-                                </Button>
-                                <Button onClick={this.handleClose} value={"update"} color="primary" variant="contained">
-                                    Update
-                                </Button>
-                            </DialogActions>
-                        </Dialog>
+                                <ListItemSecondaryAction>
+                                  <Button
+                                    variant="outlined"
+                                    color="primary"
+                                    variant="contained"
+                                    //onClick, the index of the item is passed through
+                                    onClick={event =>
+                                      this.handleClickOpen(i)
+                                    }
+                                    value={crop.farm_crop_type}
+                                    style={{
+                                      width: "200",
+                                      maxWidth: 270
+                                    }}
+                                  >
+                                    Edit
+                                  </Button>
+                                </ListItemSecondaryAction>
+                              </ListItem>
+                              <Divider variant="middle" />
+                            </section>
+                          )
+                        )}
+                        <Button
+                          size="large"
+                          color="secondary"
+                          variant="contained"
+                          style={{
+                            marginTop: 18,
+                            marginLeft: 10,
+                            height: 50,
+                            width: "70vw",
+                            maxWidth: 280
+                          }}
+                          onClick={this.removeCropSource}
+                          disabled={this.state.disableDelete}
+                        >
+                          <FontAwesomeIcon
+                            icon="trash-alt"
+                            style={{ marginRight: 10, marginTop: -2 }}
+                            className={classes.fabIconColor}
+                          />
+                          <Typography className={classes.fabColor}>
+                            Remove Crops
+                          </Typography>
+                        </Button>
+                      </List>
                     </Grid>
-                </Grid>
+                  </ExpansionPanelDetails>
+                </ExpansionPanel>
+              </Grid>
 
-            </React.Fragment>
+              <Grid item xs={12} sm={6}>
+                <Dialog
+                  open={this.state.setOpen}
+                  aria-labelledby="form-dialog-title"
+                >
+                  <DialogContent
+                    style={{ width: "80vw", maxWidth: 200 }}
+                  >
+                    <TextField
+                      autoFocus
+                      margin="dense"
+                      id="name"
+                      label={"Crop Name"}
+                      value={
+                        this.state.dialogState.array.farm_crop_type
+                      }
+                      onChange={this.handleDialogChangeFor(
+                        "farm_crop_type"
+                      )}
+                      fullWidth
+                    />
+                  </DialogContent>
+                  <DialogActions>
+                    <Button
+                      onClick={this.handleClose}
+                      value={1}
+                      color="primary"
+                      variant="contained"
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      onClick={this.handleClose}
+                      value={"update"}
+                      color="primary"
+                      variant="contained"
+                    >
+                      Update
+                    </Button>
+                  </DialogActions>
+                </Dialog>
+              </Grid>
+            </Grid>
+          </React.Fragment>
         );
     }
 }
