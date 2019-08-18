@@ -253,7 +253,6 @@ CREATE TABLE "cooler" (
   "harvest_year_id" int references "harvest_year"
 );
 
-<<<<<<< HEAD
 CREATE TABLE "farm_bathroom"
 (
   "farm_bathroom_id" serial primary key,
@@ -263,10 +262,6 @@ CREATE TABLE "farm_bathroom"
 );
 
 CREATE TABLE "bathroom" (
-=======
-CREATE TABLE "bathroom"
-(
->>>>>>> 11689d0eef41213f26634b0889e83bec53ab38c7
   "bathroom_id" serial primary key ,
   "farm_bathroom_id" int references  "farm_bathroom",
   "bathroom_date" timestamptz NOT NULL,
@@ -274,8 +269,7 @@ CREATE TABLE "bathroom"
   "bathroom_sanitized" boolean,
   "bathroom_area" varchar(50) ,
   "bathroom_comment" varchar(100),
-<<<<<<< HEAD
-  "bathroom_sig" INT references person,
+  "bathroom_sig" INT references "person",
   "harvest_year_id" int references "harvest_year"
 );
 
@@ -288,14 +282,6 @@ CREATE TABLE "farm_facility_other"
 );
 
 CREATE TABLE "facility_other" (
-=======
-  "bathroom_sig" int references "person",
-  "harvest_year_id" int references "harvest_year"
-);
-
-CREATE TABLE "facility_other"
-(
->>>>>>> 11689d0eef41213f26634b0889e83bec53ab38c7
   "facility_other_id" serial primary key,
   "farm_facility_other_id" int references "farm_facility_other" NOT NULL,
   "facility_other_date" timestamptz NOT NULL,
@@ -303,11 +289,7 @@ CREATE TABLE "facility_other"
   "facility_other_sanitized" boolean,
   "facility_other_area" varchar(50) ,
   "facility_other_comment" varchar(100),
-<<<<<<< HEAD
   "facility_other_sig" INT REFERENCES "person",
-=======
-  "facility_other_sig" int references "person",
->>>>>>> 11689d0eef41213f26634b0889e83bec53ab38c7
   "harvest_year_id" int references "harvest_year"
 );
 
@@ -384,11 +366,7 @@ CREATE TABLE "equipment_other"
   "farm_equipment_other_id" int references "farm_equipment_other",
   "equipment_other_comment" varchar(200),
   "equipment_other_date" TIMESTAMPTZ,
-<<<<<<< HEAD
   "equipment_other_sig" INT REFERENCES "person",,
-=======
-  "equipment_other_sig" int references "person",
->>>>>>> 11689d0eef41213f26634b0889e83bec53ab38c7
   "harvest_year_id" int references "harvest_year"
 );
 
@@ -399,7 +377,6 @@ CREATE TABLE "vehicle"
   "vehicle_date" TIMESTAMPTZ NOT NULL,
   "vehicle_cleaned" boolean,
   "vehicle_comment" varchar(200),
-<<<<<<< HEAD
   "vehicle_sig" INT REFERENCES "person",
   "harvest_year_id" int references "harvest_year"
 );
@@ -413,20 +390,11 @@ CREATE TABLE "farm_firstaid"
 );
 
 CREATE TABLE "firstaid" (
-=======
-  "vehicle_sig" int references "person",
-  "harvest_year_id" int references "harvest_year"
-);
-
-CREATE TABLE "firstaid"
-(
->>>>>>> 11689d0eef41213f26634b0889e83bec53ab38c7
   "firstaid_id" serial primary key,
   "farm_firstaid_id" int references "farm_firstaid",
   "firstaid_date" TIMESTAMPTZ,
   "firstaid_stocked" boolean,
   "firstaid_comment" varchar(200),
-<<<<<<< HEAD
   "firstaid_sig" INT REFERENCES "person",
   "harvest_year_id" int references "harvest_year"
 );
@@ -441,24 +409,12 @@ CREATE TABLE "farm_pest"
 );
 
 CREATE TABLE "pest" (
-=======
-  "firstaid_sig" int references "person",
-  "harvest_year_id" int references "harvest_year"
-);
-
-CREATE TABLE "pest"
-(
->>>>>>> 11689d0eef41213f26634b0889e83bec53ab38c7
   "pest_id" serial primary key,
   "pest_administrator" varchar(200),
   "farm_pest_id" int references "farm_pest",
   "pest_date" TIMESTAMPTZ,
   "pest_comment" varchar(200),
-<<<<<<< HEAD
   "pest_sig" INT REFERENCES "person",
-=======
-  "pest_sig" int references "person",
->>>>>>> 11689d0eef41213f26634b0889e83bec53ab38c7
   "harvest_year_id" int references "harvest_year"
 );
 
@@ -469,10 +425,6 @@ CREATE TABLE "thermometer"
   "thermometer_date" TIMESTAMPTZ,
   "thermometer_calibrate" boolean,
   "thermometer_comment" varchar(200),
-<<<<<<< HEAD
   "thermometer_sig" INT REFERENCES "person",
-=======
-  "thermometer_sig" int references "person",
->>>>>>> 11689d0eef41213f26634b0889e83bec53ab38c7
   "harvest_year_id" int references "harvest_year"
 );
