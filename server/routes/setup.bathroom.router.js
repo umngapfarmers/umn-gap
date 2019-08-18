@@ -49,7 +49,7 @@ router.post('/edit', rejectUnauthenticated, (req, res) => {
 
     let sqlText = `INSERT INTO "farm_bathroom"
         ("farm_bathroom_name", "harvest_year_id")
-        VALUES ($1, $2, $3, $4);`;
+        VALUES ($1, $2);`;
     let values = [
         req.body.name,
         req.user.current_harvest_year,
@@ -83,35 +83,36 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 
 })
 
-router.put('/edit', rejectUnauthenticated, (req, res) => {
+router.put("/edit", rejectUnauthenticated, (req, res) => {
+  const id = req.body.farm_bathroom_id;
+  const type = req.body.farm_bathroom_name;
 
-    const date = req.body.farm_compost_date
-    const description = req.body.farm_compost_description
-    const name = req.body.farm_compost_name
-    const id = req.body.farm_compost_id
-
-    const queryText = 'UPDATE "farm_compost" SET "farm_compost_name"=$1, "farm_compost_date"=$2, "farm_compost_description"=$3 WHERE farm_compost_id=$4';
-    pool.query(queryText, [name, date, description, id])
-        .then(() => { res.sendStatus(200); })
-        .catch((err) => {
-            console.log('Error deleting compost query', err);
-            res.sendStatus(500);
-        });
+  const queryText =
+    'UPDATE "farm_bathroom" SET "farm_bathroom_name"=$1 WHERE farm_bathroom_id=$2';
+  pool
+    .query(queryText, [type, id])
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(err => {
+      res.sendStatus(500);
+    });
 });
 
-router.put('/disable', rejectUnauthenticated, (req, res) => {
-
-    const id = req.body.checked
-    console.log('checked is', req.body);
-    for (let num of id) {
-        const queryText = 'UPDATE "farm_compost" SET "farm_compost_status"= FALSE WHERE farm_compost_id=$1';
-        pool.query(queryText, [num])
-            .then(() => { res.sendStatus(200); })
-            .catch((err) => {
-                console.log('Error deleting compost query', err);
-                res.sendStatus(500);
-            });
-    }
+router.put("/disable", rejectUnauthenticated, (req, res) => {
+  const id = req.body.checked;
+  for (let num of id) {
+    const queryText =
+      'UPDATE "farm_bathroom" SET "farm_bathroom_status"= FALSE WHERE farm_bathroom_id=$1';
+    pool
+      .query(queryText, [num])
+      .then(() => {
+        res.sendStatus(200);
+      })
+      .catch(err => {
+        res.sendStatus(500);
+      });
+  }
 });
 
 module.exports = router;
