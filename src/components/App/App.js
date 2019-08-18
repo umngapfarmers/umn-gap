@@ -66,7 +66,7 @@ import RecordEquipmentOther from '../AllUsersComponents/Records/EquipmentOtherRe
 import RecordFacilitiesCooler from '../AllUsersComponents/Records/FacilitiesCoolerRecord/FacilitiesCoolerRecord';
 import RecordFacilitiesBathroom from '../AllUsersComponents/Records/FacilitiesBathroomRecord/FacilitiesBathroomRecord';
 import RecordFacilitiesPacking from '../AllUsersComponents/Records/FacilitiesPackingRecord/FacilitiesPackingRecord';
-import RecordFacilityOther from '../AllUsersComponents/Records/FacilityOtherRecord/FacilityOtherRecord';
+import RecordFacilitiesOther from '../AllUsersComponents/Records/FacilityOtherRecord/FacilityOtherRecord';
 import RecordHarvest from '../AllUsersComponents/Records/HarvestRecord/HarvestRecord';
 import RecordManure from '../AllUsersComponents/Records/ManureRecord/ManureRecord';
 import RecordWaterInspect from '../AllUsersComponents/Records/WaterInspectionRecord/WaterInspectionRecord';
@@ -95,7 +95,7 @@ import CreateEquipmentThermometer from '../AdminComponents/HarvestYear/NewHarves
 import CreateEquipmentPest from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/CreatePest/CreatePest';
 import CreateEquipmentFirstaid from '../AdminComponents/HarvestYear/NewHarvestYear/NewEquipment/CreateFirstaid/CreateFirstaid';
 import CreatePacking from '../AdminComponents/HarvestYear/NewHarvestYear/NewFacilities/CreatePacking/CreatePacking';
-import createFacilityOther from '../AdminComponents/HarvestYear/NewHarvestYear/NewFacilities/CreateOtherFacility/CreateOtherFacility';
+import CreateFacilityOther from '../AdminComponents/HarvestYear/NewHarvestYear/NewFacilities/CreateOtherFacility/CreateOtherFacility';
 //EDIT
 import EditCrops from '../AdminComponents/HarvestYear/EditHarvestYear/EditCrops/EditCrops';
 import EditEmployee from '../AdminComponents/ManageRoles/EditEmployee';
@@ -267,6 +267,24 @@ class App extends Component {
                 exact
                 path="/createbathroom"
                 component={CreateBathroom}
+              />
+
+              <AdminProtectedRoute
+                exact
+                path="/createpacking"
+                component={CreatePacking}
+              />
+
+              <AdminProtectedRoute
+                exact
+                path = "/createfacilityother"
+                component={CreateFacilityOther}
+              />
+
+              <AdminProtectedRoute
+                exact
+                path="/createfacilitiesselect"
+                component={CreateFacilitiesSelect}
               />
 
               {/* DASHBOARDS */}
