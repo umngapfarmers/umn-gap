@@ -48,7 +48,8 @@
   },
   "devDependencies": {
     "cypress": "^3.4.1",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "random-username-generator": "^1.0.4"
   },
   "browserslist": [
     ">0.2%",

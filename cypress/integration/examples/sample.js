@@ -1,3 +1,6 @@
+var rug = require('random-username-generator');
+var new_username = rug.generate();
+
 describe('Registration test', function () {
   it('Finds the content Register button and clicks it', function () {
     cy.visit('http://localhost:3000/#/home')
@@ -5,8 +8,8 @@ describe('Registration test', function () {
     cy.get(':nth-child(1) > :nth-child(1) > .MuiFormControl-root-102 > .MuiInputBase-root-137 > .MuiInputBase-input-147').type('1086420')
     cy.get(':nth-child(2) > .MuiFormControl-root-102 > .MuiInputBase-root-137 > .MuiInputBase-input-147').type('Walter')
     cy.get(':nth-child(3) > .MuiFormControl-root-102 > .MuiInputBase-root-137 > .MuiInputBase-input-147').type('Benson')
-    cy.get(':nth-child(4) > .MuiFormControl-root-102 > .MuiInputBase-root-137 > .MuiInputBase-input-147').type('BensonFarm')
-    cy.get(':nth-child(5) > .MuiFormControl-root-102 > .MuiInputBase-root-137 > .MuiInputBase-input-147').type('BensonFarm')
+    cy.get(':nth-child(4) > .MuiFormControl-root-102 > .MuiInputBase-root-137 > .MuiInputBase-input-147').type(new_username)
+    cy.get(':nth-child(5) > .MuiFormControl-root-102 > .MuiInputBase-root-137 > .MuiInputBase-input-147').type(new_username)
     cy.get(':nth-child(6) > .MuiFormControl-root-102 > .MuiInputBase-root-137 > .MuiInputBase-input-147').type('waltkbenson@gmail.com')
     cy.get(':nth-child(7) > :nth-child(1) > .MuiFormControl-root-102 > .MuiInputBase-root-137 > .MuiInputBase-input-147').type('Benson Farm')
     cy.get(':nth-child(8) > :nth-child(1) > .MuiFormControl-root-102 > .MuiInputBase-root-137 > .MuiInputBase-input-147').type('Some Road')
