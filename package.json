@@ -47,6 +47,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "cypress": "^3.4.1",
     "nodemon": "^1.18.10"
   },
   "browserslist": [
