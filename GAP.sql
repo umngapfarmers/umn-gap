@@ -209,13 +209,6 @@ CREATE TABLE "farm_cooler"
 
 );
 
-CREATE TABLE "farm_bathroom"
-(
-  "farm_bathroom_id" serial primary key,
-  "farm_bathroom_name" varchar(50),
-  "harvest_year_id" int references "harvest_year",
-  "farm_bathroom_status" boolean DEFAULT true
-);
 
 CREATE TABLE "farm_facility_other"
 (
@@ -366,7 +359,7 @@ CREATE TABLE "equipment_other"
   "farm_equipment_other_id" int references "farm_equipment_other",
   "equipment_other_comment" varchar(200),
   "equipment_other_date" TIMESTAMPTZ,
-  "equipment_other_sig" INT REFERENCES "person",,
+  "equipment_other_sig" INT REFERENCES "person",
   "harvest_year_id" int references "harvest_year"
 );
 

@@ -110,6 +110,7 @@ class EditFarmInformationHierarchyMenu extends Component {
               <FontAwesomeIcon icon="clipboard" style={{ marginLeft: 5 }} className={classes.fabIconColor} />
             </Fab>
           </Grid>
+
         </Grid>
 
       </React.Fragment>
