@@ -108,7 +108,8 @@ import EditTools from '../AdminComponents/HarvestYear/EditHarvestYear/EditEquipm
 import EditVehicles from '../AdminComponents/HarvestYear/EditHarvestYear/EditEquipment/EditVehicles/EditVehicles';
 import EditThermometers from '../AdminComponents/HarvestYear/EditHarvestYear/EditEquipment/EditThermometers/EditThermometers';
 import EditFirstAid from '../AdminComponents/HarvestYear/EditHarvestYear/EditEquipment/EditFirstAid/EditFirstAid';
-
+import EditPests from '../AdminComponents/HarvestYear/EditHarvestYear/EditEquipment/EditPests/EditPests';
+import EditOtherEquipment from '../AdminComponents/HarvestYear/EditHarvestYear/EditEquipment/EditOtherEquipment/EditOtherEquipment';
 
 //MANAGE USER
 import AddWorker from '../AdminComponents/ManageRoles/AddWorker';
@@ -437,6 +438,16 @@ class App extends Component {
                 exact
                 path="/editFirstAid"
                 component={EditFirstAid}
+              />
+              <AdminProtectedRoute
+                exact
+                path="/editPests"
+                component={EditPests}
+              />
+              <AdminProtectedRoute
+                exact
+                path="/editOtherEquipment"
+                component={EditOtherEquipment}
               />
               <AdminProtectedRoute
                 exact

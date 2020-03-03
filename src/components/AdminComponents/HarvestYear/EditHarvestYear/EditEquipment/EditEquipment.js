@@ -76,7 +76,7 @@ class EditEquipment extends Component {
                     aria-label="Add"
                     className={classes.margin}
                     style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/newFirstaid')}}
+                    onClick={() => {this.props.history.push('/editFirstaid')}}
                     >
                        <Typography className={classes.fabColor}>First Aid</Typography>
                       <FontAwesomeIcon icon="first-aid" style={{marginLeft: 5}} className={classes.fabIconColor}/>
@@ -91,7 +91,7 @@ class EditEquipment extends Component {
                     aria-label="Add"
                     className={classes.margin}
                     style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/newPest')}}
+                    onClick={() => {this.props.history.push('/editPests')}}
                     >
                        <Typography className={classes.fabColor}>Pests</Typography>
                       <FontAwesomeIcon icon="spider" style={{marginLeft: 5}} className={classes.fabIconColor}/>
@@ -108,7 +108,7 @@ class EditEquipment extends Component {
                     style={{width:'80vw', maxWidth:400}}
                     onClick = {
                       () => {
-                        this.props.history.push('/newOtherEquipment')
+                        this.props.history.push('/editOtherEquipment')
                       }
                     }
                     >
@@ -127,7 +127,7 @@ class EditEquipment extends Component {
                     style={{width:'80vw', maxWidth:400}}
                     onClick = {
                       () => {
-                        this.props.history.push('/newfarminfo');
+                        this.props.history.push('/edithierarchy');
                         this.props.dispatch({
                           type: "SET_MENU_BOOLEAN",
                           payload: 4
@@ -135,7 +135,7 @@ class EditEquipment extends Component {
                       }
                     }
                     >
-                       <Typography className={classes.fabColor}>Continue</Typography>
+                       <Typography className={classes.fabColor}>Back</Typography>
                   </Fab>
               </Grid>
 
