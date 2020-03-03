@@ -46,7 +46,7 @@ class EditEquipment extends Component {
                     aria-label="Add"
                     className={classes.margin}
                     style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/newVehicle')}}
+                    onClick={() => {this.props.history.push('/editVehicles')}}
                     >
                        <Typography className={classes.fabColor}>Vehicles</Typography>
                       <FontAwesomeIcon icon="truck-pickup" style={{marginLeft: 5}} className={classes.fabIconColor}/>
@@ -61,7 +61,7 @@ class EditEquipment extends Component {
                     aria-label="Add"
                     className={classes.margin}
                     style={{width:'80vw', maxWidth:400}}
-                    onClick={() => {this.props.history.push('/newThermometer')}}
+                    onClick={() => {this.props.history.push('/editThermometers')}}
                     >
                        <Typography className={classes.fabColor}>Thermometers</Typography>
                       <FontAwesomeIcon icon="thermometer-half" style={{marginLeft: 5}} className={classes.fabIconColor}/>
