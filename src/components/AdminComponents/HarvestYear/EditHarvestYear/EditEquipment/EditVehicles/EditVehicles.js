@@ -13,11 +13,11 @@ import Nav from '../../../../../Nav/Nav.js';
 
 // Allows farmer to create a new equipment
 // Accessed as part of intial farm set up workflow and through harvest year edit
-// access at "/newTool"
-class EditTools extends Component {
+// access at "/newvehicle"
+class EditVehicles extends Component {
 
   state = {
-    farm_tool_name: ''
+    farm_vehicle_name: ''
   };
 
   handleChangeFor = property => event => {
@@ -28,7 +28,7 @@ class EditTools extends Component {
   };
 
   validateFilled = () => {
-    if (this.state.farm_tool_name) {
+    if (this.state.farm_vehicle_name) {
       return false
     } else {
 
@@ -38,19 +38,19 @@ class EditTools extends Component {
 
   onSubmit = () => {
     this.props.dispatch({
-      type: 'ADD_TOOL',
+      type: 'ADD_VEHICLE',
       payload: {
         ...this.state
       }
     });
     this.setState({
-      farm_tool_name: ''
+      farm_vehicle_name: ''
     });
   };
 
   handleRemove = (id) => {
     this.props.dispatch({
-      type: 'DELETE_TOOL',
+      type: 'DELETE_VEHICLE',
       payload: {
         id,
       }
@@ -58,7 +58,7 @@ class EditTools extends Component {
   };
 
   componentDidMount(){
-    this.props.dispatch({type: 'GET_TOOL'});
+    this.props.dispatch({type: 'GET_VEHICLE'});
   };
   
   render() {
@@ -67,8 +67,8 @@ class EditTools extends Component {
       <React.Fragment>
         <Nav />
       <Typography variant="h6" gutterBottom align="center">
-        Add Tool
-        </Typography>
+          Create New Vehicle
+      </Typography>
       <Grid 
         container 
         spacing={24}
@@ -79,14 +79,14 @@ class EditTools extends Component {
         <Grid item xs={10} sm={6} >
             <FormControl>
                 <TextField 
-                    label="Tool Name" 
+                    label="Vehicle Name" 
                     variant="outlined" 
                     color="primary"
                     onChange = {
-                      this.handleChangeFor('farm_tool_name')
+                      this.handleChangeFor('farm_vehicle_name')
                     }
                     value = {
-                      this.state.farm_tool_name
+                      this.state.farm_vehicle_name
                     }
                     style={{width:'80vw', maxWidth:400}}
                   >
@@ -101,7 +101,7 @@ class EditTools extends Component {
             variant="contained" 
             onClick={this.onSubmit} 
             style={{width:'80vw', maxWidth:400}}>
-              Add New Tool
+              Add New vehicle
             </Button>
         </Grid>
         
@@ -120,9 +120,9 @@ class EditTools extends Component {
           <ul>
             {/* checks if redux state is filled */}
             {
-              this.props.reduxState.equipmentReducer.tool[0] && this.props.reduxState.equipmentReducer.tool.map(equipment =>
-              <li key={equipment.farm_tool_id}>{equipment.farm_tool_name}
-                <IconButton size="large" color="primary" variant='contained' onClick={() => this.handleRemove(equipment.farm_tool_id)}><FontAwesomeIcon icon='minus-circle'/></IconButton>
+              this.props.reduxState.equipmentReducer.vehicle[0] && this.props.reduxState.equipmentReducer.vehicle.map(equipment =>
+              <li key={equipment.farm_vehicle_id}>{equipment.farm_vehicle_name}
+                <IconButton size="large" color="primary" variant='contained' onClick={() => this.handleRemove(equipment.farm_vehicle_id)}><FontAwesomeIcon icon='minus-circle'/></IconButton>
               </li>
             )}
           </ul>
@@ -147,4 +147,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect(mapReduxStateToProps)(withStyles(styles)(EditTools));
+export default connect(mapReduxStateToProps)(withStyles(styles)(EditVehicles));

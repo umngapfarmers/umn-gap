@@ -104,7 +104,7 @@ import EditWater from '../AdminComponents/HarvestYear/EditHarvestYear/EditWater/
 import EditWorker from '../AdminComponents/ManageRoles/EditWorker';
 import EditFacilities from '../AdminComponents/HarvestYear/EditHarvestYear/EditFacilities/EditFacilities';
 import EditEquipment from '../AdminComponents/HarvestYear/EditHarvestYear/EditEquipment/EditEquipment';
-
+import EditTools from '../AdminComponents/HarvestYear/EditHarvestYear/EditEquipment/EditTools/EditTools';
 //MANAGE USER
 import AddWorker from '../AdminComponents/ManageRoles/AddWorker';
 import EditUser from '../AdminComponents/ManageRoles/EditUser';
@@ -412,6 +412,11 @@ class App extends Component {
                 exact
                 path="/editequipment"
                 component={EditEquipment}
+              />
+              <AdminProtectedRoute
+                exact
+                path="/editTools"
+                component={EditTools}
               />
               <AdminProtectedRoute
                 exact
