@@ -96,6 +96,20 @@ class EditFarmInformationHierarchyMenu extends Component {
               <FontAwesomeIcon icon="clipboard" style={{ marginLeft: 5 }} className={classes.fabIconColor} />
             </Fab>
           </Grid>
+          <Grid item xs={10} sm={6}>
+            <Fab
+              variant="extended"
+              size="large"
+              color="primary"
+              aria-label="Add"
+              className={classes.margin}
+              onClick={() => { this.props.history.push('/editequipment') }}
+              style={{ width: '80vw', maxWidth: 400 }}
+            >
+              <Typography className={classes.fabColor}>Equipment</Typography>
+              <FontAwesomeIcon icon="clipboard" style={{ marginLeft: 5 }} className={classes.fabIconColor} />
+            </Fab>
+          </Grid>
         </Grid>
 
       </React.Fragment>

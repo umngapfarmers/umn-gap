@@ -103,6 +103,7 @@ import EditManure from '../AdminComponents/HarvestYear/EditHarvestYear/EditManur
 import EditWater from '../AdminComponents/HarvestYear/EditHarvestYear/EditWater/EditWater';
 import EditWorker from '../AdminComponents/ManageRoles/EditWorker';
 import EditFacilities from '../AdminComponents/HarvestYear/EditHarvestYear/EditFacilities/EditFacilities';
+import EditEquipment from '../AdminComponents/HarvestYear/EditHarvestYear/EditEquipment/EditEquipment';
 
 //MANAGE USER
 import AddWorker from '../AdminComponents/ManageRoles/AddWorker';
@@ -406,6 +407,11 @@ class App extends Component {
                 exact
                 path="/editfacilities"
                 component={EditFacilities}
+              />
+              <AdminProtectedRoute
+                exact
+                path="/editequipment"
+                component={EditEquipment}
               />
               <AdminProtectedRoute
                 exact
