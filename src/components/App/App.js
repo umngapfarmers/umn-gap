@@ -103,6 +103,13 @@ import EditManure from '../AdminComponents/HarvestYear/EditHarvestYear/EditManur
 import EditWater from '../AdminComponents/HarvestYear/EditHarvestYear/EditWater/EditWater';
 import EditWorker from '../AdminComponents/ManageRoles/EditWorker';
 import EditFacilities from '../AdminComponents/HarvestYear/EditHarvestYear/EditFacilities/EditFacilities';
+import EditEquipment from '../AdminComponents/HarvestYear/EditHarvestYear/EditEquipment/EditEquipment';
+import EditTools from '../AdminComponents/HarvestYear/EditHarvestYear/EditEquipment/EditTools/EditTools';
+import EditVehicles from '../AdminComponents/HarvestYear/EditHarvestYear/EditEquipment/EditVehicles/EditVehicles';
+import EditThermometers from '../AdminComponents/HarvestYear/EditHarvestYear/EditEquipment/EditThermometers/EditThermometers';
+import EditFirstAid from '../AdminComponents/HarvestYear/EditHarvestYear/EditEquipment/EditFirstAid/EditFirstAid';
+import EditPests from '../AdminComponents/HarvestYear/EditHarvestYear/EditEquipment/EditPests/EditPests';
+import EditOtherEquipment from '../AdminComponents/HarvestYear/EditHarvestYear/EditEquipment/EditOtherEquipment/EditOtherEquipment';
 
 //MANAGE USER
 import AddWorker from '../AdminComponents/ManageRoles/AddWorker';
@@ -406,6 +413,41 @@ class App extends Component {
                 exact
                 path="/editfacilities"
                 component={EditFacilities}
+              />
+              <AdminProtectedRoute
+                exact
+                path="/editequipment"
+                component={EditEquipment}
+              />
+              <AdminProtectedRoute
+                exact
+                path="/editTools"
+                component={EditTools}
+              />
+              <AdminProtectedRoute
+                exact
+                path="/editVehicles"
+                component={EditVehicles}
+              />
+              <AdminProtectedRoute
+                exact
+                path="/editThermometers"
+                component={EditThermometers}
+              />
+              <AdminProtectedRoute
+                exact
+                path="/editFirstAid"
+                component={EditFirstAid}
+              />
+              <AdminProtectedRoute
+                exact
+                path="/editPests"
+                component={EditPests}
+              />
+              <AdminProtectedRoute
+                exact
+                path="/editOtherEquipment"
+                component={EditOtherEquipment}
               />
               <AdminProtectedRoute
                 exact
