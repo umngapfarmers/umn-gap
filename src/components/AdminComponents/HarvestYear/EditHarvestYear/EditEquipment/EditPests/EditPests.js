@@ -81,7 +81,7 @@ class EditPests extends Component {
         <Grid item xs={10} sm={6} >
             <FormControl>
                 <TextField 
-                    label="Pest Name" 
+                    label="Pest Location" 
                     variant="outlined" 
                     color="primary"
                     onChange = {
